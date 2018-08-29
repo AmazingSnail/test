@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.partpunchingworkshop.dao.InfoMapper" >
+    <select id="getStatus" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        SELECT distinct StatusName ,* FROM m_BaseStatus where DepartMent='信息'
+    </select>
+    <select id="getList" parameterType="com.dhchain.business.partpunchingworkshop.vo.ReModbusOrder" resultType="com.dhchain.business.partpunchingworkshop.vo.ReModbusOrder">
+        select * from m_ReModbusOrder
+    </select>
+    <select id="getList1" parameterType="com.dhchain.business.partpunchingworkshop.vo.WrModbusOrder" resultType="com.dhchain.business.partpunchingworkshop.vo.WrModbusOrder">
+        select * from m_WrModbusOrder
+    </select>
+    <select id="getList2" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        select * from m_BaseStatus
+    </select>
+    <insert id="insert" parameterType="com.dhchain.business.partpunchingworkshop.vo.ReModbusOrder">
+        insert into m_ReModbusOrder
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+        <if test="IP != null" >
+            IP,
+        </if>
+        <if test="ReOrder != null" >
+            ReOrder,
+        </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+        <if test="IP != null" >
+            #{IP,jdbcType=VARCHAR},
+        </if>
+        <if test="ReOrder != null" >
+            #{ReOrder,jdbcType=VARCHAR},
+        </if>
+        </trim>
+    </insert>
+    <insert id="insert1" parameterType="com.dhchain.business.partpunchingworkshop.vo.WrModbusOrder">
+        insert into m_WrModbusOrder
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="EquipID != null" >
+                EquipID,
+            </if>
+            <if test="FieType != null" >
+                FieType,
+            </if>
+            <if test="WriOrder != null" >
+                WriOrder,
+            </if>
+            <if test="OrderName != null" >
+                OrderName,
+            </if>
+            <if test="Mark != null" >
+                Mark,
+            </if>
+            <if test="Types != null" >
+                Types,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="EquipID != null" >
+                #{EquipID,jdbcType=VARCHAR},
+            </if>
+            <if test="FieType != null" >
+                #{FieType,jdbcType=VARCHAR},
+            </if>
+            <if test="WriOrder != null" >
+                #{WriOrder,jdbcType=VARCHAR},
+            </if>
+            <if test="OrderName != null" >
+                #{OrderName,jdbcType=VARCHAR},
+            </if>
+            <if test="Mark != null" >
+                #{Mark,jdbcType=VARCHAR},
+            </if>
+            <if test="Types != null" >
+                #{Types,jdbcType=VARCHAR},
+            </if>
+
+        </trim>
+    </insert><insert id="insert2" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        insert into m_BaseStatus
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="StatusID != null" >
+                StatusID,
+            </if>
+            <if test="StatusName != null" >
+                StatusName,
+            </if>
+            <if test="DepartMent != null" >
+                DepartMent,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="StatusID != null" >
+                #{StatusID,jdbcType=VARCHAR},
+            </if>
+            <if test="StatusName != null" >
+                #{StatusName,jdbcType=VARCHAR},
+            </if>
+            <if test="DepartMent != null" >
+                #{DepartMent,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="com.dhchain.business.partpunchingworkshop.vo.ReModbusOrder">
+        UPDATE  m_ReModbusOrder
+        SET IP=#{IP},
+        ReOrder = #{ReOrder}
+        WHERE  ID= #{ID}
+    </update>
+    <update id="update1" parameterType="com.dhchain.business.partpunchingworkshop.vo.WrModbusOrder">
+        UPDATE  m_WrModbusOrder
+        SET EquipID=#{EquipID},
+        FieType = #{FieType},
+        WriOrder = #{WriOrder},
+        OrderName = #{OrderName}
+        WHERE  ID= #{ID}
+    </update>
+    <update id="update2" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        UPDATE  m_BaseStatus
+        SET StatusID=#{StatusID},
+        StatusName = #{StatusName}
+        WHERE  ID= #{ID}
+    </update>
+    <delete id="delete" parameterType="com.dhchain.business.partpunchingworkshop.vo.ReModbusOrder">
+        DELETE from m_ReModbusOrder WHERE ID=#{ID}
+    </delete>
+    <delete id="delete1" parameterType="com.dhchain.business.partpunchingworkshop.vo.WrModbusOrder">
+        DELETE from m_WrModbusOrder WHERE ID=#{ID}
+    </delete>
+    <delete id="delete2" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        DELETE from m_BaseStatus WHERE ID=#{ID}
+    </delete>
+</mapper>

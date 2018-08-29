@@ -1,0 +1,2997 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.code.dao.CodeMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.code.vo.Code" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="codeno" property="codeno" jdbcType="VARCHAR" />
+    <result column="codename" property="codename" jdbcType="VARCHAR" />
+    <result column="t1" property="t1" jdbcType="VARCHAR" />
+    <result column="t2" property="t2" jdbcType="VARCHAR" />
+    <result column="t3" property="t3" jdbcType="VARCHAR" />
+    <result column="t4" property="t4" jdbcType="VARCHAR" />
+    <result column="t5" property="t5" jdbcType="VARCHAR" />
+    <result column="t6" property="t6" jdbcType="VARCHAR" />
+    <result column="t7" property="t7" jdbcType="VARCHAR" />
+    <result column="t8" property="t8" jdbcType="VARCHAR" />
+    <result column="t9" property="t9" jdbcType="VARCHAR" />
+    <result column="t10" property="t10" jdbcType="VARCHAR" />
+    <result column="t11" property="t11" jdbcType="VARCHAR" />
+    <result column="t12" property="t12" jdbcType="VARCHAR" />
+    <result column="t13" property="t13" jdbcType="VARCHAR" />
+    <result column="t14" property="t14" jdbcType="VARCHAR" />
+    <result column="t15" property="t15" jdbcType="VARCHAR" />
+    <result column="t16" property="t16" jdbcType="VARCHAR" />
+    <result column="t17" property="t17" jdbcType="VARCHAR" />
+    <result column="t18" property="t18" jdbcType="VARCHAR" />
+    <result column="t19" property="t19" jdbcType="VARCHAR" />
+    <result column="t20" property="t20" jdbcType="VARCHAR" />
+    <result column="t21" property="t21" jdbcType="VARCHAR" />
+    <result column="t22" property="t22" jdbcType="VARCHAR" />
+    <result column="t23" property="t23" jdbcType="VARCHAR" />
+    <result column="t24" property="t24" jdbcType="VARCHAR" />
+    <result column="t25" property="t25" jdbcType="VARCHAR" />
+    <result column="t26" property="t26" jdbcType="VARCHAR" />
+    <result column="t27" property="t27" jdbcType="VARCHAR" />
+    <result column="t28" property="t28" jdbcType="VARCHAR" />
+    <result column="t29" property="t29" jdbcType="VARCHAR" />
+    <result column="t30" property="t30" jdbcType="VARCHAR" />
+    <result column="t31" property="t31" jdbcType="VARCHAR" />
+    <result column="t32" property="t32" jdbcType="VARCHAR" />
+    <result column="t33" property="t33" jdbcType="VARCHAR" />
+    <result column="t34" property="t34" jdbcType="VARCHAR" />
+    <result column="t35" property="t35" jdbcType="VARCHAR" />
+    <result column="t36" property="t36" jdbcType="VARCHAR" />
+    <result column="t37" property="t37" jdbcType="VARCHAR" />
+    <result column="t38" property="t38" jdbcType="VARCHAR" />
+    <result column="t39" property="t39" jdbcType="VARCHAR" />
+    <result column="t40" property="t40" jdbcType="VARCHAR" />
+    <result column="t41" property="t41" jdbcType="VARCHAR" />
+    <result column="t42" property="t42" jdbcType="VARCHAR" />
+    <result column="t43" property="t43" jdbcType="VARCHAR" />
+    <result column="t44" property="t44" jdbcType="VARCHAR" />
+    <result column="t45" property="t45" jdbcType="VARCHAR" />
+    <result column="t46" property="t46" jdbcType="VARCHAR" />
+    <result column="t47" property="t47" jdbcType="VARCHAR" />
+    <result column="t48" property="t48" jdbcType="VARCHAR" />
+    <result column="t49" property="t49" jdbcType="VARCHAR" />
+    <result column="t50" property="t50" jdbcType="VARCHAR" />
+    <result column="t51" property="t51" jdbcType="VARCHAR" />
+    <result column="t52" property="t52" jdbcType="VARCHAR" />
+    <result column="t53" property="t53" jdbcType="VARCHAR" />
+    <result column="t54" property="t54" jdbcType="VARCHAR" />
+    <result column="t55" property="t55" jdbcType="VARCHAR" />
+    <result column="t56" property="t56" jdbcType="VARCHAR" />
+    <result column="t57" property="t57" jdbcType="VARCHAR" />
+    <result column="t58" property="t58" jdbcType="VARCHAR" />
+    <result column="t59" property="t59" jdbcType="VARCHAR" />
+    <result column="t60" property="t60" jdbcType="VARCHAR" />
+    <result column="t61" property="t61" jdbcType="VARCHAR" />
+    <result column="t62" property="t62" jdbcType="VARCHAR" />
+    <result column="t63" property="t63" jdbcType="VARCHAR" />
+    <result column="t64" property="t64" jdbcType="VARCHAR" />
+    <result column="t65" property="t65" jdbcType="VARCHAR" />
+    <result column="t66" property="t66" jdbcType="VARCHAR" />
+    <result column="t67" property="t67" jdbcType="VARCHAR" />
+    <result column="t68" property="t68" jdbcType="VARCHAR" />
+    <result column="t69" property="t69" jdbcType="VARCHAR" />
+    <result column="t70" property="t70" jdbcType="VARCHAR" />
+    <result column="t71" property="t71" jdbcType="VARCHAR" />
+    <result column="t72" property="t72" jdbcType="VARCHAR" />
+    <result column="t73" property="t73" jdbcType="VARCHAR" />
+    <result column="t74" property="t74" jdbcType="VARCHAR" />
+    <result column="t75" property="t75" jdbcType="VARCHAR" />
+    <result column="t76" property="t76" jdbcType="VARCHAR" />
+    <result column="t77" property="t77" jdbcType="VARCHAR" />
+    <result column="t78" property="t78" jdbcType="VARCHAR" />
+    <result column="t79" property="t79" jdbcType="VARCHAR" />
+    <result column="t80" property="t80" jdbcType="VARCHAR" />
+    <result column="t81" property="t81" jdbcType="VARCHAR" />
+    <result column="t82" property="t82" jdbcType="VARCHAR" />
+    <result column="t83" property="t83" jdbcType="VARCHAR" />
+    <result column="t84" property="t84" jdbcType="VARCHAR" />
+    <result column="t85" property="t85" jdbcType="VARCHAR" />
+    <result column="t86" property="t86" jdbcType="VARCHAR" />
+    <result column="t87" property="t87" jdbcType="VARCHAR" />
+    <result column="t88" property="t88" jdbcType="VARCHAR" />
+    <result column="t89" property="t89" jdbcType="VARCHAR" />
+    <result column="t90" property="t90" jdbcType="VARCHAR" />
+    <result column="t91" property="t91" jdbcType="VARCHAR" />
+    <result column="t92" property="t92" jdbcType="VARCHAR" />
+    <result column="t93" property="t93" jdbcType="VARCHAR" />
+    <result column="t94" property="t94" jdbcType="VARCHAR" />
+    <result column="t95" property="t95" jdbcType="VARCHAR" />
+    <result column="t96" property="t96" jdbcType="VARCHAR" />
+    <result column="t97" property="t97" jdbcType="VARCHAR" />
+    <result column="t98" property="t98" jdbcType="VARCHAR" />
+    <result column="t99" property="t99" jdbcType="VARCHAR" />
+    <result column="t100" property="t100" jdbcType="VARCHAR" />
+    <result column="t101" property="t101" jdbcType="VARCHAR" />
+    <result column="t102" property="t102" jdbcType="VARCHAR" />
+    <result column="t103" property="t103" jdbcType="VARCHAR" />
+    <result column="t104" property="t104" jdbcType="VARCHAR" />
+    <result column="t105" property="t105" jdbcType="VARCHAR" />
+    <result column="t106" property="t106" jdbcType="VARCHAR" />
+    <result column="t107" property="t107" jdbcType="VARCHAR" />
+    <result column="t108" property="t108" jdbcType="VARCHAR" />
+    <result column="t109" property="t109" jdbcType="VARCHAR" />
+    <result column="t110" property="t110" jdbcType="VARCHAR" />
+    <result column="t111" property="t111" jdbcType="VARCHAR" />
+    <result column="t112" property="t112" jdbcType="VARCHAR" />
+    <result column="t113" property="t113" jdbcType="VARCHAR" />
+    <result column="t114" property="t114" jdbcType="VARCHAR" />
+    <result column="t115" property="t115" jdbcType="VARCHAR" />
+    <result column="t116" property="t116" jdbcType="VARCHAR" />
+    <result column="t117" property="t117" jdbcType="VARCHAR" />
+    <result column="t118" property="t118" jdbcType="VARCHAR" />
+    <result column="t119" property="t119" jdbcType="VARCHAR" />
+    <result column="t120" property="t120" jdbcType="VARCHAR" />
+    <result column="t121" property="t121" jdbcType="VARCHAR" />
+    <result column="t122" property="t122" jdbcType="VARCHAR" />
+    <result column="t123" property="t123" jdbcType="VARCHAR" />
+    <result column="t124" property="t124" jdbcType="VARCHAR" />
+    <result column="t125" property="t125" jdbcType="VARCHAR" />
+    <result column="t126" property="t126" jdbcType="VARCHAR" />
+    <result column="t127" property="t127" jdbcType="VARCHAR" />
+    <result column="t128" property="t128" jdbcType="VARCHAR" />
+    <result column="t129" property="t129" jdbcType="VARCHAR" />
+    <result column="t130" property="t130" jdbcType="VARCHAR" />
+    <result column="t131" property="t131" jdbcType="VARCHAR" />
+    <result column="t132" property="t132" jdbcType="VARCHAR" />
+    <result column="t133" property="t133" jdbcType="VARCHAR" />
+    <result column="t134" property="t134" jdbcType="VARCHAR" />
+    <result column="t135" property="t135" jdbcType="VARCHAR" />
+    <result column="t136" property="t136" jdbcType="VARCHAR" />
+    <result column="t137" property="t137" jdbcType="VARCHAR" />
+    <result column="t138" property="t138" jdbcType="VARCHAR" />
+    <result column="t139" property="t139" jdbcType="VARCHAR" />
+    <result column="t140" property="t140" jdbcType="VARCHAR" />
+    <result column="t141" property="t141" jdbcType="VARCHAR" />
+    <result column="t142" property="t142" jdbcType="VARCHAR" />
+    <result column="t143" property="t143" jdbcType="VARCHAR" />
+    <result column="t144" property="t144" jdbcType="VARCHAR" />
+    <result column="t145" property="t145" jdbcType="VARCHAR" />
+    <result column="t146" property="t146" jdbcType="VARCHAR" />
+    <result column="t147" property="t147" jdbcType="VARCHAR" />
+    <result column="t148" property="t148" jdbcType="VARCHAR" />
+    <result column="t149" property="t149" jdbcType="VARCHAR" />
+    <result column="t150" property="t150" jdbcType="VARCHAR" />
+    <result column="t151" property="t151" jdbcType="VARCHAR" />
+    <result column="t152" property="t152" jdbcType="VARCHAR" />
+    <result column="t153" property="t153" jdbcType="VARCHAR" />
+    <result column="t154" property="t154" jdbcType="VARCHAR" />
+    <result column="t155" property="t155" jdbcType="VARCHAR" />
+    <result column="t156" property="t156" jdbcType="VARCHAR" />
+    <result column="t157" property="t157" jdbcType="VARCHAR" />
+    <result column="t158" property="t158" jdbcType="VARCHAR" />
+    <result column="t159" property="t159" jdbcType="VARCHAR" />
+    <result column="t160" property="t160" jdbcType="VARCHAR" />
+    <result column="t161" property="t161" jdbcType="VARCHAR" />
+    <result column="t162" property="t162" jdbcType="VARCHAR" />
+    <result column="t163" property="t163" jdbcType="VARCHAR" />
+    <result column="t164" property="t164" jdbcType="VARCHAR" />
+    <result column="t165" property="t165" jdbcType="VARCHAR" />
+    <result column="t166" property="t166" jdbcType="VARCHAR" />
+    <result column="t167" property="t167" jdbcType="VARCHAR" />
+    <result column="t168" property="t168" jdbcType="VARCHAR" />
+    <result column="t169" property="t169" jdbcType="VARCHAR" />
+    <result column="t170" property="t170" jdbcType="VARCHAR" />
+    <result column="t171" property="t171" jdbcType="VARCHAR" />
+    <result column="t172" property="t172" jdbcType="VARCHAR" />
+    <result column="t173" property="t173" jdbcType="VARCHAR" />
+    <result column="t174" property="t174" jdbcType="VARCHAR" />
+    <result column="t175" property="t175" jdbcType="VARCHAR" />
+    <result column="t176" property="t176" jdbcType="VARCHAR" />
+    <result column="t177" property="t177" jdbcType="VARCHAR" />
+    <result column="t178" property="t178" jdbcType="VARCHAR" />
+    <result column="t179" property="t179" jdbcType="VARCHAR" />
+    <result column="t180" property="t180" jdbcType="VARCHAR" />
+    <result column="t181" property="t181" jdbcType="VARCHAR" />
+    <result column="t182" property="t182" jdbcType="VARCHAR" />
+    <result column="t183" property="t183" jdbcType="VARCHAR" />
+    <result column="t184" property="t184" jdbcType="VARCHAR" />
+    <result column="t185" property="t185" jdbcType="VARCHAR" />
+    <result column="t186" property="t186" jdbcType="VARCHAR" />
+    <result column="t187" property="t187" jdbcType="VARCHAR" />
+    <result column="t188" property="t188" jdbcType="VARCHAR" />
+    <result column="t189" property="t189" jdbcType="VARCHAR" />
+    <result column="t190" property="t190" jdbcType="VARCHAR" />
+    <result column="t191" property="t191" jdbcType="VARCHAR" />
+    <result column="t192" property="t192" jdbcType="VARCHAR" />
+    <result column="t193" property="t193" jdbcType="VARCHAR" />
+    <result column="t194" property="t194" jdbcType="VARCHAR" />
+    <result column="t195" property="t195" jdbcType="VARCHAR" />
+    <result column="t196" property="t196" jdbcType="VARCHAR" />
+    <result column="t197" property="t197" jdbcType="VARCHAR" />
+    <result column="t198" property="t198" jdbcType="VARCHAR" />
+    <result column="t199" property="t199" jdbcType="VARCHAR" />
+    <result column="t200" property="t200" jdbcType="VARCHAR" />
+    <result column="islocked" property="islocked" jdbcType="BIT" />
+    <result column="isexpand" property="isexpand" jdbcType="BIT" />
+    <result column="inputman" property="inputman" jdbcType="VARCHAR" />
+    <result column="inputdate" property="inputdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, codeno, codename, t1, t2, t3, t4, t5, t6, t7, t8, t9, t10, t11, t12, t13, t14, 
+    t15, t16, t17, t18, t19, t20, t21, t22, t23, t24, t25, t26, t27, t28, t29, t30, t31, 
+    t32, t33, t34, t35, t36, t37, t38, t39, t40, t41, t42, t43, t44, t45, t46, t47, t48, 
+    t49, t50, t51, t52, t53, t54, t55, t56, t57, t58, t59, t60, t61, t62, t63, t64, t65, 
+    t66, t67, t68, t69, t70, t71, t72, t73, t74, t75, t76, t77, t78, t79, t80, t81, t82, 
+    t83, t84, t85, t86, t87, t88, t89, t90, t91, t92, t93, t94, t95, t96, t97, t98, t99, 
+    t100, t101, t102, t103, t104, t105, t106, t107, t108, t109, t110, t111, t112, t113, t114,
+    t115, t116, t117, t118, t119, t120, t121, t122, t123, t124, t125, t126, t127, t128, t129, t130, t131,
+    t132, t133, t134, t135, t136, t137, t138, t139, t140, t141, t142, t143, t144, t145, t146, t147, t148,
+    t149, t150, t151, t152, t153, t154, t155, t156, t157, t158, t159, t160, t161, t162, t163, t164, t165,
+    t166, t167, t168, t169, t170, t171, t172, t173, t174, t175, t176, t177, t178, t179, t180, t181, t182,
+    t183, t184, t185, t186, t187, t188, t189, t190, t191, t192, t193, t194, t195, t196, t197, t198, t199,
+    t200,islocked, isexpand,inputman, inputdate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_code
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_code
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dhchain.business.code.vo.Code" useGeneratedKeys="true" keyProperty="id" >
+    insert into t_code ( codeno, codename,
+      t1, t2, t3, t4, 
+      t5, t6, t7, t8, 
+      t9, t10, t11, t12, 
+      t13, t14, t15, t16, 
+      t17, t18, t19, t20, 
+      t21, t22, t23, t24, 
+      t25, t26, t27, t28, 
+      t29, t30, t31, t32, 
+      t33, t34, t35, t36, 
+      t37, t38, t39, t40, 
+      t41, t42, t43, t44, 
+      t45, t46, t47, t48, 
+      t49, t50, t51, t52, 
+      t53, t54, t55, t56, 
+      t57, t58, t59, t60, 
+      t61, t62, t63, t64, 
+      t65, t66, t67, t68, 
+      t69, t70, t71, t72, 
+      t73, t74, t75, t76, 
+      t77, t78, t79, t80, 
+      t81, t82, t83, t84, 
+      t85, t86, t87, t88, 
+      t89, t90, t91, t92, 
+      t93, t94, t95, t96, 
+      t97, t98, t99, t100,
+      t101, t102, t103, t104, t105, t106, t107, t108, t109, t110, t111, t112, t113, t114,
+    t115, t116, t117, t118, t119, t120, t121, t122, t123, t124, t125, t126, t127, t128, t129, t130, t131,
+    t132, t133, t134, t135, t136, t137, t138, t139, t140, t141, t142, t143, t144, t145, t146, t147, t148,
+    t149, t150, t151, t152, t153, t154, t155, t156, t157, t158, t159, t160, t161, t162, t163, t164, t165,
+    t166, t167, t168, t169, t170, t171, t172, t173, t174, t175, t176, t177, t178, t179, t180, t181, t182,
+    t183, t184, t185, t186, t187, t188, t189, t190, t191, t192, t193, t194, t195, t196, t197, t198, t199,
+    t200,
+      islocked,isexpand, inputman, inputdate,typedetailid,applyno
+      )
+    values ( #{codeno,jdbcType=VARCHAR}, #{codename,jdbcType=VARCHAR},
+      #{t1,jdbcType=VARCHAR}, #{t2,jdbcType=VARCHAR}, #{t3,jdbcType=VARCHAR}, #{t4,jdbcType=VARCHAR}, 
+      #{t5,jdbcType=VARCHAR}, #{t6,jdbcType=VARCHAR}, #{t7,jdbcType=VARCHAR}, #{t8,jdbcType=VARCHAR}, 
+      #{t9,jdbcType=VARCHAR}, #{t10,jdbcType=VARCHAR}, #{t11,jdbcType=VARCHAR}, #{t12,jdbcType=VARCHAR}, 
+      #{t13,jdbcType=VARCHAR}, #{t14,jdbcType=VARCHAR}, #{t15,jdbcType=VARCHAR}, #{t16,jdbcType=VARCHAR}, 
+      #{t17,jdbcType=VARCHAR}, #{t18,jdbcType=VARCHAR}, #{t19,jdbcType=VARCHAR}, #{t20,jdbcType=VARCHAR}, 
+      #{t21,jdbcType=VARCHAR}, #{t22,jdbcType=VARCHAR}, #{t23,jdbcType=VARCHAR}, #{t24,jdbcType=VARCHAR}, 
+      #{t25,jdbcType=VARCHAR}, #{t26,jdbcType=VARCHAR}, #{t27,jdbcType=VARCHAR}, #{t28,jdbcType=VARCHAR}, 
+      #{t29,jdbcType=VARCHAR}, #{t30,jdbcType=VARCHAR}, #{t31,jdbcType=VARCHAR}, #{t32,jdbcType=VARCHAR}, 
+      #{t33,jdbcType=VARCHAR}, #{t34,jdbcType=VARCHAR}, #{t35,jdbcType=VARCHAR}, #{t36,jdbcType=VARCHAR}, 
+      #{t37,jdbcType=VARCHAR}, #{t38,jdbcType=VARCHAR}, #{t39,jdbcType=VARCHAR}, #{t40,jdbcType=VARCHAR}, 
+      #{t41,jdbcType=VARCHAR}, #{t42,jdbcType=VARCHAR}, #{t43,jdbcType=VARCHAR}, #{t44,jdbcType=VARCHAR}, 
+      #{t45,jdbcType=VARCHAR}, #{t46,jdbcType=VARCHAR}, #{t47,jdbcType=VARCHAR}, #{t48,jdbcType=VARCHAR}, 
+      #{t49,jdbcType=VARCHAR}, #{t50,jdbcType=VARCHAR}, #{t51,jdbcType=VARCHAR}, #{t52,jdbcType=VARCHAR}, 
+      #{t53,jdbcType=VARCHAR}, #{t54,jdbcType=VARCHAR}, #{t55,jdbcType=VARCHAR}, #{t56,jdbcType=VARCHAR}, 
+      #{t57,jdbcType=VARCHAR}, #{t58,jdbcType=VARCHAR}, #{t59,jdbcType=VARCHAR}, #{t60,jdbcType=VARCHAR}, 
+      #{t61,jdbcType=VARCHAR}, #{t62,jdbcType=VARCHAR}, #{t63,jdbcType=VARCHAR}, #{t64,jdbcType=VARCHAR}, 
+      #{t65,jdbcType=VARCHAR}, #{t66,jdbcType=VARCHAR}, #{t67,jdbcType=VARCHAR}, #{t68,jdbcType=VARCHAR}, 
+      #{t69,jdbcType=VARCHAR}, #{t70,jdbcType=VARCHAR}, #{t71,jdbcType=VARCHAR}, #{t72,jdbcType=VARCHAR}, 
+      #{t73,jdbcType=VARCHAR}, #{t74,jdbcType=VARCHAR}, #{t75,jdbcType=VARCHAR}, #{t76,jdbcType=VARCHAR}, 
+      #{t77,jdbcType=VARCHAR}, #{t78,jdbcType=VARCHAR}, #{t79,jdbcType=VARCHAR}, #{t80,jdbcType=VARCHAR}, 
+      #{t81,jdbcType=VARCHAR}, #{t82,jdbcType=VARCHAR}, #{t83,jdbcType=VARCHAR}, #{t84,jdbcType=VARCHAR}, 
+      #{t85,jdbcType=VARCHAR}, #{t86,jdbcType=VARCHAR}, #{t87,jdbcType=VARCHAR}, #{t88,jdbcType=VARCHAR}, 
+      #{t89,jdbcType=VARCHAR}, #{t90,jdbcType=VARCHAR}, #{t91,jdbcType=VARCHAR}, #{t92,jdbcType=VARCHAR}, 
+      #{t93,jdbcType=VARCHAR}, #{t94,jdbcType=VARCHAR}, #{t95,jdbcType=VARCHAR}, #{t96,jdbcType=VARCHAR}, 
+      #{t97,jdbcType=VARCHAR}, #{t98,jdbcType=VARCHAR}, #{t99,jdbcType=VARCHAR}, #{t100,jdbcType=VARCHAR},
+       #{t101,jdbcType=VARCHAR}, #{t102,jdbcType=VARCHAR}, #{t103,jdbcType=VARCHAR}, #{t104,jdbcType=VARCHAR},
+      #{t105,jdbcType=VARCHAR}, #{t106,jdbcType=VARCHAR}, #{t107,jdbcType=VARCHAR}, #{t108,jdbcType=VARCHAR},
+      #{t109,jdbcType=VARCHAR}, #{t110,jdbcType=VARCHAR}, #{t111,jdbcType=VARCHAR}, #{t112,jdbcType=VARCHAR},
+      #{t113,jdbcType=VARCHAR}, #{t114,jdbcType=VARCHAR}, #{t115,jdbcType=VARCHAR}, #{t116,jdbcType=VARCHAR},
+      #{t117,jdbcType=VARCHAR}, #{t118,jdbcType=VARCHAR}, #{t119,jdbcType=VARCHAR}, #{t120,jdbcType=VARCHAR},
+      #{t121,jdbcType=VARCHAR}, #{t122,jdbcType=VARCHAR}, #{t123,jdbcType=VARCHAR}, #{t124,jdbcType=VARCHAR},
+      #{t125,jdbcType=VARCHAR}, #{t126,jdbcType=VARCHAR}, #{t127,jdbcType=VARCHAR}, #{t128,jdbcType=VARCHAR},
+      #{t129,jdbcType=VARCHAR}, #{t130,jdbcType=VARCHAR}, #{t131,jdbcType=VARCHAR}, #{t132,jdbcType=VARCHAR},
+      #{t133,jdbcType=VARCHAR}, #{t134,jdbcType=VARCHAR}, #{t135,jdbcType=VARCHAR}, #{t136,jdbcType=VARCHAR},
+      #{t137,jdbcType=VARCHAR}, #{t138,jdbcType=VARCHAR}, #{t139,jdbcType=VARCHAR}, #{t140,jdbcType=VARCHAR},
+      #{t141,jdbcType=VARCHAR}, #{t142,jdbcType=VARCHAR}, #{t143,jdbcType=VARCHAR}, #{t144,jdbcType=VARCHAR},
+      #{t145,jdbcType=VARCHAR}, #{t146,jdbcType=VARCHAR}, #{t147,jdbcType=VARCHAR}, #{t148,jdbcType=VARCHAR},
+      #{t149,jdbcType=VARCHAR}, #{t150,jdbcType=VARCHAR}, #{t151,jdbcType=VARCHAR}, #{t152,jdbcType=VARCHAR},
+      #{t153,jdbcType=VARCHAR}, #{t154,jdbcType=VARCHAR}, #{t155,jdbcType=VARCHAR}, #{t156,jdbcType=VARCHAR},
+      #{t157,jdbcType=VARCHAR}, #{t158,jdbcType=VARCHAR}, #{t159,jdbcType=VARCHAR}, #{t160,jdbcType=VARCHAR},
+      #{t161,jdbcType=VARCHAR}, #{t162,jdbcType=VARCHAR}, #{t163,jdbcType=VARCHAR}, #{t164,jdbcType=VARCHAR},
+      #{t165,jdbcType=VARCHAR}, #{t166,jdbcType=VARCHAR}, #{t167,jdbcType=VARCHAR}, #{t168,jdbcType=VARCHAR},
+      #{t169,jdbcType=VARCHAR}, #{t170,jdbcType=VARCHAR}, #{t171,jdbcType=VARCHAR}, #{t172,jdbcType=VARCHAR},
+      #{t173,jdbcType=VARCHAR}, #{t174,jdbcType=VARCHAR}, #{t175,jdbcType=VARCHAR}, #{t176,jdbcType=VARCHAR},
+      #{t177,jdbcType=VARCHAR}, #{t178,jdbcType=VARCHAR}, #{t179,jdbcType=VARCHAR}, #{t180,jdbcType=VARCHAR},
+      #{t181,jdbcType=VARCHAR}, #{t182,jdbcType=VARCHAR}, #{t183,jdbcType=VARCHAR}, #{t184,jdbcType=VARCHAR},
+      #{t185,jdbcType=VARCHAR}, #{t186,jdbcType=VARCHAR}, #{t187,jdbcType=VARCHAR}, #{t188,jdbcType=VARCHAR},
+      #{t189,jdbcType=VARCHAR}, #{t190,jdbcType=VARCHAR}, #{t191,jdbcType=VARCHAR}, #{t192,jdbcType=VARCHAR},
+      #{t193,jdbcType=VARCHAR}, #{t194,jdbcType=VARCHAR}, #{t195,jdbcType=VARCHAR}, #{t196,jdbcType=VARCHAR},
+      #{t197,jdbcType=VARCHAR}, #{t198,jdbcType=VARCHAR}, #{t199,jdbcType=VARCHAR}, #{t200,jdbcType=VARCHAR},
+      #{islocked,jdbcType=BIT},   #{isexpand,jdbcType=BIT},#{inputman,jdbcType=VARCHAR}, #{inputdate,jdbcType=TIMESTAMP},
+      #{typedetailid,jdbcType=INTEGER},#{applyno,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhchain.business.code.vo.Code" >
+    insert into t_code
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="codeno != null" >
+        codeno,
+      </if>
+      <if test="codename != null" >
+        codename,
+      </if>
+      <if test="t1 != null" >
+        t1,
+      </if>
+      <if test="t2 != null" >
+        t2,
+      </if>
+      <if test="t3 != null" >
+        t3,
+      </if>
+      <if test="t4 != null" >
+        t4,
+      </if>
+      <if test="t5 != null" >
+        t5,
+      </if>
+      <if test="t6 != null" >
+        t6,
+      </if>
+      <if test="t7 != null" >
+        t7,
+      </if>
+      <if test="t8 != null" >
+        t8,
+      </if>
+      <if test="t9 != null" >
+        t9,
+      </if>
+      <if test="t10 != null" >
+        t10,
+      </if>
+      <if test="t11 != null" >
+        t11,
+      </if>
+      <if test="t12 != null" >
+        t12,
+      </if>
+      <if test="t13 != null" >
+        t13,
+      </if>
+      <if test="t14 != null" >
+        t14,
+      </if>
+      <if test="t15 != null" >
+        t15,
+      </if>
+      <if test="t16 != null" >
+        t16,
+      </if>
+      <if test="t17 != null" >
+        t17,
+      </if>
+      <if test="t18 != null" >
+        t18,
+      </if>
+      <if test="t19 != null" >
+        t19,
+      </if>
+      <if test="t20 != null" >
+        t20,
+      </if>
+      <if test="t21 != null" >
+        t21,
+      </if>
+      <if test="t22 != null" >
+        t22,
+      </if>
+      <if test="t23 != null" >
+        t23,
+      </if>
+      <if test="t24 != null" >
+        t24,
+      </if>
+      <if test="t25 != null" >
+        t25,
+      </if>
+      <if test="t26 != null" >
+        t26,
+      </if>
+      <if test="t27 != null" >
+        t27,
+      </if>
+      <if test="t28 != null" >
+        t28,
+      </if>
+      <if test="t29 != null" >
+        t29,
+      </if>
+      <if test="t30 != null" >
+        t30,
+      </if>
+      <if test="t31 != null" >
+        t31,
+      </if>
+      <if test="t32 != null" >
+        t32,
+      </if>
+      <if test="t33 != null" >
+        t33,
+      </if>
+      <if test="t34 != null" >
+        t34,
+      </if>
+      <if test="t35 != null" >
+        t35,
+      </if>
+      <if test="t36 != null" >
+        t36,
+      </if>
+      <if test="t37 != null" >
+        t37,
+      </if>
+      <if test="t38 != null" >
+        t38,
+      </if>
+      <if test="t39 != null" >
+        t39,
+      </if>
+      <if test="t40 != null" >
+        t40,
+      </if>
+      <if test="t41 != null" >
+        t41,
+      </if>
+      <if test="t42 != null" >
+        t42,
+      </if>
+      <if test="t43 != null" >
+        t43,
+      </if>
+      <if test="t44 != null" >
+        t44,
+      </if>
+      <if test="t45 != null" >
+        t45,
+      </if>
+      <if test="t46 != null" >
+        t46,
+      </if>
+      <if test="t47 != null" >
+        t47,
+      </if>
+      <if test="t48 != null" >
+        t48,
+      </if>
+      <if test="t49 != null" >
+        t49,
+      </if>
+      <if test="t50 != null" >
+        t50,
+      </if>
+      <if test="t51 != null" >
+        t51,
+      </if>
+      <if test="t52 != null" >
+        t52,
+      </if>
+      <if test="t53 != null" >
+        t53,
+      </if>
+      <if test="t54 != null" >
+        t54,
+      </if>
+      <if test="t55 != null" >
+        t55,
+      </if>
+      <if test="t56 != null" >
+        t56,
+      </if>
+      <if test="t57 != null" >
+        t57,
+      </if>
+      <if test="t58 != null" >
+        t58,
+      </if>
+      <if test="t59 != null" >
+        t59,
+      </if>
+      <if test="t60 != null" >
+        t60,
+      </if>
+      <if test="t61 != null" >
+        t61,
+      </if>
+      <if test="t62 != null" >
+        t62,
+      </if>
+      <if test="t63 != null" >
+        t63,
+      </if>
+      <if test="t64 != null" >
+        t64,
+      </if>
+      <if test="t65 != null" >
+        t65,
+      </if>
+      <if test="t66 != null" >
+        t66,
+      </if>
+      <if test="t67 != null" >
+        t67,
+      </if>
+      <if test="t68 != null" >
+        t68,
+      </if>
+      <if test="t69 != null" >
+        t69,
+      </if>
+      <if test="t70 != null" >
+        t70,
+      </if>
+      <if test="t71 != null" >
+        t71,
+      </if>
+      <if test="t72 != null" >
+        t72,
+      </if>
+      <if test="t73 != null" >
+        t73,
+      </if>
+      <if test="t74 != null" >
+        t74,
+      </if>
+      <if test="t75 != null" >
+        t75,
+      </if>
+      <if test="t76 != null" >
+        t76,
+      </if>
+      <if test="t77 != null" >
+        t77,
+      </if>
+      <if test="t78 != null" >
+        t78,
+      </if>
+      <if test="t79 != null" >
+        t79,
+      </if>
+      <if test="t80 != null" >
+        t80,
+      </if>
+      <if test="t81 != null" >
+        t81,
+      </if>
+      <if test="t82 != null" >
+        t82,
+      </if>
+      <if test="t83 != null" >
+        t83,
+      </if>
+      <if test="t84 != null" >
+        t84,
+      </if>
+      <if test="t85 != null" >
+        t85,
+      </if>
+      <if test="t86 != null" >
+        t86,
+      </if>
+      <if test="t87 != null" >
+        t87,
+      </if>
+      <if test="t88 != null" >
+        t88,
+      </if>
+      <if test="t89 != null" >
+        t89,
+      </if>
+      <if test="t90 != null" >
+        t90,
+      </if>
+      <if test="t91 != null" >
+        t91,
+      </if>
+      <if test="t92 != null" >
+        t92,
+      </if>
+      <if test="t93 != null" >
+        t93,
+      </if>
+      <if test="t94 != null" >
+        t94,
+      </if>
+      <if test="t95 != null" >
+        t95,
+      </if>
+      <if test="t96 != null" >
+        t96,
+      </if>
+      <if test="t97 != null" >
+        t97,
+      </if>
+      <if test="t98 != null" >
+        t98,
+      </if>
+      <if test="t99 != null" >
+        t99,
+      </if>
+      <if test="t100 != null" >
+        t100,
+      </if>
+      <if test="t101 != null" >
+        t101,
+      </if>
+      <if test="t102 != null" >
+        t102,
+      </if>
+      <if test="t103 != null" >
+        t103,
+      </if>
+      <if test="t104 != null" >
+        t104,
+      </if>
+      <if test="t105 != null" >
+        t105,
+      </if>
+      <if test="t106 != null" >
+        t106,
+      </if>
+      <if test="t107 != null" >
+        t107,
+      </if>
+      <if test="t108 != null" >
+        t108,
+      </if>
+      <if test="t109 != null" >
+        t109,
+      </if>
+      <if test="t110 != null" >
+        t110,
+      </if>
+      <if test="t111 != null" >
+        t111,
+      </if>
+      <if test="t112 != null" >
+        t112,
+      </if>
+      <if test="t113 != null" >
+        t113,
+      </if>
+      <if test="t114 != null" >
+        t114,
+      </if>
+      <if test="t115 != null" >
+        t115,
+      </if>
+      <if test="t116 != null" >
+        t116,
+      </if>
+      <if test="t117 != null" >
+        t117,
+      </if>
+      <if test="t118 != null" >
+        t118,
+      </if>
+      <if test="t119 != null" >
+        t119,
+      </if>
+      <if test="t120 != null" >
+        t120,
+      </if>
+      <if test="t121 != null" >
+        t121,
+      </if>
+      <if test="t122 != null" >
+        t122,
+      </if>
+      <if test="t123 != null" >
+        t123,
+      </if>
+      <if test="t124 != null" >
+        t124,
+      </if>
+      <if test="t125 != null" >
+        t125,
+      </if>
+      <if test="t126 != null" >
+        t126,
+      </if>
+      <if test="t127 != null" >
+        t127,
+      </if>
+      <if test="t128 != null" >
+        t128,
+      </if>
+      <if test="t129 != null" >
+        t129,
+      </if>
+      <if test="t130 != null" >
+        t130,
+      </if>
+      <if test="t131 != null" >
+        t131,
+      </if>
+      <if test="t132 != null" >
+        t132,
+      </if>
+      <if test="t133 != null" >
+        t133,
+      </if>
+      <if test="t134 != null" >
+        t134,
+      </if>
+      <if test="t135 != null" >
+        t135,
+      </if>
+      <if test="t136 != null" >
+        t136,
+      </if>
+      <if test="t137 != null" >
+        t137,
+      </if>
+      <if test="t138 != null" >
+        t138,
+      </if>
+      <if test="t139 != null" >
+        t139,
+      </if>
+      <if test="t140 != null" >
+        t140,
+      </if>
+      <if test="t141 != null" >
+        t141,
+      </if>
+      <if test="t142 != null" >
+        t142,
+      </if>
+      <if test="t143 != null" >
+        t143,
+      </if>
+      <if test="t144 != null" >
+        t144,
+      </if>
+      <if test="t145 != null" >
+        t145,
+      </if>
+      <if test="t146 != null" >
+        t146,
+      </if>
+      <if test="t147 != null" >
+        t147,
+      </if>
+      <if test="t148 != null" >
+        t148,
+      </if>
+      <if test="t149 != null" >
+        t149,
+      </if>
+      <if test="t150 != null" >
+        t150,
+      </if>
+      <if test="t151 != null" >
+        t151,
+      </if>
+      <if test="t152 != null" >
+        t152,
+      </if>
+      <if test="t153 != null" >
+        t153,
+      </if>
+      <if test="t154 != null" >
+        t154,
+      </if>
+      <if test="t155 != null" >
+        t155,
+      </if>
+      <if test="t156 != null" >
+        t156,
+      </if>
+      <if test="t157 != null" >
+        t157,
+      </if>
+      <if test="t158 != null" >
+        t158,
+      </if>
+      <if test="t159 != null" >
+        t159,
+      </if>
+      <if test="t160 != null" >
+        t160,
+      </if>
+      <if test="t161 != null" >
+        t161,
+      </if>
+      <if test="t162 != null" >
+        t162,
+      </if>
+      <if test="t163 != null" >
+        t163,
+      </if>
+      <if test="t164 != null" >
+        t164,
+      </if>
+      <if test="t165 != null" >
+        t165,
+      </if>
+      <if test="t166 != null" >
+        t166,
+      </if>
+      <if test="t167 != null" >
+        t167,
+      </if>
+      <if test="t168 != null" >
+        t168,
+      </if>
+      <if test="t169 != null" >
+        t169,
+      </if>
+      <if test="t170 != null" >
+        t170,
+      </if>
+      <if test="t171 != null" >
+        t171,
+      </if>
+      <if test="t172 != null" >
+        t172,
+      </if>
+      <if test="t173 != null" >
+        t173,
+      </if>
+      <if test="t174 != null" >
+        t174,
+      </if>
+      <if test="t175 != null" >
+        t175,
+      </if>
+      <if test="t176 != null" >
+        t176,
+      </if>
+      <if test="t177 != null" >
+        t177,
+      </if>
+      <if test="t178 != null" >
+        t178,
+      </if>
+      <if test="t179 != null" >
+        t179,
+      </if>
+      <if test="t180 != null" >
+        t180,
+      </if>
+      <if test="t181 != null" >
+        t181,
+      </if>
+      <if test="t182 != null" >
+        t182,
+      </if>
+      <if test="t183 != null" >
+        t183,
+      </if>
+      <if test="t184 != null" >
+        t184,
+      </if>
+      <if test="t185 != null" >
+        t185,
+      </if>
+      <if test="t186 != null" >
+        t186,
+      </if>
+      <if test="t187 != null" >
+        t187,
+      </if>
+      <if test="t188 != null" >
+        t188,
+      </if>
+      <if test="t189 != null" >
+        t189,
+      </if>
+      <if test="t190 != null" >
+        t190,
+      </if>
+      <if test="t191 != null" >
+        t191,
+      </if>
+      <if test="t192 != null" >
+        t192,
+      </if>
+      <if test="t193 != null" >
+        t193,
+      </if>
+      <if test="t194 != null" >
+        t194,
+      </if>
+      <if test="t195 != null" >
+        t195,
+      </if>
+      <if test="t196 != null" >
+        t96,
+      </if>
+      <if test="t197 != null" >
+        t197,
+      </if>
+      <if test="t198 != null" >
+        t198,
+      </if>
+      <if test="t199 != null" >
+        t199,
+      </if>
+      <if test="t200 != null" >
+        t200,
+      </if>
+      <if test="islocked != null" >
+        islocked,
+      </if>
+      <if test="isexpand != null" >
+        isexpand,
+      </if>
+      <if test="inputman != null" >
+        inputman,
+      </if>
+      <if test="inputdate != null" >
+        inputdate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="codeno != null" >
+        #{codeno,jdbcType=VARCHAR},
+      </if>
+      <if test="codename != null" >
+        #{codename,jdbcType=VARCHAR},
+      </if>
+      <if test="t1 != null" >
+        #{t1,jdbcType=VARCHAR},
+      </if>
+      <if test="t2 != null" >
+        #{t2,jdbcType=VARCHAR},
+      </if>
+      <if test="t3 != null" >
+        #{t3,jdbcType=VARCHAR},
+      </if>
+      <if test="t4 != null" >
+        #{t4,jdbcType=VARCHAR},
+      </if>
+      <if test="t5 != null" >
+        #{t5,jdbcType=VARCHAR},
+      </if>
+      <if test="t6 != null" >
+        #{t6,jdbcType=VARCHAR},
+      </if>
+      <if test="t7 != null" >
+        #{t7,jdbcType=VARCHAR},
+      </if>
+      <if test="t8 != null" >
+        #{t8,jdbcType=VARCHAR},
+      </if>
+      <if test="t9 != null" >
+        #{t9,jdbcType=VARCHAR},
+      </if>
+      <if test="t10 != null" >
+        #{t10,jdbcType=VARCHAR},
+      </if>
+      <if test="t11 != null" >
+        #{t11,jdbcType=VARCHAR},
+      </if>
+      <if test="t12 != null" >
+        #{t12,jdbcType=VARCHAR},
+      </if>
+      <if test="t13 != null" >
+        #{t13,jdbcType=VARCHAR},
+      </if>
+      <if test="t14 != null" >
+        #{t14,jdbcType=VARCHAR},
+      </if>
+      <if test="t15 != null" >
+        #{t15,jdbcType=VARCHAR},
+      </if>
+      <if test="t16 != null" >
+        #{t16,jdbcType=VARCHAR},
+      </if>
+      <if test="t17 != null" >
+        #{t17,jdbcType=VARCHAR},
+      </if>
+      <if test="t18 != null" >
+        #{t18,jdbcType=VARCHAR},
+      </if>
+      <if test="t19 != null" >
+        #{t19,jdbcType=VARCHAR},
+      </if>
+      <if test="t20 != null" >
+        #{t20,jdbcType=VARCHAR},
+      </if>
+      <if test="t21 != null" >
+        #{t21,jdbcType=VARCHAR},
+      </if>
+      <if test="t22 != null" >
+        #{t22,jdbcType=VARCHAR},
+      </if>
+      <if test="t23 != null" >
+        #{t23,jdbcType=VARCHAR},
+      </if>
+      <if test="t24 != null" >
+        #{t24,jdbcType=VARCHAR},
+      </if>
+      <if test="t25 != null" >
+        #{t25,jdbcType=VARCHAR},
+      </if>
+      <if test="t26 != null" >
+        #{t26,jdbcType=VARCHAR},
+      </if>
+      <if test="t27 != null" >
+        #{t27,jdbcType=VARCHAR},
+      </if>
+      <if test="t28 != null" >
+        #{t28,jdbcType=VARCHAR},
+      </if>
+      <if test="t29 != null" >
+        #{t29,jdbcType=VARCHAR},
+      </if>
+      <if test="t30 != null" >
+        #{t30,jdbcType=VARCHAR},
+      </if>
+      <if test="t31 != null" >
+        #{t31,jdbcType=VARCHAR},
+      </if>
+      <if test="t32 != null" >
+        #{t32,jdbcType=VARCHAR},
+      </if>
+      <if test="t33 != null" >
+        #{t33,jdbcType=VARCHAR},
+      </if>
+      <if test="t34 != null" >
+        #{t34,jdbcType=VARCHAR},
+      </if>
+      <if test="t35 != null" >
+        #{t35,jdbcType=VARCHAR},
+      </if>
+      <if test="t36 != null" >
+        #{t36,jdbcType=VARCHAR},
+      </if>
+      <if test="t37 != null" >
+        #{t37,jdbcType=VARCHAR},
+      </if>
+      <if test="t38 != null" >
+        #{t38,jdbcType=VARCHAR},
+      </if>
+      <if test="t39 != null" >
+        #{t39,jdbcType=VARCHAR},
+      </if>
+      <if test="t40 != null" >
+        #{t40,jdbcType=VARCHAR},
+      </if>
+      <if test="t41 != null" >
+        #{t41,jdbcType=VARCHAR},
+      </if>
+      <if test="t42 != null" >
+        #{t42,jdbcType=VARCHAR},
+      </if>
+      <if test="t43 != null" >
+        #{t43,jdbcType=VARCHAR},
+      </if>
+      <if test="t44 != null" >
+        #{t44,jdbcType=VARCHAR},
+      </if>
+      <if test="t45 != null" >
+        #{t45,jdbcType=VARCHAR},
+      </if>
+      <if test="t46 != null" >
+        #{t46,jdbcType=VARCHAR},
+      </if>
+      <if test="t47 != null" >
+        #{t47,jdbcType=VARCHAR},
+      </if>
+      <if test="t48 != null" >
+        #{t48,jdbcType=VARCHAR},
+      </if>
+      <if test="t49 != null" >
+        #{t49,jdbcType=VARCHAR},
+      </if>
+      <if test="t50 != null" >
+        #{t50,jdbcType=VARCHAR},
+      </if>
+      <if test="t51 != null" >
+        #{t51,jdbcType=VARCHAR},
+      </if>
+      <if test="t52 != null" >
+        #{t52,jdbcType=VARCHAR},
+      </if>
+      <if test="t53 != null" >
+        #{t53,jdbcType=VARCHAR},
+      </if>
+      <if test="t54 != null" >
+        #{t54,jdbcType=VARCHAR},
+      </if>
+      <if test="t55 != null" >
+        #{t55,jdbcType=VARCHAR},
+      </if>
+      <if test="t56 != null" >
+        #{t56,jdbcType=VARCHAR},
+      </if>
+      <if test="t57 != null" >
+        #{t57,jdbcType=VARCHAR},
+      </if>
+      <if test="t58 != null" >
+        #{t58,jdbcType=VARCHAR},
+      </if>
+      <if test="t59 != null" >
+        #{t59,jdbcType=VARCHAR},
+      </if>
+      <if test="t60 != null" >
+        #{t60,jdbcType=VARCHAR},
+      </if>
+      <if test="t61 != null" >
+        #{t61,jdbcType=VARCHAR},
+      </if>
+      <if test="t62 != null" >
+        #{t62,jdbcType=VARCHAR},
+      </if>
+      <if test="t63 != null" >
+        #{t63,jdbcType=VARCHAR},
+      </if>
+      <if test="t64 != null" >
+        #{t64,jdbcType=VARCHAR},
+      </if>
+      <if test="t65 != null" >
+        #{t65,jdbcType=VARCHAR},
+      </if>
+      <if test="t66 != null" >
+        #{t66,jdbcType=VARCHAR},
+      </if>
+      <if test="t67 != null" >
+        #{t67,jdbcType=VARCHAR},
+      </if>
+      <if test="t68 != null" >
+        #{t68,jdbcType=VARCHAR},
+      </if>
+      <if test="t69 != null" >
+        #{t69,jdbcType=VARCHAR},
+      </if>
+      <if test="t70 != null" >
+        #{t70,jdbcType=VARCHAR},
+      </if>
+      <if test="t71 != null" >
+        #{t71,jdbcType=VARCHAR},
+      </if>
+      <if test="t72 != null" >
+        #{t72,jdbcType=VARCHAR},
+      </if>
+      <if test="t73 != null" >
+        #{t73,jdbcType=VARCHAR},
+      </if>
+      <if test="t74 != null" >
+        #{t74,jdbcType=VARCHAR},
+      </if>
+      <if test="t75 != null" >
+        #{t75,jdbcType=VARCHAR},
+      </if>
+      <if test="t76 != null" >
+        #{t76,jdbcType=VARCHAR},
+      </if>
+      <if test="t77 != null" >
+        #{t77,jdbcType=VARCHAR},
+      </if>
+      <if test="t78 != null" >
+        #{t78,jdbcType=VARCHAR},
+      </if>
+      <if test="t79 != null" >
+        #{t79,jdbcType=VARCHAR},
+      </if>
+      <if test="t80 != null" >
+        #{t80,jdbcType=VARCHAR},
+      </if>
+      <if test="t81 != null" >
+        #{t81,jdbcType=VARCHAR},
+      </if>
+      <if test="t82 != null" >
+        #{t82,jdbcType=VARCHAR},
+      </if>
+      <if test="t83 != null" >
+        #{t83,jdbcType=VARCHAR},
+      </if>
+      <if test="t84 != null" >
+        #{t84,jdbcType=VARCHAR},
+      </if>
+      <if test="t85 != null" >
+        #{t85,jdbcType=VARCHAR},
+      </if>
+      <if test="t86 != null" >
+        #{t86,jdbcType=VARCHAR},
+      </if>
+      <if test="t87 != null" >
+        #{t87,jdbcType=VARCHAR},
+      </if>
+      <if test="t88 != null" >
+        #{t88,jdbcType=VARCHAR},
+      </if>
+      <if test="t89 != null" >
+        #{t89,jdbcType=VARCHAR},
+      </if>
+      <if test="t90 != null" >
+        #{t90,jdbcType=VARCHAR},
+      </if>
+      <if test="t91 != null" >
+        #{t91,jdbcType=VARCHAR},
+      </if>
+      <if test="t92 != null" >
+        #{t92,jdbcType=VARCHAR},
+      </if>
+      <if test="t93 != null" >
+        #{t93,jdbcType=VARCHAR},
+      </if>
+      <if test="t94 != null" >
+        #{t94,jdbcType=VARCHAR},
+      </if>
+      <if test="t95 != null" >
+        #{t95,jdbcType=VARCHAR},
+      </if>
+      <if test="t96 != null" >
+        #{t96,jdbcType=VARCHAR},
+      </if>
+      <if test="t97 != null" >
+        #{t97,jdbcType=VARCHAR},
+      </if>
+      <if test="t98 != null" >
+        #{t98,jdbcType=VARCHAR},
+      </if>
+      <if test="t99 != null" >
+        #{t99,jdbcType=VARCHAR},
+      </if>
+      <if test="t100 != null" >
+        #{t100,jdbcType=VARCHAR},
+      </if>
+      <if test="t101 != null" >
+        #{t101,jdbcType=VARCHAR},
+
+      </if>
+      <if test="t102 != null" >
+        #{t102,jdbcType=VARCHAR},
+
+      </if>
+      <if test="t103 != null" >
+        #{t103,jdbcType=VARCHAR},
+
+      </if>
+      <if test="t104 != null" >
+        #{t104,jdbcType=VARCHAR},
+
+      </if>
+      <if test="t105 != null" >
+        #{t105,jdbcType=VARCHAR},
+
+      </if>
+      <if test="t106 != null" >
+        #{t106,jdbcType=VARCHAR},
+
+      </if>
+      <if test="t107 != null" >
+
+        #{t107,jdbcType=VARCHAR},
+      </if>
+      <if test="t108 != null" >
+
+        #{t108,jdbcType=VARCHAR},
+      </if>
+      <if test="t109 != null" >
+
+        #{t109,jdbcType=VARCHAR},
+      </if>
+      <if test="t110 != null" >
+
+        #{t110,jdbcType=VARCHAR},
+      </if>
+      <if test="t111 != null" >
+        #{t111,jdbcType=VARCHAR},
+      </if>
+      <if test="t112 != null" >
+        #{t112,jdbcType=VARCHAR},
+      </if>
+      <if test="t113 != null" >
+        #{t113,jdbcType=VARCHAR},
+      </if>
+      <if test="t114 != null" >
+        #{t114,jdbcType=VARCHAR},
+      </if>
+      <if test="t115 != null" >
+        #{t115,jdbcType=VARCHAR},
+      </if>
+      <if test="t116 != null" >
+        #{t116,jdbcType=VARCHAR},
+      </if>
+      <if test="t117 != null" >
+        #{t117,jdbcType=VARCHAR},
+      </if>
+      <if test="t118 != null" >
+        #{t118,jdbcType=VARCHAR},
+      </if>
+      <if test="t119 != null" >
+        #{t119,jdbcType=VARCHAR},
+      </if>
+      <if test="t120 != null" >
+        #{t120,jdbcType=VARCHAR},
+      </if>
+      <if test="t121 != null" >
+        #{t121,jdbcType=VARCHAR},
+      </if>
+      <if test="t122 != null" >
+        #{t122,jdbcType=VARCHAR},
+      </if>
+      <if test="t123 != null" >
+        #{t123,jdbcType=VARCHAR},
+      </if>
+      <if test="t124 != null" >
+        #{t124,jdbcType=VARCHAR},
+      </if>
+      <if test="t125 != null" >
+        #{t125,jdbcType=VARCHAR},
+      </if>
+      <if test="t126 != null" >
+        #{t126,jdbcType=VARCHAR},
+      </if>
+      <if test="t127 != null" >
+        #{t127,jdbcType=VARCHAR},
+      </if>
+      <if test="t128 != null" >
+        #{t128,jdbcType=VARCHAR},
+      </if>
+      <if test="t129 != null" >
+        #{t129,jdbcType=VARCHAR},
+      </if>
+      <if test="t130 != null" >
+        #{t130,jdbcType=VARCHAR},
+      </if>
+      <if test="t131 != null" >
+        #{t131,jdbcType=VARCHAR},
+      </if>
+      <if test="t132 != null" >
+        #{t132,jdbcType=VARCHAR},
+      </if>
+      <if test="t133 != null" >
+        #{t133,jdbcType=VARCHAR},
+      </if>
+      <if test="t134 != null" >
+        #{t134,jdbcType=VARCHAR},
+      </if>
+      <if test="t135 != null" >
+        #{t135,jdbcType=VARCHAR},
+      </if>
+      <if test="t136 != null" >
+        #{t136,jdbcType=VARCHAR},
+      </if>
+      <if test="t137 != null" >
+        #{t137,jdbcType=VARCHAR},
+      </if>
+      <if test="t138 != null" >
+        #{t138,jdbcType=VARCHAR},
+      </if>
+      <if test="t139 != null" >
+        #{t139,jdbcType=VARCHAR},
+      </if>
+      <if test="t140 != null" >
+        #{t140,jdbcType=VARCHAR},
+      </if>
+      <if test="t141 != null" >
+        #{t141,jdbcType=VARCHAR},
+      </if>
+      <if test="t142 != null" >
+        #{t142,jdbcType=VARCHAR},
+      </if>
+      <if test="t143 != null" >
+        #{t143,jdbcType=VARCHAR},
+      </if>
+      <if test="t144 != null" >
+        #{t144,jdbcType=VARCHAR},
+      </if>
+      <if test="t145 != null" >
+        #{t145,jdbcType=VARCHAR},
+      </if>
+      <if test="t146 != null" >
+        #{t146,jdbcType=VARCHAR},
+      </if>
+      <if test="t147 != null" >
+        #{t147,jdbcType=VARCHAR},
+      </if>
+      <if test="t148 != null" >
+        #{t148,jdbcType=VARCHAR},
+      </if>
+      <if test="t149 != null" >
+        #{t149,jdbcType=VARCHAR},
+      </if>
+      <if test="t150 != null" >
+        #{t150,jdbcType=VARCHAR},
+      </if>
+      <if test="t151 != null" >
+        #{t151,jdbcType=VARCHAR},
+      </if>
+      <if test="t152 != null" >
+        #{t152,jdbcType=VARCHAR},
+      </if>
+      <if test="t153 != null" >
+        #{t153,jdbcType=VARCHAR},
+      </if>
+      <if test="t154 != null" >
+        #{t154,jdbcType=VARCHAR},
+      </if>
+      <if test="t155 != null" >
+        #{t155,jdbcType=VARCHAR},
+      </if>
+      <if test="t156 != null" >
+        #{t156,jdbcType=VARCHAR},
+      </if>
+      <if test="t157 != null" >
+        #{t157,jdbcType=VARCHAR},
+      </if>
+      <if test="t158 != null" >
+        #{t158,jdbcType=VARCHAR},
+      </if>
+      <if test="t159 != null" >
+        #{t159,jdbcType=VARCHAR},
+      </if>
+      <if test="t160 != null" >
+        #{t160,jdbcType=VARCHAR},
+      </if>
+      <if test="t161 != null" >
+        #{t161,jdbcType=VARCHAR},
+      </if>
+      <if test="t162 != null" >
+        #{t162,jdbcType=VARCHAR},
+      </if>
+      <if test="t163 != null" >
+        #{t163,jdbcType=VARCHAR},
+      </if>
+      <if test="t164 != null" >
+        #{t164,jdbcType=VARCHAR},
+      </if>
+      <if test="t165 != null" >
+        #{t165,jdbcType=VARCHAR},
+      </if>
+      <if test="t166 != null" >
+        #{t166,jdbcType=VARCHAR},
+      </if>
+      <if test="t167 != null" >
+        #{t167,jdbcType=VARCHAR},
+      </if>
+      <if test="t168 != null" >
+        #{t168,jdbcType=VARCHAR},
+      </if>
+      <if test="t169 != null" >
+        #{t169,jdbcType=VARCHAR},
+      </if>
+      <if test="t170 != null" >
+        #{t170,jdbcType=VARCHAR},
+      </if>
+      <if test="t171 != null" >
+        #{t171,jdbcType=VARCHAR},
+      </if>
+      <if test="t172 != null" >
+        #{t172,jdbcType=VARCHAR},
+      </if>
+      <if test="t173 != null" >
+        #{t173,jdbcType=VARCHAR},
+      </if>
+      <if test="t174 != null" >
+        #{t174,jdbcType=VARCHAR},
+      </if>
+      <if test="t175 != null" >
+        #{t175,jdbcType=VARCHAR},
+      </if>
+      <if test="t176 != null" >
+        #{t176,jdbcType=VARCHAR},
+      </if>
+      <if test="t177 != null" >
+        #{t177,jdbcType=VARCHAR},
+      </if>
+      <if test="t178 != null" >
+        #{t178,jdbcType=VARCHAR},
+      </if>
+      <if test="t179 != null" >
+        #{t179,jdbcType=VARCHAR},
+      </if>
+      <if test="t180 != null" >
+        #{t180,jdbcType=VARCHAR},
+      </if>
+      <if test="t181 != null" >
+        #{t181,jdbcType=VARCHAR},
+      </if>
+      <if test="t182 != null" >
+        #{t182,jdbcType=VARCHAR},
+      </if>
+      <if test="t183 != null" >
+        #{t183,jdbcType=VARCHAR},
+      </if>
+      <if test="t184 != null" >
+        #{t184,jdbcType=VARCHAR},
+      </if>
+      <if test="t185 != null" >
+        #{t185,jdbcType=VARCHAR},
+      </if>
+      <if test="t186 != null" >
+        #{t186,jdbcType=VARCHAR},
+      </if>
+      <if test="t187 != null" >
+        #{t187,jdbcType=VARCHAR},
+      </if>
+      <if test="t188 != null" >
+        #{t188,jdbcType=VARCHAR},
+      </if>
+      <if test="t189 != null" >
+        #{t189,jdbcType=VARCHAR},
+      </if>
+      <if test="t190 != null" >
+        #{t190,jdbcType=VARCHAR},
+      </if>
+      <if test="t191 != null" >
+        #{t191,jdbcType=VARCHAR},
+      </if>
+      <if test="t192 != null" >
+        #{t192,jdbcType=VARCHAR},
+      </if>
+      <if test="t193 != null" >
+        #{t193,jdbcType=VARCHAR},
+      </if>
+      <if test="t194 != null" >
+        #{t194,jdbcType=VARCHAR},
+      </if>
+      <if test="t195 != null" >
+        #{t195,jdbcType=VARCHAR},
+      </if>
+      <if test="t196 != null" >
+        #{t196,jdbcType=VARCHAR},
+      </if>
+      <if test="t197 != null" >
+        #{t197,jdbcType=VARCHAR},
+      </if>
+      <if test="t198 != null" >
+        #{t198,jdbcType=VARCHAR},
+      </if>
+      <if test="t199 != null" >
+        #{t199,jdbcType=VARCHAR},
+      </if>
+      <if test="t200 != null" >
+        #{t200,jdbcType=VARCHAR},
+      </if>
+      <if test="islocked != null" >
+        #{islocked,jdbcType=BIT},
+      </if>
+      <if test="isexpand != null" >
+        #{isexpand,jdbcType=BIT},
+      </if>
+      <if test="inputman != null" >
+        #{inputman,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdate != null" >
+        #{inputdate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhchain.business.code.vo.Code" >
+    update t_code
+    <set >
+      <if test="codeno != null" >
+        codeno = #{codeno,jdbcType=VARCHAR},
+      </if>
+      <if test="codename != null" >
+        codename = #{codename,jdbcType=VARCHAR},
+      </if>
+      <if test="t1 != null" >
+        t1 = #{t1,jdbcType=VARCHAR},
+      </if>
+      <if test="t2 != null" >
+        t2 = #{t2,jdbcType=VARCHAR},
+      </if>
+      <if test="t3 != null" >
+        t3 = #{t3,jdbcType=VARCHAR},
+      </if>
+      <if test="t4 != null" >
+        t4 = #{t4,jdbcType=VARCHAR},
+      </if>
+      <if test="t5 != null" >
+        t5 = #{t5,jdbcType=VARCHAR},
+      </if>
+      <if test="t6 != null" >
+        t6 = #{t6,jdbcType=VARCHAR},
+      </if>
+      <if test="t7 != null" >
+        t7 = #{t7,jdbcType=VARCHAR},
+      </if>
+      <if test="t8 != null" >
+        t8 = #{t8,jdbcType=VARCHAR},
+      </if>
+      <if test="t9 != null" >
+        t9 = #{t9,jdbcType=VARCHAR},
+      </if>
+      <if test="t10 != null" >
+        t10 = #{t10,jdbcType=VARCHAR},
+      </if>
+      <if test="t11 != null" >
+        t11 = #{t11,jdbcType=VARCHAR},
+      </if>
+      <if test="t12 != null" >
+        t12 = #{t12,jdbcType=VARCHAR},
+      </if>
+      <if test="t13 != null" >
+        t13 = #{t13,jdbcType=VARCHAR},
+      </if>
+      <if test="t14 != null" >
+        t14 = #{t14,jdbcType=VARCHAR},
+      </if>
+      <if test="t15 != null" >
+        t15 = #{t15,jdbcType=VARCHAR},
+      </if>
+      <if test="t16 != null" >
+        t16 = #{t16,jdbcType=VARCHAR},
+      </if>
+      <if test="t17 != null" >
+        t17 = #{t17,jdbcType=VARCHAR},
+      </if>
+      <if test="t18 != null" >
+        t18 = #{t18,jdbcType=VARCHAR},
+      </if>
+      <if test="t19 != null" >
+        t19 = #{t19,jdbcType=VARCHAR},
+      </if>
+      <if test="t20 != null" >
+        t20 = #{t20,jdbcType=VARCHAR},
+      </if>
+      <if test="t21 != null" >
+        t21 = #{t21,jdbcType=VARCHAR},
+      </if>
+      <if test="t22 != null" >
+        t22 = #{t22,jdbcType=VARCHAR},
+      </if>
+      <if test="t23 != null" >
+        t23 = #{t23,jdbcType=VARCHAR},
+      </if>
+      <if test="t24 != null" >
+        t24 = #{t24,jdbcType=VARCHAR},
+      </if>
+      <if test="t25 != null" >
+        t25 = #{t25,jdbcType=VARCHAR},
+      </if>
+      <if test="t26 != null" >
+        t26 = #{t26,jdbcType=VARCHAR},
+      </if>
+      <if test="t27 != null" >
+        t27 = #{t27,jdbcType=VARCHAR},
+      </if>
+      <if test="t28 != null" >
+        t28 = #{t28,jdbcType=VARCHAR},
+      </if>
+      <if test="t29 != null" >
+        t29 = #{t29,jdbcType=VARCHAR},
+      </if>
+      <if test="t30 != null" >
+        t30 = #{t30,jdbcType=VARCHAR},
+      </if>
+      <if test="t31 != null" >
+        t31 = #{t31,jdbcType=VARCHAR},
+      </if>
+      <if test="t32 != null" >
+        t32 = #{t32,jdbcType=VARCHAR},
+      </if>
+      <if test="t33 != null" >
+        t33 = #{t33,jdbcType=VARCHAR},
+      </if>
+      <if test="t34 != null" >
+        t34 = #{t34,jdbcType=VARCHAR},
+      </if>
+      <if test="t35 != null" >
+        t35 = #{t35,jdbcType=VARCHAR},
+      </if>
+      <if test="t36 != null" >
+        t36 = #{t36,jdbcType=VARCHAR},
+      </if>
+      <if test="t37 != null" >
+        t37 = #{t37,jdbcType=VARCHAR},
+      </if>
+      <if test="t38 != null" >
+        t38 = #{t38,jdbcType=VARCHAR},
+      </if>
+      <if test="t39 != null" >
+        t39 = #{t39,jdbcType=VARCHAR},
+      </if>
+      <if test="t40 != null" >
+        t40 = #{t40,jdbcType=VARCHAR},
+      </if>
+      <if test="t41 != null" >
+        t41 = #{t41,jdbcType=VARCHAR},
+      </if>
+      <if test="t42 != null" >
+        t42 = #{t42,jdbcType=VARCHAR},
+      </if>
+      <if test="t43 != null" >
+        t43 = #{t43,jdbcType=VARCHAR},
+      </if>
+      <if test="t44 != null" >
+        t44 = #{t44,jdbcType=VARCHAR},
+      </if>
+      <if test="t45 != null" >
+        t45 = #{t45,jdbcType=VARCHAR},
+      </if>
+      <if test="t46 != null" >
+        t46 = #{t46,jdbcType=VARCHAR},
+      </if>
+      <if test="t47 != null" >
+        t47 = #{t47,jdbcType=VARCHAR},
+      </if>
+      <if test="t48 != null" >
+        t48 = #{t48,jdbcType=VARCHAR},
+      </if>
+      <if test="t49 != null" >
+        t49 = #{t49,jdbcType=VARCHAR},
+      </if>
+      <if test="t50 != null" >
+        t50 = #{t50,jdbcType=VARCHAR},
+      </if>
+      <if test="t51 != null" >
+        t51 = #{t51,jdbcType=VARCHAR},
+      </if>
+      <if test="t52 != null" >
+        t52 = #{t52,jdbcType=VARCHAR},
+      </if>
+      <if test="t53 != null" >
+        t53 = #{t53,jdbcType=VARCHAR},
+      </if>
+      <if test="t54 != null" >
+        t54 = #{t54,jdbcType=VARCHAR},
+      </if>
+      <if test="t55 != null" >
+        t55 = #{t55,jdbcType=VARCHAR},
+      </if>
+      <if test="t56 != null" >
+        t56 = #{t56,jdbcType=VARCHAR},
+      </if>
+      <if test="t57 != null" >
+        t57 = #{t57,jdbcType=VARCHAR},
+      </if>
+      <if test="t58 != null" >
+        t58 = #{t58,jdbcType=VARCHAR},
+      </if>
+      <if test="t59 != null" >
+        t59 = #{t59,jdbcType=VARCHAR},
+      </if>
+      <if test="t60 != null" >
+        t60 = #{t60,jdbcType=VARCHAR},
+      </if>
+      <if test="t61 != null" >
+        t61 = #{t61,jdbcType=VARCHAR},
+      </if>
+      <if test="t62 != null" >
+        t62 = #{t62,jdbcType=VARCHAR},
+      </if>
+      <if test="t63 != null" >
+        t63 = #{t63,jdbcType=VARCHAR},
+      </if>
+      <if test="t64 != null" >
+        t64 = #{t64,jdbcType=VARCHAR},
+      </if>
+      <if test="t65 != null" >
+        t65 = #{t65,jdbcType=VARCHAR},
+      </if>
+      <if test="t66 != null" >
+        t66 = #{t66,jdbcType=VARCHAR},
+      </if>
+      <if test="t67 != null" >
+        t67 = #{t67,jdbcType=VARCHAR},
+      </if>
+      <if test="t68 != null" >
+        t68 = #{t68,jdbcType=VARCHAR},
+      </if>
+      <if test="t69 != null" >
+        t69 = #{t69,jdbcType=VARCHAR},
+      </if>
+      <if test="t70 != null" >
+        t70 = #{t70,jdbcType=VARCHAR},
+      </if>
+      <if test="t71 != null" >
+        t71 = #{t71,jdbcType=VARCHAR},
+      </if>
+      <if test="t72 != null" >
+        t72 = #{t72,jdbcType=VARCHAR},
+      </if>
+      <if test="t73 != null" >
+        t73 = #{t73,jdbcType=VARCHAR},
+      </if>
+      <if test="t74 != null" >
+        t74 = #{t74,jdbcType=VARCHAR},
+      </if>
+      <if test="t75 != null" >
+        t75 = #{t75,jdbcType=VARCHAR},
+      </if>
+      <if test="t76 != null" >
+        t76 = #{t76,jdbcType=VARCHAR},
+      </if>
+      <if test="t77 != null" >
+        t77 = #{t77,jdbcType=VARCHAR},
+      </if>
+      <if test="t78 != null" >
+        t78 = #{t78,jdbcType=VARCHAR},
+      </if>
+      <if test="t79 != null" >
+        t79 = #{t79,jdbcType=VARCHAR},
+      </if>
+      <if test="t80 != null" >
+        t80 = #{t80,jdbcType=VARCHAR},
+      </if>
+      <if test="t81 != null" >
+        t81 = #{t81,jdbcType=VARCHAR},
+      </if>
+      <if test="t82 != null" >
+        t82 = #{t82,jdbcType=VARCHAR},
+      </if>
+      <if test="t83 != null" >
+        t83 = #{t83,jdbcType=VARCHAR},
+      </if>
+      <if test="t84 != null" >
+        t84 = #{t84,jdbcType=VARCHAR},
+      </if>
+      <if test="t85 != null" >
+        t85 = #{t85,jdbcType=VARCHAR},
+      </if>
+      <if test="t86 != null" >
+        t86 = #{t86,jdbcType=VARCHAR},
+      </if>
+      <if test="t87 != null" >
+        t87 = #{t87,jdbcType=VARCHAR},
+      </if>
+      <if test="t88 != null" >
+        t88 = #{t88,jdbcType=VARCHAR},
+      </if>
+      <if test="t89 != null" >
+        t89 = #{t89,jdbcType=VARCHAR},
+      </if>
+      <if test="t90 != null" >
+        t90 = #{t90,jdbcType=VARCHAR},
+      </if>
+      <if test="t91 != null" >
+        t91 = #{t91,jdbcType=VARCHAR},
+      </if>
+      <if test="t92 != null" >
+        t92 = #{t92,jdbcType=VARCHAR},
+      </if>
+      <if test="t93 != null" >
+        t93 = #{t93,jdbcType=VARCHAR},
+      </if>
+      <if test="t94 != null" >
+        t94 = #{t94,jdbcType=VARCHAR},
+      </if>
+      <if test="t95 != null" >
+        t95 = #{t95,jdbcType=VARCHAR},
+      </if>
+      <if test="t96 != null" >
+        t96 = #{t96,jdbcType=VARCHAR},
+      </if>
+      <if test="t97 != null" >
+        t97 = #{t97,jdbcType=VARCHAR},
+      </if>
+      <if test="t98 != null" >
+        t98 = #{t98,jdbcType=VARCHAR},
+      </if>
+      <if test="t99 != null" >
+        t99 = #{t99,jdbcType=VARCHAR},
+      </if>
+      <if test="t100 != null" >
+        t100 = #{t100,jdbcType=VARCHAR},
+      </if>
+      <if test="t101 != null" >
+        t101 = #{t101,jdbcType=VARCHAR},
+
+      </if>
+      <if test="t102 != null" >
+        t102 = #{t102,jdbcType=VARCHAR},
+
+      </if>
+      <if test="t103 != null" >
+        t103 = #{t103,jdbcType=VARCHAR},
+
+      </if>
+      <if test="t104 != null" >
+        t104 = #{t104,jdbcType=VARCHAR},
+
+      </if>
+      <if test="t105 != null" >
+        t105 = #{t105,jdbcType=VARCHAR},
+
+      </if>
+      <if test="t106 != null" >
+        t106 = #{t106,jdbcType=VARCHAR},
+
+      </if>
+      <if test="t107 != null" >
+
+        t107 = #{t107,jdbcType=VARCHAR},
+      </if>
+      <if test="t108 != null" >
+
+        t108 =  #{t108,jdbcType=VARCHAR},
+      </if>
+      <if test="t109 != null" >
+
+        t109 = #{t109,jdbcType=VARCHAR},
+      </if>
+      <if test="t110 != null" >
+
+        t110 = #{t110,jdbcType=VARCHAR},
+      </if>
+      <if test="t111 != null" >
+        t111 = #{t111,jdbcType=VARCHAR},
+      </if>
+      <if test="t112 != null" >
+        t112 =  #{t112,jdbcType=VARCHAR},
+      </if>
+      <if test="t113 != null" >
+        t113 = #{t113,jdbcType=VARCHAR},
+      </if>
+      <if test="t114 != null" >
+        t114 = #{t114,jdbcType=VARCHAR},
+      </if>
+      <if test="t115 != null" >
+        t115 = #{t115,jdbcType=VARCHAR},
+      </if>
+      <if test="t116 != null" >
+        t116 = #{t116,jdbcType=VARCHAR},
+      </if>
+      <if test="t117 != null" >
+        t117 = #{t117,jdbcType=VARCHAR},
+      </if>
+      <if test="t118 != null" >
+        t118 = #{t118,jdbcType=VARCHAR},
+      </if>
+      <if test="t119 != null" >
+        t119 = #{t119,jdbcType=VARCHAR},
+      </if>
+      <if test="t120 != null" >
+        t120 = #{t120,jdbcType=VARCHAR},
+      </if>
+      <if test="t121 != null" >
+        t121 = #{t121,jdbcType=VARCHAR},
+      </if>
+      <if test="t122 != null" >
+        t122 = #{t122,jdbcType=VARCHAR},
+      </if>
+      <if test="t123 != null" >
+        t123 = #{t123,jdbcType=VARCHAR},
+      </if>
+      <if test="t124 != null" >
+        t124 = #{t124,jdbcType=VARCHAR},
+      </if>
+      <if test="t125 != null" >
+        t125 = #{t125,jdbcType=VARCHAR},
+      </if>
+      <if test="t126 != null" >
+        t126 = #{t126,jdbcType=VARCHAR},
+      </if>
+      <if test="t127 != null" >
+        t127 = #{t127,jdbcType=VARCHAR},
+      </if>
+      <if test="t128 != null" >
+        t128 = #{t128,jdbcType=VARCHAR},
+      </if>
+      <if test="t129 != null" >
+        t129 = #{t129,jdbcType=VARCHAR},
+      </if>
+      <if test="t130 != null" >
+        t130 = #{t130,jdbcType=VARCHAR},
+      </if>
+      <if test="t131 != null" >
+        t131 = #{t131,jdbcType=VARCHAR},
+      </if>
+      <if test="t132 != null" >
+        t132 = #{t132,jdbcType=VARCHAR},
+      </if>
+      <if test="t133 != null" >
+        t133 = #{t133,jdbcType=VARCHAR},
+      </if>
+      <if test="t134 != null" >
+        t134 = #{t134,jdbcType=VARCHAR},
+      </if>
+      <if test="t135 != null" >
+        t135 = #{t135,jdbcType=VARCHAR},
+      </if>
+      <if test="t136 != null" >
+        t136 = #{t136,jdbcType=VARCHAR},
+      </if>
+      <if test="t137 != null" >
+        t137 = #{t137,jdbcType=VARCHAR},
+      </if>
+      <if test="t138 != null" >
+        t138 = #{t138,jdbcType=VARCHAR},
+      </if>
+      <if test="t139 != null" >
+        t139 = #{t139,jdbcType=VARCHAR},
+      </if>
+      <if test="t140 != null" >
+        t140 = #{t140,jdbcType=VARCHAR},
+      </if>
+      <if test="t141 != null" >
+        t141 = #{t141,jdbcType=VARCHAR},
+      </if>
+      <if test="t142 != null" >
+        t142 = #{t142,jdbcType=VARCHAR},
+      </if>
+      <if test="t143 != null" >
+        t143 = #{t143,jdbcType=VARCHAR},
+      </if>
+      <if test="t144 != null" >
+        t144 = #{t144,jdbcType=VARCHAR},
+      </if>
+      <if test="t145 != null" >
+        t145 = #{t145,jdbcType=VARCHAR},
+      </if>
+      <if test="t146 != null" >
+        t146 = #{t146,jdbcType=VARCHAR},
+      </if>
+      <if test="t147 != null" >
+        t147 = #{t147,jdbcType=VARCHAR},
+      </if>
+      <if test="t148 != null" >
+        t148 = #{t148,jdbcType=VARCHAR},
+      </if>
+      <if test="t149 != null" >
+        t149 = #{t149,jdbcType=VARCHAR},
+      </if>
+      <if test="t150 != null" >
+        t150 = #{t150,jdbcType=VARCHAR},
+      </if>
+      <if test="t151 != null" >
+        t151 = #{t151,jdbcType=VARCHAR},
+      </if>
+      <if test="t152 != null" >
+        t152 = #{t152,jdbcType=VARCHAR},
+      </if>
+      <if test="t153 != null" >
+        t153 = #{t153,jdbcType=VARCHAR},
+      </if>
+      <if test="t154 != null" >
+        t154 = #{t154,jdbcType=VARCHAR},
+      </if>
+      <if test="t155 != null" >
+        t155 = #{t155,jdbcType=VARCHAR},
+      </if>
+      <if test="t156 != null" >
+        t156 = #{t156,jdbcType=VARCHAR},
+      </if>
+      <if test="t157 != null" >
+        t157 = #{t157,jdbcType=VARCHAR},
+      </if>
+      <if test="t158 != null" >
+        t158 = #{t158,jdbcType=VARCHAR},
+      </if>
+      <if test="t159 != null" >
+        t159 = #{t159,jdbcType=VARCHAR},
+      </if>
+      <if test="t160 != null" >
+        t160 = #{t160,jdbcType=VARCHAR},
+      </if>
+      <if test="t161 != null" >
+        t161 = #{t161,jdbcType=VARCHAR},
+      </if>
+      <if test="t162 != null" >
+        t162 = #{t162,jdbcType=VARCHAR},
+      </if>
+      <if test="t163 != null" >
+        t163 = #{t163,jdbcType=VARCHAR},
+      </if>
+      <if test="t164 != null" >
+        t164 = #{t164,jdbcType=VARCHAR},
+      </if>
+      <if test="t165 != null" >
+        t165 = #{t165,jdbcType=VARCHAR},
+      </if>
+      <if test="t166 != null" >
+        t166 = #{t166,jdbcType=VARCHAR},
+      </if>
+      <if test="t167 != null" >
+        t167 = #{t167,jdbcType=VARCHAR},
+      </if>
+      <if test="t168 != null" >
+        t168 = #{t168,jdbcType=VARCHAR},
+      </if>
+      <if test="t169 != null" >
+        t169 = #{t169,jdbcType=VARCHAR},
+      </if>
+      <if test="t170 != null" >
+        t170 = #{t170,jdbcType=VARCHAR},
+      </if>
+      <if test="t171 != null" >
+        t171 = #{t171,jdbcType=VARCHAR},
+      </if>
+      <if test="t172 != null" >
+        t172 = #{t172,jdbcType=VARCHAR},
+      </if>
+      <if test="t173 != null" >
+        t173 = #{t173,jdbcType=VARCHAR},
+      </if>
+      <if test="t174 != null" >
+        t174 = #{t174,jdbcType=VARCHAR},
+      </if>
+      <if test="t175 != null" >
+        t175 = #{t175,jdbcType=VARCHAR},
+      </if>
+      <if test="t176 != null" >
+        t176 = #{t176,jdbcType=VARCHAR},
+      </if>
+      <if test="t177 != null" >
+        t177 = #{t177,jdbcType=VARCHAR},
+      </if>
+      <if test="t178 != null" >
+        t178 = #{t178,jdbcType=VARCHAR},
+      </if>
+      <if test="t179 != null" >
+        t179 = #{t179,jdbcType=VARCHAR},
+      </if>
+      <if test="t180 != null" >
+        t180 = #{t180,jdbcType=VARCHAR},
+      </if>
+      <if test="t181 != null" >
+        t181 = #{t181,jdbcType=VARCHAR},
+      </if>
+      <if test="t182 != null" >
+        t182 = #{t182,jdbcType=VARCHAR},
+      </if>
+      <if test="t183 != null" >
+        t183 = #{t183,jdbcType=VARCHAR},
+      </if>
+      <if test="t184 != null" >
+        t184 = #{t184,jdbcType=VARCHAR},
+      </if>
+      <if test="t185 != null" >
+        t185 = #{t185,jdbcType=VARCHAR},
+      </if>
+      <if test="t186 != null" >
+        t186 = #{t186,jdbcType=VARCHAR},
+      </if>
+      <if test="t187 != null" >
+        t187 = #{t187,jdbcType=VARCHAR},
+      </if>
+      <if test="t188 != null" >
+        t188 = #{t188,jdbcType=VARCHAR},
+      </if>
+      <if test="t189 != null" >
+        t189 = #{t189,jdbcType=VARCHAR},
+      </if>
+      <if test="t190 != null" >
+        t190 = #{t190,jdbcType=VARCHAR},
+      </if>
+      <if test="t191 != null" >
+        t191 = #{t191,jdbcType=VARCHAR},
+      </if>
+      <if test="t192 != null" >
+        t192 = #{t192,jdbcType=VARCHAR},
+      </if>
+      <if test="t193 != null" >
+        t193 = #{t193,jdbcType=VARCHAR},
+      </if>
+      <if test="t194 != null" >
+        t194 = #{t194,jdbcType=VARCHAR},
+      </if>
+      <if test="t195 != null" >
+        t195 = #{t195,jdbcType=VARCHAR},
+      </if>
+      <if test="t196 != null" >
+        t196 = #{t196,jdbcType=VARCHAR},
+      </if>
+      <if test="t197 != null" >
+        t197 = #{t197,jdbcType=VARCHAR},
+      </if>
+      <if test="t198 != null" >
+        t198 = #{t198,jdbcType=VARCHAR},
+      </if>
+      <if test="t199 != null" >
+        t199 = #{t199,jdbcType=VARCHAR},
+      </if>
+      <if test="t200 != null" >
+        t200 = #{t200,jdbcType=VARCHAR},
+      </if>
+      <if test="islocked != null" >
+        islocked = #{islocked,jdbcType=BIT},
+      </if>
+      <if test="isexpand != null" >
+        isexpand = #{isexpand,jdbcType=BIT},
+      </if>
+      <if test="inputman != null" >
+        inputman = #{inputman,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdate != null" >
+        inputdate = #{inputdate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhchain.business.code.vo.Code" >
+    update t_code
+    set codeno = #{codeno,jdbcType=VARCHAR},
+      codename = #{codename,jdbcType=VARCHAR},
+      issuccess = #{issuccess,jdbcType=BIT},
+       applyno = #{applyno,jdbcType=VARCHAR},
+      t1 = #{t1,jdbcType=VARCHAR},
+      t2 = #{t2,jdbcType=VARCHAR},
+      t3 = #{t3,jdbcType=VARCHAR},
+      t4 = #{t4,jdbcType=VARCHAR},
+      t5 = #{t5,jdbcType=VARCHAR},
+      t6 = #{t6,jdbcType=VARCHAR},
+      t7 = #{t7,jdbcType=VARCHAR},
+      t8 = #{t8,jdbcType=VARCHAR},
+      t9 = #{t9,jdbcType=VARCHAR},
+      t10 = #{t10,jdbcType=VARCHAR},
+      t11 = #{t11,jdbcType=VARCHAR},
+      t12 = #{t12,jdbcType=VARCHAR},
+      t13 = #{t13,jdbcType=VARCHAR},
+      t14 = #{t14,jdbcType=VARCHAR},
+      t15 = #{t15,jdbcType=VARCHAR},
+      t16 = #{t16,jdbcType=VARCHAR},
+      t17 = #{t17,jdbcType=VARCHAR},
+      t18 = #{t18,jdbcType=VARCHAR},
+      t19 = #{t19,jdbcType=VARCHAR},
+      t20 = #{t20,jdbcType=VARCHAR},
+      t21 = #{t21,jdbcType=VARCHAR},
+      t22 = #{t22,jdbcType=VARCHAR},
+      t23 = #{t23,jdbcType=VARCHAR},
+      t24 = #{t24,jdbcType=VARCHAR},
+      t25 = #{t25,jdbcType=VARCHAR},
+      t26 = #{t26,jdbcType=VARCHAR},
+      t27 = #{t27,jdbcType=VARCHAR},
+      t28 = #{t28,jdbcType=VARCHAR},
+      t29 = #{t29,jdbcType=VARCHAR},
+      t30 = #{t30,jdbcType=VARCHAR},
+      t31 = #{t31,jdbcType=VARCHAR},
+      t32 = #{t32,jdbcType=VARCHAR},
+      t33 = #{t33,jdbcType=VARCHAR},
+      t34 = #{t34,jdbcType=VARCHAR},
+      t35 = #{t35,jdbcType=VARCHAR},
+      t36 = #{t36,jdbcType=VARCHAR},
+      t37 = #{t37,jdbcType=VARCHAR},
+      t38 = #{t38,jdbcType=VARCHAR},
+      t39 = #{t39,jdbcType=VARCHAR},
+      t40 = #{t40,jdbcType=VARCHAR},
+      t41 = #{t41,jdbcType=VARCHAR},
+      t42 = #{t42,jdbcType=VARCHAR},
+      t43 = #{t43,jdbcType=VARCHAR},
+      t44 = #{t44,jdbcType=VARCHAR},
+      t45 = #{t45,jdbcType=VARCHAR},
+      t46 = #{t46,jdbcType=VARCHAR},
+      t47 = #{t47,jdbcType=VARCHAR},
+      t48 = #{t48,jdbcType=VARCHAR},
+      t49 = #{t49,jdbcType=VARCHAR},
+      t50 = #{t50,jdbcType=VARCHAR},
+      t51 = #{t51,jdbcType=VARCHAR},
+      t52 = #{t52,jdbcType=VARCHAR},
+      t53 = #{t53,jdbcType=VARCHAR},
+      t54 = #{t54,jdbcType=VARCHAR},
+      t55 = #{t55,jdbcType=VARCHAR},
+      t56 = #{t56,jdbcType=VARCHAR},
+      t57 = #{t57,jdbcType=VARCHAR},
+      t58 = #{t58,jdbcType=VARCHAR},
+      t59 = #{t59,jdbcType=VARCHAR},
+      t60 = #{t60,jdbcType=VARCHAR},
+      t61 = #{t61,jdbcType=VARCHAR},
+      t62 = #{t62,jdbcType=VARCHAR},
+      t63 = #{t63,jdbcType=VARCHAR},
+      t64 = #{t64,jdbcType=VARCHAR},
+      t65 = #{t65,jdbcType=VARCHAR},
+      t66 = #{t66,jdbcType=VARCHAR},
+      t67 = #{t67,jdbcType=VARCHAR},
+      t68 = #{t68,jdbcType=VARCHAR},
+      t69 = #{t69,jdbcType=VARCHAR},
+      t70 = #{t70,jdbcType=VARCHAR},
+      t71 = #{t71,jdbcType=VARCHAR},
+      t72 = #{t72,jdbcType=VARCHAR},
+      t73 = #{t73,jdbcType=VARCHAR},
+      t74 = #{t74,jdbcType=VARCHAR},
+      t75 = #{t75,jdbcType=VARCHAR},
+      t76 = #{t76,jdbcType=VARCHAR},
+      t77 = #{t77,jdbcType=VARCHAR},
+      t78 = #{t78,jdbcType=VARCHAR},
+      t79 = #{t79,jdbcType=VARCHAR},
+      t80 = #{t80,jdbcType=VARCHAR},
+      t81 = #{t81,jdbcType=VARCHAR},
+      t82 = #{t82,jdbcType=VARCHAR},
+      t83 = #{t83,jdbcType=VARCHAR},
+      t84 = #{t84,jdbcType=VARCHAR},
+      t85 = #{t85,jdbcType=VARCHAR},
+      t86 = #{t86,jdbcType=VARCHAR},
+      t87 = #{t87,jdbcType=VARCHAR},
+      t88 = #{t88,jdbcType=VARCHAR},
+      t89 = #{t89,jdbcType=VARCHAR},
+      t90 = #{t90,jdbcType=VARCHAR},
+      t91 = #{t91,jdbcType=VARCHAR},
+      t92 = #{t92,jdbcType=VARCHAR},
+      t93 = #{t93,jdbcType=VARCHAR},
+      t94 = #{t94,jdbcType=VARCHAR},
+      t95 = #{t95,jdbcType=VARCHAR},
+      t96 = #{t96,jdbcType=VARCHAR},
+      t97 = #{t97,jdbcType=VARCHAR},
+      t98 = #{t98,jdbcType=VARCHAR},
+      t99 = #{t99,jdbcType=VARCHAR},
+      t100 = #{t100,jdbcType=VARCHAR},
+       t101 = #{t101,jdbcType=VARCHAR},
+      t102 =  #{t102,jdbcType=VARCHAR},
+      t103 = #{t103,jdbcType=VARCHAR},
+      t104 = #{t104,jdbcType=VARCHAR},
+      t105 = #{t105,jdbcType=VARCHAR},
+      t106 = #{t106,jdbcType=VARCHAR},
+      t107 = #{t107,jdbcType=VARCHAR},
+      t108 = #{t108,jdbcType=VARCHAR},
+      t109 = #{t109,jdbcType=VARCHAR},
+      t110 = #{t110,jdbcType=VARCHAR},
+      t111 = #{t111,jdbcType=VARCHAR},
+      t112 =  #{t112,jdbcType=VARCHAR},
+      t113 = #{t113,jdbcType=VARCHAR},
+      t114 = #{t114,jdbcType=VARCHAR},
+      t115 = #{t115,jdbcType=VARCHAR},
+      t116 = #{t116,jdbcType=VARCHAR},
+      t117 = #{t117,jdbcType=VARCHAR},
+      t118 = #{t118,jdbcType=VARCHAR},
+      t119 = #{t119,jdbcType=VARCHAR},
+      t120 = #{t120,jdbcType=VARCHAR},
+      t121 = #{t121,jdbcType=VARCHAR},
+      t122 = #{t122,jdbcType=VARCHAR},
+      t123 = #{t123,jdbcType=VARCHAR},
+      t124 = #{t124,jdbcType=VARCHAR},
+      t125 = #{t125,jdbcType=VARCHAR},
+      t126 = #{t126,jdbcType=VARCHAR},
+      t127 = #{t127,jdbcType=VARCHAR},
+      t128 = #{t128,jdbcType=VARCHAR},
+      t129 = #{t129,jdbcType=VARCHAR},
+      t130 = #{t130,jdbcType=VARCHAR},
+      t131 = #{t131,jdbcType=VARCHAR},
+      t132 = #{t132,jdbcType=VARCHAR},
+      t133 = #{t133,jdbcType=VARCHAR},
+      t134 = #{t134,jdbcType=VARCHAR},
+      t135 = #{t135,jdbcType=VARCHAR},
+      t136 = #{t136,jdbcType=VARCHAR},
+      t137 = #{t137,jdbcType=VARCHAR},
+      t138 = #{t138,jdbcType=VARCHAR},
+      t139 = #{t139,jdbcType=VARCHAR},
+      t140 = #{t140,jdbcType=VARCHAR},
+      t141 = #{t141,jdbcType=VARCHAR},
+      t142 = #{t142,jdbcType=VARCHAR},
+      t143 = #{t143,jdbcType=VARCHAR},
+      t144 = #{t144,jdbcType=VARCHAR},
+      t145 = #{t145,jdbcType=VARCHAR},
+      t146 = #{t146,jdbcType=VARCHAR},
+      t147 = #{t147,jdbcType=VARCHAR},
+      t148 = #{t148,jdbcType=VARCHAR},
+      t149 = #{t149,jdbcType=VARCHAR},
+      t150 = #{t150,jdbcType=VARCHAR},
+      t151 = #{t151,jdbcType=VARCHAR},
+      t152 = #{t152,jdbcType=VARCHAR},
+      t153 = #{t153,jdbcType=VARCHAR},
+      t154 = #{t154,jdbcType=VARCHAR},
+      t155 = #{t155,jdbcType=VARCHAR},
+      t156 = #{t156,jdbcType=VARCHAR},
+      t157 = #{t157,jdbcType=VARCHAR},
+      t158 = #{t158,jdbcType=VARCHAR},
+      t159 = #{t159,jdbcType=VARCHAR},
+      t160 = #{t160,jdbcType=VARCHAR},
+      t161 = #{t161,jdbcType=VARCHAR},
+      t162 = #{t162,jdbcType=VARCHAR},
+      t163 = #{t163,jdbcType=VARCHAR},
+      t164 = #{t164,jdbcType=VARCHAR},
+      t165 = #{t165,jdbcType=VARCHAR},
+      t166 = #{t166,jdbcType=VARCHAR},
+      t167 = #{t167,jdbcType=VARCHAR},
+      t168 = #{t168,jdbcType=VARCHAR},
+      t169 = #{t169,jdbcType=VARCHAR},
+      t170 = #{t170,jdbcType=VARCHAR},
+      t171 = #{t171,jdbcType=VARCHAR},
+      t172 = #{t172,jdbcType=VARCHAR},
+      t173 = #{t173,jdbcType=VARCHAR},
+      t174 = #{t174,jdbcType=VARCHAR},
+      t175 = #{t175,jdbcType=VARCHAR},
+      t176 = #{t176,jdbcType=VARCHAR},
+      t177 = #{t177,jdbcType=VARCHAR},
+      t178 = #{t178,jdbcType=VARCHAR},
+      t179 = #{t179,jdbcType=VARCHAR},
+      t180 = #{t180,jdbcType=VARCHAR},
+      t181 = #{t181,jdbcType=VARCHAR},
+      t182 = #{t182,jdbcType=VARCHAR},
+      t183 = #{t183,jdbcType=VARCHAR},
+      t184 = #{t184,jdbcType=VARCHAR},
+      t185 = #{t185,jdbcType=VARCHAR},
+      t186 = #{t186,jdbcType=VARCHAR},
+      t187 = #{t187,jdbcType=VARCHAR},
+      t188 = #{t188,jdbcType=VARCHAR},
+      t189 = #{t189,jdbcType=VARCHAR},
+      t190 = #{t190,jdbcType=VARCHAR},
+      t191 = #{t191,jdbcType=VARCHAR},
+      t192 = #{t192,jdbcType=VARCHAR},
+      t193 = #{t193,jdbcType=VARCHAR},
+      t194 = #{t194,jdbcType=VARCHAR},
+      t195 = #{t195,jdbcType=VARCHAR},
+      t196 = #{t196,jdbcType=VARCHAR},
+      t197 = #{t197,jdbcType=VARCHAR},
+      t198 = #{t198,jdbcType=VARCHAR},
+      t199 = #{t199,jdbcType=VARCHAR},
+      t200 = #{t200,jdbcType=VARCHAR},
+      islocked = #{islocked,jdbcType=BIT},
+      isexpand = #{isexpand,jdbcType=INTEGER},
+      inputman = #{inputman,jdbcType=VARCHAR},
+      inputdate = #{inputdate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+
+  <select id="select" parameterType="com.dhchain.business.code.vo.Code" resultType="com.dhchain.business.code.vo.Code">
+    SELECT
+
+    *
+
+    FROM
+    t_code
+    where 1 = 1
+    <if test="typedetailid!=null and typedetailid!=''">and typedetailid = #{typedetailid}</if>
+    <if test="codeno!=null and codeno!=''">and codeno = #{codeno}</if>
+    <if test="t1!=null and t1!=''">and t1 = #{t1}</if>
+    <if test="t2!=null and t2!=''">and t2 = #{t2}</if>
+    <if test="t3!=null and t3!=''">and t3 = #{t3}</if>
+    <if test="t4!=null and t4!=''">and t4 = #{t4}</if>
+    <if test="t5!=null and t5!=''">and t5 = #{t5}</if>
+    <if test="t6!=null and t6!=''">and t6 = #{t6}</if>
+    <if test="t7!=null and t7!=''">and t7 = #{t7}</if>
+    <if test="t8!=null and t8!=''">and t8 = #{t8}</if>
+    <if test="t9!=null and t9!=''">and t9 = #{t9}</if>
+    <if test="t10!=null and t10!=''">and t10 = #{t10}</if>
+    <if test="t11!=null and t11!=''">and t11 = #{t11}</if>
+    <if test="t12!=null and t12!=''">and t12 = #{t12}</if>
+    <if test="t13!=null and t13!=''">and t13 = #{t13}</if>
+    <if test="t14!=null and t14!=''">and t14 = #{t14}</if>
+    <if test="t15!=null and t15!=''">and t15 = #{t15}</if>
+    <if test="t16!=null and t16!=''">and t16 = #{t16}</if>
+    <if test="t17!=null and t17!=''">and t17 = #{t17}</if>
+    <if test="t18!=null and t18!=''">and t18 = #{t18}</if>
+    <if test="t19!=null and t19!=''">and t19 = #{t19}</if>
+    <if test="t20!=null and t20!=''">and t20 = #{t20}</if>
+    <if test="t21!=null and t21!=''">and t21 = #{t21}</if>
+    <if test="t22!=null and t22!=''">and t22 = #{t22}</if>
+    <if test="t23!=null and t23!=''">and t23 = #{t23}</if>
+    <if test="t24!=null and t24!=''">and t24 = #{t24}</if>
+    <if test="t25!=null and t25!=''">and t25 = #{t25}</if>
+    <if test="t26!=null and t26!=''">and t26 = #{t26}</if>
+    <if test="t27!=null and t27!=''">and t27 = #{t27}</if>
+    <if test="t28!=null and t28!=''">and t28 = #{t28}</if>
+    <if test="t29!=null and t29!=''">and t29 = #{t29}</if>
+    <if test="t30!=null and t30!=''">and t30 = #{t30}</if>
+    <if test="t31!=null and t31!=''">and t31 = #{t31}</if>
+    <if test="t32!=null and t32!=''">and t32 = #{t32}</if>
+    <if test="t33!=null and t33!=''">and t33 = #{t33}</if>
+    <if test="t34!=null and t34!=''">and t34 = #{t34}</if>
+    <if test="t35!=null and t35!=''">and t35 = #{t35}</if>
+    <if test="t36!=null and t36!=''">and t36 = #{t36}</if>
+    <if test="t37!=null and t37!=''">and t37 = #{t37}</if>
+    <if test="t38!=null and t38!=''">and t38 = #{t38}</if>
+    <if test="t39!=null and t39!=''">and t39 = #{t39}</if>
+    <if test="t40!=null and t40!=''">and t40 = #{t40}</if>
+    <if test="t41!=null and t41!=''">and t41 = #{t41}</if>
+    <if test="t42!=null and t42!=''">and t42 = #{t42}</if>
+    <if test="t43!=null and t43!=''">and t43 = #{t43}</if>
+    <if test="t44!=null and t44!=''">and t44 = #{t44}</if>
+    <if test="t45!=null and t45!=''">and t45 = #{t45}</if>
+    <if test="t46!=null and t46!=''">and t46 = #{t46}</if>
+    <if test="t47!=null and t47!=''">and t47 = #{t47}</if>
+    <if test="t48!=null and t48!=''">and t48 = #{t48}</if>
+    <if test="t49!=null and t49!=''">and t49 = #{t49}</if>
+    <if test="t50!=null and t50!=''">and t50 = #{t50}</if>
+    <if test="t51!=null and t51!=''">and t51 = #{t51}</if>
+    <if test="t52!=null and t52!=''">and t52 = #{t52}</if>
+    <if test="t53!=null and t53!=''">and t53 = #{t53}</if>
+    <if test="t54!=null and t54!=''">and t54 = #{t54}</if>
+    <if test="t55!=null and t55!=''">and t55 = #{t55}</if>
+    <if test="t56!=null and t56!=''">and t56 = #{t56}</if>
+    <if test="t57!=null and t57!=''">and t57 = #{t57}</if>
+    <if test="t58!=null and t58!=''">and t58 = #{t58}</if>
+    <if test="t59!=null and t59!=''">and t59 = #{t59}</if>
+    <if test="t60!=null and t60!=''">and t60 = #{t60}</if>
+    <if test="t61!=null and t61!=''">and t61 = #{t61}</if>
+    <if test="t62!=null and t62!=''">and t62 = #{t62}</if>
+    <if test="t63!=null and t63!=''">and t63 = #{t63}</if>
+    <if test="t64!=null and t64!=''">and t64 = #{t64}</if>
+    <if test="t65!=null and t65!=''">and t65 = #{t65}</if>
+    <if test="t66!=null and t66!=''">and t66 = #{t66}</if>
+    <if test="t67!=null and t67!=''">and t67 = #{t67}</if>
+    <if test="t68!=null and t68!=''">and t68 = #{t68}</if>
+    <if test="t69!=null and t69!=''">and t69 = #{t69}</if>
+    <if test="t70!=null and t70!=''">and t70 = #{t70}</if>
+    <if test="t71!=null and t71!=''">and t71 = #{t71}</if>
+    <if test="t72!=null and t72!=''">and t72 = #{t72}</if>
+    <if test="t73!=null and t73!=''">and t73 = #{t73}</if>
+    <if test="t74!=null and t74!=''">and t74 = #{t74}</if>
+    <if test="t75!=null and t75!=''">and t75 = #{t75}</if>
+    <if test="t76!=null and t76!=''">and t76 = #{t76}</if>
+    <if test="t77!=null and t77!=''">and t77 = #{t77}</if>
+    <if test="t78!=null and t78!=''">and t78 = #{t78}</if>
+    <if test="t79!=null and t79!=''">and t79 = #{t79}</if>
+    <if test="t80!=null and t80!=''">and t80 = #{t80}</if>
+    <if test="t81!=null and t81!=''">and t81 = #{t81}</if>
+    <if test="t82!=null and t82!=''">and t82 = #{t82}</if>
+    <if test="t83!=null and t83!=''">and t83 = #{t83}</if>
+    <if test="t84!=null and t84!=''">and t84 = #{t84}</if>
+    <if test="t85!=null and t85!=''">and t85 = #{t85}</if>
+    <if test="t86!=null and t86!=''">and t86 = #{t86}</if>
+    <if test="t87!=null and t87!=''">and t87 = #{t87}</if>
+    <if test="t88!=null and t88!=''">and t88 = #{t88}</if>
+    <if test="t89!=null and t89!=''">and t89 = #{t89}</if>
+    <if test="t90!=null and t90!=''">and t90 = #{t90}</if>
+    <if test="t91!=null and t91!=''">and t91 = #{t91}</if>
+    <if test="t92!=null and t92!=''">and t92 = #{t92}</if>
+    <if test="t93!=null and t93!=''">and t93 = #{t93}</if>
+    <if test="t94!=null and t94!=''">and t94 = #{t94}</if>
+    <if test="t95!=null and t95!=''">and t95 = #{t95}</if>
+    <if test="t96!=null and t96!=''">and t96 = #{t96}</if>
+    <if test="t97!=null and t97!=''">and t97 = #{t97}</if>
+    <if test="t98!=null and t98!=''">and t98 = #{t98}</if>
+    <if test="t99!=null and t99!=''">and t99 = #{t99}</if>
+    <if test="t100!=null and t100!=''">and t100 = #{t100}</if>
+    <if test="t101!=null and t101!=''">and t101 = #{t101}</if>
+    <if test="t102!=null and t102!=''">and t102 = #{t102}</if>
+    <if test="t103!=null and t103!=''">and t103 = #{t103}</if>
+    <if test="t104!=null and t104!=''">and t104 = #{t104}</if>
+    <if test="t105!=null and t105!=''">and t105 = #{t105}</if>
+    <if test="t106!=null and t106!=''">and t106 = #{t106}</if>
+    <if test="t107!=null and t107!=''">and t107 = #{t107}</if>
+    <if test="t108!=null and t108!=''">and t108 = #{t108}</if>
+    <if test="t109!=null and t109!=''">and t109 = #{t109}</if>
+    <if test="t110!=null and t110!=''">and t110 = #{t110}</if>
+    <if test="t111!=null and t111!=''">and t111 = #{t111}</if>
+    <if test="t112!=null and t112!=''">and t112 = #{t112}</if>
+    <if test="t113!=null and t113!=''">and t113 = #{t113}</if>
+    <if test="t114!=null and t114!=''">and t114 = #{t114}</if>
+    <if test="t115!=null and t115!=''">and t115 = #{t115}</if>
+    <if test="t116!=null and t116!=''">and t116 = #{t116}</if>
+    <if test="t117!=null and t117!=''">and t117 = #{t117}</if>
+    <if test="t118!=null and t118!=''">and t118 = #{t118}</if>
+    <if test="t119!=null and t119!=''">and t119 = #{t119}</if>
+    <if test="t120!=null and t120!=''">and t120 = #{t120}</if>
+    <if test="t121!=null and t121!=''">and t121 = #{t121}</if>
+    <if test="t122!=null and t122!=''">and t122 = #{t122}</if>
+    <if test="t123!=null and t123!=''">and t123 = #{t123}</if>
+    <if test="t124!=null and t124!=''">and t124 = #{t124}</if>
+    <if test="t125!=null and t125!=''">and t125 = #{t125}</if>
+    <if test="t126!=null and t126!=''">and t126 = #{t126}</if>
+    <if test="t127!=null and t127!=''">and t127 = #{t127}</if>
+    <if test="t128!=null and t128!=''">and t128 = #{t128}</if>
+    <if test="t129!=null and t129!=''">and t129 = #{t129}</if>
+    <if test="t130!=null and t130!=''">and t130 = #{t130}</if>
+    <if test="t131!=null and t131!=''">and t131 = #{t131}</if>
+    <if test="t132!=null and t132!=''">and t132 = #{t132}</if>
+    <if test="t133!=null and t133!=''">and t133 = #{t133}</if>
+    <if test="t134!=null and t134!=''">and t134 = #{t134}</if>
+    <if test="t135!=null and t135!=''">and t135 = #{t135}</if>
+    <if test="t136!=null and t136!=''">and t136 = #{t136}</if>
+    <if test="t137!=null and t137!=''">and t137 = #{t137}</if>
+    <if test="t138!=null and t138!=''">and t138 = #{t138}</if>
+    <if test="t139!=null and t139!=''">and t139 = #{t139}</if>
+    <if test="t140!=null and t140!=''">and t140 = #{t140}</if>
+    <if test="t141!=null and t141!=''">and t141 = #{t141}</if>
+    <if test="t142!=null and t142!=''">and t142 = #{t142}</if>
+    <if test="t143!=null and t143!=''">and t143 = #{t143}</if>
+    <if test="t144!=null and t144!=''">and t144 = #{t144}</if>
+    <if test="t145!=null and t145!=''">and t145 = #{t145}</if>
+    <if test="t146!=null and t146!=''">and t146 = #{t146}</if>
+    <if test="t147!=null and t147!=''">and t147 = #{t147}</if>
+    <if test="t148!=null and t148!=''">and t148 = #{t148}</if>
+    <if test="t149!=null and t149!=''">and t149 = #{t149}</if>
+    <if test="t150!=null and t150!=''">and t150 = #{t150}</if>
+    <if test="t151!=null and t151!=''">and t151 = #{t151}</if>
+    <if test="t152!=null and t152!=''">and t152 = #{t152}</if>
+    <if test="t153!=null and t153!=''">and t153 = #{t153}</if>
+    <if test="t154!=null and t154!=''">and t154 = #{t154}</if>
+    <if test="t155!=null and t155!=''">and t155 = #{t155}</if>
+    <if test="t156!=null and t156!=''">and t156 = #{t156}</if>
+    <if test="t157!=null and t157!=''">and t157 = #{t157}</if>
+    <if test="t158!=null and t158!=''">and t158 = #{t158}</if>
+    <if test="t159!=null and t159!=''">and t159 = #{t159}</if>
+    <if test="t160!=null and t160!=''">and t160 = #{t160}</if>
+    <if test="t161!=null and t161!=''">and t161 = #{t161}</if>
+    <if test="t162!=null and t162!=''">and t162 = #{t162}</if>
+    <if test="t163!=null and t163!=''">and t163 = #{t163}</if>
+    <if test="t164!=null and t164!=''">and t164 = #{t164}</if>
+    <if test="t165!=null and t165!=''">and t165 = #{t165}</if>
+    <if test="t166!=null and t166!=''">and t166 = #{t166}</if>
+    <if test="t167!=null and t167!=''">and t167 = #{t167}</if>
+    <if test="t168!=null and t168!=''">and t168 = #{t168}</if>
+    <if test="t169!=null and t169!=''">and t169 = #{t169}</if>
+    <if test="t170!=null and t170!=''">and t170 = #{t170}</if>
+    <if test="t171!=null and t171!=''">and t171 = #{t171}</if>
+    <if test="t172!=null and t172!=''">and t172 = #{t172}</if>
+    <if test="t173!=null and t173!=''">and t173 = #{t173}</if>
+    <if test="t174!=null and t174!=''">and t174 = #{t174}</if>
+    <if test="t175!=null and t175!=''">and t175 = #{t175}</if>
+    <if test="t176!=null and t176!=''">and t176 = #{t176}</if>
+    <if test="t177!=null and t177!=''">and t177 = #{t177}</if>
+    <if test="t178!=null and t178!=''">and t178 = #{t178}</if>
+    <if test="t179!=null and t179!=''">and t179 = #{t179}</if>
+    <if test="t180!=null and t180!=''">and t180 = #{t180}</if>
+    <if test="t181!=null and t181!=''">and t181 = #{t181}</if>
+    <if test="t182!=null and t182!=''">and t182 = #{t182}</if>
+    <if test="t183!=null and t183!=''">and t183 = #{t183}</if>
+    <if test="t184!=null and t184!=''">and t184 = #{t184}</if>
+    <if test="t185!=null and t185!=''">and t185 = #{t185}</if>
+    <if test="t186!=null and t186!=''">and t186 = #{t186}</if>
+    <if test="t187!=null and t187!=''">and t187 = #{t187}</if>
+    <if test="t188!=null and t188!=''">and t188 = #{t188}</if>
+    <if test="t189!=null and t189!=''">and t189 = #{t189}</if>
+    <if test="t190!=null and t190!=''">and t190 = #{t190}</if>
+    <if test="t191!=null and t191!=''">and t191 = #{t191}</if>
+    <if test="t192!=null and t192!=''">and t192 = #{t192}</if>
+    <if test="t193!=null and t193!=''">and t193 = #{t193}</if>
+    <if test="t194!=null and t194!=''">and t194 = #{t194}</if>
+    <if test="t195!=null and t195!=''">and t195 = #{t195}</if>
+    <if test="t196!=null and t196!=''">and t196 = #{t196}</if>
+    <if test="t197!=null and t197!=''">and t197 = #{t197}</if>
+    <if test="t198!=null and t198!=''">and t198 = #{t198}</if>
+    <if test="t199!=null and t199!=''">and t199 = #{t199}</if>
+    <if test="t200!=null and t200!=''">and t200 = #{t200}</if>
+  </select>
+
+
+  <select id="getCodeData" parameterType="com.dhchain.business.code.vo.Code" resultType="com.dhchain.business.code.vo.Code">
+    SELECT * FROM
+    t_code
+    where 1 = 1
+    <if test="typedetailid!=null and typedetailid!=''">and typedetailid = #{typedetailid}</if>
+  </select>
+  <select id="selectByCodeno" parameterType="java.lang.String"  resultType="com.dhchain.business.code.vo.Code">
+    SELECT
+
+    *
+
+    FROM
+    t_code
+    where codeno = #{codeno}
+
+  </select>
+  <select id="selectByApplyno" parameterType="java.lang.String"  resultType="com.dhchain.business.code.vo.Code">
+    SELECT
+
+    *
+
+    FROM
+    t_code
+    where applyno = #{applyno}
+
+  </select>
+
+  <select id="selectById" parameterType="java.lang.Integer"  resultType="com.dhchain.business.code.vo.Code">
+    SELECT
+
+    *
+
+    FROM
+    t_code
+    where id = #{id}
+
+  </select>
+
+  <select id="selectTypes"  resultType="java.lang.Integer">
+    select distinct typedetailid from t_code
+
+  </select>
+
+  <select id="selectByTypeDetailid"  resultType="java.lang.Integer">
+    select * from t_code where typedetailid = #{typedetailid}
+
+  </select>
+
+
+  <select id="select2" parameterType="com.dhchain.business.code.vo.Code"  resultType="com.dhchain.business.code.vo.Code">
+    SELECT
+
+    *
+
+    FROM
+    t_code
+    where typedetailid = #{typedetailid} and id not in #{ids}
+
+  </select>
+
+
+  <select id="selectExistCode" parameterType="java.lang.Integer" resultType="com.dhchain.business.code.vo.Code">
+    SELECT
+
+    *
+
+    FROM
+    t_code
+    where  typedetailid=#{typedetailid}
+    <if test="t1!=null and t1!=''">and t1 = #{t1}</if>
+    <if test="t2!=null and t2!=''">and t2 = #{t2}</if>
+    <if test="t3!=null and t3!=''">and t3 = #{t3}</if>
+    <if test="t4!=null and t4!=''">and t4 = #{t4}</if>
+    <if test="t5!=null and t5!=''">and t5 = #{t5}</if>
+    <if test="t6!=null and t6!=''">and t6 = #{t6}</if>
+    <if test="t7!=null and t7!=''">and t7 = #{t7}</if>
+    <if test="t8!=null and t8!=''">and t8 = #{t8}</if>
+    <if test="t9!=null and t9!=''">and t9 = #{t9}</if>
+    <if test="t10!=null and t10!=''">and t10 = #{t10}</if>
+    <if test="t11!=null and t11!=''">and t11 = #{t11}</if>
+    <if test="t12!=null and t12!=''">and t12 = #{t12}</if>
+    <if test="t13!=null and t13!=''">and t13 = #{t13}</if>
+    <if test="t14!=null and t14!=''">and t14 = #{t14}</if>
+    <if test="t15!=null and t15!=''">and t15 = #{t15}</if>
+    <if test="t16!=null and t16!=''">and t16 = #{t16}</if>
+    <if test="t17!=null and t17!=''">and t17 = #{t17}</if>
+    <if test="t18!=null and t18!=''">and t18 = #{t18}</if>
+    <if test="t19!=null and t19!=''">and t19 = #{t19}</if>
+    <if test="t20!=null and t20!=''">and t20 = #{t20}</if>
+    <if test="t21!=null and t21!=''">and t21 = #{t21}</if>
+    <if test="t22!=null and t22!=''">and t22 = #{t22}</if>
+    <if test="t23!=null and t23!=''">and t23 = #{t23}</if>
+    <if test="t24!=null and t24!=''">and t24 = #{t24}</if>
+    <if test="t25!=null and t25!=''">and t25 = #{t25}</if>
+    <if test="t26!=null and t26!=''">and t26 = #{t26}</if>
+    <if test="t27!=null and t27!=''">and t27 = #{t27}</if>
+    <if test="t28!=null and t28!=''">and t28 = #{t28}</if>
+    <if test="t29!=null and t29!=''">and t29 = #{t29}</if>
+    <if test="t30!=null and t30!=''">and t30 = #{t30}</if>
+    <if test="t31!=null and t31!=''">and t31 = #{t31}</if>
+    <if test="t32!=null and t32!=''">and t32 = #{t32}</if>
+    <if test="t33!=null and t33!=''">and t33 = #{t33}</if>
+    <if test="t34!=null and t34!=''">and t34 = #{t34}</if>
+    <if test="t35!=null and t35!=''">and t35 = #{t35}</if>
+    <if test="t36!=null and t36!=''">and t36 = #{t36}</if>
+    <if test="t37!=null and t37!=''">and t37 = #{t37}</if>
+    <if test="t38!=null and t38!=''">and t38 = #{t38}</if>
+    <if test="t39!=null and t39!=''">and t39 = #{t39}</if>
+    <if test="t40!=null and t40!=''">and t40 = #{t40}</if>
+    <if test="t41!=null and t41!=''">and t41 = #{t41}</if>
+    <if test="t42!=null and t42!=''">and t42 = #{t42}</if>
+    <if test="t43!=null and t43!=''">and t43 = #{t43}</if>
+    <if test="t44!=null and t44!=''">and t44 = #{t44}</if>
+    <if test="t45!=null and t45!=''">and t45 = #{t45}</if>
+    <if test="t46!=null and t46!=''">and t46 = #{t46}</if>
+    <if test="t47!=null and t47!=''">and t47 = #{t47}</if>
+    <if test="t48!=null and t48!=''">and t48 = #{t48}</if>
+    <if test="t49!=null and t49!=''">and t49 = #{t49}</if>
+    <if test="t50!=null and t50!=''">and t50 = #{t50}</if>
+    <if test="t51!=null and t51!=''">and t51 = #{t51}</if>
+    <if test="t52!=null and t52!=''">and t52 = #{t52}</if>
+    <if test="t53!=null and t53!=''">and t53 = #{t53}</if>
+    <if test="t54!=null and t54!=''">and t54 = #{t54}</if>
+    <if test="t55!=null and t55!=''">and t55 = #{t55}</if>
+    <if test="t56!=null and t56!=''">and t56 = #{t56}</if>
+    <if test="t57!=null and t57!=''">and t57 = #{t57}</if>
+    <if test="t58!=null and t58!=''">and t58 = #{t58}</if>
+    <if test="t59!=null and t59!=''">and t59 = #{t59}</if>
+    <if test="t60!=null and t60!=''">and t60 = #{t60}</if>
+    <if test="t61!=null and t61!=''">and t61 = #{t61}</if>
+    <if test="t62!=null and t62!=''">and t62 = #{t62}</if>
+    <if test="t63!=null and t63!=''">and t63 = #{t63}</if>
+    <if test="t64!=null and t64!=''">and t64 = #{t64}</if>
+    <if test="t65!=null and t65!=''">and t65 = #{t65}</if>
+    <if test="t66!=null and t66!=''">and t66 = #{t66}</if>
+    <if test="t67!=null and t67!=''">and t67 = #{t67}</if>
+    <if test="t68!=null and t68!=''">and t68 = #{t68}</if>
+    <if test="t69!=null and t69!=''">and t69 = #{t69}</if>
+    <if test="t70!=null and t70!=''">and t70 = #{t70}</if>
+    <if test="t71!=null and t71!=''">and t71 = #{t71}</if>
+    <if test="t72!=null and t72!=''">and t72 = #{t72}</if>
+    <if test="t73!=null and t73!=''">and t73 = #{t73}</if>
+    <if test="t74!=null and t74!=''">and t74 = #{t74}</if>
+    <if test="t75!=null and t75!=''">and t75 = #{t75}</if>
+    <if test="t76!=null and t76!=''">and t76 = #{t76}</if>
+    <if test="t77!=null and t77!=''">and t77 = #{t77}</if>
+    <if test="t78!=null and t78!=''">and t78 = #{t78}</if>
+    <if test="t79!=null and t79!=''">and t79 = #{t79}</if>
+    <if test="t80!=null and t80!=''">and t80 = #{t80}</if>
+    <if test="t81!=null and t81!=''">and t81 = #{t81}</if>
+    <if test="t82!=null and t82!=''">and t82 = #{t82}</if>
+    <if test="t83!=null and t83!=''">and t83 = #{t83}</if>
+    <if test="t84!=null and t84!=''">and t84 = #{t84}</if>
+    <if test="t85!=null and t85!=''">and t85 = #{t85}</if>
+    <if test="t86!=null and t86!=''">and t86 = #{t86}</if>
+    <if test="t87!=null and t87!=''">and t87 = #{t87}</if>
+    <if test="t88!=null and t88!=''">and t88 = #{t88}</if>
+    <if test="t89!=null and t89!=''">and t89 = #{t89}</if>
+    <if test="t90!=null and t90!=''">and t90 = #{t90}</if>
+    <if test="t91!=null and t91!=''">and t91 = #{t91}</if>
+    <if test="t92!=null and t92!=''">and t92 = #{t92}</if>
+    <if test="t93!=null and t93!=''">and t93 = #{t93}</if>
+    <if test="t94!=null and t94!=''">and t94 = #{t94}</if>
+    <if test="t95!=null and t95!=''">and t95 = #{t95}</if>
+    <if test="t96!=null and t96!=''">and t96 = #{t96}</if>
+    <if test="t97!=null and t97!=''">and t97 = #{t97}</if>
+    <if test="t98!=null and t98!=''">and t98 = #{t98}</if>
+    <if test="t99!=null and t99!=''">and t99 = #{t99}</if>
+    <if test="t100!=null and t100!=''">and t100 = #{t100}</if>
+    <if test="t101!=null and t101!=''">and t101 = #{t101}</if>
+    <if test="t102!=null and t102!=''">and t102 = #{t102}</if>
+    <if test="t103!=null and t103!=''">and t103 = #{t103}</if>
+    <if test="t104!=null and t104!=''">and t104 = #{t104}</if>
+    <if test="t105!=null and t105!=''">and t105 = #{t105}</if>
+    <if test="t106!=null and t106!=''">and t106 = #{t106}</if>
+    <if test="t107!=null and t107!=''">and t107 = #{t107}</if>
+    <if test="t108!=null and t108!=''">and t108 = #{t108}</if>
+    <if test="t109!=null and t109!=''">and t109 = #{t109}</if>
+    <if test="t110!=null and t110!=''">and t110 = #{t110}</if>
+    <if test="t111!=null and t111!=''">and t111 = #{t111}</if>
+    <if test="t112!=null and t112!=''">and t112 = #{t112}</if>
+    <if test="t113!=null and t113!=''">and t113 = #{t113}</if>
+    <if test="t114!=null and t114!=''">and t114 = #{t114}</if>
+    <if test="t115!=null and t115!=''">and t115 = #{t115}</if>
+    <if test="t116!=null and t116!=''">and t116 = #{t116}</if>
+    <if test="t117!=null and t117!=''">and t117 = #{t117}</if>
+    <if test="t118!=null and t118!=''">and t118 = #{t118}</if>
+    <if test="t119!=null and t119!=''">and t119 = #{t119}</if>
+    <if test="t120!=null and t120!=''">and t120 = #{t120}</if>
+    <if test="t121!=null and t121!=''">and t121 = #{t121}</if>
+    <if test="t122!=null and t122!=''">and t122 = #{t122}</if>
+    <if test="t123!=null and t123!=''">and t123 = #{t123}</if>
+    <if test="t124!=null and t124!=''">and t124 = #{t124}</if>
+    <if test="t125!=null and t125!=''">and t125 = #{t125}</if>
+    <if test="t126!=null and t126!=''">and t126 = #{t126}</if>
+    <if test="t127!=null and t127!=''">and t127 = #{t127}</if>
+    <if test="t128!=null and t128!=''">and t128 = #{t128}</if>
+    <if test="t129!=null and t129!=''">and t129 = #{t129}</if>
+    <if test="t130!=null and t130!=''">and t130 = #{t130}</if>
+    <if test="t131!=null and t131!=''">and t131 = #{t131}</if>
+    <if test="t132!=null and t132!=''">and t132 = #{t132}</if>
+    <if test="t133!=null and t133!=''">and t133 = #{t133}</if>
+    <if test="t134!=null and t134!=''">and t134 = #{t134}</if>
+    <if test="t135!=null and t135!=''">and t135 = #{t135}</if>
+    <if test="t136!=null and t136!=''">and t136 = #{t136}</if>
+    <if test="t137!=null and t137!=''">and t137 = #{t137}</if>
+    <if test="t138!=null and t138!=''">and t138 = #{t138}</if>
+    <if test="t139!=null and t139!=''">and t139 = #{t139}</if>
+    <if test="t140!=null and t140!=''">and t140 = #{t140}</if>
+    <if test="t141!=null and t141!=''">and t141 = #{t141}</if>
+    <if test="t142!=null and t142!=''">and t142 = #{t142}</if>
+    <if test="t143!=null and t143!=''">and t143 = #{t143}</if>
+    <if test="t144!=null and t144!=''">and t144 = #{t144}</if>
+    <if test="t145!=null and t145!=''">and t145 = #{t145}</if>
+    <if test="t146!=null and t146!=''">and t146 = #{t146}</if>
+    <if test="t147!=null and t147!=''">and t147 = #{t147}</if>
+    <if test="t148!=null and t148!=''">and t148 = #{t148}</if>
+    <if test="t149!=null and t149!=''">and t149 = #{t149}</if>
+    <if test="t150!=null and t150!=''">and t150 = #{t150}</if>
+    <if test="t151!=null and t151!=''">and t151 = #{t151}</if>
+    <if test="t152!=null and t152!=''">and t152 = #{t152}</if>
+    <if test="t153!=null and t153!=''">and t153 = #{t153}</if>
+    <if test="t154!=null and t154!=''">and t154 = #{t154}</if>
+    <if test="t155!=null and t155!=''">and t155 = #{t155}</if>
+    <if test="t156!=null and t156!=''">and t156 = #{t156}</if>
+    <if test="t157!=null and t157!=''">and t157 = #{t157}</if>
+    <if test="t158!=null and t158!=''">and t158 = #{t158}</if>
+    <if test="t159!=null and t159!=''">and t159 = #{t159}</if>
+    <if test="t160!=null and t160!=''">and t160 = #{t160}</if>
+    <if test="t161!=null and t161!=''">and t161 = #{t161}</if>
+    <if test="t162!=null and t162!=''">and t162 = #{t162}</if>
+    <if test="t163!=null and t163!=''">and t163 = #{t163}</if>
+    <if test="t164!=null and t164!=''">and t164 = #{t164}</if>
+    <if test="t165!=null and t165!=''">and t165 = #{t165}</if>
+    <if test="t166!=null and t166!=''">and t166 = #{t166}</if>
+    <if test="t167!=null and t167!=''">and t167 = #{t167}</if>
+    <if test="t168!=null and t168!=''">and t168 = #{t168}</if>
+    <if test="t169!=null and t169!=''">and t169 = #{t169}</if>
+    <if test="t170!=null and t170!=''">and t170 = #{t170}</if>
+    <if test="t171!=null and t171!=''">and t171 = #{t171}</if>
+    <if test="t172!=null and t172!=''">and t172 = #{t172}</if>
+    <if test="t173!=null and t173!=''">and t173 = #{t173}</if>
+    <if test="t174!=null and t174!=''">and t174 = #{t174}</if>
+    <if test="t175!=null and t175!=''">and t175 = #{t175}</if>
+    <if test="t176!=null and t176!=''">and t176 = #{t176}</if>
+    <if test="t177!=null and t177!=''">and t177 = #{t177}</if>
+    <if test="t178!=null and t178!=''">and t178 = #{t178}</if>
+    <if test="t179!=null and t179!=''">and t179 = #{t179}</if>
+    <if test="t180!=null and t180!=''">and t180 = #{t180}</if>
+    <if test="t181!=null and t181!=''">and t181 = #{t181}</if>
+    <if test="t182!=null and t182!=''">and t182 = #{t182}</if>
+    <if test="t183!=null and t183!=''">and t183 = #{t183}</if>
+    <if test="t184!=null and t184!=''">and t184 = #{t184}</if>
+    <if test="t185!=null and t185!=''">and t185 = #{t185}</if>
+    <if test="t186!=null and t186!=''">and t186 = #{t186}</if>
+    <if test="t187!=null and t187!=''">and t187 = #{t187}</if>
+    <if test="t188!=null and t188!=''">and t188 = #{t188}</if>
+    <if test="t189!=null and t189!=''">and t189 = #{t189}</if>
+    <if test="t190!=null and t190!=''">and t190 = #{t190}</if>
+    <if test="t191!=null and t191!=''">and t191 = #{t191}</if>
+    <if test="t192!=null and t192!=''">and t192 = #{t192}</if>
+    <if test="t193!=null and t193!=''">and t193 = #{t193}</if>
+    <if test="t194!=null and t194!=''">and t194 = #{t194}</if>
+    <if test="t195!=null and t195!=''">and t195 = #{t195}</if>
+    <if test="t196!=null and t196!=''">and t196 = #{t196}</if>
+    <if test="t197!=null and t197!=''">and t197 = #{t197}</if>
+    <if test="t198!=null and t198!=''">and t198 = #{t198}</if>
+    <if test="t199!=null and t199!=''">and t199 = #{t199}</if>
+    <if test="t200!=null and t200!=''">and t200 = #{t200}</if>
+  </select>
+
+  <select id="selectNewId"  resultType="java.lang.Integer">
+    select ident_current('t_code')
+
+  </select>
+
+
+  <select id="selectDepartmentCodes" resultType="java.util.Map">
+select count(*) as num,organization from (select codeno,inputman,inputdate,(select name
+from u_organization where id=t.organization_id) as organization from t_code left join (
+select organization_id,login_name from  u_user where login_name = (select inputman from
+t_code)) as t on inputman = t.login_name WHERE datediff(month,inputdate,getdate())=0) as v
+group by v.organization
+  </select>
+
+  <select id="completionRate" resultType="java.util.Map">
+
+select (cast( convert (decimal(18,2),100*cast((select COUNT(*) from t_code  where issuccess = 1) as float)/cast((select COUNT(*) as allnum from t_code )  as float) ) as varchar)+'%') as num from t_code
+  </select>
+
+
+  <select id="selectCPXP" resultType="java.util.Map">
+
+
+select isnull(sum(case when  datepart(month,inputdate)=1 then 1 else 0 end),0) as 'a',
+         isnull(sum(case when  datepart(month,inputdate)=2 then 1 else 0 end),0) as 'b',
+         isnull(sum(case when  datepart(month,inputdate)=3 then 1 else 0 end),0) as 'c',
+      isnull(sum(case when  datepart(month,inputdate)=4 then 1 else 0 end),0) as 'd',
+         isnull(sum(case when  datepart(month,inputdate)=5 then 1 else 0 end),0) as 'e',
+        isnull(sum(case when  datepart(month,inputdate)=6 then 1 else 0 end),0) as 'f',
+         isnull(sum(case when  datepart(month,inputdate)=7 then 1 else 0 end),0) as 'g',
+        isnull(sum(case when  datepart(month,inputdate)=8 then 1 else 0 end),0) as 'h',
+         isnull(sum(case when  datepart(month,inputdate)=9 then 1 else 0 end),0) as 'i',
+         isnull(sum(case when  datepart(month,inputdate)=10 then 1 else 0 end),0) as 'j',
+         isnull(sum(case when  datepart(month,inputdate)=11 then 1 else 0 end),0) as 'k',
+        isnull(sum(case when  datepart(month,inputdate)=12 then 1 else 0 end),0) as 'l'
+    from t_code
+    where datepart(year,inputdate)='2018' and codeno like 'A%'
+  </select>
+
+  <select id="selectBCP" resultType="java.util.Map">
+
+
+ select isnull(sum(case when  datepart(month,inputdate)=1 then 1 else 0 end),0) as 'a',
+         isnull(sum(case when  datepart(month,inputdate)=2 then 1 else 0 end),0) as 'b',
+         isnull(sum(case when  datepart(month,inputdate)=3 then 1 else 0 end),0) as 'c',
+      isnull(sum(case when  datepart(month,inputdate)=4 then 1 else 0 end),0) as 'd',
+         isnull(sum(case when  datepart(month,inputdate)=5 then 1 else 0 end),0) as 'e',
+        isnull(sum(case when  datepart(month,inputdate)=6 then 1 else 0 end),0) as 'f',
+         isnull(sum(case when  datepart(month,inputdate)=7 then 1 else 0 end),0) as 'g',
+        isnull(sum(case when  datepart(month,inputdate)=8 then 1 else 0 end),0) as 'h',
+         isnull(sum(case when  datepart(month,inputdate)=9 then 1 else 0 end),0) as 'i',
+         isnull(sum(case when  datepart(month,inputdate)=10 then 1 else 0 end),0) as 'j',
+         isnull(sum(case when  datepart(month,inputdate)=11 then 1 else 0 end),0) as 'k',
+        isnull(sum(case when  datepart(month,inputdate)=12 then 1 else 0 end),0) as 'l'
+    from t_code
+    where datepart(year,inputdate)='2018' and codeno like 'B%'
+  </select>
+  <select id="selectCPGD" resultType="java.util.Map">
+
+
+    select isnull(sum(case when  datepart(month,inputdate)=1 then 1 else 0 end),0) as 'a',
+         isnull(sum(case when  datepart(month,inputdate)=2 then 1 else 0 end),0) as 'b',
+         isnull(sum(case when  datepart(month,inputdate)=3 then 1 else 0 end),0) as 'c',
+      isnull(sum(case when  datepart(month,inputdate)=4 then 1 else 0 end),0) as 'd',
+         isnull(sum(case when  datepart(month,inputdate)=5 then 1 else 0 end),0) as 'e',
+        isnull(sum(case when  datepart(month,inputdate)=6 then 1 else 0 end),0) as 'f',
+         isnull(sum(case when  datepart(month,inputdate)=7 then 1 else 0 end),0) as 'g',
+        isnull(sum(case when  datepart(month,inputdate)=8 then 1 else 0 end),0) as 'h',
+         isnull(sum(case when  datepart(month,inputdate)=9 then 1 else 0 end),0) as 'i',
+         isnull(sum(case when  datepart(month,inputdate)=10 then 1 else 0 end),0) as 'j',
+         isnull(sum(case when  datepart(month,inputdate)=11 then 1 else 0 end),0) as 'k',
+        isnull(sum(case when  datepart(month,inputdate)=12 then 1 else 0 end),0) as 'l'
+    from t_code
+    where datepart(year,inputdate)='2018' and codeno like 'G%'
+  </select>
+
+
+</mapper>

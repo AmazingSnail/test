@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.partpunchingworkshop.dao.ProcessDocumentMapper" >
+    <insert id="insertfile" parameterType="com.dhchain.business.partpunchingworkshop.vo.CraftFile" >
+        <selectKey resultType="java.lang.Integer" order="AFTER" keyProperty="id">
+            select @@IDENTITY as id
+        </selectKey>
+        insert into m_CraftFile
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="PartDrawing != null" >
+                PartDrawing,
+            </if>
+            <if test="PartName != null" >
+                PartName,
+            </if>
+            <if test="CraftFileName != null" >
+                CraftFileName,
+            </if>
+            <if test="CraftFile != null" >
+                CraftFile,
+            </if>
+            <if test="InputMan != null" >
+                InputMan,
+            </if>
+            <if test="InputTime != null" >
+                InputTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="PartDrawing != null" >
+                #{PartDrawing,jdbcType=VARCHAR},
+            </if>
+            <if test="PartName != null" >
+                #{PartName,jdbcType=VARCHAR},
+            </if>
+            <if test="CraftFileName != null" >
+                #{CraftFileName,jdbcType=VARCHAR},
+            </if>
+            <if test="CraftFile != null" >
+                #{CraftFile,jdbcType=VARCHAR},
+            </if>
+            <if test="InputMan != null" >
+                #{InputMan,jdbcType=VARCHAR},
+            </if>
+            <if test="InputTime != null" >
+                #{InputTime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <select id="selectid" parameterType="com.dhchain.business.partpunchingworkshop.vo.CraftFile" resultType="com.dhchain.business.partpunchingworkshop.vo.CraftFile">
+        SELECT * FROM m_CraftFile WHERE
+        1=1
+        and id = #{id}
+    </select>
+    <update id="updatefile" parameterType="com.dhchain.business.partpunchingworkshop.vo.CraftFile" >
+        UPDATE  m_CraftFile
+        SET PartDrawing=#{PartDrawing},
+        PartName=#{PartName},
+        CraftFileName=#{CraftFileName},
+        CraftFile =#{CraftFile},
+        ModifyMan =#{ModifyMan},
+        ModifyTime =#{ModifyTime}
+        where id = #{id}
+    </update>
+    <select id="selectAll" parameterType="com.dhchain.business.partpunchingworkshop.vo.CraftFile" resultType="com.dhchain.business.partpunchingworkshop.vo.CraftFile">
+        SELECT ID,PartDrawing,PartName,CraftFileName,InputMan,InputTime,ModifyMan,ModifyTime FROM m_CraftFile where
+        1 = 1
+        <if test="PartName !=null and PartName !=''">and PartName like '%'+#{PartName}+'%'</if>
+        <if test="PartDrawing !=null and PartDrawing !=''">and PartDrawing like '%'+#{PartDrawing}+'%'</if>
+        <if test="CraftFileName !=null and CraftFileName !=''">and CraftFileName like '%'+#{CraftFileName}+'%'</if>
+    </select>
+    <delete id="deleteid" parameterType="com.dhchain.business.partpunchingworkshop.vo.CraftFile">
+        DELETE m_CraftFile where id = #{id}
+    </delete>
+</mapper>

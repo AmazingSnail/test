@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.assembletrans.dao.MplanMapper">
+
+
+    <select id="getMplan" parameterType="com.dhchain.business.assembletrans.vo.Mplan" resultType="com.dhchain.business.assembletrans.vo.Mplan">
+        SELECT
+        *
+        FROM
+        View_PlanProduct
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        and uyear=#{uyear}
+        and umouth=#{umouth}
+        <if test="dhorderno!=null and dhorderno!=''">and dhorderno like '%'+#{dhorderno}+'%'  </if>
+        <if test="fname !=null and fname !=''">and fname like '%'+#{fname}+'%'</if>
+        <if test="PartDrawing !=null and PartDrawing  !=''">and PartDrawing like '%'+#{PartDrawing}+'%'</if>
+        <if test="Dutyman !=null and Dutyman  !=''">and Dutyman = #{Dutyman}</if>
+        <if test="Color!=null and Color!=''">and Color like '%'+#{Color}+'%'</if>
+        <if test="F3 !=null and F3 !=''">and F3 =#{F3}</if>
+        <if test="nwx !=null and nwx  !=''">and nwx = #{nwx}</if>
+        <if test="IsCl !=null and IsCl  !=''">and IsCl = #{IsCl}</if>
+        order by OrderTime
+    </select>
+
+    <select id="getNum" parameterType="com.dhchain.business.assembletrans.vo.Mplan" resultType="com.dhchain.business.assembletrans.vo.Mplan">
+        SELECT top(1)
+           SumDayInput+#{SumDayInput} as SumDayInput,
+            number,
+            SumDayNum
+        FROM
+            View_PlanProduct
+        WHERE
+        1 = 1
+        and OrderLine=#{OrderLine}
+        and fno = #{fno}
+        and plant = #{plant}
+        and uyear = #{uyear}
+        and umouth = #{umouth}
+    </select>
+
+    <select id="queryYS" parameterType="com.dhchain.business.assembletrans.vo.Mplan" resultType="com.dhchain.business.assembletrans.vo.Mplan">
+        SELECT
+        Color
+        FROM
+        View_PlanProduct
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        and uyear=#{uyear}
+        and umouth=#{umouth}
+        <if test="dhorderno!=null and dhorderno!=''">and dhorderno like '%'+#{dhorderno}+'%'  </if>
+        <if test="fname !=null and fname !=''">and fname like '%'+#{fname}+'%'</if>
+        <if test="PartDrawing !=null and PartDrawing  !=''">and PartDrawing like '%'+#{PartDrawing}+'%'</if>
+        <if test="Dutyman !=null and Dutyman  !=''">and Dutyman = #{Dutyman}</if>
+        <if test="Color!=null and Color!=''">and Color like '%'+#{Color}+'%'</if>
+        <if test="F3 !=null and F3 !=''">and F3 =#{F3}</if>
+        <if test="nwx !=null and nwx  !=''">and nwx = #{nwx}</if>
+        GROUP BY Color
+    </select>
+
+    <update id="update" parameterType="com.dhchain.business.assembletrans.vo.Mplan" >
+        UPDATE t_planproduct
+        SET CLNumber = CLNumber + #{CLNumber}
+
+        WHERE 1 = 1
+        <if test="id!=null and id!=''"> and id=#{id}</if>
+        <if test="OrderLine!=null and OrderLine!=''"> and OrderLine=#{OrderLine}</if>
+    </update>
+
+    <update id="updateth" parameterType="com.dhchain.business.assembletrans.vo.Mplan" >
+        UPDATE t_planproduct
+        SET CLNumber = CLNumber-#{CLNumber}
+
+        WHERE 1 = 1
+        and id=#{id}
+    </update>
+
+    <update id="updatecz" parameterType="com.dhchain.business.assembletrans.vo.Mplan" >
+        UPDATE t_planproduct
+        SET SumDayNum = SumDayNum+#{SumDayNum}
+
+        WHERE 1 = 1
+        and OrderLine=#{OrderLine}
+        and fno = #{fno}
+        and plant = #{plant}
+        and uyear = #{uyear}
+        and umouth = #{umouth}
+    </update>
+
+    <update id="updateczqx" parameterType="com.dhchain.business.assembletrans.vo.Mplan" >
+        UPDATE t_planproduct
+        SET SumDayNum = SumDayNum-#{SumDayNum}
+
+        WHERE 1 = 1
+              and OrderLine=#{OrderLine}
+              and fno = #{fno}
+              and plant = #{plant}
+              and uyear = #{uyear}
+              and umouth = #{umouth}
+    </update>
+
+    <update id="updateruku" parameterType="com.dhchain.business.assembletrans.vo.Mplan" >
+        UPDATE t_planproduct
+        SET SumDayInput = SumDayInput+#{SumDayInput}
+
+        WHERE 1 = 1
+              and OrderLine=#{OrderLine}
+              and fno = #{fno}
+              and plant = #{plant}
+              and uyear = #{uyear}
+              and umouth = #{umouth}
+    </update>
+
+    <update id="updaterukuqx" parameterType="com.dhchain.business.assembletrans.vo.Mplan" >
+        UPDATE t_planproduct
+        SET SumDayInput = SumDayInput-#{SumDayInput}
+
+        WHERE 1 = 1
+              and OrderLine=#{OrderLine}
+              and fno = #{fno}
+              and plant = #{plant}
+              and uyear = #{uyear}
+              and umouth = #{umouth}
+    </update>
+
+    <update id="updatetime" parameterType="com.dhchain.business.assembletrans.vo.Mplan" >
+        UPDATE t_planproduct
+        SET CompleteOrder = #{CompleteOrder}
+
+        WHERE 1 = 1
+              and OrderLine=#{OrderLine}
+              and fno = #{fno}
+              and plant = #{plant}
+              and uyear = #{uyear}
+              and umouth = #{umouth}
+    </update>
+
+    <update id="updateCZRK" parameterType="com.dhchain.business.assembletrans.vo.Mplan" >
+        UPDATE t_planproduct
+        SET CLNumber = CLNumber+#{changenum}
+
+        WHERE 1 = 1
+        and id=#{id}
+    </update>
+    <select id="selectByPrimaryKey" resultType="com.dhchain.business.assembletrans.vo.Mplan" parameterType="java.lang.Integer" >
+        select
+        *
+        from View_PlanProduct
+        where id = #{id}
+    </select>
+    <select id="getman" resultType="com.dhchain.business.assembletrans.vo.PlanDuty" parameterType="com.dhchain.business.assembletrans.vo.PlanDuty">
+        select distinct worker from t_PlanDuty where plant=#{plant} and workdepart='装配车间' and worklead = #{worklead}
+    </select>
+</mapper>

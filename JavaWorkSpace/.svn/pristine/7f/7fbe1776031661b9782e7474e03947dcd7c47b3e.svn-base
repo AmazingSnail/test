@@ -1,0 +1,9 @@
+package com.dhchain.business.Tractor.service.Impl;
+
+import com.dhchain.business.Tractor.service.TractorService;
+import com.dhchain.business.Tractor.vo.TCerttractor;
+import org.springframework.stereotype.Service;
+
+@Service("TractorService")
+public class TractorServiceImpl extends BaseService<TCerttractor> implements TractorService {
+}

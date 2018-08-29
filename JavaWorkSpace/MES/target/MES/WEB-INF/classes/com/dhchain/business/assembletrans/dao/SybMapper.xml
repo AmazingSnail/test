@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.assembletrans.dao.SybMapper">
+
+
+    <select id="getSyb" parameterType="com.dhchain.business.assembletrans.vo.Syb" resultType="com.dhchain.business.assembletrans.vo.Syb">
+        SELECT
+        Fno,
+        Fname,
+        Fremark
+        FROM
+        t_base
+        WHERE
+        fparentid = '76'
+
+    </select>
+
+    <select id="getBMan" parameterType="com.dhchain.business.assembletrans.vo.BMan" resultType="com.dhchain.business.assembletrans.vo.BMan">
+        SELECT
+            worklead
+        FROM
+            t_PlanDuty
+        WHERE
+            1 = 1
+        and plant = #{plant}
+        and workdepart = #{workdepart}
+        GROUP BY worklead
+    </select>
+
+    <select id="getBManN" parameterType="com.dhchain.business.assembletrans.vo.BMan" resultType="com.dhchain.business.assembletrans.vo.BMan">
+        SELECT
+        worklead
+        FROM
+        t_PlanDuty
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        and workdepart = #{workdepart}
+        GROUP BY worklead
+    </select>
+
+    <select id="getBManK" parameterType="com.dhchain.business.assembletrans.vo.BMan" resultType="com.dhchain.business.assembletrans.vo.BMan">
+        SELECT
+        inputman
+        FROM
+            t_PlanProductTake
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        and inputman != ''
+        and uyear = year(getdate())
+        GROUP BY inputman
+    </select>
+
+    <select id="getBManC" parameterType="com.dhchain.business.assembletrans.vo.BMan" resultType="com.dhchain.business.assembletrans.vo.BMan">
+        SELECT
+            ReportMan
+        FROM
+        t_PlanProductTake
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        and ReportMan != ''
+        and uyear = year(getdate())
+        GROUP BY ReportMan
+    </select>
+
+    <select id="getFlowLine" parameterType="com.dhchain.business.assembletrans.vo.FlowLine" resultType="com.dhchain.business.assembletrans.vo.FlowLine">
+        SELECT
+        *
+        FROM
+            m_FlowLine
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        <if test="FLID !=null and FLID  !=''">and FLID = #{FLID}</if>
+    </select>
+
+    <select id="getFlowLineN" parameterType="com.dhchain.business.assembletrans.vo.FlowLine" resultType="com.dhchain.business.assembletrans.vo.FlowLine">
+        SELECT top(1)
+        *
+        FROM
+        m_FlowLine
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        <if test="FLID !=null and FLID  !=''">and FLID = #{FLID}</if>
+    </select>
+</mapper>

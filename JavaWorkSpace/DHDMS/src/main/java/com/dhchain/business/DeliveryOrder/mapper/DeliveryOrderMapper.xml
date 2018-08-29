@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.dhchain.business.DeliveryOrder.mapper.DeliveryOrderMapper" >
+<select id="selectSame3" resultType="com.dhchain.business.DeliveryOrder.vo.Zsd022" parameterType="com.dhchain.business.DeliveryOrder.vo.Zsd022">
+    SELECT     FHXTBH,FIELD30,FHYWY,FHKHMC,FHXXDZ,FHYSFS,FHBBJE,FHKHDH,FHXXDZ,FCODEID
+    FROM       ZSD022
+    WHERE  1=1
+    <if test="FHXTBH !=null and FHXTBH !=''">and FHXTBH like '%'+#{FHXTBH}+'%'</if>
+    <if test="FIELD30 !=null and FIELD30 !=''">and FIELD30 like '%'+#{FIELD30}+'%'</if>
+    <if test="FHYWY !=null and FHYWY !=''">and FHYWY like '%'+#{FHYWY}+'%'</if>
+    <if test="FHKHMC !=null and FHKHMC !=''">and FHKHMC like '%'+#{FHKHMC}+'%'</if>
+    <if test="FIELD20 !=null and FIELD20 !=''">and FIELD20 like '%'+#{FIELD20}+'%'</if>
+    <if test="FHYSFS !=null and FHYSFS !=''">and FHYSFS like '%'+#{FHYSFS}+'%'</if>
+    <if test="FHBBJE !=null and FHBBJE !=''">and FHBBJE like '%'+#{FHBBJE}+'%'</if>
+    <if test="FHKHDH !=null and FHKHDH !=''">and FHKHDH like '%'+#{FHKHDH}+'%'</if>
+    <if test="FHXXDZ !=null and FHXXDZ !=''">and FHXXDZ like '%'+#{FHXXDZ}+'%'</if>
+
+</select>
+</mapper>

@@ -1,0 +1,188 @@
+
+
+<div style="width:400px;height:300px;" class="easyui-tabs" id = "tt" >
+
+
+</div>
+<script type="text/javascript">
+    var obj = parent.editrow[0];
+    for(var s in obj){
+        console.log(s+":"+obj[s]);
+    }
+    jQuery.ajax({
+            type: "POST",   //post提交方式默认是get
+            url: "/codeappl/selectkj.action",
+            dataType: "json",
+            async: false,
+            data: {
+
+                typedetailid:typeDetailID,
+            },
+            error: function (request) {      // 设置表单提交出错
+                $.messager.progress('close');
+                $.messager.alert('信息提示', '出错了！', 'info');
+            },
+            success: function (results) {
+                console.log(results);
+                for(var i = 0;i < results.total;i++)
+                {
+                    var a =  document.getElementById("tt");
+                    var div2 = document.createElement("div");
+                    div2.setAttribute('id', results.views[i].viewcode);
+                    div2.setAttribute('title', results.views[i].viewname);
+                    div2.setAttribute('closable', 'false');  //设置文本为只读类型
+                    a.appendChild(div2);
+                    var view  =  document.getElementById(results.views[i].viewcode);
+                    for(var j = 0;j < results.views[i].size;j++){
+//                        alert( results.views[i].attrdefines[j].attrdefinename);
+                        var attrdefinelablediv = document.createElement("div");
+                        view.appendChild(attrdefinelablediv);
+                        var attrdefinelable = document.createElement("label");
+                        var attrdefinelabletext =document.createTextNode( results.views[i].attrdefines[j].attrdefinename);
+                        attrdefinelable.appendChild(attrdefinelabletext);
+                        var attrdefinewidgettype = results.views[i].attrdefines[j].widgettype;
+                        var attrdefinewidget;
+                        if(attrdefinewidgettype == 1){
+                            attrdefinewidget  = document.createElement("input");
+                            attrdefinewidget.setAttribute("id",results.views[i].viewcode+"_"+results.views[i].attrdefines[j].attrdefino);
+                            attrdefinewidget.setAttribute("class","text");
+                        }else if(attrdefinewidgettype == 2){
+                            attrdefinewidget  = document.createElement("input");
+                            attrdefinewidget.setAttribute("id",results.views[i].viewcode+"_"+results.views[i].attrdefines[j].attrdefino);
+                            attrdefinewidget.setAttribute("class","easyui-numberspinner");
+                        }else if(attrdefinewidgettype == 5){
+                            attrdefinewidget  = document.createElement("select");
+                            attrdefinewidget.setAttribute("id",results.views[i].viewcode+"_"+results.views[i].attrdefines[j].attrdefino);
+                            attrdefinewidget.setAttribute("class","easyui-combobox");
+                            attrdefinewidget.setAttribute("data-options","width:135,height:24,editable:false,panelHeight:'auto'");
+
+                            jQuery.ajax({
+                                type: "POST",   //post提交方式默认是get
+                                url: "/codeappl/attrdataselect2.action",
+                                dataType: "json",
+                                async: false,
+                                data: {
+                                    attrDefineno:results.views[i].attrdefines[j].attrdefino,
+
+                                },
+                                error: function (request) {      // 设置表单提交出错
+                                    $.messager.progress('close');
+                                    $.messager.alert('信息提示', '出错了！', 'info');
+                                },
+                                success: function (results) {
+                                    for(var i = 0 ;i<results.length;i++){
+                                        var new_opt = new Option(results[i].id2, results[i].id2);
+                                        attrdefinewidget.options.add(new_opt);
+                                    }
+                                   console.log(results.length);
+
+                                }
+                            })
+                        }else if(attrdefinewidgettype == 7){
+                            attrdefinewidget  = document.createElement("input");
+                            attrdefinewidget.setAttribute("id",results.views[i].viewcode+"_"+results.views[i].attrdefines[j].attrdefino);
+                            attrdefinewidget.setAttribute("type","checkbox");
+
+                        }
+
+                        attrdefinelablediv.appendChild(attrdefinelable);
+                        attrdefinelablediv.appendChild(attrdefinewidget);
+
+                    }
+                }
+
+
+                for(var r = 0;r < results.total;r++)
+                {
+                    for(var s = 0;s < results.views[r].size;s++){
+                        var bbb ="#"+ results.views[r].viewcode+"_"+results.views[r].attrdefines[s].attrdefino+"";
+                        var yyy = results.views[r].viewcode+"_"+results.views[r].attrdefines[s].attrdefino;
+                        if(obj[yyy]){
+                            if(results.views[r].attrdefines[s].widgettype==7){
+                                if(obj[yyy] == "√"){
+                                        alert("!!!!!!!!!!!!!!!");
+                                    $(bbb).attr("checked",true);
+                                }
+                            }else {
+                                $(bbb).val(obj[yyy]);
+                            }
+                        }
+
+
+                    }
+
+                }
+            }
+        });
+
+
+function codeapplyCancel() {
+parent.$.modalDialog.handler.dialog('close');
+}
+function codemanageeditFun() {
+        alert(obj['id']=="");
+        alert(parent.editrowindex);
+        console.log(parent.codegrid);
+    var rows  =  parent.codegrid.datagrid("getSelections");
+    for(var i=0; i<rows.length; i++){
+        var data=rows[i];
+        var index= parent.codegrid.datagrid('getRowIndex',data);
+        parent.codegrid.datagrid('selectRow', parent.editrowindex+1)
+            .datagrid('beginEdit',index);
+
+        var str1='{"codeno":"",'+'"codename":"",'+'"itemno":'+obj['itemno']+','+'"id":"",';
+        jQuery.ajax({
+            type: "POST",   //post提交方式默认是get
+            url: "/codeappl/selectkj.action",
+            dataType: "json",
+            async: false,
+            data: {
+
+                typedetailid: typeDetailID,
+            },
+            error: function (request) {      // 设置表单提交出错
+                $.messager.progress('close');
+                $.messager.alert('信息提示', '出错了！', 'info');
+            },
+            success: function (results) {
+                console.log(results);
+                for(var r = 0;r < results.total;r++)
+                {
+                    for(var s = 0;s < results.views[r].size;s++){
+                        var bbb ="#"+ results.views[r].viewcode+"_"+results.views[r].attrdefines[s].attrdefino+"";
+                        var yyy = results.views[r].viewcode+"_"+results.views[r].attrdefines[s].attrdefino;
+                        if(results.views[r].attrdefines[s].widgettype==7){
+                            if($(bbb).attr("checked")){
+                                str1=str1+'"'+yyy+'":"'+"√"+'",';
+
+                            }else{
+                                str1=str1+'"'+yyy+'":"'+""+'",';
+                            }
+                        }else {
+                            str1=str1+'"'+yyy+'":"'+$(bbb).val()+'",';
+                        }
+
+
+                    }
+
+                }
+            }
+        });
+
+        str1 = str1.substr(0,str1.length-1);
+        str1=str1+'}';
+        alert(str1);
+
+        var ob = eval('(' + str1 + ')');
+        console.log(ob);
+        parent.codegrid.datagrid('updateRow',{
+            index: index,
+            row: ob
+        });
+        parent.codegrid.datagrid('endEdit', index);
+
+    }
+    console.log(str1);
+    parent.$.modalDialog.handler.dialog('close');
+}
+</script>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.TradeWMS.dao.TPackagestoreMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.TradeWMS.vo.TPackagestore" >
+    <id column="fno" property="fno" jdbcType="VARCHAR" />
+    <id column="OrderLine" property="orderline" jdbcType="VARCHAR" />
+    <id column="plant" property="plant" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="serialno" property="serialno" jdbcType="INTEGER" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+    <result column="f3" property="f3" jdbcType="VARCHAR" />
+    <result column="f5" property="f5" jdbcType="VARCHAR" />
+    <result column="BeginStore" property="beginstore" jdbcType="DOUBLE" />
+    <result column="InputStore" property="inputstore" jdbcType="DOUBLE" />
+    <result column="OutputStore" property="outputstore" jdbcType="DOUBLE" />
+    <result column="SapStore" property="sapstore" jdbcType="DOUBLE" />
+    <result column="workcentre2" property="workcentre2" jdbcType="VARCHAR" />
+    <result column="inputman" property="inputman" jdbcType="VARCHAR" />
+    <result column="inputdate" property="inputdate" jdbcType="TIMESTAMP" />
+    <result column="outputman" property="outputman" jdbcType="VARCHAR" />
+    <result column="outputdate" property="outputdate" jdbcType="TIMESTAMP" />
+    <result column="BeginMan" property="beginman" jdbcType="VARCHAR" />
+    <result column="begindate" property="begindate" jdbcType="TIMESTAMP" />
+    <result column="uyear" property="uyear" jdbcType="INTEGER" />
+    <result column="umonth" property="umonth" jdbcType="INTEGER" />
+    <result column="temple" property="temple" jdbcType="VARCHAR" />
+    <result column="SAPSDOrder" property="sapsdorder" jdbcType="VARCHAR" />
+    <result column="nwx" property="nwx" jdbcType="VARCHAR" />
+    <result column="GCXH" property="gcxh" jdbcType="BIT" />
+    <result column="PCValue" property="pcvalue" jdbcType="DOUBLE" />
+    <result column="PCAllValue" property="pcallvalue" jdbcType="DOUBLE" />
+    <result column="PoNo" property="pono" jdbcType="VARCHAR" />
+    <result column="PoItem" property="poitem" jdbcType="VARCHAR" />
+    <result column="PoNumber" property="ponumber" jdbcType="DOUBLE" />
+    <result column="SAP" property="sap" jdbcType="VARCHAR" />
+    <result column="WSAP" property="wsap" jdbcType="BIT" />
+    <result column="IsHangUp" property="ishangup" jdbcType="BIT" />
+  </resultMap>
+
+</mapper>

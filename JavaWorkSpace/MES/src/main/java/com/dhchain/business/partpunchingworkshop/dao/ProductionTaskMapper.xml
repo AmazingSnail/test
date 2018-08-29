@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.partpunchingworkshop.dao.ProductionTaskMapper" >
+    <select id="select" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTProdTake" resultType="com.dhchain.business.partpunchingworkshop.vo.PTProdTake">
+        select convert(char(10),OrderTime,21) as OrderTime1, * from View_PTProdTakeStatus WHERE
+        1=1 and  InputDate BETWEEN #{InputDate} AND  #{InputDate1}
+        <if test="partDrawing != null and partDrawing!=''" >
+            and  partDrawing like '%'+#{partDrawing}+'%'
+        </if>
+        <if test="mouldID != null and mouldID!=''" >
+            and  mouldID LIKE '%'+ #{mouldID}+'%'
+        </if>
+        <if test="plant != null and plant!=''">
+            and plant = #{plant}
+        </if>
+        <if test="Status != null and Status!=''" >
+            and  Status LIKE '%'+ #{Status}+'%'
+        </if>
+        <if test="LocaFinish != null and LocaFinish!='0'.toString()">
+            and  LocaFinish =#{LocaFinish}
+        </if>
+        <if test="IsFinish != null and IsFinish!='0'.toString()">
+            and  IsFinish = #{IsFinish}
+        </if>
+    </select>
+    <select id="selectbyfno" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTFinish" resultType="com.dhchain.business.partpunchingworkshop.vo.PTFinish">
+        select * from m_PTFinish WHERE
+        1=1
+        and planID=#{planID}
+    </select>
+    <select id="selectbyid" parameterType="com.dhchain.business.partpunchingworkshop.vo.ColdDailyPlan" resultType="com.dhchain.business.partpunchingworkshop.vo.ColdDailyPlan">
+        select * from t_ColdDailyPlan WHERE
+        1=1
+        and id=#{id}
+    </select>
+    <update id="updatebyplanid" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTProdTake" >
+        UPDATE  m_PTProdTake
+        set FinishMan = #{FinishMan}
+        ,FinishTime = #{FinishTime},
+        IsFinish = #{IsFinish}
+        where PlanID = #{PlanID}
+    </update>
+    <update id="updatebyplanid1" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTProdTake" >
+        UPDATE  m_PTProdTake
+        set FinishMan = #{FinishMan}
+        ,FinishTime = #{FinishTime},
+        IsFinish = #{IsFinish}
+        where PlanID = #{PlanID}
+    </update>
+    <select id="getMaterial" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTMaterial" resultType="com.dhchain.business.partpunchingworkshop.vo.PTMaterial">
+
+
+
+        SELECT  distinct ColdID, B.*,D.SupportName
+        FROM         (SELECT    A.*,C.fno,C.fname,C.reelnum
+        FROM         (  SELECT    c.ColdID,c.ProductMan,c.ProductTime,c.Weight
+        FROM         (       select s.*
+        from (
+        select *, row_number() over (partition by [ColdID] order by [ProductTime]) as group_idx
+        from m_PTMaterial
+        ) s
+        where s.group_idx = 1 ) AS c left JOIN m_PTFinish as b on c.ColdID = b.ColdID) AS A left JOIN
+        OPENDATASOURCE ('SQLOLEDB', 'Data Source=172.16.0.43;User ID=sa;Password=iso14002' ).NG_MDM.dbo.t_ColdDailyPlan AS C ON A.ColdID = C.ID ) AS B left JOIN
+        OPENDATASOURCE ('SQLOLEDB', 'Data Source=172.16.0.43;User ID=sa;Password=iso14002' ).NG_MDM.dbo.t_ColdMaterialIn AS D  on B.reelnum = D.BatchNo WHERE
+        1=1 and  ProductTime BETWEEN #{ProductTime} AND  #{ProductTime1}
+        <if test="Fno != null and Fno!=''" >
+            and  Fno like '%'+#{Fno}+'%'
+        </if>
+        <if test="fname != null and fname!=''" >
+            and  fname LIKE '%'+ #{fname}+'%'
+        </if>
+        <if test="EquipID != null and EquipID!=''" >
+            and  EquipID LIKE '%'+ #{EquipID}+'%'
+        </if>
+        <if test="ProductMan != null and ProductMan!=''">
+            and  ProductMan =#{ProductMan}
+        </if>
+        <if test="reelnum != null and reelnum!=''">
+            and  reelnum =#{reelnum}
+        </if>
+        ORDER by ProductTime
+
+    </select>
+    <select id="getFinish" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTFinish" resultType="com.dhchain.business.partpunchingworkshop.vo.PTFinish">
+        SELECT  * from View_PTMaterial where ColdID = #{ColdID}
+    </select>
+</mapper>

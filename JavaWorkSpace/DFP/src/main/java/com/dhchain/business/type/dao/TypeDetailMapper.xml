@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.type.dao.TypeDetailMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.type.vo.TypeDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="typeid" property="typeid" jdbcType="INTEGER" />
+    <result column="typeno" property="typeno" jdbcType="VARCHAR" />
+    <result column="typename" property="typename" jdbcType="VARCHAR" />
+    <result column="kindno" property="kindno" jdbcType="INTEGER" />
+    <result column="codenum" property="codenum" jdbcType="INTEGER" />
+    <result column="islocked" property="islocked" jdbcType="BIT" />
+    <result column="fid" property="fid" jdbcType="INTEGER" />
+    <result column="isdelete" property="isdelete" jdbcType="INTEGER" />
+    <result column="inputman" property="inputman" jdbcType="VARCHAR" />
+    <result column="inputdate" property="inputdate" jdbcType="TIMESTAMP" />
+    <result column="modifyman" property="modifyman" jdbcType="VARCHAR" />
+    <result column="modifydate" property="modifydate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, typeid, typeno, typename, kindno, codenum, islocked, fid, isdelete, inputman, 
+    inputdate, modifyman, modifydate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from t_type_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_type_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dhchain.business.type.vo.TypeDetail" useGeneratedKeys="true" keyProperty="id">
+    insert into t_type_detail(typeid, typeno,typename,kindid,kindno,kindnum,islocked,fid,inputman,inputdate,flag,isdelete)
+    values(#{typeid}, #{typeno},#{typename}, #{kindid},#{kindno}, #{kindnum},#{islocked},#{fid},#{inputman},#{inputdate},#{flag},#{isdelete})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhchain.business.type.vo.TypeDetail" >
+    insert into t_type_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="typeid != null" >
+        typeid,
+      </if>
+      <if test="typeno != null" >
+        typeno,
+      </if>
+      <if test="typename != null" >
+        typename,
+      </if>
+      <if test="kindno != null" >
+        kindno,
+      </if>
+      <if test="codenum != null" >
+        codenum,
+      </if>
+      <if test="islocked != null" >
+        islocked,
+      </if>
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+      <if test="inputman != null" >
+        inputman,
+      </if>
+      <if test="inputdate != null" >
+        inputdate,
+      </if>
+      <if test="modifyman != null" >
+        modifyman,
+      </if>
+      <if test="modifydate != null" >
+        modifydate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="typeid != null" >
+        #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="typeno != null" >
+        #{typeno,jdbcType=VARCHAR},
+      </if>
+      <if test="typename != null" >
+        #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="kindno != null" >
+        #{kindno,jdbcType=INTEGER},
+      </if>
+      <if test="codenum != null" >
+        #{codenum,jdbcType=INTEGER},
+      </if>
+      <if test="islocked != null" >
+        #{islocked,jdbcType=BIT},
+      </if>
+      <if test="fid != null" >
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="inputman != null" >
+        #{inputman,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdate != null" >
+        #{inputdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyman != null" >
+        #{modifyman,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhchain.business.type.vo.TypeDetail" >
+    update t_type_detail
+    <set >
+      <if test="typeid != null" >
+        typeid = #{typeid,jdbcType=INTEGER},
+      </if>
+      <if test="typeno != null" >
+        typeno = #{typeno,jdbcType=VARCHAR},
+      </if>
+      <if test="typename != null" >
+        typename = #{typename,jdbcType=VARCHAR},
+      </if>
+      <if test="kindno != null" >
+        kindno = #{kindno,jdbcType=INTEGER},
+      </if>
+
+      <if test="islocked != null" >
+        islocked = #{islocked,jdbcType=BIT},
+      </if>
+      <if test="fid != null" >
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=INTEGER},
+      </if>
+      <if test="inputman != null" >
+        inputman = #{inputman,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdate != null" >
+        inputdate = #{inputdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyman != null" >
+        modifyman = #{modifyman,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        modifydate = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+
+      <if test="flag != null" >
+        flag = #{flag,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhchain.business.type.vo.TypeDetail" >
+    update t_type_detail
+    set typeid = #{typeid,jdbcType=INTEGER},
+    typeno = #{typeno,jdbcType=VARCHAR},
+    typename = #{typename,jdbcType=VARCHAR},
+    kindno = #{kindno,jdbcType=VARCHAR},
+    kindid = #{kindid,jdbcType=INTEGER},
+    kindnum = #{kindnum,jdbcType=INTEGER},
+    islocked = #{islocked,jdbcType=BIT},
+    fid = #{fid,jdbcType=INTEGER},
+    modifyman = #{modifyman,jdbcType=VARCHAR},
+    flag = #{flag,jdbcType=VARCHAR},
+    modifydate = #{modifydate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="update" parameterType="com.dhchain.business.type.vo.TypeDetail" >
+    UPDATE t_type_detail
+    SET
+    typeid = #{typeid},
+    typename = #{typename},
+    typeno = #{typeno},
+    kindid = #{kindid},
+    kindnum = #{kindnum},
+    islocked = #{islocked},
+    fid = #{fid},
+    modifyman = #{modifyman},
+    flag = #{flag},
+    modifydate = #{modifydate},
+    exptypeid = #{exptypeid}
+    WHERE id = #{id};
+  </update>
+
+  <select id="query" parameterType="com.dhchain.business.type.vo.TypeDetail" resultType="com.dhchain.business.type.vo.TypeDetail"  >
+    select
+    *
+    from t_type_detail where 1 = 1
+
+    <if test="typeid!=null and typeid!=''">and typeid = #{typeid}</if>
+    <if test="typeno!=null and typeno!=''">and typeno = #{typeno}</if>
+    <if test="typename!=null and typename!=''">and typename = #{typename}</if>
+
+  </select>
+
+  <select id="selectChildById" parameterType="java.lang.Integer" resultType="com.dhchain.business.type.vo.TypeDetail">
+    SELECT
+
+    *
+
+    FROM
+    t_type_detail
+    where  fid = #{fid} and isdelete = 0
+
+  </select>
+
+  <update  id="deleteById" parameterType="com.dhchain.business.type.vo.TypeDetail">
+    update
+    t_type_detail
+    set isdelete = 1
+    where id=#{id}
+  </update >
+
+  <select id="selectNewId"  resultType="java.lang.Integer">
+    select ident_current('t_type_detail')
+
+  </select>
+
+  <select id="selectById" parameterType="java.lang.Integer" resultType="com.dhchain.business.type.vo.TypeDetail">
+    SELECT
+
+    *
+
+    FROM
+    t_type_detail
+    where  id=#{id} and isdelete = 0
+
+  </select>
+
+  <select id="selectByNo" parameterType="java.lang.String" resultType="com.dhchain.business.type.vo.TypeDetail">
+    SELECT
+
+    *
+
+    FROM
+    t_type_detail
+    where  typeno=#{typeno} and isdelete = 0
+
+  </select>
+
+
+  <select id="selectByTypeid" parameterType="java.lang.Integer" resultType="com.dhchain.business.type.vo.TypeDetail">
+    SELECT
+
+    *
+
+    FROM
+    t_type_detail
+    where  typeid=#{typeid}  and isdelete = 0
+
+  </select>
+
+  <select id="selectByKind" parameterType="java.lang.Integer" resultType="com.dhchain.business.type.vo.TypeDetail">
+    SELECT
+
+    *
+
+    FROM
+    t_type_detail
+    where  kindid=#{kindid}  and isdelete = 0
+
+  </select>
+
+</mapper>

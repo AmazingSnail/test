@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.partpunchingworkshop.dao.EquipmentMaintenanceMapper" >
+<select id="getData" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPFault" resultType="com.dhchain.business.partpunchingworkshop.vo.EQPFault">
+    SELECT * FROM View_Status WHERE
+    1=1
+    and  CallTime BETWEEN #{CallTime} AND  #{CallTime1}
+    <if test="EquipID != null and EquipID!=''" >
+        and  EquipID like '%'+#{EquipID}+'%'
+    </if>
+    <if test="ServiceMan != null and ServiceMan!=''" >
+        and  ServiceMan =#{ServiceMan}
+    </if>
+    <if test="Plant != null and Plant!=''">
+        and Plant = #{Plant}
+    </if>
+    <if test="DepartMent != null and DepartMent!=''">
+        and DepartMent = #{DepartMent}
+    </if>
+    <if test="FaultTypes != null and FaultTypes!=''" >
+        and FaultTypes = #{FaultTypes}
+    </if>
+    <if test="SerStatus != null and SerStatus!=''" >
+        and SerStatus = #{SerStatus}
+    </if>
+</select>
+    <select id="getRed" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPFaultRed" resultType="com.dhchain.business.partpunchingworkshop.vo.EQPFaultRed">
+        SELECT * FROM View_EQPFaultRed WHERE
+        1=1
+            and plant = #{plant}
+            and FaultID =#{FaultID}
+
+    </select>
+    <insert id="insert" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPFaultRed" >
+        insert into m_EQPFaultRed
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="EquipID != null" >
+                EquipID,
+            </if>
+            <if test="FaultID != null" >
+                FaultID,
+            </if>
+            <if test="Fault != null" >
+                Fault,
+            </if>
+            <if test="Results != null" >
+                Results,
+            </if>
+            <if test="RepSendMan != null" >
+                RepSendMan,
+            </if>
+            <if test="RepSendTime != null" >
+                RepSendTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="EquipID != null" >
+                #{EquipID,jdbcType=VARCHAR},
+            </if>
+            <if test="FaultID != null" >
+                #{FaultID,jdbcType=VARCHAR},
+            </if>
+            <if test="Fault != null" >
+                #{Fault,jdbcType=VARCHAR},
+            </if>
+            <if test="Results != null" >
+                #{Results,jdbcType=VARCHAR},
+            </if>
+            <if test="RepSendMan != null" >
+                #{RepSendMan,jdbcType=VARCHAR},
+            </if>
+            <if test="RepSendTime != null" >
+                #{RepSendTime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="update" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPFault">
+
+        UPDATE  m_EQPFault
+        set SerStatus =#{SerStatus},
+        RepSendMan = #{RepSendMan},
+        RepSendTime = #{RepSendTime}
+        where FaultID = #{FaultID}
+    </update>
+    <select id="select" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPFaultRed" resultType="com.dhchain.business.partpunchingworkshop.vo.EQPFaultRed">
+        SELECT  * from m_EQPFaultRed where FaultID = #{FaultID}
+    </select>
+    <update id="updateRed" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPFaultRed">
+        UPDATE  m_EQPFaultRed
+        set Fault = #{Fault},
+        Results =#{Results},
+         ModifyMan = #{ModifyMan},
+         ModifyTime = #{ModifyTime}
+        where FaultID = #{FaultID}
+    </update>
+</mapper>

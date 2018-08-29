@@ -1,0 +1,487 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.partpunchingworkshop.dao.BaseDataMapper" >
+<select id="getList" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseChkStd" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseChkStd">
+    select * from m_BaseChkStd
+</select>
+    <select id="getFno" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseFno" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseFno">
+         select * from m_BaseFno where Fno = #{Fno}
+    </select>
+    <select id="getMFno" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseMaterial" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseMaterial">
+        select * from m_BaseMaterial where Fno = #{Fno}
+    </select>
+    <select id="getList3" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseFno" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseFno">
+        select * from m_BaseFno
+    </select>
+    <select id="getList4" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseMaterial" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseMaterial">
+        select * from m_BaseMaterial
+    </select>
+    <select id="getList5" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseSupplier" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseSupplier">
+        select * from m_BaseSupplier
+    </select>
+    <select id="getStatus" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        SELECT distinct StatusName ,* FROM m_BaseStatus where DepartMent='基础资料'
+    </select>
+    <select id="getStautsA" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        SELECT distinct StatusName ,* FROM m_BaseStatus where DepartMent='热处理基础资料'
+    </select>
+    <select id="getStauts1" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        SELECT distinct StatusName ,* FROM m_BaseStatus where DepartMent='检验时间段'
+    </select>
+    <select id="getStatusID" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        SELECT * FROM m_BaseStatus where StatusName=#{StatusName}
+    </select>
+    <select id="getList1" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity">
+        select * from m_BaseCapacity
+    </select>
+    <select id="getMould" parameterType="com.dhchain.business.HeatTreatment.vo.MCraftmould" resultType="com.dhchain.business.HeatTreatment.vo.MCraftmould">
+        SELECT  * from m_Craftmould
+    </select>
+    <select id="getEquipID" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+        select * from m_BaseEquip where EquipID LIKE '%'+#{EquipID}+'%' order by EquipID DESC
+    </select>
+    <select id="getList2" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+        select * from m_BaseEquip where EquipID like 'C3%'
+    </select>
+    <select id="getListHE" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+        select * from m_BaseEquip where EquipID like 'C4%'
+    </select>
+    <select id="getDepartMentH" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        select * from m_BaseStatus where DepartMent = '事业部'
+    </select>
+    <insert id="insert" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseChkStd" >
+        insert into m_BaseChkStd
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="PartDrawing != null" >
+                PartDrawing,
+            </if>
+            <if test="PartName != null" >
+                PartName,
+            </if>
+            <if test="HoleHD != null" >
+                HoleHD,
+            </if>
+            <if test="Aperture != null" >
+                Aperture,
+            </if>
+            <if test="HoleSite != null" >
+                HoleSite,
+            </if>
+            <if test="Height != null" >
+                Height,
+            </if>
+            <if test="Thickness != null" >
+                Thickness,
+            </if>
+            <if test="Facade != null" >
+                Facade,
+            </if>
+            <if test="Leuchtfeld != null" >
+                Leuchtfeld,
+            </if>
+            <if test="InputMan != null" >
+                InputMan,
+            </if>
+            <if test="InputTime != null" >
+                InputTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="PartDrawing != null" >
+                #{PartDrawing,jdbcType=VARCHAR},
+            </if>
+            <if test="PartName != null" >
+                #{PartName,jdbcType=VARCHAR},
+            </if>
+            <if test="HoleHD != null" >
+                #{HoleHD,jdbcType=VARCHAR},
+            </if>
+            <if test="Aperture != null" >
+                #{Aperture,jdbcType=VARCHAR},
+            </if>
+            <if test="HoleSite != null" >
+                #{HoleSite,jdbcType=VARCHAR},
+            </if>
+            <if test="Height != null" >
+                #{Height,jdbcType=VARCHAR},
+            </if>
+            <if test="Thickness != null" >
+                #{Thickness,jdbcType=TIMESTAMP},
+            </if>
+            <if test="Facade != null" >
+                #{Facade,jdbcType=VARCHAR},
+            </if>
+            <if test="Leuchtfeld != null" >
+                #{Leuchtfeld,jdbcType=VARCHAR},
+            </if>
+            <if test="InputMan != null" >
+                #{InputMan,jdbcType=VARCHAR},
+            </if>
+            <if test="InputTime != null" >
+                #{InputTime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertEquip" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip" >
+        insert into m_BaseEquip
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="EquipID != null" >
+                EquipID,
+            </if>
+            <if test="EquipDHID != null" >
+                EquipDHID,
+            </if>
+            <if test="EquipName != null" >
+                EquipName,
+            </if>
+            <if test="EquipType != null" >
+                EquipType,
+            </if>
+            <if test="Manufacturer != null" >
+                Manufacturer,
+            </if>
+            <if test="InputMan != null" >
+                InputMan,
+            </if>
+            <if test="InputTime != null" >
+                InputTime,
+            </if>
+            <if test="DepartMent != null" >
+                DepartMent,
+            </if>
+            <if test="Plant != null" >
+                Plant,
+            </if>
+            <if test="IP != null" >
+                IP,
+            </if>
+            <if test="IPNO != null" >
+                IPNO,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="EquipID != null" >
+                #{EquipID,jdbcType=VARCHAR},
+            </if>
+            <if test="EquipDHID != null" >
+                #{EquipDHID,jdbcType=VARCHAR},
+            </if>
+            <if test="EquipName != null" >
+                #{EquipName,jdbcType=VARCHAR},
+            </if>
+            <if test="EquipType != null" >
+                #{EquipType,jdbcType=VARCHAR},
+            </if>
+            <if test="Manufacturer != null" >
+                #{Manufacturer,jdbcType=VARCHAR},
+            </if>
+            <if test="InputMan != null" >
+                #{InputMan,jdbcType=VARCHAR},
+            </if>
+            <if test="InputTime != null" >
+                #{InputTime,jdbcType=VARCHAR},
+            </if>
+            <if test="DepartMent != null" >
+                #{DepartMent,jdbcType=VARCHAR},
+            </if>
+            <if test="Plant != null" >
+                #{Plant,jdbcType=VARCHAR},
+            </if>
+            <if test="IP != null" >
+                #{IP,jdbcType=VARCHAR},
+            </if>
+            <if test="IPNO != null" >
+                #{IPNO,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insert1" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity" >
+        insert into m_BaseCapacity
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="Fno != null" >
+                Fno,
+            </if>
+            <if test="Fname != null" >
+                Fname,
+            </if>
+            <if test="Capacity != null" >
+                Capacity,
+            </if>
+            <if test="InputMan != null" >
+                InputMan,
+            </if>
+            <if test="InputTime != null" >
+                InputTime,
+            </if>
+            <if test="WorkHours != null" >
+                WorkHours,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="Fno != null" >
+                #{Fno,jdbcType=VARCHAR},
+            </if>
+            <if test="Fname != null" >
+                #{Fname,jdbcType=VARCHAR},
+            </if>
+            <if test="Capacity != null" >
+                #{Capacity,jdbcType=VARCHAR},
+            </if>
+            <if test="InputMan != null" >
+                #{InputMan,jdbcType=VARCHAR},
+            </if>
+            <if test="InputTime != null" >
+                #{InputTime,jdbcType=VARCHAR},
+            </if>
+            <if test="WorkHours != null" >
+                #{WorkHours,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertF" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseFno" >
+        insert into m_BaseFno
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="Fno != null" >
+                Fno,
+            </if>
+            <if test="Fname != null" >
+                Fname,
+            </if>
+            <if test="JobFno != null" >
+                JobFno,
+            </if>
+            <if test="JobFname != null" >
+                JobFname,
+            </if>
+            <if test="Workcentre2 != null" >
+                Workcentre2,
+            </if>
+            <if test="InputMan != null" >
+                InputMan,
+            </if>
+            <if test="InputTime != null" >
+                InputTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="Fno != null" >
+                #{Fno,jdbcType=VARCHAR},
+            </if>
+            <if test="Fname != null" >
+                #{Fname,jdbcType=VARCHAR},
+            </if>
+            <if test="JobFno != null" >
+                #{JobFno,jdbcType=VARCHAR},
+            </if>
+            <if test="JobFname != null" >
+                #{JobFname,jdbcType=VARCHAR},
+            </if>
+            <if test="Workcentre2 != null" >
+                #{Workcentre2,jdbcType=VARCHAR},
+            </if>
+            <if test="InputMan != null" >
+                #{InputMan,jdbcType=VARCHAR},
+            </if>
+            <if test="InputTime != null" >
+                #{InputTime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertM" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseMaterial" >
+        insert into m_BaseMaterial
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="Fno != null" >
+                Fno,
+            </if>
+            <if test="Fname != null" >
+                Fname,
+            </if>
+            <if test="Workcentre5 != null" >
+                Workcentre5,
+            </if>
+            <if test="Ftemp3 != null" >
+                Ftemp3,
+            </if>
+            <if test="Ftemp4 != null" >
+                Ftemp4,
+            </if>
+            <if test="InputMan != null" >
+                InputMan,
+            </if>
+            <if test="InputTime != null" >
+                InputTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="Fno != null" >
+                #{Fno,jdbcType=VARCHAR},
+            </if>
+            <if test="Fname != null" >
+                #{Fname,jdbcType=VARCHAR},
+            </if>
+            <if test="Workcentre5 != null" >
+                #{Workcentre5,jdbcType=VARCHAR},
+            </if>
+            <if test="Ftemp3 != null" >
+                #{Ftemp3,jdbcType=VARCHAR},
+            </if>
+            <if test="Ftemp4 != null" >
+                #{Ftemp4,jdbcType=VARCHAR},
+            </if>
+            <if test="InputMan != null" >
+                #{InputMan,jdbcType=VARCHAR},
+            </if>
+            <if test="InputTime != null" >
+                #{InputTime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertS" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseSupplier" >
+        insert into m_BaseSupplier
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="MeterType != null" >
+                MeterType,
+            </if>
+            <if test="Supplier != null" >
+                Supplier,
+            </if>
+            <if test="InputMan != null" >
+                InputMan,
+            </if>
+            <if test="InputTime != null" >
+                InputTime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="MeterType != null" >
+                #{MeterType,jdbcType=VARCHAR},
+            </if>
+            <if test="Supplier != null" >
+                #{Supplier,jdbcType=VARCHAR},
+            </if>
+            <if test="InputMan != null" >
+                #{InputMan,jdbcType=VARCHAR},
+            </if>
+            <if test="InputTime != null" >
+                #{InputTime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertEquipStatus" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPStatus" >
+        insert into m_EQPStatus
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="EquipID != null" >
+                EquipID,
+            </if>
+            <if test="EquipStatus != null" >
+                EquipStatus,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="EquipID != null" >
+                #{EquipID,jdbcType=VARCHAR},
+            </if>
+            <if test="EquipStatus != null" >
+                #{EquipStatus,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+    <delete id="delete" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseChkStd">
+        delete m_BaseChkStd where ID = #{ID}
+    </delete>
+    <delete id="delete1" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity">
+        delete m_BaseCapacity where ID = #{ID}
+    </delete>
+    <delete id="delete2" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+        delete m_BaseEquip where ID = #{ID}
+    </delete>
+    <delete id="deleteF" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseFno">
+        delete m_BaseFno where ID = #{ID}
+    </delete>
+    <delete id="deleteM" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseMaterial">
+        delete m_BaseMaterial where ID = #{ID}
+    </delete>
+    <delete id="deleteS" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseSupplier">
+        delete m_BaseSupplier where ID = #{ID}
+    </delete>
+    <delete id="deleteMould" parameterType="com.dhchain.business.HeatTreatment.vo.MCraftmould">
+        delete m_Craftmould where id = #{id}
+    </delete>
+    <delete id="delete3" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+        delete m_EQPStatus where EquipID = #{EquipID}
+    </delete>
+    <update id="update" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseChkStd">
+        UPDATE  m_BaseChkStd SET
+    PartDrawing = #{PartDrawing},
+    PartName = #{PartName},
+    HoleHD = #{HoleHD},
+    Aperture = #{Aperture},
+    HoleSite = #{HoleSite},
+    Thickness =#{Thickness},
+    Facade = #{Facade},
+    Height = #{Height},
+    Leuchtfeld = #{Leuchtfeld},
+    ModifyMan = #{ModifyMan},
+    ModifyTime = #{ModifyTime}
+    where ID = #{ID}
+    </update>
+    <update id="update1" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity">
+         UPDATE  m_BaseCapacity SET
+         Fno = #{Fno},
+         Fname = #{Fname},
+         Capacity =  #{Capacity},
+          ModifyMan = #{ModifyMan},
+    ModifyTime = #{ModifyTime}
+    where ID = #{ID}
+    </update>
+    <update id="updateF" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseFno">
+        UPDATE  m_BaseFno SET
+        Fno = #{Fno},
+        Fname = #{Fname},
+        JobFno =  #{JobFno},
+        JobFname =  #{JobFname},
+        Workcentre2 =  #{Workcentre2},
+        ModifyMan = #{ModifyMan},
+        ModifyTime = #{ModifyTime}
+        where ID = #{ID}
+    </update>
+    <update id="updateM" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseMaterial">
+        UPDATE  m_BaseMaterial SET
+        Fno = #{Fno},
+        Fname = #{Fname},
+        Workcentre5 =  #{Workcentre5},
+        Ftemp3 =  #{Ftemp3},
+        Ftemp4 =  #{Ftemp4},
+        ModifyMan = #{ModifyMan},
+        ModifyTime = #{ModifyTime}
+        where ID = #{ID}
+    </update>
+    <update id="updateS" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseSupplier">
+        UPDATE  m_BaseSupplier SET
+        MeterType = #{MeterType},
+        Supplier = #{Supplier},
+        ModifyMan = #{ModifyMan},
+        ModifyTime = #{ModifyTime}
+        where ID = #{ID}
+    </update>
+    <update id="updateEquip" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+         UPDATE  m_BaseEquip SET
+         EquipDHID = #{EquipDHID},
+         EquipName =  #{EquipName},
+         EquipType =  #{EquipType},
+         Manufacturer =  #{Manufacturer},
+          ModifyMan = #{ModifyMan},
+          ModifyTime = #{ModifyTime},
+            IP = #{IP},
+             IPNO = #{IPNO}
+    where ID = #{ID}
+    </update>
+    <select id="getMeterType" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseSupplier" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseSupplier">
+      select  distinct  isNull(Ftemp1,'') as Ftemp1   from t_materialCoding
+
+    </select>
+</mapper>

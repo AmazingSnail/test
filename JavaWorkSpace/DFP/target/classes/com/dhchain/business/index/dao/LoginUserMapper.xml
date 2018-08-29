@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.index.dao.LoginUserMapper">
+	
+
+	<select id="User1" parameterType="com.dhchain.business.index.vo.MenuQuery" resultType="com.dhchain.business.index.vo.Menu">
+		SELECT
+		    WorkerNumber,
+		    UserName,
+		    Password,
+		    Department,
+		    MDM,
+		    TransNumber,
+		    Telphone
+            FROM
+            t_user
+		WHERE
+		UserName =#{Username}
+
+	</select>
+</mapper>

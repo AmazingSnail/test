@@ -1,0 +1,158 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>项目组长审批</title>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/1.5.2/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/static/css/1.5.2/themes/icon.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/css/1.5.2/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/css/1.5.2/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/static/css/1.5.2/locale/easyui-lang-zh_CN.js"></script>
+
+</head>
+<body style="margin: 5px">
+<div id="p" class="easyui-panel" title="审批" style="width: 700px;height: 280px;padding: 10px">
+    <form id="fm" method="post">
+        <table cellspacing="8px">
+            <tr>
+                <td>工艺路线扩展单号：</td>
+                <td>
+                    <input type="text" id="rout_applyno" name="rout_applyno" readonly="readonly"/>
+                </td>
+                <td>&nbsp;</td>
+                <td>扩展类型：</td>
+                <td>
+                    <input type="text" id="rout_applytype" name="rout_applytype" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <td>请托人：</td>
+                <td>
+                    <input type="text" id="rout_inputman" name="rout_inputman" readonly="readonly"/>
+                </td>
+                <td>&nbsp;</td>
+                <td>请托时间：</td>
+                <td>
+                    <input type="text" id="rout_inputdate" name="rout_inputdate" readonly="readonly"/>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">扩展原因：</td>
+                <td colspan="4">
+                    <textarea id="rout_applyreasons" name="rout_applyreasons" rows="2" cols="49" readonly="readonly"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td valign="top">批注：</td>
+                <td colspan="4">
+                    <textarea id="rout_comment" name="rout_comment" rows="2" cols="49" class="easyui-validatebox" required="true"></textarea>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="hidden" name="taskId" value="${param.taskId}"/>
+                </td>
+                <td>
+                    <input type="hidden" name="UserId" id="UserId" />
+                </td>
+                <td>
+                    <input type="hidden" name="GroupId" id="GroupId" />
+                </td>
+                <td colspan="4">
+                    <a href="javascript:submit(1)" class="easyui-linkbutton" iconCls="icon-ok" >批准</a>&nbsp;&nbsp;
+                    <a href="javascript:submit(2)" class="easyui-linkbutton" iconCls="icon-no" >驳回</a>
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+<div style="padding-top: 5px">
+    <table id="dg" title="批注列表" class="easyui-datagrid"
+           fitColumns="true"
+           url="${pageContext.request.contextPath}/task/listHistoryComment.action?taskId=${param.taskId}" style="width: 700px;height: 200px;">
+        <thead>
+        <tr>
+            <th field="time" width="120" align="center">批注时间</th>
+            <th field="userId" width="100" align="center">批注人</th>
+            <th field="message" width="200" align="center">批注信息</th>
+        </tr>
+        </thead>
+    </table>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#GroupId").val(localStorage.getItem("actGroup"));
+        $("#UserId").val(localStorage.getItem("User"));
+    });
+    function submit(state){
+        alert(state);
+        jQuery.ajax({
+            type:"POST",   //post提交方式默认是get
+            url:"/routApply/pass.action",
+            dataType:"json",
+            data:{
+                state:1,
+                comment:$("#rout_comment").val(),
+                UserId:localStorage.getItem("User"),
+                GroupId:localStorage.getItem("actGroup"),
+                taskId:${param.taskId}
+
+            },
+
+            error:function(request) {
+
+                $("#showMsg").html(request);  //登录错误提示信息
+
+            },
+            success:function(results) {
+                console.log(results);
+//                var result=eval('('+results+')');
+                if(results.success){
+                    //$.messager.alert("系统系统","提交成功！");
+                    window.parent.closeTab("办理任务");
+                    window.parent.query();
+
+                }else{
+                    $.messager.alert("系统系统","提交失败，请联系管理员！");
+                    return;
+                }
+
+            }
+        });
+
+
+        <%--$("#fm").form("submit",{--%>
+        <%--url:'${pageContext.request.contextPath}/routApply/pass.action?state='+state,--%>
+        <%--onSubmit:function(){--%>
+        <%--return $(this).form("validate");--%>
+        <%--},--%>
+        <%--success:function(result){--%>
+        <%--var result=eval('('+result+')');--%>
+        <%--if(result.success){--%>
+        <%--//$.messager.alert("系统系统","提交成功！");--%>
+        <%--window.parent.closeTab("办理任务");--%>
+
+        <%--}else{--%>
+        <%--$.messager.alert("系统系统","提交失败，请联系管理员！");--%>
+        <%--return;--%>
+        <%--}--%>
+
+        <%--}--%>
+        <%--});--%>
+    }
+    $(function(){
+        $.post("${pageContext.request.contextPath}/routApply/getRoutApplByTaskId.action",{taskId:'${param.taskId}'},function(result){
+            console.log(result);
+            $("#rout_applyno").val(result.applyno);
+            $("#rout_applytype").val(result.applytype);
+            $("#rout_inputman").val(result.inputman);
+            $("#rout_inputdate").val(result.inputdate);
+            $("#rout_applyreasons").val(result.applyreasons);
+
+        },"json");
+    });
+</script>
+</body>
+</html>

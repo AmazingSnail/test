@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.exp.dao.ExpApplMapper">
+
+
+
+    <select id="selectTodayMaxApplyno"  resultType="java.lang.String">
+        SELECT MAX(applyno) FROM t_exp_appl WHERE applyno LIKE #{a}+'%'
+
+    </select>
+
+    <insert id="insert" parameterType="com.dhchain.business.exp.vo.ExpAppl" useGeneratedKeys="true" keyProperty="id">
+        insert into
+         t_exp_appl(applyno, applytype,applyreasons,applystate,inputdate,inputman,typedetailid,typedetailname,typedetailno,processInstanceId)
+        values
+        (#{applyno}, #{applytype},#{applyreasons},#{applystate},#{inputdate},#{inputman},#{typedetailid},#{typedetailname},#{typedetailno},#{processInstanceId})
+    </insert>
+    <update id="update" parameterType="com.dhchain.business.exp.vo.ExpAppl" >
+        UPDATE t_exp_appl
+        SET
+        applyno = #{applyno},
+        applytype = #{applytype},
+        applyreasons = #{applyreasons},
+        applystate = #{applystate},
+        inputdate = #{inputdate},
+        inputman = #{inputman},
+        typedetailid = #{typedetailid},
+        typedetailname = #{typedetailname},
+        typedetailno = #{typedetailno},
+        processInstanceId = #{processInstanceId}
+        WHERE id = #{id};
+    </update>
+
+    <select id="selectNewId"  resultType="java.lang.Integer">
+        select ident_current('t_exp_appl')
+
+    </select>
+
+
+
+    <select id="findByApplyno"  parameterType="java.lang.String" resultType="com.dhchain.business.exp.vo.ExpAppl">
+        select *
+        from t_exp_appl
+        where applyno = #{applyno}
+
+    </select>
+
+    <select id="getExpApplByTaskId" parameterType="String" resultType="com.dhchain.business.exp.vo.ExpAppl">
+        select * from  t_exp_appl
+        where processInstanceId=#{processInstanceId}
+    </select>
+
+    <select id="select" parameterType="com.dhchain.business.exp.vo.ExpAppl" resultType="com.dhchain.business.exp.vo.ExpAppl">
+        SELECT
+
+        *
+
+        FROM
+        t_exp_appl
+        where 1=1
+        <if test="applyno!=null and applyno!=''">and applyno = #{applyno}</if>
+        <if test="applystate!=null and applystate!=''">and applystate = #{applystate}</if>
+        <if test="inputman!=null and inputman!=''">and inputman = #{inputman}</if>
+        <if test="inputdate!=null and inputdate!=''">and DateDiff(dd,inputdate,#{inputdate})=0</if>
+
+    </select>
+</mapper>

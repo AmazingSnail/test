@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.colddigitalworkshop.dao.ColdMonthPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="fno" property="fno" jdbcType="VARCHAR" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+    <result column="takeweidgt" property="takeweidgt" jdbcType="DOUBLE" />
+    <result column="planweidgt" property="planweidgt" jdbcType="DOUBLE" />
+    <result column="SSL" property="ssl" jdbcType="DOUBLE" />
+    <result column="QCL" property="qcl" jdbcType="DOUBLE" />
+    <result column="NJL" property="njl" jdbcType="DOUBLE" />
+    <result column="CDL" property="cdl" jdbcType="DOUBLE" />
+    <result column="GCLZB" property="gclzb" jdbcType="DOUBLE" />
+    <result column="BSL" property="bsl" jdbcType="DOUBLE" />
+    <result column="FTL" property="ftl" jdbcType="DOUBLE" />
+    <result column="GCLXH" property="gclxh" jdbcType="DOUBLE" />
+    <result column="MTCL" property="mtcl" jdbcType="DOUBLE" />
+    <result column="XMB" property="xmb" jdbcType="DOUBLE" />
+    <result column="DP" property="dp" jdbcType="DOUBLE" />
+    <result column="planman" property="planman" jdbcType="VARCHAR" />
+    <result column="plandate" property="plandate" jdbcType="TIMESTAMP" />
+    <result column="plant" property="plant" jdbcType="VARCHAR" />
+    <result column="fparentid" property="fparentid" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="INTEGER" />
+    <result column="month" property="month" jdbcType="INTEGER" />
+    <result column="isdelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, fno, fname, takeweidgt, planweidgt, SSL, QCL, NJL, CDL, GCLZB, BSL, FTL, GCLXH, 
+    MTCL, XMB, DP, planman, plandate, plant, fparentid, year, month, isdelete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ColdMonthPlan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_ColdMonthPlan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan" >
+    insert into t_ColdMonthPlan (id, fno, fname, 
+      takeweidgt, planweidgt, SSL, 
+      QCL, NJL, CDL, GCLZB, 
+      BSL, FTL, GCLXH, MTCL, 
+      XMB, DP, planman, plandate, 
+      plant, fparentid, year, 
+      month, isdelete)
+    values (#{id,jdbcType=INTEGER}, #{fno,jdbcType=VARCHAR}, #{fname,jdbcType=VARCHAR}, 
+      #{takeweidgt,jdbcType=DOUBLE}, #{planweidgt,jdbcType=DOUBLE}, #{ssl,jdbcType=DOUBLE}, 
+      #{qcl,jdbcType=DOUBLE}, #{njl,jdbcType=DOUBLE}, #{cdl,jdbcType=DOUBLE}, #{gclzb,jdbcType=DOUBLE}, 
+      #{bsl,jdbcType=DOUBLE}, #{ftl,jdbcType=DOUBLE}, #{gclxh,jdbcType=DOUBLE}, #{mtcl,jdbcType=DOUBLE}, 
+      #{xmb,jdbcType=DOUBLE}, #{dp,jdbcType=DOUBLE}, #{planman,jdbcType=VARCHAR}, #{plandate,jdbcType=TIMESTAMP}, 
+      #{plant,jdbcType=VARCHAR}, #{fparentid,jdbcType=VARCHAR}, #{year,jdbcType=INTEGER}, 
+      #{month,jdbcType=INTEGER}, #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan" >
+    insert into t_ColdMonthPlan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fno != null" >
+        fno,
+      </if>
+      <if test="fname != null" >
+        fname,
+      </if>
+      <if test="takeweidgt != null" >
+        takeweidgt,
+      </if>
+      <if test="planweidgt != null" >
+        planweidgt,
+      </if>
+      <if test="ssl != null" >
+        SSL,
+      </if>
+      <if test="qcl != null" >
+        QCL,
+      </if>
+      <if test="njl != null" >
+        NJL,
+      </if>
+      <if test="cdl != null" >
+        CDL,
+      </if>
+      <if test="gclzb != null" >
+        GCLZB,
+      </if>
+      <if test="bsl != null" >
+        BSL,
+      </if>
+      <if test="ftl != null" >
+        FTL,
+      </if>
+      <if test="gclxh != null" >
+        GCLXH,
+      </if>
+      <if test="mtcl != null" >
+        MTCL,
+      </if>
+      <if test="xmb != null" >
+        XMB,
+      </if>
+      <if test="dp != null" >
+        DP,
+      </if>
+      <if test="planman != null" >
+        planman,
+      </if>
+      <if test="plandate != null" >
+        plandate,
+      </if>
+      <if test="plant != null" >
+        plant,
+      </if>
+      <if test="fparentid != ''" >
+        fparentid,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fno != null" >
+        #{fno,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="takeweidgt != null" >
+        #{takeweidgt,jdbcType=DOUBLE},
+      </if>
+      <if test="planweidgt != null" >
+        #{planweidgt,jdbcType=DOUBLE},
+      </if>
+      <if test="ssl != null" >
+        #{ssl,jdbcType=DOUBLE},
+      </if>
+      <if test="qcl != null" >
+        #{qcl,jdbcType=DOUBLE},
+      </if>
+      <if test="njl != null" >
+        #{njl,jdbcType=DOUBLE},
+      </if>
+      <if test="cdl != null" >
+        #{cdl,jdbcType=DOUBLE},
+      </if>
+      <if test="gclzb != null" >
+        #{gclzb,jdbcType=DOUBLE},
+      </if>
+      <if test="bsl != null" >
+        #{bsl,jdbcType=DOUBLE},
+      </if>
+      <if test="ftl != null" >
+        #{ftl,jdbcType=DOUBLE},
+      </if>
+      <if test="gclxh != null" >
+        #{gclxh,jdbcType=DOUBLE},
+      </if>
+      <if test="mtcl != null" >
+        #{mtcl,jdbcType=DOUBLE},
+      </if>
+      <if test="xmb != null" >
+        #{xmb,jdbcType=DOUBLE},
+      </if>
+      <if test="dp != null" >
+        #{dp,jdbcType=DOUBLE},
+      </if>
+      <if test="planman != null" >
+        #{planman,jdbcType=VARCHAR},
+      </if>
+      <if test="plandate != null" >
+        #{plandate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plant != null" >
+        #{plant,jdbcType=VARCHAR},
+      </if>
+      <if test="fparentid != '' and fparentid!=null" >
+        #{fparentid,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan" >
+    update t_ColdMonthPlan
+    <set >
+      <if test="fno != null" >
+        fno = #{fno,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        fname = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="takeweidgt != null" >
+        takeweidgt = #{takeweidgt,jdbcType=DOUBLE},
+      </if>
+      <if test="planweidgt != null" >
+        planweidgt = #{planweidgt,jdbcType=DOUBLE},
+      </if>
+      <if test="ssl != null" >
+        SSL = #{ssl,jdbcType=DOUBLE},
+      </if>
+      <if test="qcl != null" >
+        QCL = #{qcl,jdbcType=DOUBLE},
+      </if>
+      <if test="njl != null" >
+        NJL = #{njl,jdbcType=DOUBLE},
+      </if>
+      <if test="cdl != null" >
+        CDL = #{cdl,jdbcType=DOUBLE},
+      </if>
+      <if test="gclzb != null" >
+        GCLZB = #{gclzb,jdbcType=DOUBLE},
+      </if>
+      <if test="bsl != null" >
+        BSL = #{bsl,jdbcType=DOUBLE},
+      </if>
+      <if test="ftl != null" >
+        FTL = #{ftl,jdbcType=DOUBLE},
+      </if>
+      <if test="gclxh != null" >
+        GCLXH = #{gclxh,jdbcType=DOUBLE},
+      </if>
+      <if test="mtcl != null" >
+        MTCL = #{mtcl,jdbcType=DOUBLE},
+      </if>
+      <if test="xmb != null" >
+        XMB = #{xmb,jdbcType=DOUBLE},
+      </if>
+      <if test="dp != null" >
+        DP = #{dp,jdbcType=DOUBLE},
+      </if>
+      <if test="planman != null" >
+        planman = #{planman,jdbcType=VARCHAR},
+      </if>
+      <if test="plandate != null" >
+        plandate = #{plandate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="plant != null" >
+        plant = #{plant,jdbcType=VARCHAR},
+      </if>
+      <if test="fparentid != null and fparentid!=''" >
+        fparentid = #{fparentid,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan" >
+    update t_ColdMonthPlan
+    set fno = #{fno,jdbcType=VARCHAR},
+      fname = #{fname,jdbcType=VARCHAR},
+      takeweidgt = #{takeweidgt,jdbcType=DOUBLE},
+      planweidgt = #{planweidgt,jdbcType=DOUBLE},
+      SSL = #{ssl,jdbcType=DOUBLE},
+      QCL = #{qcl,jdbcType=DOUBLE},
+      NJL = #{njl,jdbcType=DOUBLE},
+      CDL = #{cdl,jdbcType=DOUBLE},
+      GCLZB = #{gclzb,jdbcType=DOUBLE},
+      BSL = #{bsl,jdbcType=DOUBLE},
+      FTL = #{ftl,jdbcType=DOUBLE},
+      GCLXH = #{gclxh,jdbcType=DOUBLE},
+      MTCL = #{mtcl,jdbcType=DOUBLE},
+      XMB = #{xmb,jdbcType=DOUBLE},
+      DP = #{dp,jdbcType=DOUBLE},
+      planman = #{planman,jdbcType=VARCHAR},
+      plandate = #{plandate,jdbcType=TIMESTAMP},
+      plant = #{plant,jdbcType=VARCHAR},
+      fparentid = #{fparentid,jdbcType=VARCHAR},
+      year = #{year,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      isdelete = #{isdelete,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByAllKey" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan">
+    SELECT * FROM ( SELECT a.*,b.fnoname FROM (SELECT * FROM t_ColdMonthPlan as a  WHERE (
+    fno in(
+    select
+    fno
+    from t_ColdMonthPlan
+    WHERE
+    1=1
+    <if test="fno != null and fno!=''">
+      and ( fno LIKE '%'+#{fno}+'%' and isnull(fparentid,'0') = '0' )
+    </if>
+    <if test="fname != null and fname!=''">
+      and ( fname LIKE '%'+ #{fname}+'%' and isnull(fparentid,'0') = '0')
+    </if>
+    <if test="id != null and id!=''">
+      and id = #{id}
+    </if>
+    <if test="year != null and year!=0">
+      and year = #{year}
+    </if>
+    <if test="month != null and month!=0">
+      and month = #{month}
+    </if>
+    )
+    OR fparentid in(
+    select
+    fno
+    from t_ColdMonthPlan
+    WHERE
+    1=1
+    <if test="fno != null and fno !=''">
+      and ( fno LIKE '%'+#{fno}+'%' and isnull(fparentid,'0') = '0' )
+    </if>
+    <if test="fname != null and fname!=''">
+      and ( fname LIKE '%'+ #{fname}+'%' and isnull(fparentid,'0') = '0')
+    </if>
+    <if test="id != null and id!=''">
+      and id = #{id}
+    </if>
+    <if test="year != null and year!=0">
+      and year = #{year}
+    </if>
+    <if test="month != null and month!=0">
+      and month = #{month}
+    </if>
+    )
+    )) as a LEFT JOIN  (select s.*
+    from (
+    select *, row_number() over (partition by fno order by id) as group_idx
+    from t_Smaintenance
+    ) s
+    where s.group_idx = 1 )as b on a.fno = b.fno)
+    as c where 1=1
+    <if test="year != null and year!=0">
+      and c.year = #{year}
+    </if>
+    <if test="month != null and month!=0">
+      and c.month = #{month}
+    </if>
+
+  </select>
+
+  <select id="selectOnlyParent" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan">
+    SELECT * FROM t_ColdMonthPlan WHERE
+    1=1
+    and
+    isnull(fparentid,'0') = '0'
+    <if test="fno != null and fno!=''" >
+      and ( fno LIKE '%'+#{fno}+'%' )
+    </if>
+    <if test="fname != null and fname!=''" >
+      and ( fname LIKE '%'+ #{fname}+'%')
+    </if>
+    <if test="id != null and id!=''">
+      and id = #{id}
+    </if>
+    <if test="year != null and year!=0" >
+      and year = #{year}
+    </if>
+    <if test="month != null and month!=0" >
+      and month = #{month}
+    </if>
+
+  </select>
+
+  <select id="selectOnlyChilds" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan">
+    SELECT * FROM ( SELECT a.*,b.fnoname FROM (SELECT * FROM t_ColdMonthPlan as a  WHERE (
+    fparentid in(
+    select
+    fno
+    from t_ColdMonthPlan
+    WHERE
+    1=1
+    <if test="fno != null and fno !=''">
+      and ( fno LIKE '%'+#{fno}+'%' and isnull(fparentid,'0') = '0' )
+    </if>
+    <if test="fname != null and fname!=''">
+      and ( fname LIKE '%'+ #{fname}+'%' and isnull(fparentid,'0') = '0')
+    </if>
+    <if test="id != null and id!=''">
+      and id = #{id}
+    </if>
+    <if test="year != null and year!=0">
+      and year = #{year}
+    </if>
+    <if test="month != null and month!=0">
+      and month = #{month}
+    </if>
+    )
+    )) as a LEFT JOIN (select s.*
+    from (
+    select *, row_number() over (partition by fno order by id) as group_idx
+    from t_Smaintenance
+    ) s
+    where s.group_idx = 1 ) as b on a.fno = b.fno)
+    as c where 1=1
+    <if test="year != null and year!=0">
+      and c.year = #{year}
+    </if>
+    <if test="month != null and month!=0">
+      and c.month = #{month}
+    </if>
+
+  </select>
+  <delete id="deleteByFparentIdAndId" parameterType="java.lang.Integer">
+    delete from t_ColdMonthPlan
+    where (id = #{id,jdbcType=INTEGER} OR fparentid in (SELECT fno FROM t_ColdMonthPlan WHERE id = #{id,jdbcType=INTEGER}))
+    <if test="year != null and year!=0" >
+      and year = #{year}
+    </if>
+    <if test="month != null and month!=0" >
+      and month = #{month}
+    </if>
+  </delete>
+  <select id="selectmonthplanByDaoRu" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan">
+    SELECT * FROM (SELECT id, fno, fname, takeweidgt, planweidgt, SSL, QCL, NJL, CDL, GCLZB, BSL, FTL, GCLXH,
+    MTCL, XMB, DP, planman, plandate, plant,
+    ISNULL(fparentid,'') as fparentid,
+    year,
+    month FROM t_ColdMonthPlan) as a
+    WHERE
+    a.fno = #{fno}
+    and a.plant = #{plant}
+    and  a.fparentid=#{fparentid}
+    and a.year = #{year}
+    and a.month = #{month}
+  </select>
+
+  <update id="updateMonthPlanTakenumGo" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan" >
+    UPDATE t_ColdMonthPlan SET
+    takeweidgt = takeweidgt + #{takeweidgt}
+    where
+    fno = #{fno}
+    and plant = #{plant}
+    and year= #{year}
+    and isnull(fparentid,'') = #{fparentid}
+    and month = #{month}
+  </update>
+
+  <update id="updateMonthPlanTakenumBack" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMonthPlan" >
+    UPDATE t_ColdMonthPlan SET
+    takeweidgt = takeweidgt - #{takeweidgt}
+    where
+    fno = #{fno}
+    and plant = #{plant}
+    and year= #{year}
+    and isnull(fparentid,'') = #{fparentid}
+    and month = #{month}
+  </update>
+
+  <insert id="insertSelectiveList" parameterType="java.util.List">
+    insert into t_ColdMonthPlan (fno, fname,
+    takeweidgt, planweidgt, SSL,
+    QCL, NJL, CDL, GCLZB,
+    BSL, FTL, GCLXH, MTCL,
+    XMB, DP, planman, plandate,
+    plant, fparentid, year,
+    month, isdelete)
+    values
+    <foreach collection="list" item="item" index="index" separator=",">
+      (
+      #{item.fno},
+      #{item.fname},
+      0,
+      #{item.planweidgt},
+      #{item.ssl},
+      #{item.qcl},
+      #{item.njl},
+      #{item.cdl},
+      #{item.F3},
+      #{item.gclzb},
+      #{item.bsl},
+      #{item.ftl},
+      #{item.gclxh},
+      #{item.mtcl},
+      #{item.xmb},
+      #{item.dp},
+      #{item.planman},
+      #{item.plandate},
+      #{item.plant},
+      #{item.fparentid},
+      #{item.year},
+      #{item.month},
+      0)
+    </foreach>
+  </insert>
+  <update id="updateByFidChangeNum" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPrint" >
+    update t_ColdMonthPlan
+    set takeweidgt = takeweidgt+#{weight}
+    where id in (select id FROM t_ColdMonthPlan where fno = #{fno} and fparentid in(SELECT fno FROM t_ColdMonthPlan where id = #{fids}))
+  </update>
+</mapper>

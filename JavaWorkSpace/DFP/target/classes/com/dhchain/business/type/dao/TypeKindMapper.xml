@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.type.dao.TypeKindMapper">
+    <select id="selectByTypeid" parameterType="com.dhchain.business.type.vo.TypeKind" resultType="com.dhchain.business.type.vo.TypeKind">
+        SELECT
+
+        *
+
+        FROM
+        t_type_kind
+        where isdelete = 0 and typeid = #{typeid} ORDER  by kindno
+
+    </select>
+    <insert id="insert" parameterType="com.dhchain.business.type.vo.TypeKind" useGeneratedKeys="true" keyProperty="id">
+        insert into t_type_kind(typeid,kindno, kindnum,remark,inputman,inputdate,isdelete) values(#{typeid},#{kindno}, #{kindnum},#{remark},#{inputman},#{inputdate},#{isdelete})
+    </insert>
+
+    <update id="update" parameterType="com.dhchain.business.type.vo.TypeKind" >
+        UPDATE t_type_kind
+        SET
+        kindno = #{kindno},
+        kindnum = #{kindnum},
+        remark = #{remark},
+        modifyman = #{modifyman},
+        modifydate = #{modifydate}
+        WHERE id = #{id};
+    </update>
+
+    <update id="delete" parameterType="com.dhchain.business.type.vo.TypeKind" >
+        UPDATE t_type_kind
+        SET
+        isdelete = 1
+        WHERE id in
+        <foreach item="item" index="index" collection="array"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.dhchain.business.type.vo.TypeKind">
+        SELECT
+
+        *
+
+        FROM
+        t_type_kind
+        where id = #{id}
+    </select>
+
+    <select id="selectByKindno" parameterType="com.dhchain.business.type.vo.TypeKind" resultType="com.dhchain.business.type.vo.TypeKind">
+        SELECT
+
+        *
+
+        FROM
+        t_type_kind
+        where kindno = #{kindno} and isdelete = 0 and typeid =  #{typeid} and kindnum =  #{kindnum}
+    </select>
+</mapper>

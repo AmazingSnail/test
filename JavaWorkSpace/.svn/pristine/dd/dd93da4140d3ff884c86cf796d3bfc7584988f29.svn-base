@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.partpunchingworkshop.dao.DeviceManagementMapper" >
+   <select id="getplant" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+      SELECT DISTINCT  plant  from m_BaseEquip
+   </select>
+   <select id="getdepartment" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+      SELECT DISTINCT  DepartMent   from m_BaseEquip  where  Plant = #{Plant}
+   </select>
+   <select id="getInfo" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+      SELECT * from m_BaseEquip where Plant = #{Plant} and DepartMent = #{DepartMent}
+   </select>
+   <select id="getbyEquipID" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.EQPStatus">
+      SELECT * from m_EQPStatus where  EquipID = #{EquipID}
+   </select>
+   <select id="getbyEquipIDH" parameterType="com.dhchain.business.HeatTreatment.vo.MEqpheatstatus" resultType="com.dhchain.business.HeatTreatment.vo.MEqpheatstatus">
+      SELECT * from m_EQPHeatStatus where  equipid = #{equipid}
+   </select>
+   <select id="getSize" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.EQPStatus">
+       SELECT * from m_EQPStatus where EquipID LIKE '%'+#{EquipID}+'%' order by EquipID DESC
+   </select>
+   <select id="getSizeH" parameterType="com.dhchain.business.HeatTreatment.vo.MEqpheatstatus" resultType="com.dhchain.business.HeatTreatment.vo.MEqpheatstatus">
+       SELECT * from m_EQPHeatStatus where equipid LIKE '%'+#{equipid}+'%' order by equipid DESC
+   </select>
+   <update id="updateUser" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseUser">
+      UPDATE  m_BaseUser
+      set ImgSrc = #{ImgSrc},
+      ImgName=#{ImgName}
+      where ID=#{ID}
+   </update>
+</mapper>

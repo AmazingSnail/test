@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.colddigitalworkshop.dao.ColdOutMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.colddigitalworkshop.vo.ColdOut" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="serialno" property="serialno" jdbcType="VARCHAR" />
+    <result column="fno" property="fno" jdbcType="VARCHAR" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+    <result column="OutNumber" property="outnumber" jdbcType="DOUBLE" />
+    <result column="plant" property="plant" jdbcType="VARCHAR" />
+    <result column="OutAdd" property="outadd" jdbcType="VARCHAR" />
+    <result column="OutPutMan" property="outputman" jdbcType="VARCHAR" />
+    <result column="OutPutDate" property="outputdate" jdbcType="TIMESTAMP" />
+    <result column="isMove" property="ismove" jdbcType="BIT" />
+    <result column="moveman" property="moveman" jdbcType="VARCHAR" />
+    <result column="movedate" property="movedate" jdbcType="TIMESTAMP" />
+    <result column="year" property="year" jdbcType="INTEGER" />
+    <result column="month" property="month" jdbcType="INTEGER" />
+    <result column="MoveOk" property="moveok" jdbcType="BIT" />
+    <result column="MoveBack" property="moveback" jdbcType="BIT" />
+    <result column="MoveBackman" property="movebackman" jdbcType="VARCHAR" />
+    <result column="MoveBackDate" property="movebackdate" jdbcType="TIMESTAMP" />
+    <result column="IsTake" property="istake" jdbcType="BIT" />
+    <result column="TakeMan" property="takeman" jdbcType="VARCHAR" />
+    <result column="TakeDate" property="takedate" jdbcType="TIMESTAMP" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="IsApp" property="isapp" jdbcType="BIT" />
+    <result column="isdelete" property="isdelete" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, serialno, fno, fname, OutNumber, plant, OutAdd, OutPutMan, OutPutDate, isMove, 
+    moveman, movedate, year, month, MoveOk, MoveBack, MoveBackman, MoveBackDate, IsTake, 
+    TakeMan, TakeDate, location, IsApp, isdelete
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ColdOut
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_ColdOut
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdOut" >
+    insert into t_ColdOut (id, serialno, fno, 
+      fname, OutNumber, plant, 
+      OutAdd, OutPutMan, OutPutDate, 
+      isMove, moveman, movedate, 
+      year, month, MoveOk, MoveBack, 
+      MoveBackman, MoveBackDate, IsTake, 
+      TakeMan, TakeDate, location, 
+      IsApp, isdelete)
+    values (#{id,jdbcType=INTEGER}, #{serialno,jdbcType=VARCHAR}, #{fno,jdbcType=VARCHAR}, 
+      #{fname,jdbcType=VARCHAR}, #{outnumber,jdbcType=DOUBLE}, #{plant,jdbcType=VARCHAR}, 
+      #{outadd,jdbcType=VARCHAR}, #{outputman,jdbcType=VARCHAR}, #{outputdate,jdbcType=TIMESTAMP}, 
+      #{ismove,jdbcType=BIT}, #{moveman,jdbcType=VARCHAR}, #{movedate,jdbcType=TIMESTAMP}, 
+      #{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, #{moveok,jdbcType=BIT}, #{moveback,jdbcType=BIT}, 
+      #{movebackman,jdbcType=VARCHAR}, #{movebackdate,jdbcType=TIMESTAMP}, #{istake,jdbcType=BIT}, 
+      #{takeman,jdbcType=VARCHAR}, #{takedate,jdbcType=TIMESTAMP}, #{location,jdbcType=VARCHAR}, 
+      #{isapp,jdbcType=BIT}, #{isdelete,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdOut" >
+    insert into t_ColdOut
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serialno != null" >
+        serialno,
+      </if>
+      <if test="fno != null" >
+        fno,
+      </if>
+      <if test="fname != null" >
+        fname,
+      </if>
+      <if test="outnumber != null" >
+        OutNumber,
+      </if>
+      <if test="plant != null" >
+        plant,
+      </if>
+      <if test="outadd != null" >
+        OutAdd,
+      </if>
+      <if test="outaddname != null" >
+        OutAddName,
+      </if>
+      <if test="outputman != null" >
+        OutPutMan,
+      </if>
+      <if test="outputdate != null" >
+        OutPutDate,
+      </if>
+      <if test="ismove != null" >
+        isMove,
+      </if>
+      <if test="moveman != null" >
+        moveman,
+      </if>
+      <if test="movedate != null" >
+        movedate,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="moveok != null" >
+        MoveOk,
+      </if>
+      <if test="moveback != null" >
+        MoveBack,
+      </if>
+      <if test="movebackman != null" >
+        MoveBackman,
+      </if>
+      <if test="movebackdate != null" >
+        MoveBackDate,
+      </if>
+      <if test="istake != null" >
+        IsTake,
+      </if>
+      <if test="takeman != null" >
+        TakeMan,
+      </if>
+      <if test="takedate != null" >
+        TakeDate,
+      </if>
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="isapp != null" >
+        IsApp,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+      <if test="cgvbeln != null" >
+        cgvbeln,
+      </if>
+      <if test="cgposnr != null" >
+        cgposnr,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serialno != null" >
+        #{serialno,jdbcType=VARCHAR},
+      </if>
+      <if test="fno != null" >
+        #{fno,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="outnumber != null" >
+        #{outnumber,jdbcType=DOUBLE},
+      </if>
+      <if test="plant != null" >
+        #{plant,jdbcType=VARCHAR},
+      </if>
+      <if test="outadd != null" >
+        #{outadd,jdbcType=VARCHAR},
+      </if>
+      <if test="outaddname != null" >
+        #{outaddname,jdbcType=VARCHAR},
+      </if>
+      <if test="outputman != null" >
+        #{outputman,jdbcType=VARCHAR},
+      </if>
+      <if test="outputdate != null" >
+        #{outputdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ismove != null" >
+        #{ismove,jdbcType=BIT},
+      </if>
+      <if test="moveman != null" >
+        #{moveman,jdbcType=VARCHAR},
+      </if>
+      <if test="movedate != null" >
+        #{movedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="moveok != null" >
+        #{moveok,jdbcType=BIT},
+      </if>
+      <if test="moveback != null" >
+        #{moveback,jdbcType=BIT},
+      </if>
+      <if test="movebackman != null" >
+        #{movebackman,jdbcType=VARCHAR},
+      </if>
+      <if test="movebackdate != null" >
+        #{movebackdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="istake != null" >
+        #{istake,jdbcType=BIT},
+      </if>
+      <if test="takeman != null" >
+        #{takeman,jdbcType=VARCHAR},
+      </if>
+      <if test="takedate != null" >
+        #{takedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="isapp != null" >
+        #{isapp,jdbcType=BIT},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="cgvbeln != null and cgvbeln!=''" >
+        #{cgvbeln},
+      </if>
+      <if test="cgposnr != null and cgposnr!=''" >
+        #{cgposnr},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdOut" >
+    update t_ColdOut
+    <set >
+      <if test="serialno != null" >
+        serialno = #{serialno,jdbcType=VARCHAR},
+      </if>
+      <if test="fno != null" >
+        fno = #{fno,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        fname = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="outnumber != null" >
+        OutNumber = #{outnumber,jdbcType=DOUBLE},
+      </if>
+      <if test="plant != null" >
+        plant = #{plant,jdbcType=VARCHAR},
+      </if>
+      <if test="outadd != null" >
+        OutAdd = #{outadd,jdbcType=VARCHAR},
+      </if>
+      <if test="outputman != null" >
+        OutPutMan = #{outputman,jdbcType=VARCHAR},
+      </if>
+      <if test="outputdate != null" >
+        OutPutDate = #{outputdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ismove != null" >
+        isMove = #{ismove,jdbcType=BIT},
+      </if>
+      <if test="moveman != null" >
+        moveman = #{moveman,jdbcType=VARCHAR},
+      </if>
+      <if test="movedate != null" >
+        movedate = #{movedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="moveok != null" >
+        MoveOk = #{moveok,jdbcType=BIT},
+      </if>
+      <if test="moveback != null" >
+        MoveBack = #{moveback,jdbcType=BIT},
+      </if>
+      <if test="movebackman != null" >
+        MoveBackman = #{movebackman,jdbcType=VARCHAR},
+      </if>
+      <if test="movebackdate != null" >
+        MoveBackDate = #{movebackdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="istake != null" >
+        IsTake = #{istake,jdbcType=BIT},
+      </if>
+      <if test="takeman != null" >
+        TakeMan = #{takeman,jdbcType=VARCHAR},
+      </if>
+      <if test="takedate != null" >
+        TakeDate = #{takedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="location != null" >
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="isapp != null" >
+        IsApp = #{isapp,jdbcType=BIT},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="vbeln != null" >
+        vbeln = #{vbeln,jdbcType=VARCHAR},
+      </if>
+      <if test="posnr != null" >
+        posnr = #{posnr,jdbcType=VARCHAR},
+      </if>
+      <if test="cgvbeln != null" >
+        cgvbeln = #{cgvbeln,jdbcType=VARCHAR},
+      </if>
+      <if test="cgposnr != null" >
+        cgposnr = #{cgposnr,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdOut" >
+    update t_ColdOut
+    set serialno = #{serialno,jdbcType=VARCHAR},
+      fno = #{fno,jdbcType=VARCHAR},
+      fname = #{fname,jdbcType=VARCHAR},
+      OutNumber = #{outnumber,jdbcType=DOUBLE},
+      plant = #{plant,jdbcType=VARCHAR},
+      OutAdd = #{outadd,jdbcType=VARCHAR},
+      OutPutMan = #{outputman,jdbcType=VARCHAR},
+      OutPutDate = #{outputdate,jdbcType=TIMESTAMP},
+      isMove = #{ismove,jdbcType=BIT},
+      moveman = #{moveman,jdbcType=VARCHAR},
+      movedate = #{movedate,jdbcType=TIMESTAMP},
+      year = #{year,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      MoveOk = #{moveok,jdbcType=BIT},
+      MoveBack = #{moveback,jdbcType=BIT},
+      MoveBackman = #{movebackman,jdbcType=VARCHAR},
+      MoveBackDate = #{movebackdate,jdbcType=TIMESTAMP},
+      IsTake = #{istake,jdbcType=BIT},
+      TakeMan = #{takeman,jdbcType=VARCHAR},
+      TakeDate = #{takedate,jdbcType=TIMESTAMP},
+      location = #{location,jdbcType=VARCHAR},
+      IsApp = #{isapp,jdbcType=BIT},
+      isdelete = #{isdelete,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectColdOutToday" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdOut" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdOut">
+    SELECT * FROM
+    t_ColdOut
+    WHERE 1=1
+    <if test="cgvbeln != null and cgvbeln!=''" >
+      and cgvbeln like '%'+#{cgvbeln,jdbcType=VARCHAR}+'%'
+    </if>
+    and outputdate &gt; #{outputdate}
+    order by outputdate DESC
+  </select>
+
+  <select id="getSeId" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdOut" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdOut">
+    SELECT top(1)
+    *
+    FROM
+    t_ColdOut
+    WHERE
+    1 = 1
+    AND year=#{year}
+    AND month=#{month}
+    order by serialno desc
+  </select>
+
+  <select id="selectColdOutBydate" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdOut" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdOut">
+    SELECT * FROM
+    t_ColdOut
+    WHERE
+    1=1
+    <if test="plant != null and plant!=''" >
+      and plant = #{plant}
+    </if>
+    <if test="fno != null and fno!=''" >
+      and fno like '%'+#{fno}+'%'
+    </if>
+    <if test="outadd != null and outadd!=''" >
+      and outadd like '%'+#{outadd}+'%'
+    </if>
+    <if test="begindate != null and begindate!=''" >
+      and outputdate &gt; #{begindate}
+    </if>
+    <if test="cgvbeln != null and cgvbeln!=''" >
+      and cgvbeln like '%'+#{cgvbeln,jdbcType=VARCHAR}+'%'
+    </if>
+    <if test="enddate != null and enddate!=''" >
+      and outputdate &lt; #{enddate}+' 23:59:59'
+    </if>
+    <if test="location!=null and location=='999'"> and location ='999'</if>
+    <if test="location!=null and location=='88-8'"> and location !='999'and location !=''</if>
+  </select>
+  <insert id="insertSapOutMess" parameterType="com.dhchain.business.colddigitalworkshop.vo.HaginstRecord">
+    insert into t_HAgainstRecord (fno,serialno,uyear,umonth,againstKind,againstNumber,
+    againstMan,againstDate,plant,OutAdd,OutPutMan,OutPutDate,isMove,moveman,movedate ,fname,f1,f5,workcentre2)
+    values (#{fno},#{serialno},#{uyear},#{umonth},#{againstkind},#{againstnumber},#{againstman},convert(varchar(50),getdate(),25),#{plant},#{outadd},#{outputman},#{outputdate},#{isMove},#{moveman},convert(varchar(50),getdate(),25),#{fname},#{f1},#{f5},#{workcentre2})
+  </insert>
+  <insert id="insertSapMessOutBack" parameterType="com.dhchain.business.colddigitalworkshop.vo.HaginstRecord">
+    insert into t_HAgainstRecord (fno,serialno,uyear,umonth,againstKind,againstNumber,
+    againstMan,againstDate,plant,OutAdd,OutPutMan,OutPutDate,MoveBack,MoveBackman,MoveBackDate ,fname,f1,f5,workcentre2)
+    values (#{fno},#{serialno},#{uyear},#{umonth},#{againstkind},#{againstnumber},#{againstman},convert(varchar(50),getdate(),25),#{plant},#{outadd},#{outputman},#{outputdate},#{isMove},#{moveman},convert(varchar(50),getdate(),25),#{fname},#{f1},#{f5},#{workcentre2})
+  </insert>
+</mapper>

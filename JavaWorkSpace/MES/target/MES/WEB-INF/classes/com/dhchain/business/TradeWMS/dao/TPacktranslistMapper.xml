@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.TradeWMS.dao.TPacktranslistMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.TradeWMS.vo.TPacktranslist" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="PackageListID" property="packagelistid" jdbcType="INTEGER" />
+    <result column="DOXTBH" property="doxtbh" jdbcType="VARCHAR" />
+    <result column="DoNo" property="dono" jdbcType="VARCHAR" />
+    <result column="DoItem" property="doitem" jdbcType="VARCHAR" />
+    <result column="IsSAP" property="issap" jdbcType="BIT" />
+    <result column="MoveOK" property="moveok" jdbcType="BIT" />
+    <result column="SAPMan" property="sapman" jdbcType="VARCHAR" />
+    <result column="SAPDate" property="sapdate" jdbcType="TIMESTAMP" />
+    <result column="IsOut" property="isout" jdbcType="BIT" />
+    <result column="OutTime" property="outtime" jdbcType="TIMESTAMP" />
+    <result column="SerialNo" property="outtime" jdbcType="VARCHAR" />
+    <result column="BoxNum" property="outtime" jdbcType="VARCHAR" />
+    <result column="dhorderno" property="outtime" jdbcType="VARCHAR" />
+    <result column="Location" property="outtime" jdbcType="VARCHAR" />
+  </resultMap>
+  <select id="packageOutLeftquery" resultType="java.util.HashMap" parameterType="com.dhchain.business.TradeWMS.vo.TPacktranslist">
+    select distinct doxtbh,OutTime from t_PackTransList where isout=0 and dhorderno is null
+    <if test="doxtbh!=null and doxtbh!=''">and doxtbh   '%'+LIKE #{doxtbh}+'%'</if>
+  </select>
+
+  <select id="ptoutgo" parameterType="java.lang.Integer" resultType="com.dhchain.business.TradeWMS.vo.TPacktranslist">
+    exec [ptoutgo] #{id}
+  </select>
+
+</mapper>

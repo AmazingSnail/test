@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.TradeWMS.dao.TPackhalfMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.TradeWMS.vo.TPackhalf" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="serialno" property="serialno" jdbcType="VARCHAR" />
+    <result column="BoxNum" property="boxnum" jdbcType="VARCHAR" />
+    <result column="BoxNumFID" property="boxnumfid" jdbcType="INTEGER" />
+    <result column="Fno" property="fno" jdbcType="VARCHAR" />
+    <result column="Fname" property="fname" jdbcType="VARCHAR" />
+    <result column="NumberWeight" property="numberweight" jdbcType="INTEGER" />
+    <result column="dhorderno" property="dhorderno" jdbcType="VARCHAR" />
+    <result column="ErpSysno" property="erpsysno" jdbcType="VARCHAR" />
+    <result column="lineid" property="lineid" jdbcType="VARCHAR" />
+    <result column="plant" property="plant" jdbcType="VARCHAR" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="SAP_SDF" property="sapSdf" jdbcType="INTEGER" />
+    <result column="SAP_SDFDESC" property="sapSdfdesc" jdbcType="VARCHAR" />
+    <result column="SAP_XSBM" property="sapXsbm" jdbcType="VARCHAR" />
+    <result column="SAP_XSBMDESC" property="sapXsbmdesc" jdbcType="VARCHAR" />
+    <result column="ActualNum" property="actualnum" jdbcType="DOUBLE" />
+    <result column="PackMan" property="packman" jdbcType="VARCHAR" />
+    <result column="PackDate" property="packdate" jdbcType="DATE" />
+    <result column="IsComplete" property="iscomplete" jdbcType="BIT" />
+    <result column="MoveOk" property="moveok" jdbcType="BIT" />
+    <result column="IsSAP" property="issap" jdbcType="BIT" />
+    <result column="ActNum" property="actnum" jdbcType="DOUBLE" />
+    <result column="CheckMan" property="checkman" jdbcType="VARCHAR" />
+    <result column="SAPMan" property="sapman" jdbcType="VARCHAR" />
+    <result column="CheckNum" property="checknum" jdbcType="DOUBLE" />
+    <result column="CheckResult" property="checkresult" jdbcType="BIT" />
+    <result column="CheckDate" property="checkdate" jdbcType="TIMESTAMP" />
+    <result column="SAPDate" property="sapdate" jdbcType="TIMESTAMP" />
+    <result column="HeadWeight" property="headweight" jdbcType="DOUBLE" />
+    <result column="BoxWeight" property="boxweight" jdbcType="DOUBLE" />
+    <result column="ActualWeight" property="actualweight" jdbcType="DOUBLE" />
+    <result column="WeightInputman" property="weightinputman" jdbcType="VARCHAR" />
+    <result column="WeightInputdate" property="weightinputdate" jdbcType="TIMESTAMP" />
+    <result column="WeightWay" property="weightway" jdbcType="INTEGER" />
+    <result column="PackageListID" property="packagelistid" jdbcType="INTEGER" />
+    <result column="IsRcv" property="isrcv" jdbcType="BIT" />
+  </resultMap>
+
+
+  <select id="packagein" parameterType="java.lang.Integer" resultType="com.dhchain.business.TradeWMS.vo.TPackhalf">
+    exec [packagein] #{id}
+  </select>
+
+  <select id="ptback" parameterType="java.lang.Integer" resultType="com.dhchain.business.TradeWMS.vo.TPackhalf">
+    exec [ptback] #{id}
+  </select>
+
+
+</mapper>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.code.dao.CodeNameMapper">
+    <insert id="insert" parameterType="com.dhchain.business.code.vo.CodeName" useGeneratedKeys="true" keyProperty="id">
+        insert into t_codename(ftypeno,ftypename, typeno,typename,typenoele,kindno,kindnum,attrno,attrname,splitstr,inputman,inputdate,codelength,codemanageid,attrid,isdelete,viewid,viewcode,viewname)
+        values(#{ftypeno},#{ftypename}, #{typeno},#{typename},#{typenoele},#{kindno},#{kindnum},#{attrno},#{attrname}, #{splitstr},#{inputman},#{inputdate},#{codelength},#{codemanageid},#{attrid},#{isdelete},#{viewid},#{viewcode},#{viewname})
+    </insert>
+
+    <select id="selectByCodeManageId" parameterType="com.dhchain.business.code.vo.CodeName" resultType="com.dhchain.business.code.vo.CodeName">
+        SELECT
+
+        *
+
+        FROM
+        t_codename
+        where isdelete = 0
+        and codemanageid = #{codemanageid}
+
+    </select>
+
+    <select id="selectByTypeno" parameterType="com.dhchain.business.code.vo.CodeName" resultType="com.dhchain.business.code.vo.CodeName">
+        SELECT
+
+        *
+
+        FROM
+        t_codename
+        where isdelete = 0
+        and typeno = #{typeno} and typenoele = '主数据属性'
+
+    </select>
+
+
+    <select id="selectFLCX" parameterType="com.dhchain.business.code.vo.CodeName" resultType="com.dhchain.business.code.vo.CodeName">
+        SELECT
+
+        *
+
+        FROM
+        t_codename
+        where isdelete = 0
+        and typeno = #{typeno} and typenoele = '分类层次'
+
+    </select>
+
+    <select id="selectById" parameterType="com.dhchain.business.code.vo.CodeName" resultType="com.dhchain.business.code.vo.CodeName">
+        SELECT
+
+        *
+
+        FROM
+         t_codename
+        where isdelete = 0
+        and id = #{id}
+
+    </select>
+
+
+    <update id="delete" parameterType="com.dhchain.business.code.vo.CodeName" >
+        UPDATE  t_codename
+        SET
+        isdelete = 1
+        WHERE id in
+        <foreach item="item" index="index" collection="array"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+    <update id="update" parameterType="com.dhchain.business.code.vo.CodeName" >
+        UPDATE t_codename
+        SET attrid = #{attrid},
+        attrno = #{attrno},
+        attrname = #{attrname},
+        viewid = #{viewid},
+        viewcode = #{viewcode},
+        viewname = #{viewname},
+        modifyman = #{modifyman},
+        modifydate = #{modifydate},
+        typenoele = #{typenoele},
+        kindno = #{kindno},
+        kindnum = #{kindnum},
+        splitstr = #{splitstr}
+
+
+
+        WHERE id = #{id};
+    </update>
+</mapper>

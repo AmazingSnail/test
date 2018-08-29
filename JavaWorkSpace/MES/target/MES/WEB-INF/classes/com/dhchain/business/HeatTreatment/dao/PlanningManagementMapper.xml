@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.HeatTreatment.dao.PlanningManagementMapper" >
+    <select id="getFno" resultType="com.dhchain.business.HeatTreatment.vo.MaterialCoding" parameterType="com.dhchain.business.HeatTreatment.vo.MaterialCoding">
+        select fno,f1,f5,fname,workcentre2 ,Ftemp3,Ftemp4,Ftemp2 from t_materialCoding where fno like 'B%' and f1 = #{f1} and Locked = 0  and workcentre2 LIKE '%'+#{workcentre2}+'%'
+        and fno LIKE '%'+#{fno}+'%' and fname LIKE '%'+#{fname}+'%' and fname LIKE '%'+#{fname1}+'%'
+    </select>
+    <select id="getFno1" resultType="com.dhchain.business.HeatTreatment.vo.MaterialCoding" parameterType="com.dhchain.business.HeatTreatment.vo.MaterialCoding">
+        select fno,f1,f5,fname,workcentre2 ,Ftemp3,Ftemp4,Ftemp2 from t_materialCoding where  fno =#{fno}
+    </select>
+    <select id="getInfo" resultType="com.dhchain.business.HeatTreatment.vo.MaterialCoding" parameterType="com.dhchain.business.HeatTreatment.vo.MaterialCoding">
+        select id,fno,fname,Ftemp3,Ftemp4 from t_materialCoding where 1=1
+        <if test="fno != null and fno!=''" >
+            and  fno like '%'+#{fno}+'%'
+        </if>
+        <if test="fname != null and fname!=''" >
+            and  fname like '%'+#{fname}+'%'
+        </if>
+        <if test="ftemp7 != null and ftemp7!=''" >
+            and  ftemp7 = #{ftemp7}
+        </if>
+        <if test="ftemp3 != null and ftemp3!=''" >
+            and  ftemp3 like '%'+#{ftemp3}+'%'
+        </if>
+        <if test="ftemp4 != null and ftemp4!=''" >
+            and  ftemp4 like '%'+#{ftemp4}+'%'
+        </if>
+    </select>
+</mapper>

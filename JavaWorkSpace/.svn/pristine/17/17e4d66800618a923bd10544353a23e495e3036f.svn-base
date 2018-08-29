@@ -1,0 +1,199 @@
+package com.dhchain.business.partpunchingworkshop.service.Impl;
+
+import com.dhchain.business.HeatTreatment.vo.MCraftmould;
+import com.dhchain.business.partpunchingworkshop.dao.BaseDataMapper;
+import com.dhchain.business.partpunchingworkshop.service.BasicDataService;
+import com.dhchain.business.partpunchingworkshop.vo.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service("BasicDataService")
+public class BasicDataServiceImpl implements BasicDataService {
+    @Autowired
+    private BaseDataMapper baseDataMapper;
+
+    @Override
+    public List<BaseFno> getFno(BaseFno record) {
+        return baseDataMapper.getFno(record);
+    }
+
+    @Override
+    public List<BaseMaterial> getMFno(BaseMaterial record) {
+        return baseDataMapper.getMFno(record);
+    }
+
+    @Override
+    public List<BaseSupplier> getMeterType() {
+        return baseDataMapper.getMeterType();
+    }
+
+    @Override
+    public List<BaseChkStd> getList() {
+        return baseDataMapper.getList();
+    }
+
+    @Override
+    public List<BaseStatus> getStauts() {
+        return baseDataMapper.getStatus();
+    }
+
+    @Override
+    public List<BaseStatus> getDepartMentH() {
+        return baseDataMapper.getDepartMentH();
+    }
+
+    @Override
+    public List<BaseStatus> getStautsA() {
+        return baseDataMapper.getStautsA();
+    }
+    @Override
+    public List<BaseStatus> getStauts1() {
+        return baseDataMapper.getStauts1();
+    }
+
+    @Override
+    public List<BaseStatus> getStatusID(BaseStatus record) {
+        return baseDataMapper.getStatusID(record);
+    }
+
+    @Override
+    public List<BaseEquip> getEquipID(BaseEquip record) {
+        return baseDataMapper.getEquipID(record);
+    }
+
+    @Override
+    public List<BaseEquip> getList2() {
+        return baseDataMapper.getList2();
+    }
+    @Override
+    public List<BaseEquip> getListHE() {
+        return baseDataMapper.getListHE();
+    }
+
+    @Override
+    public List<MCraftmould> getMould() {
+        return baseDataMapper.getMould();
+    }
+
+    @Override
+    public List<BaseFno> getList3() {
+        return baseDataMapper.getList3();
+    }
+    @Override
+    public List<BaseMaterial> getList4() {
+        return baseDataMapper.getList4();
+    }
+ @Override
+    public List<BaseSupplier> getList5() {
+        return baseDataMapper.getList5();
+    }
+
+    @Override
+    public List<BaseCapacity> getList1() {
+        return baseDataMapper.getList1();
+    }
+
+    @Override
+    public int insert(BaseChkStd record) {
+        return baseDataMapper.insert(record);
+    }
+
+    @Override
+    public int update(BaseChkStd record) {
+        return baseDataMapper.update(record);
+    }
+
+    @Override
+    public int updateF(BaseFno record) {
+        return baseDataMapper.updateF(record);
+    }
+
+    @Override
+    public int updateM(BaseMaterial record) {
+        return baseDataMapper.updateM(record);
+    }
+
+    @Override
+    public int insert1(BaseCapacity record) {
+        return baseDataMapper.insert1(record);
+    }
+
+    @Override
+    public int insertF(BaseFno record) {
+        return baseDataMapper.insertF(record);
+    }
+
+    @Override
+    public int insertM(BaseMaterial record) {
+        return baseDataMapper.insertM(record);
+    }
+
+    @Override
+    public int insertS(BaseSupplier record) {
+        return baseDataMapper.insertS(record);
+    }
+
+    @Override
+    public int insertEquip(BaseEquip record) {
+        return baseDataMapper.insertEquip(record);
+    }
+    @Override
+    public int insertEquipStatus(EQPStatus record) {
+        return baseDataMapper.insertEquipStatus(record);
+    }
+    @Override
+    public int updateEquip(BaseEquip record) {
+        return baseDataMapper.updateEquip(record);
+    }
+
+    @Override
+    public int update1(BaseCapacity record) {
+        return baseDataMapper.update1(record);
+    }
+
+    @Override
+    public int updateS(BaseSupplier record) {
+        return baseDataMapper.updateS(record);
+    }
+
+    @Override
+    public int delete(BaseChkStd record) {
+        return baseDataMapper.delete(record);
+    }
+
+    @Override
+    public int delete1(BaseCapacity record) {
+        return baseDataMapper.delete1(record);
+    }
+    @Override
+    public int delete2(BaseEquip record) {
+        return baseDataMapper.delete2(record);
+    }
+
+    @Override
+    public int deleteF(BaseFno record) {
+        return baseDataMapper.deleteF(record);
+    }
+
+    @Override
+    public int deleteM(BaseMaterial record) {
+        return baseDataMapper.deleteM(record);
+    }
+
+    @Override
+    public int deleteS(BaseSupplier record) {
+        return  baseDataMapper.deleteS(record);
+    }
+
+    @Override
+    public int deleteMould(MCraftmould record) {
+        return baseDataMapper.deleteMould(record);
+    }
+
+    @Override
+    public int delete3(EQPStatus record) {
+        return baseDataMapper.delete3(record);
+    }
+}

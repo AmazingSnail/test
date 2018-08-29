@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.user.dao.OrganizationMapper">
+
+    <!-- 通用查询结果列-->
+    <!--<sql id="Base_Column_List">-->
+        <!--id, name, address, code, icon, pid, seq, create_time AS createTime-->
+    <!--</sql>-->
+
+    <select id="query" parameterType="com.dhchain.business.user.vo.Organization" resultType="com.dhchain.business.user.vo.Organization">
+        SELECT
+
+        id,name,address,code,icon,pid,seq,create_time AS createTime
+
+        FROM
+        u_organization
+       order by  seq
+
+    </select>
+
+    <select id="selectById" parameterType="java.lang.Long" resultType="com.dhchain.business.user.vo.Organization">
+        SELECT
+
+        id,name,address,code,icon,pid,seq,create_time AS createTime
+
+        FROM
+        u_organization
+        where  id=#{id}
+
+    </select>
+
+
+    <insert id="insert" parameterType="com.dhchain.business.user.vo.Organization" useGeneratedKeys="true" keyProperty="id">
+        insert into u_organization(name, address,code,icon,pid,seq,create_time) values(#{name}, #{address},#{code}, #{icon},#{pid}, #{seq},#{createTime})
+    </insert>
+
+    <delete  id="deleteById" parameterType="java.lang.Long">
+        delete from
+    u_organization
+    where id=#{id}
+    </delete >
+
+    <update id="update" parameterType="com.dhchain.business.user.vo.Organization" >
+        UPDATE u_organization
+        SET name = #{name},
+        address = #{address},
+        code = #{code},
+        icon = #{icon},
+        pid = #{pid},
+        seq = #{seq}
+
+        WHERE id = #{id};
+    </update>
+</mapper>

@@ -1,0 +1,20 @@
+package com.dhchain.business.HeatTreatment.service;
+
+import com.dhchain.business.HeatTreatment.vo.MPtheatplan;
+import com.dhchain.business.HeatTreatment.vo.MaterialCoding;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.io.InputStream;
+import java.util.List;
+
+/**
+ * Created by ASUS on 2018/7/5.
+ */
+public interface PlanningManagementService extends IService<MPtheatplan> {
+    List<MaterialCoding>getFno(MaterialCoding record);//获取43数据库物料信息。
+    List<MaterialCoding>getInfo(MaterialCoding record);//获取43数据库物料信息。
+    List<MaterialCoding>getFno1(MaterialCoding record);//获取43数据库物料信息。
+    String importExcelInfo(InputStream in, MultipartFile file, String time, String user)throws Exception;//
+    HSSFWorkbook exportExcel(String fno,String fname,String AxleNum3,String ProcessNode,String pmiPlant,String WorkCentre);//计划导出
+}

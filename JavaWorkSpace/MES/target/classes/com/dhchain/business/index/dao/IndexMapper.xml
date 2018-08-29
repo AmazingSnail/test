@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.index.dao.IndexMapper">
+	
+	<!-- 新增Menu -->
+	<insert id="saveMenu" parameterType="com.dhchain.business.index.vo.Menu" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+		INSERT INTO t_menu(url,avatar,click_num,update_time)
+		VALUES(#{url},#{avatar},#{clickNum},now())
+	</insert>
+	
+	<!-- 删除Menu -->
+	<delete id="deleteMenu" parameterType="java.lang.Long">
+		DELETE FROM t_menu
+		WHERE id=#{id}
+	</delete>
+	
+	<!-- 修改Menu -->
+	<update id="updateMenu" parameterType="com.dhchain.business.index.vo.Menu">
+		UPDATE t_menu
+		SET	update_time = now
+		<if test="url!=null and url!=''">,url=#{url}</if>
+		<if test="avatar!=null">,avatar=#{avatar}</if>
+		<if test="clickNum!=null">,click_num=#{clickNum}</if>
+		<if test="status!=null">,status=#{status}</if>
+		WHERE id = #{id}
+	</update>
+
+
+	
+	<!-- 获取单个menu -->
+	<select id="getOneMenu" parameterType="java.lang.Long" resultType="com.dhchain.business.index.vo.Menu">
+		SELECT 
+			id,
+			url,
+			avatar,
+			click_num,
+			avatar,
+			create_time,
+			update_time
+		FROM 
+			t_menu
+		WHERE
+		    id = #{id}
+	</select>	
+	
+	<!-- 获取多个menu -->
+	<select id="getListMenu" parameterType="com.dhchain.business.index.vo.MenuQuery" resultType="com.dhchain.business.index.vo.Menu">
+	SELECT
+	id,
+	url,
+	avatar,
+	click_num,
+	avatar,
+	create_time,
+	update_time
+	FROM
+	t_menu
+	WHERE
+	1=1
+
+</select>
+	<select id="getListUser" parameterType="com.dhchain.business.index.vo.User" resultType="com.dhchain.business.index.vo.User">
+		SELECT
+		*
+		FROM
+		u_user
+		WHERE
+		login_name = #{Username}
+
+	</select>
+
+	<!--<select id="queryByDepartment" parameterType="com.dhchain.business.index.vo.User" resultType="com.dhchain.business.index.vo.User">-->
+		<!--SELECT-->
+
+		<!--UserName-->
+
+		<!--FROM-->
+		<!--t_user-->
+		<!--WHERE-->
+		<!--Department = #{department}-->
+
+	<!--</select>-->
+	<select id="queryByDepartment" parameterType="com.dhchain.business.user.vo.LoginUser" resultType="com.dhchain.business.user.vo.LoginUser">
+		SELECT
+
+		UserName
+
+		FROM
+		t_user
+		WHERE
+		Department = #{department}
+
+	</select>
+
+	<!--<select id="queryAllDepartment" parameterType="com.dhchain.business.index.vo.User" resultType="java.lang.String">-->
+		<!--SELECT distinct department-->
+
+
+
+		<!--FROM-->
+		<!--t_user-->
+
+	<!--</select>-->
+
+	<select id="queryAllDepartment" parameterType="com.dhchain.business.user.vo.Organization" resultType="java.lang.String">
+		SELECT distinct name
+
+
+
+		FROM
+		u_organization
+
+	</select>
+
+
+	<select id="selectByName" parameterType="com.dhchain.business.user.vo.Organization" resultType="com.dhchain.business.user.vo.Organization">
+		SELECT id
+
+
+
+		FROM
+		u_organization
+
+		WHERE
+
+		name = #{name}
+
+	</select>
+
+
+	<select id="selectByOrganizationId" parameterType="java.lang.Long" resultType="com.dhchain.business.user.vo.LoginUser">
+		SELECT *
+
+
+
+		FROM
+		u_user
+
+		WHERE
+
+		organization_id = #{organizationId}
+
+	</select>
+
+
+	<select id="selectById" parameterType="java.lang.Long" resultType="com.dhchain.business.user.vo.LoginUser">
+		SELECT  *
+
+
+
+		FROM
+		u_user
+
+		WHERE
+
+		id = #{id}
+
+	</select>
+
+	<select id="selectApproveman"  resultType="com.dhchain.business.user.vo.LoginUser">
+		SELECT  *
+
+
+
+		FROM
+		u_user
+
+		WHERE
+
+		is_shr = 1
+
+	</select>
+
+	<select id="selectConfirmman"  resultType="com.dhchain.business.user.vo.LoginUser">
+		SELECT  *
+
+
+
+		FROM
+		u_user
+
+		WHERE
+
+		is_qrr = 1
+
+	</select>
+
+	<select id="updatePwdByUserId" parameterType="com.dhchain.business.user.vo.LoginUser">
+		update   u_user
+		SET password =  #{password}
+
+		WHERE
+
+		id = #{id}
+
+	</select>
+</mapper>

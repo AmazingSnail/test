@@ -1,0 +1,162 @@
+package com.dhchain.business.HeatTreatment.vo;
+
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+/**
+ * Created by ASUS on 2018/7/5.
+ */
+public class MChkresulthm {
+    /**
+     * 主键
+     */
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+   private int  id;
+   private String equipid;
+    private String         batchnum;
+    private String prodnum;
+    private String   firetypes;
+    private String           parthard1;
+    private String parthard2;
+    private String          parthard3;
+    private String  parthard4;
+    private String         parthard5;
+    private String carbinolflow;
+    private String         tenacity;
+    private String  recordtime;
+    private String          modifyman;
+    private String  modifytime;
+    private String plant;
+
+    public String getProdnum() {
+        return prodnum;
+    }
+
+    public void setProdnum(String prodnum) {
+        this.prodnum = prodnum;
+    }
+
+    public String getPlant() {
+        return plant;
+    }
+
+    public void setPlant(String plant) {
+        this.plant = plant;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getEquipid() {
+        return equipid;
+    }
+
+    public void setEquipid(String equipid) {
+        this.equipid = equipid;
+    }
+
+    public String getBatchnum() {
+        return batchnum;
+    }
+
+    public void setBatchnum(String batchnum) {
+        this.batchnum = batchnum;
+    }
+
+    public String getFiretypes() {
+        return firetypes;
+    }
+
+    public void setFiretypes(String firetypes) {
+        this.firetypes = firetypes;
+    }
+
+    public String getParthard1() {
+        return parthard1;
+    }
+
+    public void setParthard1(String parthard1) {
+        this.parthard1 = parthard1;
+    }
+
+    public String getParthard2() {
+        return parthard2;
+    }
+
+    public void setParthard2(String parthard2) {
+        this.parthard2 = parthard2;
+    }
+
+    public String getParthard3() {
+        return parthard3;
+    }
+
+    public void setParthard3(String parthard3) {
+        this.parthard3 = parthard3;
+    }
+
+    public String getParthard4() {
+        return parthard4;
+    }
+
+    public void setParthard4(String parthard4) {
+        this.parthard4 = parthard4;
+    }
+
+    public String getParthard5() {
+        return parthard5;
+    }
+
+    public void setParthard5(String parthard5) {
+        this.parthard5 = parthard5;
+    }
+
+    public String getCarbinolflow() {
+        return carbinolflow;
+    }
+
+    public void setCarbinolflow(String carbinolflow) {
+        this.carbinolflow = carbinolflow;
+    }
+
+    public String getTenacity() {
+        return tenacity;
+    }
+
+    public void setTenacity(String tenacity) {
+        this.tenacity = tenacity;
+    }
+
+    public String getRecordtime() {
+        return recordtime;
+    }
+
+    public void setRecordtime(String recordtime) {
+        this.recordtime = recordtime;
+    }
+
+    public String getModifyman() {
+        return modifyman;
+    }
+
+    public void setModifyman(String modifyman) {
+        this.modifyman = modifyman;
+    }
+
+    public String getModifytime() {
+        return modifytime;
+    }
+
+    public void setModifytime(String modifytime) {
+        this.modifytime = modifytime;
+    }
+}

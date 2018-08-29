@@ -1,0 +1,229 @@
+
+.cc2{
+    letter-spacing:1.7em; /*如果需要y个字两端对齐，则为(x-y)/(y-1),这里是（4-2）/(2-1)=2em */
+    margin-right:-0.9em; /*同上*/
+}
+.m3{
+    letter-spacing:0.3em; /*如果需要y个字两端对齐，则为(x-y)/(y-1),这里是（4-3）/(3-1)=0.5em */
+    margin-right:-0.3em; /*同上*/
+}
+#northmenu{
+    padding: 5px;
+    font-size: 10px;
+    font-weight: bold;
+
+}
+#northmenu li{
+    text-decoration: none;
+    list-style: none;
+    float: left;
+    border: none;
+    /*background-color: #c4e1ff;*/
+    width: auto;
+    height: 23px;
+    margin: 0px;
+    padding: 0px;
+    font-size: 15px;
+}
+.easyui-datagrid-north{
+    background-color: #c4e1ff ;
+    border-right: 0px;
+}
+.easyui-datagrid{
+    border: 1px solid #97cbff;
+}
+.LogisticsDynamic{
+    width: 80px;
+    height: 50px;
+    background-color: #FFED97;
+    position: relative;
+    border-radius: 20px;
+    text-align: center;
+    line-height: 50px;
+    margin-left: 50px;
+    margin-top: -20px;
+    color: #0aa8e4;
+}
+.LogisticsDynamic-line{
+    width: 75%;
+    color: #FFED97;
+    size: 1px;
+    position: relative;
+    top: -8px;
+    left: 8%;
+}
+.LogisticsTracking{
+    position: relative;
+    width: 60%;
+    height: 80%;
+    border: none;
+    margin: 10px;
+    top: -45px;
+    left: 20%;
+}
+.LogisticsTracking a{
+    font-size: 13px;
+    display: block;
+}
+.editcls {
+    border: 1px solid #FFED97;
+    background-color: #FFED97;
+    height: 20px;
+    width: 58px;
+    border-radius: 30px;
+}
+.easyui-datagrid-Detailed{
+    cellspacing: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+.easyui-datagrid-Detailed td{
+    border: 1px solid black;
+    padding: 0px;
+    margin: 0px;
+    cellspacing: 0px;
+}
+.DMSEvaluationTitle{
+    background-color: #c4e1ff;
+    font-size: 15px;
+    width: 1410px;
+    border-collapse: collapse;
+}
+.DMSEvaluationTitle tr{
+    height: 77px;
+}
+.DMSEvaluationTitle tr td{
+    border: 1px solid #c4e1ff;
+}
+.DMSEvaluationButton{
+    border: 1px solid gainsboro;!important;
+    height: 40px;
+    font-size: 15px;
+    border-radius: 10px;
+    margin: 2px;
+    background-color: gainsboro;!important;
+}
+.DMSEvaluationText{
+    cellspacing: 0px;
+    padding-right: 10px;
+    font-size: 15px;
+    vertical-align: middle;
+    margin: 0px;
+    border-collapse: collapse;
+    text-align: center;
+}
+.DMSEvaluationText td{
+    border: 1px solid #c4e1ff;
+}
+.DMSEvaluationText tr:first-of-type{
+    background-color: #FFED97;
+    width: 100%;
+}
+.DMSEvaluationText tr:first-of-type{
+    background-color: #FFED97;
+    width: 100%;
+}
+.DMSEvaluationText tr:first-of-type td{
+    height: 30px;
+}
+.DMSEvaluationText tr td:first-of-type{
+    width: 20%;
+    height: 100px;
+}
+.DMSEvaluationText tr td:second-of-type{
+    width: 35%;
+    height: 100px;
+}
+.DMSEvaluationText tr td:last-of-type{
+    width: 45%;
+    height: 100px;
+}
+.DetailedText tr:first-of-type{
+    background-color: #87CEFA;
+    width: 100%;
+}
+.DetailedText{
+    padding-right: 10px;
+    font-size: 15px;
+    vertical-align: middle;
+    margin: 0px;
+    border-collapse: collapse;
+    text-align: center;
+    width: auto;
+    height: 30px;
+}
+.DetailedText td{
+    border: 1px solid #6495ED;
+}
+.DMSEvaluationComments{
+    font-size: 20px;
+}
+.DMSEvaluationComments span{
+    font-size: 20px;
+}
+.DMSEvaluationComments li{
+    float: left;
+    list-style: none;
+    margin: 0px;
+    padding: 15px;
+}
+.DMSEvaluationComments1{
+    font-size: 20px;
+}
+.DMSEvaluationComments1 li{
+    list-style: none;
+    margin: 0px;
+    padding: 15px;
+}
+/*星星开始*/
+.stars{
+    white-space: nowrap;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.stars li{
+    display: inline-block;
+    color: #ADADAD;
+    font-size: 40px;
+}
+.stars1{
+    white-space: nowrap;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.stars1 li{
+    display: inline-block;
+    color: #ADADAD;
+    font-size: 40px;
+}
+.stars2{
+    white-space: nowrap;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    color: #FFCC33;
+}
+.stars2 li{
+    display: inline-block;
+    color: #FFCC33;
+    font-size: 40px;
+}
+/*星星结束*/
+.ConmmentsButton{
+    position: relative;
+    width: 80px;
+    height: 30px;
+    font-size: 13px;
+    top: -120px;
+    left: 600px;
+}
+#LogisticsTime tr td{
+    width: 170px;!important;
+    height: 30px;!important;
+}
+#LogisticsTime{
+    width: 300px;!important;
+    height: 300px;!important;
+}

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.user.dao.UserMapper">
+
+ <resultMap id="userVoResultMap" type="com.dhchain.business.user.UserVo">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="login_name" property="loginName" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="TINYINT"/>
+        <result column="age" property="age" jdbcType="TINYINT"/>
+        <result column="user_type" property="userType" jdbcType="TINYINT"/>
+        <result column="status" property="status" jdbcType="TINYINT"/>
+        <result column="organization_id" property="organizationId" jdbcType="INTEGER"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="act_state" property="actstate" jdbcType="BOOLEAN"/>
+
+        <result column="organizationName" property="organizationName" jdbcType="VARCHAR"/>
+
+        <collection property="rolesList" ofType="com.dhchain.business.user.vo.Role">
+            <id column="roleId" property="id"/>
+            <result column="roleName" property="name"/>
+        </collection>
+    </resultMap>
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+        id, login_name AS loginName, name, password, salt, sex, age, phone, user_type AS userType, status, organization_id AS organizationId, create_time AS createTime,act_state as actstate
+    </sql>
+
+    <select id="selectUserVoById" resultMap="userVoResultMap" parameterType="java.lang.Long">
+        SELECT
+        t.id,
+        login_name,
+        t.name,
+        password,
+        sex,
+        age,
+        user_type,
+        t.status,
+        organization_id,
+        t.create_time,
+        t.act_state,
+        phone,
+        s.name AS organizationName,
+        o.id AS roleId,
+        o.name AS roleName
+        FROM
+        t_account t
+        LEFT JOIN user_role r ON t.id = r.user_id
+        LEFT JOIN t_role o ON r.role_id = o.id
+        LEFT JOIN t_organization s ON s.id = t.organization_id
+        <where>
+            t.id = #{id}
+        </where>
+    </select>
+
+    <select id="selectUserPage" resultType="java.util.Map">
+
+        select id, loginName,name,phone,password,sex,age,createTime,userType,status,organizationId,organizationName,actstate,
+        stuff((select ','+name from (select t.id , o.name from u_user t LEFT JOIN u_user_role r ON t.id = r.user_id
+        LEFT JOIN u_role o ON r.role_id = o.id
+        LEFT JOIN u_organization s ON s.id = t.organization_id ) as tab where id=qqq.id for xml path('')),1,1,'') rolesList
+        from (select t.id ,t.login_name AS loginName , t.name, t.phone, t.password, t.sex, t.age, t.create_time AS createTime,
+        t.user_type AS userType, t.status, t.organization_id AS organizationId,t.act_state AS actstate,
+        s.name AS organizationName from u_user t LEFT JOIN u_user_role r ON t.id = r.user_id
+        LEFT JOIN u_role o ON r.role_id = o.id
+        LEFT JOIN u_organization s ON s.id = t.organization_id ) as  qqq
+        <where>
+            <if test=" name != null and name != '' ">
+                name = #{name}
+            </if>
+            <if test=" organizationId != null ">
+                organizationId = #{organizationId}
+            </if>
+            <if test=" startTime != null ">
+                <![CDATA[ and createTime >= #{startTime} ]]>
+            </if>
+            <if test=" endTime != null ">
+                <![CDATA[ and createTime <= #{endTime} ]]>
+            </if>
+        </where>
+        GROUP BY  id,loginName,name,phone,password,sex,age,createTime,actstate,userType,status,organizationId,organizationName
+    </select>
+    <!--<select id="selectUserPage" resultType="com.dhchain.business.user.UserVo">-->
+
+        <!--SELECT top 20-->
+        <!--t.id, t.login_name AS loginName, t.name, t.phone, t.password,-->
+        <!--t.sex, t.age, t.create_time AS createTime, t.user_type AS userType,-->
+        <!--t.status, t.organization_id AS organizationId,-->
+        <!--s.name AS organizationName, (select top 1  [name] =  stuff((select ',' + [name] from u_role  for xml path('')) , 1 , 1 , '')-->
+        <!--from u_role ) AS rolesList-->
+        <!--FROM u_user t-->
+        <!--LEFT JOIN u_user_role r ON t.id = r.user_id-->
+        <!--LEFT JOIN u_role o ON r.role_id = o.id-->
+        <!--LEFT JOIN u_organization s ON s.id = t.organization_id-->
+        <!--<where>-->
+            <!--<if test=" name != null and name != '' ">-->
+                <!--t.name = #{name}-->
+            <!--</if>-->
+            <!--<if test=" organizationId != null ">-->
+                <!--t.organization_id = #{organizationId}-->
+            <!--</if>-->
+            <!--<if test=" startTime != null ">-->
+                <!--<![CDATA[ and t.create_time >= #{startTime} ]]>-->
+            <!--</if>-->
+            <!--<if test=" endTime != null ">-->
+                <!--<![CDATA[ and t.create_time <= #{endTime} ]]>-->
+            <!--</if>-->
+        <!--</where>-->
+        <!--GROUP BY t.id ,t.login_name,t.name,t.phone, t.password,t.sex, t.age,-->
+        <!--t.create_time,t.user_type, t.status, t.organization_id,s.name-->
+    <!--</select>-->
+    <select id="selectByLoginName" parameterType="com.dhchain.business.user.UserVo" resultType="com.dhchain.business.user.vo.LoginUser">
+        SELECT
+        *
+        FROM
+        u_user
+        WHERE
+        1 = 1
+        and login_name = #{userName}
+
+    </select>
+    <select id="selectByLoginName2" parameterType="com.dhchain.business.user.UserVo" resultType="com.dhchain.business.user.vo.LoginUser">
+        SELECT
+        *
+        FROM
+        u_user
+        WHERE
+        1 = 1
+        and login_name = #{userName} and id != #{id}
+
+    </select>
+
+    <insert id="insert" parameterType="com.dhchain.business.user.vo.LoginUser" useGeneratedKeys="true" keyProperty="id">
+        insert into u_user(login_name, name,password,salt,sex,age,phone,user_type,status,organization_id,create_time,act_state)
+        values(#{loginName}, #{name},#{password}, #{salt},#{sex}, #{age},#{phone},#{userType},#{status},#{organizationId},#{createTime},#{actstate})
+    </insert>
+
+    <delete  id="deleteById" parameterType="java.lang.Long">
+        delete from
+        u_user
+        where id=#{id}
+    </delete >
+
+    <select id="selectByIUserd" resultType="com.dhchain.business.user.vo.LoginUser" parameterType="java.lang.Long">
+        SELECT
+        *
+        FROM
+        u_user
+        where
+        id = #{id}
+    </select>
+
+    <select id="selectById" resultType="java.util.Map"
+            parameterType="java.lang.Long">
+        select id, loginName,name,phone,password,sex,age,createTime,userType,status,organizationId,organizationName,actstate,
+stuff((select ','+name from (select t.id , o.name from u_user t LEFT JOIN u_user_role r ON t.id = r.user_id
+        LEFT JOIN u_role o ON r.role_id = o.id
+        LEFT JOIN u_organization s ON s.id = t.organization_id ) as tab where id=qqq.id for xml path('')),1,1,'') rolesList
+from (select t.id ,t.login_name AS loginName , t.name, t.phone, t.password, t.sex, t.age, t.create_time AS createTime,
+t.user_type AS userType, t.status, t.organization_id AS organizationId,t.act_state AS actstate,
+        s.name AS organizationName from u_user t LEFT JOIN u_user_role r ON t.id = r.user_id
+        LEFT JOIN u_role o ON r.role_id = o.id
+        LEFT JOIN u_organization s ON s.id = t.organization_id ) as  qqq
+        where
+        id = #{id}
+        group by id,loginName,name,phone,password,sex,age,createTime,userType,status,organizationId,organizationName,actstate
+    </select>
+
+
+    <update id="update" parameterType="com.dhchain.business.user.vo.LoginUser"  >
+        UPDATE u_user
+        SET
+        sex = #{sex},
+        login_name = #{loginName},
+        name = #{name},
+        age = #{age},
+        phone = #{phone},
+        user_type = #{userType},
+        status = #{status},
+        organization_id = #{organizationId},
+        act_state = #{actstate}
+
+        WHERE id = #{id};
+    </update>
+
+</mapper>

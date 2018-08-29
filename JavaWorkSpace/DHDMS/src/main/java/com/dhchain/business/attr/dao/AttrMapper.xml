@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.attr.dao.AttrMapper">
+
+    <insert id="insert" parameterType="com.dhchain.business.attr.vo.Attr" useGeneratedKeys="true" keyProperty="id">
+        insert into t_attr(attrno,attrname, remark,iscode,isrelate,fid,inputman,inputdate) values(#{attrno},#{attrname}, #{remark},#{iscode},#{isrelate},#{fid},#{inputman},#{inputdate})
+    </insert>
+
+    <select id="selectNewId"  resultType="java.lang.Integer">
+        select ident_current('t_attr')
+
+    </select>
+
+
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.dhchain.business.attr.vo.Attr">
+        SELECT
+
+        *
+
+        FROM
+        t_attr
+        where  id=#{id}
+
+    </select>
+
+    <select id="selectChildById" parameterType="java.lang.Integer" resultType="com.dhchain.business.attr.vo.Attr">
+        SELECT
+
+        *
+
+        FROM
+        t_attr
+        where  fid=#{fid}
+
+    </select>
+
+
+    <select id="selectByNo" parameterType="java.lang.String" resultType="com.dhchain.business.attr.vo.Attr">
+        SELECT
+
+        *
+
+        FROM
+        t_attr
+        where  attrno=#{attrno}
+
+    </select>
+
+    <select id="selectByNoAndFid" parameterType="com.dhchain.business.attr.vo.Attr" resultType="com.dhchain.business.attr.vo.Attr">
+        SELECT
+
+        *
+
+        FROM
+        t_attr
+        where  attrno=#{attrno} and fid = #{fid}
+
+    </select>
+
+    <select id="selectByNameAndFid" parameterType="com.dhchain.business.attr.vo.Attr" resultType="com.dhchain.business.attr.vo.Attr">
+        SELECT
+
+        *
+
+        FROM
+        t_attr
+        where  attrname=#{attrname} and fid = #{fid}
+
+    </select>
+
+
+    <select id="selectByFlag" parameterType="java.lang.String"  resultType="com.dhchain.business.attr.vo.Attr">
+        SELECT
+
+        *
+
+        FROM
+        t_attr
+        where  flag  like '%'+#{flag}+'%'
+
+    </select>
+
+    <select id="select" parameterType="com.dhchain.business.attr.vo.Attr" resultType="com.dhchain.business.attr.vo.Attr">
+        SELECT
+
+        *
+
+        FROM
+        t_attr
+
+        where 1 = 1
+        <if test="attrname!=null and attrname!=''">and attrname = #{attrname}</if>
+        <if test="attrno!=null and attrno!=''">and attrno = #{attrno}</if>
+    </select>
+
+
+    <update id="update" parameterType="com.dhchain.business.attr.vo.Attr" >
+        UPDATE t_attr
+        SET
+        attrno = #{attrno},
+        attrname = #{attrname},
+        remark = #{remark},
+        iscode = #{iscode},
+        isrelate = #{isrelate},
+        fid = #{fid},
+        flag = #{flag},
+        modifyman = #{modifyman},
+        modifydate = #{modifydate}
+        WHERE id = #{id};
+    </update>
+
+
+    <delete  id="deleteById" parameterType="com.dhchain.business.attr.vo.Attr">
+        delete
+            t_attr
+
+        where id=#{id}
+    </delete >
+</mapper>

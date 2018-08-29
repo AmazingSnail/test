@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.attr.dao.FactoryMapper">
+    <select id="select" parameterType="com.dhchain.business.attr.vo.Factory" resultType="com.dhchain.business.attr.vo.Factory">
+        SELECT
+
+        *
+
+        FROM
+        t_factory
+
+        where 1 = 1
+        <if test="attrname!=null and attrname!=''">and attrname = #{attrname}</if>
+        <if test="attrno!=null and attrno!=''">and attrno = #{attrno}</if>
+    </select>
+
+    <select id="selectByFlag" parameterType="java.lang.String"  resultType="com.dhchain.business.attr.vo.Factory">
+        SELECT
+
+        *
+
+        FROM
+       t_factory
+        where  flag  like '%'+#{flag}+'%'
+
+    </select>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.dhchain.business.attr.vo.Factory">
+        SELECT
+
+        *
+
+        FROM
+         t_factory
+        where  id=#{id}
+
+    </select>
+
+    <select id="selectByNo" parameterType="java.lang.String" resultType="com.dhchain.business.attr.vo.Factory">
+        SELECT
+
+        *
+
+        FROM
+        t_factory
+        where  attrno=#{attrno}
+
+    </select>
+
+    <select id="selectByNoAndFid" parameterType="com.dhchain.business.attr.vo.Factory" resultType="com.dhchain.business.attr.vo.Factory">
+        SELECT
+
+        *
+
+        FROM
+        t_factory
+        where  attrno=#{attrno} and fid = #{fid}
+
+    </select>
+    <select id="selectByNameAndFid" parameterType="com.dhchain.business.attr.vo.Factory" resultType="com.dhchain.business.attr.vo.Factory">
+        SELECT
+
+        *
+
+        FROM
+        t_factory
+        where  attrname=#{attrname} and fid = #{fid}
+
+    </select>
+
+    <select id="selectNewId"  resultType="java.lang.Integer">
+        select ident_current('t_factory')
+
+    </select>
+
+    <insert id="insert" parameterType="com.dhchain.business.attr.vo.Factory" useGeneratedKeys="true" keyProperty="id">
+        insert into t_factory(attrno,attrname, remark,iscode,isrelate,fid,inputman,inputdate) values(#{attrno},#{attrname}, #{remark},#{iscode},#{isrelate},#{fid},#{inputman},#{inputdate})
+    </insert>
+
+    <update id="update" parameterType="com.dhchain.business.attr.vo.Factory" >
+        UPDATE t_factory
+        SET
+        attrno = #{attrno},
+        attrname = #{attrname},
+        remark = #{remark},
+        iscode = #{iscode},
+        isrelate = #{isrelate},
+        fid = #{fid},
+        flag = #{flag},
+        modifyman = #{modifyman},
+        modifydate = #{modifydate}
+        WHERE id = #{id};
+    </update>
+
+    <select id="selectChildById" parameterType="java.lang.Integer" resultType="com.dhchain.business.attr.vo.Factory">
+        SELECT
+
+        *
+
+        FROM
+        t_factory
+        where  fid = #{fid}
+
+    </select>
+
+
+    <delete  id="deleteById" parameterType="com.dhchain.business.attr.vo.Factory">
+        delete
+        t_factory
+
+        where id=#{id}
+    </delete >
+
+</mapper>

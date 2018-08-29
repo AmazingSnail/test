@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.attrappl.dao.AttrApplDetailMapper">
+    <insert id="insert" parameterType="com.dhchain.business.attrappl.vo.AttrApplDetail" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        t_attr_appl_detail(applyno, itemno,rowtype,attrno,attrname,fattrno,fattrname,iscode,isrelate,islocked,Mattrname,Mattrno,Fattrid)
+         values
+         (#{applyno}, #{itemno},#{rowtype},#{attrno},#{attrname},#{fattrno},#{fattrname},#{iscode},#{isrelate},#{islocked},#{Mattrname},#{Mattrno},#{Fattrid})
+    </insert>
+    <select id="selectNewId"  resultType="java.lang.Integer">
+        select ident_current('t_attr_appl_detail')
+
+    </select>
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.dhchain.business.attrappl.vo.AttrApplDetail">
+        SELECT
+
+        *
+
+        FROM
+        t_attr_appl_detail
+        where  id=#{id}
+
+    </select>
+
+    <select id="selectByApplyno" parameterType="java.lang.String" resultType="com.dhchain.business.attrappl.vo.AttrApplDetail">
+        SELECT
+
+        *
+
+        FROM
+        t_attr_appl_detail
+        where  applyno=#{applyno}
+
+    </select>
+
+
+    <update id="update" parameterType="com.dhchain.business.attrappl.vo.AttrApplDetail" >
+        UPDATE t_attr_appl_detail
+        SET
+        rowtype = #{rowtype},
+        attrno = #{attrno},
+        attrname = #{attrname},
+        Mattrname = #{Mattrname},
+        Mattrno = #{Mattrno},
+         iscode = #{iscode},
+        isrelate = #{isrelate},
+        islocked = #{islocked}
+        WHERE id = #{id};
+    </update>
+
+</mapper>

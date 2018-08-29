@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.equipmentlist.dao.PlanProBaseMapper">
+    <select id="getPlanPB" parameterType="com.dhchain.business.equipmentlist.vo.PlanProBase" resultType="com.dhchain.business.equipmentlist.vo.PlanProBase">
+        SELECT
+        *
+        FROM
+        t_PlanProductBase
+        WHERE
+        1 = 1
+        and plant = #{plant}
+    </select>
+
+    <update id="updatePlanPB" parameterType="com.dhchain.business.equipmentlist.vo.PlanProBase">
+        UPDATE t_PlanProductBase
+        SET
+            worklead = #{worklead},
+            worker = #{worker},
+            equipment = #{equipment},
+            equipmentkind = #{equipmentkind},
+            equipmentserial = #{equipmentserial},
+            plant = #{plant}
+        WHERE
+            1=1
+            AND id = #{id}
+    </update>
+
+    <delete id="deletePlanPB" parameterType="com.dhchain.business.equipmentlist.vo.PlanProBase">
+        delete
+            FROM t_PlanProductBase
+        WHERE id = #{id}
+    </delete>
+
+    <insert id="insertPlanPB" parameterType="com.dhchain.business.equipmentlist.vo.PlanProBase" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_PlanProductBase(worklead,worker,equipment,equipmentkind,equipmentserial,plant)
+                VALUES (#{worklead},#{worker},#{equipment},#{equipmentkind},#{equipmentserial},#{plant})
+    </insert>
+</mapper>

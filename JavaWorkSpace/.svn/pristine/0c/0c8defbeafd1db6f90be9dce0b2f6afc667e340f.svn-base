@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.Tractor.dao.TBaseengineMapper" >
+<select id="getDHJ" parameterType="com.dhchain.business.Tractor.vo.TBaseengine" resultType="com.dhchain.business.Tractor.vo.TBaseengine">
+    select  distinct ZCHYJ from t_Baseengine where   zmach = #{zmach}
+</select>
+    <select id="getDL" parameterType="com.dhchain.business.Tractor.vo.TBaseengine" resultType="com.dhchain.business.Tractor.vo.TBaseengine">
+    select  distinct Power from t_Baseengine where   zmach = #{zmach}
+</select>
+</mapper>

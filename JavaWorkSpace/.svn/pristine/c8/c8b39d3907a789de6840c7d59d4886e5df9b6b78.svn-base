@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.assembleplan.dao.PlanProductMapper">
+    <select id="getListPP" parameterType="com.dhchain.business.assembleplan.vo.PlanProduct" resultType="com.dhchain.business.assembleplan.vo.PlanProduct">
+        SELECT
+         id
+        ,dhorderno
+        ,TakeOrder
+        ,CompleteOrder
+        ,OrderTime
+        ,PartDrawing
+        ,F3
+        ,Color
+        ,Descrip
+        ,CLNumber
+        ,number
+        ,IsCl
+        ,MillionF3
+        ,nwx
+        ,WorkPart
+        ,SendMouth
+        ,MillionWight
+        ,fno
+        ,OrderLine
+        ,Dutyman
+        ,MaterialDutyman
+        ,DayNum
+        ,SumDayNum
+        ,DayInput
+        ,SumDayInput
+        ,fname
+        ,meins
+        ,uyear
+        ,umouth
+        ,plant
+        ,submitstate
+        ,singleWeightOK
+        ,SAPSDOrder
+        ,MachineKind
+        ,period
+        ,ConnectPlan
+        ,IsCheck
+        ,beginConnect
+        ,OutputValue
+        ,Ftemp10
+        ,GCXH
+        ,ConnectValue
+        ,DayNumValue
+        ,NumberValue
+        ,DayInputValue
+        ,inputman
+        ,inputdate
+        ,modifyman
+        ,modifydate
+        ,OrderNum
+        ,ismix
+        ,PoNo
+        ,PoItem
+        ,PoNumber
+        ,*
+        FROM View_PlanProduct
+        WHERE plant = #{plant}
+
+        <if test="umouth!=null and umouth!=''">AND umouth=#{umouth}</if>
+
+        <if test="uyear!=null and uyear!=''">AND uyear=#{uyear}</if>
+
+        <if test="DHorder!=null and DHorder!=''">AND OrderLine like '%'+#{DHorder}+'%'</if>
+
+        <if test="Des!=null and Des!=''">AND PartDrawing like '%'+#{Des}+'%'</if>
+
+        <if test="fname!=null and fname!=''">AND fname like '%'+#{fname}+'%'</if>
+    </select>
+    <select id="getPlant" parameterType="com.dhchain.business.assembleplan.vo.Plant" resultType="com.dhchain.business.assembleplan.vo.Plant">
+     select fname,fno,Fremark
+      from t_base
+      where fparentid=76
+    </select>
+    <!-- 修改t_PlanProduct -->
+    <update id="updataPlanProduct" parameterType="com.dhchain.business.assembleplan.vo.PlanProduct">
+        UPDATE t_PlanProduct
+        SET	 <if test="dhorderno!=null and dhorderno!=''">Dhorderno = #{dhorderno}</if>
+        <if test="SAPSDOrder!=null and SAPSDOrder!=''">,SAPSDOrder = #{SAPSDOrder}</if>
+        <if test="CompleteOrder!=null and CompleteOrder!=''">,CompleteOrder = #{CompleteOrder}</if>
+        <if test="TakeOrder!=null and TakeOrder!=''">,TakeOrder = #{TakeOrder}</if>
+        <if test="OrderTime!=null and OrderTime!=''">,OrderTime = #{OrderTime}</if>
+        <if test="CLNumber!=null and CLNumber!=''">,CLNumber = #{CLNumber}</if>
+        <if test="ConnectPlan!=null and ConnectPlan!=''">,ConnectPlan = #{ConnectPlan}</if>
+        <if test="SumDayNum!=null and SumDayNum!=''">,SumDayNum = #{SumDayNum}</if>
+        <if test="beginConnect!=null and beginConnect!=''">,BeginConnect = #{beginConnect}</if>
+        <if test="number!=null and number!=''"> ,number = #{number}</if>
+        <if test="IsCheck!=null and IsCheck!=''">,IsCheck = #{IsCheck}</if>
+        <if test="GCXH!=null and GCXH!=''">,GCXH = #{GCXH}</if>
+        <if test="SumDayInput!=null and SumDayInput!=''">,SumDayInput = #{SumDayInput}</if>
+        <if test="OrderLine!=null and OrderLine!=''">,OrderLine=#{OrderLine}</if>
+        <if test="fno!=null and fno!=''">,Fno=#{fno}</if>
+        <if test="umouth!=null and umouth!=''">,umouth=#{umouth}</if>
+        <if test="Dutyman!=null and Dutyman!=''">,Dutyman=#{Dutyman}</if>
+        <if test="Descrip!=null and Descrip!=''">,Descrip=#{Descrip}</if>
+        <if test="fname!=null and fname!=''">,fname=#{fname}</if>
+        <if test="MillionF3!=null and MillionF3!=''">,MillionF3=#{MillionF3}</if>
+        <if test="SendMouth!=null and SendMouth!=''">,SendMouth=#{SendMouth}</if>
+        <if test="uyear!=null and uyear!=''">,uyear=#{uyear}</if>
+        WHERE
+        id = #{id}
+    </update>
+    <update id="aprefrashmix" parameterType="com.dhchain.business.assembleplan.vo.PlanProduct">
+        update t_PlanProduct set ismix='需配' where plant=#{plant} and umouth=#{umouth} and uyear=#{uyear} and fno in(select fno from t_materialCoding where F9 like '%配%')
+    </update>
+    <insert id="insertInfoBatch" parameterType="java.util.List">
+        insert into t_PlanProduct (inputman,inputdate,SAPSDOrder,ismix,dhorderno,TakeOrder,fname,OrderTime,PartDrawing,F3,Color,Descrip,ConnectPlan,SumDayNum,number,SumDayInput,ischeck,IsCl,MillionF3,nwx,WorkPart,SendMouth,MillionWight,fno,OrderLine,Dutyman,MachineKind,period,uyear,umouth,plant)
+        values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.inputman},
+            #{item.inputdate},
+            #{item.SAPSDOrder},
+            #{item.ismix},
+            #{item.dhorderno},
+            #{item.TakeOrder},
+            #{item.fname},
+            #{item.OrderTime},
+            #{item.PartDrawing},
+            #{item.F3},
+            #{item.Color},
+            #{item.Descrip},
+            #{item.ConnectPlan},
+            #{item.SumDayNum},
+            #{item.number},
+            #{item.SumDayInput},
+            #{item.IsCheck},
+            #{item.IsCl},
+            #{item.MillionF3},
+            #{item.nwx},
+            #{item.WorkPart},
+            #{item.SendMouth},
+            #{item.MillionWight},
+            #{item.fno},
+            #{item.OrderLine},
+            #{item.Dutyman},
+            #{item.MachineKind},
+            #{item.period},
+            #{item.uyear},
+            #{item.umouth},
+            #{item.plant})
+        </foreach>
+    </insert>
+    <select id="check" parameterType="com.dhchain.business.assembleplan.vo.check" resultType="com.dhchain.business.assembleplan.vo.check">
+        select id,
+        fname,
+        F9
+        FROM t_materialcoding
+        WHERE 1=1
+        <if test="Fno!=null and Fno!=''">AND fno = #{Fno}</if>
+        and locked=0
+    </select>
+    <select id="EPcheck" parameterType="com.dhchain.business.assembleplan.vo.check" resultType="com.dhchain.business.assembleplan.vo.check">
+        select
+        erpsysno
+        from ZSD001
+        WHERE 1=1
+        <if test="dhorderno!=null and dhorderno!=''">AND dhorderno = #{dhorderno}</if>
+        and is_deletesys=0
+    </select>
+    <select id="plancheck" parameterType="com.dhchain.business.assembleplan.vo.check" resultType="com.dhchain.business.assembleplan.vo.check">
+        select   id
+        ,dhorderno
+        ,TakeOrder
+        FROM t_PlanProduct
+        WHERE
+        <if test="OrderLine!=null and OrderLine!=''">OrderLine = #{OrderLine}</if>
+        <if test="plant!=null and plant!=''">plant = #{plant}</if>
+    </select>
+    <select id="planstate" parameterType="com.dhchain.business.assembleplan.vo.check" resultType="com.dhchain.business.assembleplan.vo.check">
+        select id  FROM t_planproduct WHERE plant = #{plant}
+        <if test="umouth!=null and umouth!=''">AND umouth=#{umouth}</if>
+        <if test="uyear!=null and uyear!=''">AND uyear=#{uyear}</if>
+        AND submitstate=#{submitstate}
+    </select>
+    <delete id="Deletemp" parameterType="com.dhchain.business.assembleplan.vo.PlanProduct">
+        DELETE  FROM t_PlanProduct
+        WHERE 1=1
+        <if test="OrderLine!=null and OrderLine!=''">AND OrderLine=#{OrderLine}</if>
+        <if test="umouth!=null and umouth!=''">AND umouth=#{umouth}</if>
+        <if test="uyear!=null and uyear!=''">AND uyear=#{uyear}</if>
+        <if test="plant!=null and plant!=''">AND plant=#{plant}</if>
+    </delete>
+</mapper>

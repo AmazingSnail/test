@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.HeatTreatment.dao.PMissionIssuedMapper" >
+    <select id="getPlanid" parameterType="com.dhchain.business.HeatTreatment.vo.MPtheattake" resultType="com.dhchain.business.HeatTreatment.vo.MPtheattake">
+         SELECT
+        *
+        FROM
+        m_PTHeatTake where Uyear = #{uyear} and Umouth  = #{umouth} and DepartMent = #{department} order by PlanID DESC
+    </select>
+    <select id="getPrint" resultType="com.dhchain.business.HeatTreatment.vo.MPtheatprint" parameterType="com.dhchain.business.HeatTreatment.vo.MPtheatprint">
+        select * from m_PTHeatPrint where PlanID= #{planid} and Plant = #{plant}
+    </select>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.TradeWMS.dao.TPackageoutMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.TradeWMS.vo.TPackageout" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="serialno" property="serialno" jdbcType="INTEGER" />
+    <result column="OrderLine" property="orderline" jdbcType="VARCHAR" />
+    <result column="fno" property="fno" jdbcType="VARCHAR" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+    <result column="OutNumber" property="outnumber" jdbcType="DOUBLE" />
+    <result column="f3" property="f3" jdbcType="VARCHAR" />
+    <result column="plant" property="plant" jdbcType="VARCHAR" />
+    <result column="OutAdd" property="outadd" jdbcType="VARCHAR" />
+    <result column="OutPutMan" property="outputman" jdbcType="VARCHAR" />
+    <result column="OutPutDate" property="outputdate" jdbcType="TIMESTAMP" />
+    <result column="isMove" property="ismove" jdbcType="BIT" />
+    <result column="moveman" property="moveman" jdbcType="VARCHAR" />
+    <result column="movedate" property="movedate" jdbcType="TIMESTAMP" />
+    <result column="uyear" property="uyear" jdbcType="INTEGER" />
+    <result column="umonth" property="umonth" jdbcType="INTEGER" />
+    <result column="isok" property="isok" jdbcType="BIT" />
+    <result column="Temple" property="temple" jdbcType="VARCHAR" />
+    <result column="leadname" property="leadname" jdbcType="VARCHAR" />
+    <result column="serialno_hide" property="serialnoHide" jdbcType="INTEGER" />
+    <result column="MoveOk" property="moveok" jdbcType="BIT" />
+    <result column="MoveBack" property="moveback" jdbcType="BIT" />
+    <result column="MoveBackman" property="movebackman" jdbcType="VARCHAR" />
+    <result column="MoveBackDate" property="movebackdate" jdbcType="TIMESTAMP" />
+    <result column="f5" property="f5" jdbcType="VARCHAR" />
+    <result column="workcentre2" property="workcentre2" jdbcType="VARCHAR" />
+    <result column="SAPSDOrder" property="sapsdorder" jdbcType="VARCHAR" />
+    <result column="nwx" property="nwx" jdbcType="VARCHAR" />
+    <result column="nwxFname" property="nwxfname" jdbcType="VARCHAR" />
+    <result column="Beginid" property="beginid" jdbcType="INTEGER" />
+    <result column="BoxNum" property="boxnum" jdbcType="VARCHAR" />
+    <result column="department" property="department" jdbcType="VARCHAR" />
+    <result column="GCXH" property="gcxh" jdbcType="BIT" />
+    <result column="BoxAmount" property="boxamount" jdbcType="DOUBLE" />
+    <result column="BoxKind" property="boxkind" jdbcType="VARCHAR" />
+    <result column="BoxNumPC" property="boxnumpc" jdbcType="DOUBLE" />
+    <result column="BoxLeave" property="boxleave" jdbcType="DOUBLE" />
+    <result column="IsTake" property="istake" jdbcType="BIT" />
+    <result column="TakeNumber" property="takenumber" jdbcType="DOUBLE" />
+    <result column="TakeDiffer" property="takediffer" jdbcType="DOUBLE" />
+    <result column="TakeReturn" property="takereturn" jdbcType="BIT" />
+    <result column="TakeMan" property="takeman" jdbcType="VARCHAR" />
+    <result column="TakeDate" property="takedate" jdbcType="TIMESTAMP" />
+    <result column="f9" property="f9" jdbcType="VARCHAR" />
+    <result column="ReturnMan" property="returnman" jdbcType="VARCHAR" />
+    <result column="ReturnDate" property="returndate" jdbcType="TIMESTAMP" />
+    <result column="PCValue" property="pcvalue" jdbcType="DOUBLE" />
+    <result column="PCAllValue" property="pcallvalue" jdbcType="DOUBLE" />
+    <result column="IsPrint" property="isprint" jdbcType="BIT" />
+    <result column="PoNo" property="pono" jdbcType="VARCHAR" />
+    <result column="PoItem" property="poitem" jdbcType="VARCHAR" />
+    <result column="PoNumber" property="ponumber" jdbcType="DOUBLE" />
+  </resultMap>
+
+</mapper>

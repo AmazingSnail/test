@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.HeatTreatment.dao.ProductionProcessMapper" >
+ <select id="getData" resultType="com.dhchain.business.HeatTreatment.vo.ProductionProcess" parameterType="com.dhchain.business.HeatTreatment.vo.ProductionProcess">
+    SELECT * FROM  View_ProductionProcess where plant = #{plant}
+     <if test="partdrawing != null and partdrawing!=''" >
+         and  PartDrawing like '%'+#{partdrawing}+'%'
+     </if>
+     <if test="partname != null and partname!=''" >
+         and  partname LIKE '%'+ #{partname}+'%'
+     </if>
+     <if test="material != null and material!=''">
+         and material = #{material}
+     </if>
+     <if test="templetnum != null and templetnum!=''">
+         and templetnum = #{templetnum}
+     </if>
+ </select>
+    <select id="getTempletname" parameterType="com.dhchain.business.HeatTreatment.vo.MCraftmould" resultType="com.dhchain.business.HeatTreatment.vo.MCraftmould">
+     select distinct TempletName from m_CraftMould where plant = #{plant}
+    </select>
+    <select id="getTempletnum" parameterType="com.dhchain.business.HeatTreatment.vo.MCraftmould" resultType="com.dhchain.business.HeatTreatment.vo.MCraftmould">
+     select *  from m_CraftMould where plant = #{plant} and templetname = #{templetname}
+    </select>
+    <select id="getMaxMBid" parameterType="com.dhchain.business.HeatTreatment.vo.MCraftmould" resultType="com.dhchain.business.HeatTreatment.vo.MCraftmould">
+        select TempletNum from m_CraftMould where TempletNum LIKE '%'+#{plant}+'%' ORDER  by TempletNum desc
+    </select>
+</mapper>

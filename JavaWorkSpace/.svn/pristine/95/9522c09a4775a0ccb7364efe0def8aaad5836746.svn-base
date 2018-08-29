@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.colddigitalworkshop.dao.ColdStoreMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.colddigitalworkshop.vo.ColdStore" >
+    <id column="fno" property="fno" jdbcType="VARCHAR" />
+    <id column="plant" property="plant" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+    <result column="BeginStore" property="beginstore" jdbcType="DOUBLE" />
+    <result column="InputStore" property="inputstore" jdbcType="DOUBLE" />
+    <result column="OutputStore" property="outputstore" jdbcType="DOUBLE" />
+    <result column="SapStore" property="sapstore" jdbcType="DOUBLE" />
+    <result column="inputman" property="inputman" jdbcType="VARCHAR" />
+    <result column="inputdate" property="inputdate" jdbcType="TIMESTAMP" />
+    <result column="BeginMan" property="beginman" jdbcType="VARCHAR" />
+    <result column="begindate" property="begindate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    fno, plant, id, fname, BeginStore, InputStore, OutputStore, SapStore, inputman, inputdate, 
+    BeginMan, begindate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdStoreKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ColdStore
+    where fno = #{fno,jdbcType=VARCHAR}
+      and plant = #{plant,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdStoreKey" >
+    delete from t_ColdStore
+    where fno = #{fno,jdbcType=VARCHAR}
+      and plant = #{plant,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdStore" >
+    insert into t_ColdStore (fno, plant, id, 
+      fname, BeginStore, InputStore, 
+      OutputStore, SapStore, inputman, 
+      inputdate, BeginMan, begindate
+      )
+    values (#{fno,jdbcType=VARCHAR}, #{plant,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, 
+      #{fname,jdbcType=VARCHAR}, #{beginstore,jdbcType=DOUBLE}, #{inputstore,jdbcType=DOUBLE}, 
+      #{outputstore,jdbcType=DOUBLE}, #{sapstore,jdbcType=DOUBLE}, #{inputman,jdbcType=VARCHAR}, 
+      #{inputdate,jdbcType=TIMESTAMP}, #{beginman,jdbcType=VARCHAR}, #{begindate,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdStore" >
+    insert into t_ColdStore
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="fno != null" >
+        fno,
+      </if>
+      <if test="plant != null" >
+        plant,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fname != null" >
+        fname,
+      </if>
+      <if test="beginstore != null" >
+        BeginStore,
+      </if>
+      <if test="inputstore != null" >
+        InputStore,
+      </if>
+      <if test="outputstore != null" >
+        OutputStore,
+      </if>
+      <if test="sapstore != null" >
+        SapStore,
+      </if>
+      <if test="inputman != null" >
+        inputman,
+      </if>
+      <if test="inputdate != null" >
+        inputdate,
+      </if>
+      <if test="beginman != null" >
+        BeginMan,
+      </if>
+      <if test="begindate != null" >
+        begindate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="fno != null" >
+        #{fno,jdbcType=VARCHAR},
+      </if>
+      <if test="plant != null" >
+        #{plant,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="beginstore != null" >
+        #{beginstore,jdbcType=DOUBLE},
+      </if>
+      <if test="inputstore != null" >
+        #{inputstore,jdbcType=DOUBLE},
+      </if>
+      <if test="outputstore != null" >
+        #{outputstore,jdbcType=DOUBLE},
+      </if>
+      <if test="sapstore != null" >
+        #{sapstore,jdbcType=DOUBLE},
+      </if>
+      <if test="inputman != null" >
+        #{inputman,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdate != null" >
+        #{inputdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginman != null" >
+        #{beginman,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null" >
+        #{begindate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdStore" >
+    update t_ColdStore
+    <set >
+      <if test="id != null" >
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fname != null" >
+        fname = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="beginstore != null" >
+        BeginStore = #{beginstore,jdbcType=DOUBLE},
+      </if>
+      <if test="inputstore != null" >
+        InputStore = #{inputstore,jdbcType=DOUBLE},
+      </if>
+      <if test="outputstore != null" >
+        OutputStore = #{outputstore,jdbcType=DOUBLE},
+      </if>
+      <if test="sapstore != null" >
+        SapStore = #{sapstore,jdbcType=DOUBLE},
+      </if>
+      <if test="inputman != null" >
+        inputman = #{inputman,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdate != null" >
+        inputdate = #{inputdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="beginman != null" >
+        BeginMan = #{beginman,jdbcType=VARCHAR},
+      </if>
+      <if test="begindate != null" >
+        begindate = #{begindate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where fno = #{fno,jdbcType=VARCHAR}
+      and plant = #{plant,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdStore" >
+    update t_ColdStore
+    set id = #{id,jdbcType=INTEGER},
+      fname = #{fname,jdbcType=VARCHAR},
+      BeginStore = #{beginstore,jdbcType=DOUBLE},
+      InputStore = #{inputstore,jdbcType=DOUBLE},
+      OutputStore = #{outputstore,jdbcType=DOUBLE},
+      SapStore = #{sapstore,jdbcType=DOUBLE},
+      inputman = #{inputman,jdbcType=VARCHAR},
+      inputdate = #{inputdate,jdbcType=TIMESTAMP},
+      BeginMan = #{beginman,jdbcType=VARCHAR},
+      begindate = #{begindate,jdbcType=TIMESTAMP}
+    where fno = #{fno,jdbcType=VARCHAR}
+      and plant = #{plant,jdbcType=VARCHAR}
+  </update>
+
+  <select id="selectColdStoreList" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdStore" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdStore">
+    SELECT * FROM
+    t_ColdStore
+    WHERE
+    1=1
+    <if test="fno != null and fno !=''" >
+      and fno like '%'+#{fno,jdbcType=VARCHAR}+'%'
+    </if>
+    <if test="fname != null and fname!=''" >
+      and fname like '%'+#{fname,jdbcType=VARCHAR}+'%'
+    </if>
+    <if test="plant != null and plant!=''" >
+      and plant = #{plant,jdbcType=VARCHAR}
+    </if>
+    <if test="sapstore != null and sapstore !=0" >
+      and sapstore &gt; 0
+    </if>
+    <if test="sapstore != null and sapstore=0" >
+      and sapstore = 0
+    </if>
+    <if test="state != null and state == 2" >
+      and fno in (select  DISTINCT  fno from t_ColdMaterialIn where isnull(location,'')='999')
+    </if>
+    <if test="state != null and state == 1" >
+    and fno not in (select DISTINCT  fno from t_ColdMaterialIn where isnull(location,'')='999')
+    </if>
+  </select>
+
+
+  <select id="selectColdStoreLocation" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdLocationStore" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdLocationStore">
+    SELECT * FROM
+    v_ColdLocationStore
+    WHERE
+    1=1
+    <if test="fno != null and fno !=''" >
+      and fno = #{fno}
+    </if>
+    <if test="plant != null and plant!=''" >
+      and plant = #{plant}
+    </if>
+    <if test="leavenumber != null and leavenumber !=0" >
+      and leaveNumber &gt; 0
+    </if>
+  </select>
+
+  <select id="selectColdStoreLocationExport" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdStore" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdLocationStore">
+    SELECT * FROM
+    v_ColdLocationStore
+    WHERE
+    1=1
+
+      and fno in (
+    SELECT fno FROM
+    t_ColdStore
+    WHERE
+    1=1
+      and sapstore &gt; 0
+    <if test="state != null and state == 2" >
+      and fno in (select  DISTINCT  fno from t_ColdMaterialIn where isnull(location,'')='999')
+    </if>
+    <if test="state != null and state == 1" >
+      and fno not in (select DISTINCT  fno from t_ColdMaterialIn where isnull(location,'')='999')
+    </if>
+    )
+      and leaveNumber &gt; 0
+  </select>
+
+  <update id="updateColdStoreIn" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+    UPDATE  t_ColdStore SET
+    InputStore = InputStore + #{number},SapStore = SapStore+#{number}
+    where fno = #{fno} and plant = #{plant}
+  </update>
+
+  <update id="updateColdStoreOut" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdOut">
+    UPDATE  t_ColdStore SET
+    OutPutStore = OutPutStore + #{outnumber},
+    SapStore = SapStore - #{outnumber}
+    where fno = #{fno} and plant = #{plant}
+  </update>
+
+  <select id="selectColdStore" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdStoreKey" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdStore">
+    SELECT * FROM
+    t_ColdStore
+    WHERE fno = #{fno} and plant = #{plant}
+  </select>
+
+  <update id="updateColdStoreBack" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+    UPDATE  t_ColdStore SET
+    InputStore = InputStore - #{number},SapStore = SapStore-#{number}
+    where fno = #{fno} and plant = #{plant}
+  </update>
+  <update id="updateColdStoreOutBack" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdOut">
+    UPDATE  t_ColdStore SET
+    OutPutStore = OutPutStore - #{outnumber},SapStore = SapStore+#{outnumber}
+    where fno = #{fno} and plant = #{plant}
+  </update>
+</mapper>

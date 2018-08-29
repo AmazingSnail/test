@@ -1,0 +1,98 @@
+<script type="text/javascript">
+    var user = localStorage.getItem("User");
+    $('#inputman').val(user);
+    $(function() {
+        $('#fid').combotree({
+            url : '/base/allTree',
+            parentField : 'pid',
+            lines : true,
+            panelHeight : 'auto'
+        });
+        $('#fid').combotree('setValue',0);
+        $('#baseAddForm').form({
+            url : '/base/add',
+            onSubmit : function() {
+                progressLoad();
+                var isValid = $(this).form('validate');
+                if (!isValid) {
+                    progressClose();
+                }
+                return isValid;
+            },
+            success : function(result) {
+                alert(111);
+                progressClose();
+                result = $.parseJSON(result);
+                console.log(result);
+                if (result.success) {
+                    alert(2222);
+                    console.log(parent.$.modalDialog.openner_treeGrid);
+//                    parent.$.modalDialog.openner_treeGrid.treegrid('reload');//之所以能在这里调用到parent.$.modalDialog.openner_treeGrid这个对象，是因为resource.jsp页面预定义好了
+                    parent.$.modalDialog.handler.dialog('close');
+                    parent.Query()
+                } else {
+                    var form = $('#baseAddForm');
+                    parent.$.messager.alert('提示', eval(result.msg), 'warning');
+                }
+            }
+        });
+
+
+
+    });
+    function databaseAddCancel() {
+        parent.$.modalDialog.handler.dialog('close');
+    }
+</script>
+<div style="padding: 3px;">
+    <form id="baseAddForm" method="post">
+        <table class="grid">
+            <tr>
+                <td>属性编码</td>
+                <td><input name="baseno"  id = "baseno" type="text" placeholder="请输入属性编码" class="easyui-validatebox span2" data-options="required:true" ></td>
+                <td>属性名称</td>
+                <td><input name="basename"  id = "basename" type="text" placeholder="请输入属性名称" class="easyui-validatebox span2" data-options="required:true" ></td>
+            </tr>
+            <tr>
+                <td>参与编码</td>
+                <td>
+                    <select name="iscode"  id = "iscode" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                        <option value="0">是</option>
+                        <option value="1">否</option>
+                    </select>
+                </td>
+                <td>备注</td>
+                <td><input name="remark"  id = "remark" type="text" placeholder="请输入属性名称" class="easyui-validatebox span2" ></td>
+            </tr>
+
+            <tr>
+                <td>层级关系</td>
+                <td>
+                    <select name="isrelate"  id = "isrelate" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                        <option value="0">是</option>
+                        <option value="1">否</option>
+                    </select>
+                </td>
+                <td>冻结</td>
+                <td>
+                    <select name="islocked"  id = "islocked" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>上级资源</td>
+                <td colspan="3">
+                    <select id="fid" name="fid" style="width: 200px; height: 29px;"></select>
+                    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="$('#fid').combotree('clear');" >清空</a>
+                </td>
+
+            </tr>
+
+            <tr align="center" hidden="hidden">
+                <td align="center"><input name="inputman" class="easyui-textbox" data-options="required:false" type="text" id="inputman" ></input></td>
+            </tr>
+        </table>
+    </form>
+</div>

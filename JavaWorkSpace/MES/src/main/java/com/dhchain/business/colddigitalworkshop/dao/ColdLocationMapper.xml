@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.colddigitalworkshop.dao.ColdLocationMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.colddigitalworkshop.vo.ColdLocation" >
+    <id column="location" property="location" jdbcType="VARCHAR" />
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="fno" property="fno" jdbcType="VARCHAR" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    location, id, fno, fname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ColdLocation
+    where location = #{location,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_ColdLocation
+    where location = #{location,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdLocation" >
+    insert into t_ColdLocation (location, id, fno, 
+      fname)
+    values (#{location,jdbcType=VARCHAR}, #{id,jdbcType=INTEGER}, #{fno,jdbcType=VARCHAR}, 
+      #{fname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdLocation" >
+    insert into t_ColdLocation
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="location != null" >
+        location,
+      </if>
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fno != null" >
+        fno,
+      </if>
+      <if test="fname != null" >
+        fname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="location != null" >
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fno != null" >
+        #{fno,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdLocation" >
+    update t_ColdLocation
+    <set >
+      <if test="id != null" >
+        id = #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fno != null" >
+        fno = #{fno,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        fname = #{fname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where location = #{location,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdLocation" >
+    update t_ColdLocation
+    set id = #{id,jdbcType=INTEGER},
+      fno = #{fno,jdbcType=VARCHAR},
+      fname = #{fname,jdbcType=VARCHAR}
+    where location = #{location,jdbcType=VARCHAR}
+  </update>
+</mapper>

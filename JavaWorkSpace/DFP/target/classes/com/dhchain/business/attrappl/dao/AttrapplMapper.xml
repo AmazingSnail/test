@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.attrappl.dao.AttrapplMapper">
+    <select id="selectByApplyno" parameterType="java.lang.String" resultType="com.dhchain.business.attrappl.vo.AttrAppl">
+        SELECT
+
+        *
+
+        FROM
+        t_attr_appl
+        where  applyno=#{applyno}
+
+    </select>
+    <insert id="insert" parameterType="com.dhchain.business.attrappl.vo.AttrAppl" useGeneratedKeys="true" keyProperty="id">
+        insert into t_attr_appl(applyno, applytype,applyreasons,applystate,inputdate,inputman,attrid) values(#{applyno}, #{applytype},#{applyreasons},#{applystate},#{inputdate},#{inputman},#{attrid})
+    </insert>
+    <update id="update" parameterType="com.dhchain.business.attrappl.vo.AttrAppl" >
+        UPDATE t_attr_appl
+        SET
+        applyno = #{applyno},
+        applytype = #{applytype},
+        applyreasons = #{applyreasons},
+        applystate = #{applystate},
+        inputdate = #{inputdate},
+        inputman = #{inputman},
+        attrid = #{attrid},
+        processInstanceId = #{processInstanceId}
+
+        WHERE id = #{id};
+    </update>
+
+    <select id="selectTodayMaxApplyno"  resultType="java.lang.String">
+        SELECT MAX(applyno) FROM t_attr_appl WHERE applyno LIKE #{a}+'%'
+
+    </select>
+
+    <select id="getAttrApplByTaskId" parameterType="String" resultType="com.dhchain.business.attrappl.vo.AttrAppl">
+        select * from  t_attr_appl
+        where processInstanceId=#{processInstanceId}
+    </select>
+
+    <select id="select" parameterType="com.dhchain.business.attrappl.vo.AttrAppl" resultType="com.dhchain.business.attrappl.vo.AttrAppl">
+        SELECT
+
+        *
+
+        FROM
+        t_attr_appl
+        where 1=1
+        <if test="applyno!=null and applyno!=''">and applyno  LIKE '%'+#{applyno}+'%' </if>
+        <if test="applystate!=null and applystate!=''">and applystate  LIKE '%'+#{applystate}+'%'</if>
+        <if test="inputman!=null and inputman!=''">and inputman LIKE '%'+#{inputman}+'%'</if>
+        <if test="inputdate!=null and inputdate!=''">and DateDiff(dd,inputdate,#{inputdate})=0</if>
+
+    </select>
+
+</mapper>

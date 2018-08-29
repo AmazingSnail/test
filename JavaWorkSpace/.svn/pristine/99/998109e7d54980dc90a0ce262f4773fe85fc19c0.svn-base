@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.partpunchingworkshop.dao.MouldManageMapper" >
+    <select id="selectByDepartment" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldStore" resultType="com.dhchain.business.partpunchingworkshop.vo.MoldStore">
+         select  distinct DepartMent from  m_MoldStore
+    </select>
+    <select id="getDepartment" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseUser" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseUser">
+        select DepartMent from m_BaseUser where Plant = #{Plant} and UserName = #{UserName}
+    </select>
+    <select id="selectByNwx" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        SELECT distinct StatusName ,* FROM m_BaseStatus where DepartMent='模具'
+    </select>
+    <select id="selectAll" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldStore" resultType="com.dhchain.business.partpunchingworkshop.vo.MoldStore">
+        SELECT * FROM View_MoldStoreStatus WHERE
+        1=1
+        <if test="MouldName != null and MouldName!=''" >
+            and  MouldName like '%'+#{MouldName}+'%'
+        </if>
+        <if test="Location != null and Location!=''" >
+            and  Location LIKE '%'+ #{Location}+'%'
+        </if>
+        <if test="plant != null and plant!=''">
+            and plant = #{plant}
+        </if>
+        <if test="DepartMent != null and DepartMent!=''">
+            and DepartMent = #{DepartMent}
+        </if>
+        <if test="MouldID != null and MouldID!=''" >
+            and  MouldID LIKE '%'+ #{MouldID}+'%'
+
+        </if>
+        <if test="Tonnage != null and Tonnage!=''" >
+            and  Tonnage LIKE '%'+ #{Tonnage}+'%'
+
+        </if>
+        <if test="MouldName != null and MouldName!=''" >
+            and  MouldName LIKE '%'+ #{MouldName}+'%'
+
+        </if>
+        <if test="StatusName != null and StatusName!=''" >
+            and  StatusName= #{StatusName}
+        </if>
+        order by MouldID desc
+    </select>
+    <select id="querypartDrawing" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldStore" resultType="com.dhchain.business.partpunchingworkshop.vo.MoldStore">
+    select * from t_materialCoding where fno = #{fno}
+</select>
+    <select id="queryfno" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity">
+        select * from t_materialCoding where fno = #{fno}
+    </select>
+    <select id="queryMouldID1" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldStore" resultType="com.dhchain.business.partpunchingworkshop.vo.MoldStore">
+        select * from m_MoldStore where MouldID = #{MouldID}
+    </select>
+    <select id="selectbymouldid" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldStore" resultType="com.dhchain.business.partpunchingworkshop.vo.MoldStore">
+        select * from m_MoldStore where  MouldID LIKE '%'+ #{MouldID}+'%' order by MouldID desc
+    </select>
+    <insert id="insertMoldStore" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldStore" >
+        insert into m_MoldStore
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="MouldID != null" >
+                MouldID,
+            </if>
+            <if test="MouldName != null" >
+                MouldName,
+            </if>
+            <if test="partDrawing != null" >
+                partDrawing,
+            </if>
+            <if test="Tonnage != null" >
+                Tonnage,
+            </if>
+            <if test="Location != null" >
+                Location,
+            </if>
+            <if test="Nunber != null" >
+                Nunber,
+            </if>
+            <if test="Status != null" >
+                Status,
+            </if>
+            <if test="InputMan != null" >
+                InputMan,
+            </if>
+            <if test="InputDate != null" >
+                InputDate,
+            </if>
+            <if test="Remark != null" >
+                Remark,
+            </if>
+            <if test="DepartMent != null" >
+                DepartMent,
+            </if>
+            <if test="Plant != null" >
+                Plant,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="MouldID != null" >
+                #{MouldID,jdbcType=VARCHAR},
+            </if>
+            <if test="MouldName != null" >
+                #{MouldName,jdbcType=VARCHAR},
+            </if>
+            <if test="partDrawing != null" >
+                #{partDrawing,jdbcType=VARCHAR},
+            </if>
+            <if test="Tonnage != null" >
+                #{Tonnage,jdbcType=VARCHAR},
+            </if>
+            <if test="Location != null" >
+                #{Location,jdbcType=VARCHAR},
+            </if>
+            <if test="Nunber != null" >
+                #{Nunber,jdbcType=VARCHAR},
+            </if>
+            <if test="Status != null" >
+                #{Status,jdbcType=TIMESTAMP},
+            </if>
+            <if test="InputMan != null" >
+                #{InputMan,jdbcType=VARCHAR},
+            </if>
+            <if test="InputDate != null" >
+                #{InputDate,jdbcType=VARCHAR},
+            </if>
+            <if test="Remark != null" >
+                #{Remark,jdbcType=VARCHAR},
+            </if>
+            <if test="DepartMent != null" >
+                #{DepartMent,jdbcType=VARCHAR},
+            </if>
+            <if test="Plant != null" >
+                #{Plant,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertMoldInput" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldInput" >
+        insert into m_MoldInput
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="MouldID != null" >
+                MouldID,
+            </if>
+            <if test="InputDate != null" >
+                InputDate,
+            </if>
+            <if test="InputMan != null" >
+                InputMan,
+            </if>
+            <if test="InputTypes != null" >
+                InputTypes,
+            </if>
+            <if test="Remark != null" >
+                Remark,
+            </if>
+            <if test="Location != null" >
+                Location,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="MouldID != null" >
+                #{MouldID,jdbcType=VARCHAR},
+            </if>
+            <if test="InputDate != null" >
+                #{InputDate,jdbcType=VARCHAR},
+            </if>
+            <if test="InputMan != null" >
+                #{InputMan,jdbcType=VARCHAR},
+            </if>
+            <if test="InputTypes != null" >
+                #{InputTypes,jdbcType=VARCHAR},
+            </if>
+            <if test="Remark != null" >
+                #{Remark,jdbcType=VARCHAR},
+            </if>
+            <if test="Location != null" >
+                #{Location,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="outMoldOutput" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldOutput" >
+        insert into m_MoldOutput
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="MouldID != null" >
+                MouldID,
+            </if>
+            <if test="LDepartment != null" >
+                LDepartment,
+            </if>
+            <if test="OutputMan != null" >
+                OutputMan,
+            </if>
+            <if test="OutputTime != null" >
+                OutputTime,
+            </if>
+            <if test="Remark != null" >
+                Remark,
+            </if>
+            <if test="OutputTypes != null" >
+                OutputTypes,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="MouldID != null" >
+                #{MouldID,jdbcType=VARCHAR},
+            </if>
+            <if test="LDepartment != null" >
+                #{LDepartment,jdbcType=VARCHAR},
+            </if>
+            <if test="OutputMan != null" >
+                #{OutputMan,jdbcType=VARCHAR},
+            </if>
+            <if test="OutputTime != null" >
+                #{OutputTime,jdbcType=VARCHAR},
+            </if>
+            <if test="Remark != null" >
+                #{Remark,jdbcType=VARCHAR},
+            </if>
+            <if test="OutputTypes != null" >
+                #{OutputTypes,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateStatus" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldStore" >
+        UPDATE m_MoldStore
+        set Status = #{Status},
+        InputMan = #{InputMan},
+        InputDate =#{InputDate}
+        WHERE
+        1=1
+        and MouldID = #{MouldID}
+    </update>
+    <update id="out" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldStore" >
+        UPDATE m_MoldStore
+        set Status = #{Status},
+        OutputMan = #{OutputMan},
+        OutputTime =#{OutputTime},
+        Remark =#{Remark}
+        WHERE
+        1=1
+        and MouldID = #{MouldID}
+    </update>
+    <update id="delete" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldStore" >
+        UPDATE m_MoldStore
+        set Status = #{Status},
+        Remark=#{Remark}
+        WHERE
+        1=1
+        and MouldID = #{MouldID}
+    </update>
+    <select id="selecttime" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldReplace" resultType="com.dhchain.business.partpunchingworkshop.vo.MoldReplace">
+        select  * from   m_MoldReplace  where MoldID=#{MoldID} order by id DESC
+    </select>
+    <update id="updateMould" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldStore">
+         UPDATE m_MoldStore
+        set InputDate = #{InputDate},
+        InputMan = #{InputMan},
+        MouldID =#{MouldID},
+        MouldName =#{MouldName},
+        DepartMent =#{DepartMent},
+        Location =#{Location},
+        Tonnage =#{Tonnage},
+        Nunber =#{Nunber},
+        PartDrawing =#{PartDrawing},
+        Remark =#{Remark}
+        WHERE
+        1=1
+        and ID = #{ID}
+    </update>
+</mapper>

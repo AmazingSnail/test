@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/tx
+		http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+
+	<bean id="logFilter" class="com.alibaba.druid.filter.logging.Slf4jLogFilter">
+		<property name="statementExecutableSqlLogEnable" value="false" />
+	</bean>
+
+	<!--配置druid读库数据源 -->
+	<bean id="SQL_MDM" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url" value="jdbc:sqlserver://172.16.0.49:1433;Database=MES" />
+		<property name="username" value="sa" />
+		<property name="password" value="dhep!123" />
+	</bean>
+	<!--配置druid写库数据源 -->
+	<bean id="SQL_EPPRD" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url" value="jdbc:sqlserver://172.16.0.43:1433;Database=NG_MDM" />
+		<property name="username" value="sa" />
+		<property name="password" value="iso14002" />
+	</bean>
+	<!--配置EP读库数据源 -->
+	<bean id="SQL_DHBI" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+		<property name="driverClassName" value="com.microsoft.sqlserver.jdbc.SQLServerDriver" />
+		<property name="url" value="jdbc:sqlserver://172.16.0.49:1433;Database=MES" />
+		<property name="username" value="sa" />
+		<property name="password" value="dhep!123" />
+	</bean>
+
+
+	<bean id="dataSource" class="com.dhchain.config.datasource.MultiDataSource">
+	    <property name="lenientFallback">
+			<value>false</value>
+		</property>
+		<property name="targetDataSources">
+			<map key-type="java.lang.String">
+				<entry key="SQL_MDM" value-ref="SQL_MDM"/>
+				<entry key="SQL_EPPRD" value-ref="SQL_EPPRD"/>
+				<entry key="SQL_DHBI" value-ref="SQL_DHBI"/>
+			</map>
+		</property>
+		<property name="defaultTargetDataSource" ref="SQL_MDM"></property>
+	</bean>
+
+	<!-- 配置通用DAO -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+      	<property name="configLocation" value="classpath:mybatisConfig.xml"/>
+      	<property name="mapperLocations" value="classpath:com/dhchain/**/*Mapper.xml"/>
+        <!-- <property name="mapperLocations" value="classpath:mapper/*.xml" /> -->
+ 	</bean>
+
+	<!-- 扫描dao bean -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.dhchain.**.dao" />
+		<property name="sqlSessionFactoryBeanName" value="sqlSessionFactory" />
+	</bean>
+
+	<!-- 事务管理器 -->
+	<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+
+	<!-- 使用annotation定义事务 -->
+    <tx:annotation-driven transaction-manager="transactionManager" order="5"/>
+</beans>

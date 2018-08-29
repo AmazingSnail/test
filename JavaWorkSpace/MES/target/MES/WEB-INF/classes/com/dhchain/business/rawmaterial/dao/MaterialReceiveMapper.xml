@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.rawmaterial.dao.MaterialReceiveMapper" >
+  <select id="getSerialno" resultType="com.dhchain.business.rawmaterial.vo.MMaterialreceive" parameterType="com.dhchain.business.rawmaterial.vo.MMaterialreceive">
+      SELECT  * from m_Materialreceive where umonth = #{umonth} and uyear = #{uyear} ORDER  by Serialno DESC
+  </select>
+    <select id="getSupplier" parameterType="com.dhchain.business.rawmaterial.vo.BaseSupplier" resultType="com.dhchain.business.rawmaterial.vo.BaseSupplier">
+         select * from m_BaseSupplier where Plant = #{Plant } and Department = #{Department}
+    </select>
+    <select id="getDay" resultType="com.dhchain.business.rawmaterial.vo.MMaterialreceive" parameterType="com.dhchain.business.rawmaterial.vo.MMaterialreceive">
+        SELECT * FROM m_Materialreceive  WHERE plant = #{plant} and
+        datediff(day,receivedate,getdate())=0
+    </select>
+    <select id="getReceviceInAll" parameterType="com.dhchain.business.rawmaterial.vo.Materialreceive" resultType="com.dhchain.business.rawmaterial.vo.Materialreceive">
+
+    select pono,fname,fno,receiveman,sum(CAST(receivenum AS INT)) as receivenum  , heatno,supporname from m_MaterialReceive
+    where receivedate Between #{receivedate} and  #{receivedate1}
+        <if test="fno != null and fno!=''" >
+            and  fno like '%'+#{fno}+'%'
+        </if>
+        <if test="fname != null and fname!=''" >
+            and  fname like '%'+#{fname}+'%'
+        </if>
+        <if test="supporname != null and supporname!=''" >
+            and  supporname = #{supporname}
+        </if>
+        <if test="plant != null and plant!=''" >
+            and  plant = #{plant}
+        </if>
+        <if test="ischeck != null and ischeck!=''" >
+            and  ischeck = #{ischeck}
+        </if>
+        <if test="heatno != null and heatno!=''" >
+            and  heatno like '%'+#{heatno}+'%'
+        </if>
+
+     group by pono,fname,fno,receiveman, heatno,supporname
+    </select>
+    <select id="getReceviceOutAll" resultType="com.dhchain.business.rawmaterial.vo.Materialsend" parameterType="com.dhchain.business.rawmaterial.vo.Materialsend">
+        select fname,fno,sum(CAST(outputnum AS INT)) as outputnum ,deliveryplant,outputman from m_MaterialSend
+        where outputtime Between #{outputtime} and  #{outputtime1}
+        <if test="fno != null and fno!=''" >
+            and  fno like '%'+#{fno}+'%'
+        </if>
+        <if test="fname != null and fname!=''" >
+            and  fname like '%'+#{fname}+'%'
+        </if>
+        <if test="supporname != null and supporname!=''" >
+            and  supporname = #{supporname}
+        </if>
+        <if test="plant != null and plant!=''" >
+            and  plant = #{plant}
+        </if>
+        <if test="heatno != null and heatno!=''" >
+            and  heatno like '%'+#{heatno}+'%'
+        </if>
+
+        group by fname,fno, deliveryplant,outputman
+    </select>
+    <select id="getPlantIn" parameterType="com.dhchain.business.rawmaterial.vo.Base" resultType="com.dhchain.business.rawmaterial.vo.Base">
+        SELECT fno FROM
+        t_base
+        where FparentID=316 and Fname = #{plant}
+    </select>
+    <select id="getLGORTIn" parameterType="com.dhchain.business.colddigitalworkshop.vo.Base" resultType="com.dhchain.business.colddigitalworkshop.vo.Base">
+        select fname,fremark,Ftemp1 from t_base where fparentid in( select id from t_base where fname='原材料采购收货' and fparentid in (
+        select id from t_base where fname= #{plant} and fparentid=6144))and fname=#{UserName}
+    </select>
+</mapper>

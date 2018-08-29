@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.rout.dao.RoutDetailMapper">
+    <insert id="insert" parameterType="com.dhchain.business.rout.vo.RoutDetail" useGeneratedKeys="true" keyProperty="id">
+        insert into t_rout_detail ( codeno, codename,
+        t1, t2, t3, t4,
+        t5, t6, t7, t8,
+        t9, t10, t11, t12,
+        t13, t14, t15, t16,
+        t17, t18, t19, t20,
+        t21, t22, t23, t24,
+        t25, t26, t27, t28,
+        t29, t30, t31, t32,
+        t33, t34, t35, t36,
+        t37, t38, t39, t40,
+        t41, t42, t43, t44,
+        t45, t46, t47, t48,
+        t49, t50, t51, t52,
+        t53, t54, t55, t56,
+        t57, t58, t59, t60,
+        t61, t62, t63, t64,
+        t65, t66, t67, t68,
+        t69, t70, t71, t72,
+        t73, t74, t75, t76,
+        t77, t78, t79, t80,
+        t81, t82, t83, t84,
+        t85, t86, t87, t88,
+        t89, t90, t91, t92,
+        t93, t94, t95, t96,
+        t97, t98, t99, t100,
+        islocked, inputman, inputdate,itemno,typedetailid,typedetailno,typedetailname
+        )
+        values (#{codeno,jdbcType=VARCHAR}, #{codename,jdbcType=VARCHAR},
+        #{t1,jdbcType=VARCHAR}, #{t2,jdbcType=VARCHAR}, #{t3,jdbcType=VARCHAR}, #{t4,jdbcType=VARCHAR},
+        #{t5,jdbcType=VARCHAR}, #{t6,jdbcType=VARCHAR}, #{t7,jdbcType=VARCHAR}, #{t8,jdbcType=VARCHAR},
+        #{t9,jdbcType=VARCHAR}, #{t10,jdbcType=VARCHAR}, #{t11,jdbcType=VARCHAR}, #{t12,jdbcType=VARCHAR},
+        #{t13,jdbcType=VARCHAR}, #{t14,jdbcType=VARCHAR}, #{t15,jdbcType=VARCHAR}, #{t16,jdbcType=VARCHAR},
+        #{t17,jdbcType=VARCHAR}, #{t18,jdbcType=VARCHAR}, #{t19,jdbcType=VARCHAR}, #{t20,jdbcType=VARCHAR},
+        #{t21,jdbcType=VARCHAR}, #{t22,jdbcType=VARCHAR}, #{t23,jdbcType=VARCHAR}, #{t24,jdbcType=VARCHAR},
+        #{t25,jdbcType=VARCHAR}, #{t26,jdbcType=VARCHAR}, #{t27,jdbcType=VARCHAR}, #{t28,jdbcType=VARCHAR},
+        #{t29,jdbcType=VARCHAR}, #{t30,jdbcType=VARCHAR}, #{t31,jdbcType=VARCHAR}, #{t32,jdbcType=VARCHAR},
+        #{t33,jdbcType=VARCHAR}, #{t34,jdbcType=VARCHAR}, #{t35,jdbcType=VARCHAR}, #{t36,jdbcType=VARCHAR},
+        #{t37,jdbcType=VARCHAR}, #{t38,jdbcType=VARCHAR}, #{t39,jdbcType=VARCHAR}, #{t40,jdbcType=VARCHAR},
+        #{t41,jdbcType=VARCHAR}, #{t42,jdbcType=VARCHAR}, #{t43,jdbcType=VARCHAR}, #{t44,jdbcType=VARCHAR},
+        #{t45,jdbcType=VARCHAR}, #{t46,jdbcType=VARCHAR}, #{t47,jdbcType=VARCHAR}, #{t48,jdbcType=VARCHAR},
+        #{t49,jdbcType=VARCHAR}, #{t50,jdbcType=VARCHAR}, #{t51,jdbcType=VARCHAR}, #{t52,jdbcType=VARCHAR},
+        #{t53,jdbcType=VARCHAR}, #{t54,jdbcType=VARCHAR}, #{t55,jdbcType=VARCHAR}, #{t56,jdbcType=VARCHAR},
+        #{t57,jdbcType=VARCHAR}, #{t58,jdbcType=VARCHAR}, #{t59,jdbcType=VARCHAR}, #{t60,jdbcType=VARCHAR},
+        #{t61,jdbcType=VARCHAR}, #{t62,jdbcType=VARCHAR}, #{t63,jdbcType=VARCHAR}, #{t64,jdbcType=VARCHAR},
+        #{t65,jdbcType=VARCHAR}, #{t66,jdbcType=VARCHAR}, #{t67,jdbcType=VARCHAR}, #{t68,jdbcType=VARCHAR},
+        #{t69,jdbcType=VARCHAR}, #{t70,jdbcType=VARCHAR}, #{t71,jdbcType=VARCHAR}, #{t72,jdbcType=VARCHAR},
+        #{t73,jdbcType=VARCHAR}, #{t74,jdbcType=VARCHAR}, #{t75,jdbcType=VARCHAR}, #{t76,jdbcType=VARCHAR},
+        #{t77,jdbcType=VARCHAR}, #{t78,jdbcType=VARCHAR}, #{t79,jdbcType=VARCHAR}, #{t80,jdbcType=VARCHAR},
+        #{t81,jdbcType=VARCHAR}, #{t82,jdbcType=VARCHAR}, #{t83,jdbcType=VARCHAR}, #{t84,jdbcType=VARCHAR},
+        #{t85,jdbcType=VARCHAR}, #{t86,jdbcType=VARCHAR}, #{t87,jdbcType=VARCHAR}, #{t88,jdbcType=VARCHAR},
+        #{t89,jdbcType=VARCHAR}, #{t90,jdbcType=VARCHAR}, #{t91,jdbcType=VARCHAR}, #{t92,jdbcType=VARCHAR},
+        #{t93,jdbcType=VARCHAR}, #{t94,jdbcType=VARCHAR}, #{t95,jdbcType=VARCHAR}, #{t96,jdbcType=VARCHAR},
+        #{t97,jdbcType=VARCHAR}, #{t98,jdbcType=VARCHAR}, #{t99,jdbcType=VARCHAR}, #{t100,jdbcType=VARCHAR},
+        #{islocked,jdbcType=BIT}, #{inputman,jdbcType=VARCHAR}, #{inputdate,jdbcType=TIMESTAMP},
+        #{itemno,jdbcType=INTEGER}, #{typedetailid,jdbcType=INTEGER},
+        #{typedetailno,jdbcType=VARCHAR}, #{typedetailname,jdbcType=VARCHAR}
+        )
+    </insert>
+    <select id="selectNewId"  resultType="java.lang.Integer">
+        select ident_current('t_rout_detail')
+
+    </select>
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.dhchain.business.rout.vo.RoutDetail">
+        SELECT
+
+        *
+
+        FROM
+        t_rout_detail
+        where  id=#{id}
+
+    </select>
+
+    <select id="selectByApplyno"  parameterType="java.lang.String" resultType="com.dhchain.business.rout.vo.RoutDetail">
+        select *
+        from   t_rout_detail
+        where applyno = #{applyno}
+
+    </select>
+
+    <update id="update" parameterType="com.dhchain.business.rout.vo.RoutDetail" >
+        UPDATE   t_rout_detail
+        SET
+        t1 = #{t1},
+        t2 = #{t2},
+        t3 = #{t3},
+        t4 = #{t4},
+        t5 = #{t5},
+        t6 = #{t6},
+        t7 = #{t7},
+        t8 = #{t8},
+        t9 = #{t9},
+        t10 = #{t10},
+        t11 = #{t11},
+        t12 = #{t12},
+        t13 = #{t13},
+        t14 = #{t14},
+        t15 = #{t15},
+        t16 = #{t16},
+        t17 = #{t17},
+        t18 = #{t18},
+        t19 = #{t19},
+        t20 = #{t20},
+        t21 = #{t21},
+        t22 = #{t22},
+        t23 = #{t23},
+        t24 = #{t24},
+        t25 = #{t25},
+        t26 = #{t26},
+        t27 = #{t27},
+        t28 = #{t28},
+        t29 = #{t29},
+        t30 = #{t30},
+        t31 = #{t31},
+        t32 = #{t32},
+        t33 = #{t33},
+        t34 = #{t34},
+        t35 = #{t35},
+        t36 = #{t36},
+        t37 = #{t37},
+        t38 = #{t38},
+        t39 = #{t39},
+        t40 = #{t40},
+        t41 = #{t41},
+        t42 = #{t42},
+        t43 = #{t43},
+        t44 = #{t44},
+        t45 = #{t45},
+        t46 = #{t46},
+        t47 = #{t47},
+        t48 = #{t48},
+        t49 = #{t49},
+        t50 = #{t50},
+        t51 = #{t51},
+        t52 = #{t52},
+        t53 = #{t53},
+        t54 = #{t54},
+        t55 = #{t55},
+        t56 = #{t56},
+        t57 = #{t57},
+        t58 = #{t58},
+        t59 = #{t59},
+        t60 = #{t60},
+        t61 = #{t61},
+        t62 = #{t62},
+        t63 = #{t63},
+        t64 = #{t64},
+        t65 = #{t65},
+        t66 = #{t66},
+        t67 = #{t67},
+        t68 = #{t68},
+        t69 = #{t69},
+        t70 = #{t70},
+        t71 = #{t71},
+        t72 = #{t72},
+        t73 = #{t73},
+        t74 = #{t74},
+        t75 = #{t75},
+        t76 = #{t76},
+        t77 = #{t77},
+        t78 = #{t78},
+        t79 = #{t79},
+        t80 = #{t80},
+        t81 = #{t81},
+        t82 = #{t82},
+        t83 = #{t83},
+        t84 = #{t84},
+        t85 = #{t85},
+        t86 = #{t86},
+        t87 = #{t87},
+        t88 = #{t88},
+        t89 = #{t89},
+        t90 = #{t90},
+        t91 = #{t91},
+        t92 = #{t92},
+        t93 = #{t93},
+        t94 = #{t94},
+        t95 = #{t95},
+        t96 = #{t96},
+        t97 = #{t97},
+        t98 = #{t98},
+        t99 = #{t99},
+        t100 = #{t100},
+        applyno = #{applyno},
+        routapplid = #{routapplid}
+
+        WHERE id = #{id}
+    </update>
+</mapper>

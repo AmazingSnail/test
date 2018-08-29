@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.TradeWMS.dao.TPackgoodMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.TradeWMS.vo.TPackgood" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="serialno" property="serialno" jdbcType="VARCHAR" />
+    <result column="BoxNum" property="boxnum" jdbcType="VARCHAR" />
+    <result column="BoxNumFID" property="boxnumfid" jdbcType="VARCHAR" />
+    <result column="Fno" property="fno" jdbcType="VARCHAR" />
+    <result column="Fname" property="fname" jdbcType="VARCHAR" />
+    <result column="NumberWeight" property="numberweight" jdbcType="INTEGER" />
+    <result column="dhorderno" property="dhorderno" jdbcType="VARCHAR" />
+    <result column="ErpSysno" property="erpsysno" jdbcType="VARCHAR" />
+    <result column="lineid" property="lineid" jdbcType="VARCHAR" />
+    <result column="plant" property="plant" jdbcType="VARCHAR" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="oldLocation" property="oldlocation" jdbcType="VARCHAR" />
+    <result column="SAP_SDF" property="sapSdf" jdbcType="INTEGER" />
+    <result column="SAP_SDFDESC" property="sapSdfdesc" jdbcType="VARCHAR" />
+    <result column="SAP_XSBM" property="sapXsbm" jdbcType="VARCHAR" />
+    <result column="SAP_XSBMDESC" property="sapXsbmdesc" jdbcType="VARCHAR" />
+    <result column="DOXTBH" property="doxtbh" jdbcType="VARCHAR" />
+    <result column="PackID" property="packid" jdbcType="INTEGER" />
+    <result column="InputMan" property="inputman" jdbcType="VARCHAR" />
+    <result column="InputDate" property="inputdate" jdbcType="DATE" />
+    <result column="IsInSAP" property="isinsap" jdbcType="BIT" />
+    <result column="InSAPMan" property="insapman" jdbcType="VARCHAR" />
+    <result column="InSAPDate" property="insapdate" jdbcType="DATE" />
+    <result column="InSAPOK" property="insapok" jdbcType="INTEGER" />
+    <result column="OutputMan" property="outputman" jdbcType="VARCHAR" />
+    <result column="OutputDate" property="outputdate" jdbcType="DATE" />
+    <result column="IsOutSAP" property="isoutsap" jdbcType="BIT" />
+    <result column="OutSAPMan" property="outsapman" jdbcType="VARCHAR" />
+    <result column="OutSAPDate" property="outsapdate" jdbcType="DATE" />
+    <result column="OutSAPOK" property="outsapok" jdbcType="INTEGER" />
+    <result column="DoNo" property="dono" jdbcType="VARCHAR" />
+    <result column="DoItem" property="doitem" jdbcType="VARCHAR" />
+  </resultMap>
+
+</mapper>

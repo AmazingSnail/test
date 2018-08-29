@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.colddigitalworkshop.dao.ColdDailyPlanMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="serialno" property="serialno" jdbcType="INTEGER" />
+    <result column="fno" property="fno" jdbcType="VARCHAR" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+    <result column="fweight" property="fweight" jdbcType="DOUBLE" />
+    <result column="fnofather" property="fnofather" jdbcType="VARCHAR" />
+    <result column="fnamefather" property="fnamefather" jdbcType="VARCHAR" />
+    <result column="reelnum" property="reelnum" jdbcType="VARCHAR" />
+    <result column="plant" property="plant" jdbcType="VARCHAR" />
+    <result column="takeman" property="takeman" jdbcType="VARCHAR" />
+    <result column="takedate" property="takedate" jdbcType="TIMESTAMP" />
+    <result column="planstartdate" property="planstartdate" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="BIT" />
+    <result column="year" property="year" jdbcType="INTEGER" />
+    <result column="month" property="month" jdbcType="INTEGER" />
+    <result column="fparentidandnum" property="fparentidandnum" jdbcType="INTEGER" />
+    <result column="fid" property="fid" jdbcType="VARCHAR" />
+    <result column="fparentlocaton" property="fparentlocaton" jdbcType="VARCHAR" />
+    <result column="materialtype" property="materialtype" jdbcType="VARCHAR" />
+    <result column="steelworks" property="steelworks" jdbcType="VARCHAR" />
+    <result column="fnoname" property="fnoname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, serialno, fno, fname, fweight, fnofather, fnamefather, reelnum,plant, takeman, takedate,
+    isdelete, year, month,fparentidandnum,fid,fparentlocaton,planstartdate,materialtype,steelworks,fnoname
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ColdDailyPlan
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_ColdDailyPlan
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan" >
+    insert into t_ColdDailyPlan (id, serialno, fno, 
+      fname, fweight, fnofather, 
+      fnamefather, reelnum, takeman, 
+      takedate, isdelete, year, 
+      month,fparentidandnum,fid,fparentlocaton,planstartdate,materialtype,steelworks,fnoname)
+    values (#{id,jdbcType=INTEGER}, #{serialno,jdbcType=INTEGER}, #{fno,jdbcType=VARCHAR}, 
+      #{fname,jdbcType=VARCHAR}, #{fweight,jdbcType=DOUBLE}, #{fnofather,jdbcType=VARCHAR}, 
+      #{fnamefather,jdbcType=VARCHAR}, #{reelnum,jdbcType=VARCHAR}, #{plant,jdbcType=VARCHAR}, #{takeman,jdbcType=VARCHAR},
+      #{takedate,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT}, #{year,jdbcType=INTEGER}, 
+      #{month,jdbcType=INTEGER},#{fparentidandnum},#{fid},#{fparentlocaton},#{planstartdate},#{materialtype},#{steelworks},#{fnoname})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan" >
+    insert into t_ColdDailyPlan
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serialno != null" >
+        serialno,
+      </if>
+      <if test="fno != null" >
+        fno,
+      </if>
+      <if test="fname != null" >
+        fname,
+      </if>
+      <if test="fweight != null" >
+        fweight,
+      </if>
+      <if test="fnofather != null" >
+        fnofather,
+      </if>
+      <if test="fnamefather != null" >
+        fnamefather,
+      </if>
+      <if test="reelnum != null" >
+        reelnum,
+      </if>
+      <if test="plant != null" >
+        plant,
+      </if>
+      <if test="takeman != null" >
+        takeman,
+      </if>
+      <if test="takedate != null" >
+        takedate,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="fparentidandnum != null" >
+        fparentidandnum,
+      </if>
+      <if test="fid != null" >
+        fid,
+      </if>
+      <if test="fparentlocaton != null" >
+        fparentlocaton,
+      </if>
+      <if test="planstartdate != null" >
+        planstartdate,
+      </if>
+      <if test="materialtype != null" >
+        materialtype,
+      </if>
+      <if test="steelworks != null" >
+        steelworks,
+      </if>
+      <if test="fnoname != null" >
+        fnoname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serialno != null" >
+        #{serialno,jdbcType=INTEGER},
+      </if>
+      <if test="fno != null" >
+        #{fno,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="fweight != null" >
+        #{fweight,jdbcType=DOUBLE},
+      </if>
+      <if test="fnofather != null" >
+        #{fnofather,jdbcType=VARCHAR},
+      </if>
+      <if test="fnamefather != null" >
+        #{fnamefather,jdbcType=VARCHAR},
+      </if>
+      <if test="reelnum != null" >
+        #{reelnum,jdbcType=VARCHAR},
+      </if>
+      <if test="plant != null" >
+        #{plant,jdbcType=VARCHAR},
+      </if>
+      <if test="takeman != null" >
+        #{takeman,jdbcType=VARCHAR},
+      </if>
+      <if test="takedate != null" >
+        #{takedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="fparentidandnum != null" >
+        #{fparentidandnum,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null" >
+        #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="fparentlocaton != null" >
+        #{fparentlocaton,jdbcType=INTEGER},
+      </if>
+      <if test="planstartdate != null" >
+        #{planstartdate},
+      </if>
+      <if test="materialtype != null" >
+        #{materialtype},
+      </if>
+      <if test="steelworks != null" >
+        #{steelworks},
+      </if>
+      <if test="fnoname != null" >
+        #{fnoname},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan" >
+    update t_ColdDailyPlan
+    <set >
+      <if test="serialno != null" >
+        serialno = #{serialno,jdbcType=INTEGER},
+      </if>
+      <if test="fno != null" >
+        fno = #{fno,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        fname = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="fweight != null" >
+        fweight = #{fweight,jdbcType=DOUBLE},
+      </if>
+      <if test="fnofather != null" >
+        fnofather = #{fnofather,jdbcType=VARCHAR},
+      </if>
+      <if test="fnamefather != null" >
+        fnamefather = #{fnamefather,jdbcType=VARCHAR},
+      </if>
+      <if test="reelnum != null" >
+        reelnum = #{reelnum,jdbcType=VARCHAR},
+      </if>
+      <if test="plant != null" >
+        plant = #{plant,jdbcType=VARCHAR},
+      </if>
+      <if test="takeman != null" >
+        takeman = #{takeman,jdbcType=VARCHAR},
+      </if>
+      <if test="takedate != null" >
+        takedate = #{takedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="fparentidandnum != null" >
+        fparentidandnum = #{fparentidandnum,jdbcType=INTEGER},
+      </if>
+      <if test="fid != null" >
+        fid = #{fid,jdbcType=INTEGER},
+      </if>
+      <if test="fparentlocaton != null" >
+      fparentlocaton = #{fparentlocaton,jdbcType=INTEGER},
+      </if>
+      <if test="planstartdate != null" >
+        planstartdate = #{planstartdate},
+      </if>
+      <if test="materialtype != null" >
+        materialtype = #{materialtype},
+      </if>
+      <if test="steelworks != null" >
+        steelworks = #{steelworks},
+      </if>
+      <if test="fnoname != null" >
+        fnoname = #{fnoname},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan" >
+    update t_ColdDailyPlan
+    set serialno = #{serialno,jdbcType=INTEGER},
+      fno = #{fno,jdbcType=VARCHAR},
+      fname = #{fname,jdbcType=VARCHAR},
+      fweight = #{fweight,jdbcType=DOUBLE},
+      fnofather = #{fnofather,jdbcType=VARCHAR},
+      fnamefather = #{fnamefather,jdbcType=VARCHAR},
+      reelnum = #{reelnum,jdbcType=VARCHAR},
+      plant = #{plant,jdbcType=VARCHAR},
+      takeman = #{takeman,jdbcType=VARCHAR},
+      takedate = #{takedate,jdbcType=TIMESTAMP},
+      isdelete = #{isdelete,jdbcType=BIT},
+      year = #{year,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      fparentidandnum = #{fparentidandnum,jdbcType=INTEGER},
+      fid = #{fid,jdbcType=VARCHAR},
+      fparentlocaton = #{fparentlocaton,jdbcType=VARCHAR},
+      planstartdate = #{planstartdate},
+      materialtype = #{materialtype},
+      steelworks = #{steelworks},
+      fnoname = #{fnoname}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="getSeId" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan">
+    SELECT top(1)
+    *
+    FROM
+    t_ColdDailyPlan
+    WHERE
+    1 = 1
+    AND year=#{year}
+    AND month=#{month}
+    order by serialno desc
+  </select>
+  <select id="selectDailyPlanToday" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan">
+    SELECT * FROM
+     t_ColdDailyPlan
+   WHERE
+takedate &gt; #{takedate}
+    order by fnofather,takedate DESC
+  </select>
+
+  <select id="selectDailyPlanReportByTake" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan">
+    SELECT * FROM
+    t_ColdDailyPlan
+    WHERE 1=1
+    <if test="starttime != null  and starttime!=''" >
+    and takedate &gt; #{starttime}
+    </if>
+    <if test="endtime != null and endtime !=''">
+    and takedate &lt; #{endtime}
+    </if>
+    <if test="reelnum != null and reelnum!=''" >
+    and reelnum like '%'+#{reelnum}+'%'
+    </if>
+  </select>
+  <select id="selectDailyPlanReportByStart" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan">
+    SELECT * FROM
+    t_ColdDailyPlan
+    WHERE 1=1
+    <if test="starttime != null  and starttime!=''" >
+      and planstartdate &gt; #{starttime}
+    </if>
+    <if test="endtime != null and endtime !=''">
+      and planstartdate &lt; #{endtime}
+    </if>
+    <if test="reelnum != null and reelnum!=''" >
+      and reelnum like '%'+#{reelnum}+'%'
+    </if>
+  </select>
+
+  <select id="getSelectFId" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan">
+    SELECT top(1)
+    *
+    FROM
+    t_ColdDailyPlan
+    WHERE
+    1 = 1
+    AND year=#{year}
+    AND month=#{month}
+    and fid = #{fid}
+    order by fparentidandnum desc
+  </select>
+
+  <select id="selectColdDailyPlanByFid" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan">
+    SELECT * FROM
+    t_ColdDailyPlan
+    WHERE
+    reelnum = #{reelnum}
+  </select>
+  <select id="selectColdDailyPlanByid" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPlan">
+    SELECT * FROM
+    t_ColdDailyPlan
+    WHERE
+    id = #{id}
+  </select>
+</mapper>

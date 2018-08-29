@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.colddigitalworkshop.dao.ColdDailyPrintMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPrint" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="serialno" property="serialno" jdbcType="VARCHAR" />
+    <result column="fno" property="fno" jdbcType="VARCHAR" />
+    <result column="fname" property="fname" jdbcType="VARCHAR" />
+    <result column="reelnums" property="reelnums" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="VARCHAR" />
+    <result column="plant" property="plant" jdbcType="VARCHAR" />
+    <result column="printman" property="printman" jdbcType="VARCHAR" />
+    <result column="printdate" property="printdate" jdbcType="TIMESTAMP" />
+    <result column="isdelete" property="isdelete" jdbcType="BIT" />
+    <result column="year" property="year" jdbcType="INTEGER" />
+    <result column="month" property="month" jdbcType="INTEGER" />
+    <result column="istake" property="istake" jdbcType="BIT" />
+    <result column="takeman" property="takeman" jdbcType="VARCHAR" />
+    <result column="takedate" property="takedate" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, serialno, fno, fname, reelnums,weight, plant, printman, printdate, isdelete, year, month,
+    istake, takeman, takedate
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ColdDailyPrint
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_ColdDailyPrint
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPrint" >
+    insert into t_ColdDailyPrint (id, serialno, fno, 
+      fname, reelnums,weight, plant,
+      printman, printdate, isdelete, 
+      year, month, istake, takeman, 
+      takedate)
+    values (#{id,jdbcType=INTEGER}, #{serialno,jdbcType=VARCHAR}, #{fno,jdbcType=VARCHAR}, 
+      #{fname,jdbcType=VARCHAR}, #{reelnums,jdbcType=VARCHAR},#{weight,jdbcType=VARCHAR}, #{plant,jdbcType=VARCHAR},
+      #{printman,jdbcType=VARCHAR}, #{printdate,jdbcType=TIMESTAMP}, #{isdelete,jdbcType=BIT}, 
+      #{year,jdbcType=INTEGER}, #{month,jdbcType=INTEGER}, #{istake,jdbcType=BIT}, #{takeman,jdbcType=VARCHAR}, 
+      #{takedate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPrint" >
+    insert into t_ColdDailyPrint
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="serialno != null" >
+        serialno,
+      </if>
+      <if test="fno != null" >
+        fno,
+      </if>
+      <if test="fname != null" >
+        fname,
+      </if>
+      <if test="reelnums != null" >
+        reelnums,
+      </if>
+      <if test="weight != null" >
+      weight,
+      </if>
+      <if test="plant != null" >
+        plant,
+      </if>
+      <if test="printman != null" >
+        printman,
+      </if>
+      <if test="printdate != null" >
+        printdate,
+      </if>
+      <if test="isdelete != null" >
+        isdelete,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="istake != null" >
+        istake,
+      </if>
+      <if test="takeman != null" >
+        takeman,
+      </if>
+      <if test="takedate != null" >
+        takedate,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="serialno != null" >
+        #{serialno,jdbcType=VARCHAR},
+      </if>
+      <if test="fno != null" >
+        #{fno,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="reelnums != null" >
+        #{reelnums,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="plant != null" >
+        #{plant,jdbcType=VARCHAR},
+      </if>
+      <if test="printman != null" >
+        #{printman,jdbcType=VARCHAR},
+      </if>
+      <if test="printdate != null" >
+        #{printdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=INTEGER},
+      </if>
+      <if test="istake != null" >
+        #{istake,jdbcType=BIT},
+      </if>
+      <if test="takeman != null" >
+        #{takeman,jdbcType=VARCHAR},
+      </if>
+      <if test="takedate != null" >
+        #{takedate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPrint" >
+    update t_ColdDailyPrint
+    <set >
+      <if test="serialno != null" >
+        serialno = #{serialno,jdbcType=VARCHAR},
+      </if>
+      <if test="fno != null" >
+        fno = #{fno,jdbcType=VARCHAR},
+      </if>
+      <if test="fname != null" >
+        fname = #{fname,jdbcType=VARCHAR},
+      </if>
+      <if test="reelnums != null" >
+        reelnums = #{reelnums,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+      weight = #{weight,jdbcType=VARCHAR},
+      </if>
+      <if test="plant != null" >
+        plant = #{plant,jdbcType=VARCHAR},
+      </if>
+      <if test="printman != null" >
+        printman = #{printman,jdbcType=VARCHAR},
+      </if>
+      <if test="printdate != null" >
+        printdate = #{printdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isdelete != null" >
+        isdelete = #{isdelete,jdbcType=BIT},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=INTEGER},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=INTEGER},
+      </if>
+      <if test="istake != null" >
+        istake = #{istake,jdbcType=BIT},
+      </if>
+      <if test="takeman != null" >
+        takeman = #{takeman,jdbcType=VARCHAR},
+      </if>
+      <if test="takedate != null" >
+        takedate = #{takedate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPrint" >
+    update t_ColdDailyPrint
+    set serialno = #{serialno,jdbcType=VARCHAR},
+      fno = #{fno,jdbcType=VARCHAR},
+      fname = #{fname,jdbcType=VARCHAR},
+      reelnums = #{reelnums,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=VARCHAR},
+      plant = #{plant,jdbcType=VARCHAR},
+      printman = #{printman,jdbcType=VARCHAR},
+      printdate = #{printdate,jdbcType=TIMESTAMP},
+      isdelete = #{isdelete,jdbcType=BIT},
+      year = #{year,jdbcType=INTEGER},
+      month = #{month,jdbcType=INTEGER},
+      istake = #{istake,jdbcType=BIT},
+      takeman = #{takeman,jdbcType=VARCHAR},
+      takedate = #{takedate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectColdDailyPrint" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPrint" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPrint">
+      select * FROM t_ColdDailyPrint
+      where
+      1=1
+    <if test="serialno != null and serialno !=''" >
+      and serialno = #{serialno,jdbcType=VARCHAR}
+    </if>
+    <if test="fno != null and fno !=''" >
+      and fno = #{fno,jdbcType=VARCHAR}
+    </if>
+    <if test="fname != null and fname!=''" >
+      and fname = #{fname,jdbcType=VARCHAR}
+    </if>
+    <if test="reelnums != null and reelnums!=''" >
+      and reelnums like '%'+#{reelnums}+'%'
+    </if>
+    <if test="weight != null and weight!=''" >
+      and weight = #{reelnums,jdbcType=VARCHAR}
+    </if>
+    <if test="plant != null and plant!=''" >
+      and plant = #{plant,jdbcType=VARCHAR}
+    </if>
+    <if test="printman != null and printman !=''" >
+      and printman = #{printman,jdbcType=VARCHAR}
+    </if>
+    <if test="printdate != null and printdate!=''" >
+      and printdate = #{printdate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="isdelete != null" >
+      and isdelete = #{isdelete,jdbcType=BIT}
+    </if>
+    <if test="year != null and year!=''" >
+      and year = #{year,jdbcType=INTEGER}
+    </if>
+    <if test="month != null and month!=''" >
+      and month = #{month,jdbcType=INTEGER}
+    </if>
+    <if test="istake != null and istake!=''" >
+      and istake = #{istake,jdbcType=BIT}
+    </if>
+    <if test="takeman != null and takeman!=''" >
+      and takeman = #{takeman,jdbcType=VARCHAR}
+    </if>
+    <if test="begindate != null and begindate!=''" >
+      and printdate &gt;= #{begindate}
+    </if>
+    <if test="enddate != null and enddate!=''" >
+      and printdate &lt;= #{enddate}
+    </if>
+  </select>
+  <select id="selectPrintMan" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPrint" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPrint">
+    select distinct printman from t_ColdDailyPrint
+    where 1=1
+    <if test="serialno != null" >
+      and serialno = #{serialno,jdbcType=VARCHAR}
+    </if>
+    <if test="fno != null" >
+      and fno = #{fno,jdbcType=VARCHAR}
+    </if>
+    <if test="fname != null" >
+      and fname = #{fname,jdbcType=VARCHAR}
+    </if>
+    <if test="reelnums != null" >
+      and reelnums like '%'+#{reelnums}+'%'
+    </if>
+    <if test="weight != null" >
+      and weight = #{weight,jdbcType=VARCHAR}
+    </if>
+    <if test="plant != null" >
+      and plant = #{plant,jdbcType=VARCHAR}
+    </if>
+    <if test="printman != null" >
+      and printman = #{printman,jdbcType=VARCHAR}
+    </if>
+    <if test="printdate != null" >
+      and printdate = #{printdate,jdbcType=TIMESTAMP}
+    </if>
+    <if test="isdelete != null" >
+      and isdelete = #{isdelete,jdbcType=BIT}
+    </if>
+    <if test="year != null" >
+      year = #{year,jdbcType=INTEGER},
+    </if>
+    <if test="month != null" >
+      month = #{month,jdbcType=INTEGER},
+    </if>
+    <if test="istake != null" >
+      istake = #{istake,jdbcType=BIT},
+    </if>
+    <if test="takeman != null" >
+      takeman = #{takeman,jdbcType=VARCHAR},
+    </if>
+    <if test="begindate != null" >
+      takedate &gt;= #{begindate},
+    </if>
+    <if test="enddate != null" >
+      takedate &lt;= #{enddate},
+    </if>
+  </select>
+  <select id="selectDailyPrintSum" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPrintSum" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdDailyPrint">
+    select a.fno,a.fname,a.plant,a.weight as weight,b.weight as weightOk,c.weight as weightNo  from
+    (SELECT fno,fname,plant ,SUM(CONVERT(int, weight)) as weight
+    FROM t_ColdDailyPrint where printdate &gt; #{begindate} and printdate &lt; #{enddate}
+    <if test="reelnums != null" >
+      and reelnums like '%'+#{reelnums}+'%'
+    </if>
+    <if test="plant != null" >
+      and plant = #{plant}
+    </if>
+     group by fno,fname,plant) as a left join
+    (SELECT fno,fname,plant ,SUM(CONVERT(int, weight)) as weight
+    FROM t_ColdDailyPrint where printdate &gt; #{begindate} and printdate &lt; #{enddate} and istake = 1
+    <if test="reelnums != null" >
+      and reelnums like '%'+#{reelnums}+'%'
+    </if>
+    <if test="plant != null" >
+      and plant = #{plant}
+    </if>
+     group by fno,fname,plant) as b on a.fno =b.fno left join
+    (SELECT fno,fname,plant ,SUM(CONVERT(int, weight)) as weight
+    FROM t_ColdDailyPrint where printdate &gt; #{begindate} and printdate &lt; #{enddate} and istake = 0
+    <if test="reelnums != null" >
+      and reelnums like '%'+#{reelnums}+'%'
+    </if>
+    <if test="plant != null" >
+      and plant = #{plant}
+    </if>
+     group by fno,fname,plant ) as c on a.fno = c.fno
+  </select>
+</mapper>

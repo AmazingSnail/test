@@ -1,0 +1,303 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.assembletrans.dao.KCardMapper">
+    <select id="getKCard" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+        SELECT
+        *
+        FROM
+        t_PlanProductTake
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        and uyear=#{uyear}
+        and umouth=#{umouth}
+        and inputman = #{inputman}
+        and day(inputdate) = #{uday}
+        <if test="dhorderno!=null and dhorderno!=''">and dhorderno like '%'+#{dhorderno}+'%'</if>
+        <if test="fname !=null and fname !=''">and fname like '%'+#{fname}+'%'</if>
+        <if test="PartDrawing !=null and PartDrawing  !=''">and PartDrawing like '%'+#{PartDrawing}+'%'</if>
+        order by id
+    </select>
+
+    <select id="getKCardCZRK" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+        SELECT
+        *
+        FROM
+        t_PlanProductTake
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        <if test="startTime!=null and startTime!=''">and inputdate &gt;= #{startTime}</if>
+        <if test="endTime!=null and endTime!=''">and inputdate &lt;= #{endTime}</if>
+        <if test="dhorderno!=null and dhorderno!=''">and dhorderno like '%'+#{dhorderno}+'%'</if>
+        <if test="fname !=null and fname !=''">and fname like '%'+#{fname}+'%'</if>
+        <if test="PartDrawing !=null and PartDrawing  !=''">and PartDrawing like '%'+#{PartDrawing}+'%'</if>
+        <if test="issure !=null and issure  !=''">and issure !=#{issure}</if>
+        <if test="IsTake !=null and IsTake  !=''">and IsTake !=#{IsTake}</if>
+        <if test="inputman !=null and inputman  !=''">and inputman =#{inputman}</if>
+        <if test="ReportMan !=null and ReportMan  !=''">and ReportMan =#{ReportMan}</if>
+        <if test="fno !=null and fno  !=''">and fno like '%'+#{fno}+'%'</if>
+        <if test="serialno !=null and serialno  !=''">and serialno like '%'+#{serialno}+'%'</if>
+    </select>
+
+    <select id="getKCardCZRKQR" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+        SELECT
+        *
+        FROM
+        t_PlanProductTake
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        <if test="startTime!=null and startTime!=''">and convert(DATETIME,suredate) &gt;= #{startTime}</if>
+        <if test="endTime!=null and endTime!=''">and convert(DATETIME,suredate) &lt;= #{endTime}</if>
+        <if test="dhorderno!=null and dhorderno!=''">and dhorderno like '%'+#{dhorderno}+'%'</if>
+        <if test="fname !=null and fname !=''">and fname like '%'+#{fname}+'%'</if>
+        <if test="PartDrawing !=null and PartDrawing  !=''">and PartDrawing like '%'+#{PartDrawing}+'%'</if>
+        <if test="issure !=null and issure  !=''">and issure !=#{issure}</if>
+        <if test="IsTake !=null and IsTake  !=''">and IsTake !=#{IsTake}</if>
+        <if test="inputman !=null and inputman  !=''">and inputman =#{inputman}</if>
+        <if test="ReportMan !=null and ReportMan  !=''">and ReportMan =#{ReportMan}</if>
+        <if test="fno !=null and fno  !=''">and fno like '%'+#{fno}+'%'</if>
+        <if test="serialno !=null and serialno  !=''">and serialno like '%'+#{serialno}+'%'</if>
+    </select>
+
+    <select id="getKCardCZRKRK" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+        SELECT
+        *
+        FROM
+        t_PlanProductTake
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        <if test="startTime!=null and startTime!=''"> and takedate &gt;= #{startTime}</if>
+        <if test="endTime!=null and endTime!=''"> and takedate &lt;= #{endTime}</if>
+        <if test="dhorderno!=null and dhorderno!=''">and dhorderno like '%'+#{dhorderno}+'%'</if>
+        <if test="fname !=null and fname !=''">and fname like '%'+#{fname}+'%'</if>
+        <if test="PartDrawing !=null and PartDrawing  !=''">and PartDrawing like '%'+#{PartDrawing}+'%'</if>
+        <if test="issure !=null and issure  !=''">and issure !=#{issure}</if>
+        <if test="IsTake !=null and IsTake  !=''">and IsTake !=#{IsTake}</if>
+        <if test="inputman !=null and inputman  !=''">and inputman =#{inputman}</if>
+        <if test="ReportMan !=null and ReportMan  !=''">and ReportMan =#{ReportMan}</if>
+        <if test="fno !=null and fno  !=''">and fno like '%'+#{fno}+'%'</if>
+        <if test="serialno !=null and serialno  !=''">and serialno like '%'+#{serialno}+'%'</if>
+    </select>
+
+    <select id="getKCardSumCZRK" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+        SELECT
+        OrderLine,partdrawing,descrip,F3,ConnectZore,sum(takenum) as takenum,fno,fname,plant,meins,dhorderno,istake
+        FROM
+        t_PlanProductTake
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        <if test="startTime!=null and startTime!=''">and inputdate &gt;= #{startTime}</if>
+        <if test="endTime!=null and endTime!=''">and inputdate &lt;= #{endTime}</if>
+        <if test="dhorderno!=null and dhorderno!=''">and dhorderno like '%'+#{dhorderno}+'%'</if>
+        <if test="fname !=null and fname !=''">and fname like '%'+#{fname}+'%'</if>
+        <if test="PartDrawing !=null and PartDrawing  !=''">and PartDrawing like '%'+#{PartDrawing}+'%'</if>
+        <if test="issure !=null and issure  !=''">and issure !=#{issure}</if>
+        <if test="IsTake !=null and IsTake  !=''">and IsTake !=#{IsTake}</if>
+        <if test="inputman !=null and inputman  !=''">and inputman =#{inputman}</if>
+        <if test="ReportMan !=null and ReportMan  !=''">and ReportMan =#{ReportMan}</if>
+        <if test="fno !=null and fno  !=''">and fno like '%'+#{fno}+'%'</if>
+        <if test="serialno !=null and serialno  !=''">and serialno like '%'+#{serialno}+'%'</if>
+        group by orderline,partdrawing,descrip,F3,ConnectZore,fno,fname,plant,meins,dhorderno,istake
+    </select>
+
+    <select id="getKCardSumCZRKQR" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+        SELECT
+        orderline,partdrawing,descrip,F3,ConnectZore,sum(takenum) as takenum,fno,fname,plant,meins,dhorderno,istake
+        FROM
+        t_PlanProductTake
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        <if test="startTime!=null and startTime!=''">and convert(DATETIME,suredate) &gt;= #{startTime}</if>
+        <if test="endTime!=null and endTime!=''">and convert(DATETIME,suredate) &lt;= #{endTime}</if>
+        <if test="dhorderno!=null and dhorderno!=''">and dhorderno like '%'+#{dhorderno}+'%'</if>
+        <if test="fname !=null and fname !=''">and fname like '%'+#{fname}+'%'</if>
+        <if test="PartDrawing !=null and PartDrawing  !=''">and PartDrawing like '%'+#{PartDrawing}+'%'</if>
+        <if test="issure !=null and issure  !=''">and issure !=#{issure}</if>
+        <if test="IsTake !=null and IsTake  !=''">and IsTake !=#{IsTake}</if>
+        <if test="inputman !=null and inputman  !=''">and inputman =#{inputman}</if>
+        <if test="ReportMan !=null and ReportMan  !=''">and ReportMan =#{ReportMan}</if>
+        <if test="fno !=null and fno  !=''">and fno like '%'+#{fno}+'%'</if>
+        <if test="serialno !=null and serialno  !=''">and serialno like '%'+#{serialno}+'%'</if>
+        group by orderline,partdrawing,descrip,F3,ConnectZore,fno,fname,plant,meins,dhorderno,istake
+    </select>
+
+    <select id="getKCardSumCZRKRK" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+        SELECT
+        orderline,partdrawing,descrip,F3,ConnectZore,sum(takenum) as takenum,fno,fname,plant,meins,dhorderno,istake
+        FROM
+        t_PlanProductTake
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        <if test="startTime!=null and startTime!=''"> and takedate &gt;= #{startTime}</if>
+        <if test="endTime!=null and endTime!=''"> and takedate &lt;= #{endTime}</if>
+        <if test="dhorderno!=null and dhorderno!=''">and dhorderno like '%'+#{dhorderno}+'%'</if>
+        <if test="fname !=null and fname !=''">and fname like '%'+#{fname}+'%'</if>
+        <if test="PartDrawing !=null and PartDrawing  !=''">and PartDrawing like '%'+#{PartDrawing}+'%'</if>
+        <if test="issure !=null and issure  !=''">and issure !=#{issure}</if>
+        <if test="IsTake !=null and IsTake  !=''">and IsTake !=#{IsTake}</if>
+        <if test="inputman !=null and inputman  !=''">and inputman =#{inputman}</if>
+        <if test="ReportMan !=null and ReportMan  !=''">and ReportMan =#{ReportMan}</if>
+        <if test="fno !=null and fno  !=''">and fno like '%'+#{fno}+'%'</if>
+        <if test="serialno !=null and serialno  !=''">and serialno like '%'+#{serialno}+'%'</if>
+        group by orderline,partdrawing,descrip,F3,ConnectZore,fno,fname,plant,meins,dhorderno,istake
+    </select>
+
+    <insert id="insertKCard" parameterType="com.dhchain.business.assembletrans.vo.KCard" keyColumn="id" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO t_PlanProductTake(dhorderno,serialno,serialno_hide,PartDrawing,F3,Descrip,inputdate,itemno,isok,uyear,umouth,plant,
+                                      fno,SAPSDOrder,takenum,surenum,meins,unit,fname,inputnum,inputman,dutyman,ReportMan,
+                                      IsPrint,planid,OrderLine,issure,IsTake,taskType,ConnectZore,Ftemp10,GCXH,Color,IsCL,SureMan,Suredate,OrderTime,planTransmit,printtimes,nwx,PoItem,
+                                      PoNo,InputnumKG,f10,Contrast,ismix,equipment,equipmentkind,equipmentSerial,isdelete,IsAscend,IsSureSpot,AssScanNum,SplitF3,MillionF3
+                                      )
+        VALUES(#{dhorderno},#{serialno},#{serialno_hide},#{PartDrawing},#{F3},#{Descrip},getdate(),#{itemno},#{isok},#{uyear},#{umouth},#{plant},
+                            #{fno},#{SAPSDOrder},#{takenum},#{surenum},#{meins},#{unit},#{fname},#{inputnum},#{inputman},#{dutyman},#{ReportMan},
+                            #{IsPrint},#{planid},#{OrderLine},0,#{IsTake},#{tasktype},#{ConnectZore},#{Ftemp10},#{GCXH},#{Color},#{IsCL},#{SureMan},'',#{OrderTime},#{planTransmit},#{printtimes},#{nwx},
+                            #{PoItem},#{PoNo},#{InputnumKG},#{f10},#{Contrast},#{ismix},#{equipment},#{equipmentkind},#{equipmentSerial},0,0,0,#{AssScanNum},310,#{MillionF3})
+    </insert>
+
+    <delete id="deleteKCard" parameterType="com.dhchain.business.assembletrans.vo.KCard">
+        DELETE
+        FROM t_PlanProductTake
+		WHERE id=#{id}
+    </delete>
+
+    <update id="updateKCard" parameterType="com.dhchain.business.assembletrans.vo.KCard">
+        UPDATE t_PlanProductTake
+        SET issure = #{issure},
+        sureman = #{SureMan},
+        Finputman = #{Finputman},
+        surenum = #{surenum}
+        <if test="issure ==1">,suredate = convert(varchar(50),getdate(),25),Finputdate = convert(varchar(50),getdate(),25)</if>
+        <if test="issure ==0">,suredate = '',Finputdate = ''</if>
+        WHERE id=#{id}
+    </update>
+    <update id="updateKCard1" parameterType="com.dhchain.business.assembletrans.vo.KCard">
+        UPDATE t_PlanProductTake
+        SET issure = #{issure},
+        OnlyScan = #{OnlyScan},
+        sureman = #{SureMan},
+        Finputman = #{Finputman},
+        surenum = #{surenum}
+        <if test="issure ==1">,suredate = convert(varchar(50),getdate(),25),Finputdate = convert(varchar(50),getdate(),25)</if>
+        <if test="issure ==0">,suredate = '',Finputdate = ''</if>
+        WHERE id=#{id}
+    </update>
+    <update id="updatePackageIn" parameterType="com.dhchain.business.assembletrans.vo.KCard">
+        UPDATE  t_PackageIn
+        <set>
+            <if test="issure ==1">OnlyScan = 0,</if>
+            <if test="issure ==0">OnlyScan = 1,</if>
+        </set>
+        WHERE Heatid = #{id}
+    </update>
+
+    <update id="updateRK" parameterType="com.dhchain.business.assembletrans.vo.KCard">
+        UPDATE t_PlanProductTake
+        SET IsTake = #{IsTake},
+        takeman = #{takeman},
+        Tinputman = #{Tinputman},
+        takenum = #{takenum},
+        inputReportMan = #{inputReportMan}
+        <if test="IsTake ==1">,takedate = getdate(),Tinputdate = getdate()</if>
+        <if test="IsTake ==0">,takedate = '',Tinputdate = ''</if>
+        WHERE id=#{id}
+    </update>
+    <update id="updateRK1" parameterType="com.dhchain.business.assembletrans.vo.KCard">
+        UPDATE t_PlanProductTake
+        SET IsTake = #{IsTake},
+        takeman = #{takeman},
+        IsTakeScan = #{IsTakeScan},
+        Tinputman = #{Tinputman},
+        takenum = #{takenum}
+        <if test="IsTake ==1">,takedate = getdate(),Tinputdate = getdate()</if>
+        <if test="IsTake ==0">,takedate = '',Tinputdate = ''</if>
+        WHERE id=#{id}
+    </update>
+    <update id="updateDY" parameterType="com.dhchain.business.assembletrans.vo.KCard">
+        UPDATE t_PlanProductTake
+        SET IsPrint = #{IsPrint}
+        WHERE id=#{id}
+    </update>
+
+    <select id="getCZG" parameterType="com.dhchain.business.assembletrans.vo.CZG" resultType="com.dhchain.business.assembletrans.vo.CZG">
+        SELECT
+        *
+        FROM
+        t_PlanDuty
+        WHERE
+        1 = 1
+        and plant = #{plant}
+        and worklead=#{worklead}
+    </select>
+
+    <select id="getSeId" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+        SELECT top(1)
+        *,serialno_hide as serialnohide
+        FROM
+            t_PlanProductTake
+        WHERE
+            1 = 1
+        AND uyear=#{uyear}
+        AND umouth=#{umouth}
+        order by serialno desc
+    </select>
+
+    <select id="getSB" parameterType="com.dhchain.business.equipmentlist.vo.PlanProBase" resultType="com.dhchain.business.equipmentlist.vo.PlanProBase">
+        SELECT top(1)
+        *
+        FROM
+            t_PlanProductBase
+        WHERE
+        1 = 1
+        AND plant=#{plant}
+        AND worklead=#{worklead}
+        AND worker=#{worker}
+    </select>
+
+    <select id="getKCardById" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+        SELECT top(1)
+        *
+        FROM
+            t_PlanProductTake
+        WHERE
+        1 = 1
+        and id=#{id}
+    </select>
+
+    <update id="updateCZRK" parameterType="com.dhchain.business.assembletrans.vo.KCard">
+        UPDATE t_PlanProductTake
+        SET itemno = #{itemno},
+            inputnum = #{inputnum},
+            ReportMan = #{ReportMan},
+            OrderTime = #{OrderTime}
+        WHERE id=#{id}
+    </update>
+
+    <select id="selectidInPackIn" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+        select * from t_PackageIn where Heatid = #{id}
+        <if test="AssRetrun!=null and AssRetrun!=''"> and AssRetrun != #{AssRetrun}</if>
+    </select>
+
+    <select id="selectLastMonthTake" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+        select sum(inputnum) as inputnum,plant,OrderLine,fno from t_PlanProductTake where OrderLine = #{OrderLine} and  plant = #{plant} and  fno = #{fno} and issure &lt;&gt; 1 and  umouth = DATEPART(M,DATEADD(M,-1,GETDATE())) and uyear =YEAR( DATEADD(MONTH,-1,GETDATE()))  GROUP BY  OrderLine,plant,fno
+    </select>
+    <select id="getIssure" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+       SELECT * from t_PlanProductTake where id=#{id}
+    </select>
+    <select id="queryScan" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+        SELECT * from t_PlanProductTake where  OnlyScan =#{OnlyScan} and datediff(day,suredate,getdate())=0
+        and plant=#{plant}
+        order by suredate desc
+    </select>
+    <select id="queryTakeScan" parameterType="com.dhchain.business.assembletrans.vo.KCard" resultType="com.dhchain.business.assembletrans.vo.KCard">
+        SELECT * from t_PlanProductTake where  IsTakeScan =#{IsTakeScan}
+        and plant=#{plant}
+        and datediff(day,takedate,getdate())=0 order by takedate desc
+    </select>
+
+</mapper>

@@ -1,0 +1,215 @@
+
+<script type="text/javascript">
+    var user = localStorage.getItem("User");
+    var id;
+    var typedetailid = parent.typedetailid;
+    var data ;
+    alert(typedetailid);
+    var codeno;
+    var codename;
+    function expapplyCancel() {
+        parent.$.modalDialog.handler.dialog('close');
+    }
+    function expapplyAddFun() {
+        alert(parent.index);
+    }
+
+    function doubleclick(index){
+        var row1  = $('#attrselect-typegrid').datagrid("getSelected");
+        codeno = row1.codeno ;
+        codename= row1.codename;
+        jQuery.ajax({
+            type:"POST",   //post提交方式默认是get
+            url:"/expApply/addDetail.action",
+            dataType:"json",
+            async: false,
+            data:{
+                itemno:itemno,
+                typedetailid:typedetailid,
+                typedetailno:typedetailno,
+                typedetailname:typedetailname,
+                codeno:row1.codeno,
+                codename:row1.codename,
+                user:user
+            },
+
+            error:function(request) {
+                $.messager.progress('close');
+                $("#showMsg").html(request);  //登录错误提示信息
+
+            },
+            success:function(results) {
+                id = results.id;
+
+            }
+        });
+
+        jQuery.ajax({
+            type:"POST",   //post提交方式默认是get
+            url:"/expApply/expApplycolumndata.action",
+            dataType:"json",
+            async: false,
+            data:{
+                id:id,
+                itemno:itemno,
+                typedetailid:typedetailid,
+                typedetailname:typedetailname,
+                codeno:codeno,
+                codename:codename,
+                typedetailno:typedetailno,//$('#typename').val(),
+            },
+            error:function(request) {
+                $.messager.progress('close');
+                $("#showMsg").html(request);
+            },
+            success:function(results) {
+
+                data = results;
+//                data = JSON.stringify(results);
+//                data=data.replace(/\"/g,"");
+
+            }
+        });
+
+//        data =  eval('arr = ' + data);
+        console.log(data);
+
+        parent.expapply.datagrid('appendRow', data);
+        parent.$.modalDialog.handler.dialog('close');
+        parent.itemno =  parseInt(parent.itemno)+10+"";
+    }
+
+
+
+
+    jQuery.ajax({
+        type:"POST",   //post提交方式默认是get
+        url:"/code/selectCodeAttr.action",
+        dataType:"json",
+
+        data:{
+            typedetailid:typedetailid,
+        },
+//                data:$("#login").val(),   //序列化
+        error:function(request) {
+            $.messager.progress('close');
+            $("#showMsg").html(request);  //登录错误提示信息
+
+        },
+        success:function(results) {
+
+            $.messager.progress('close');
+            var IsCheckFlag = true;
+            $('#attrselect-typegrid').datagrid({
+
+                data:results,
+                fit: false, //自动适屏功能
+                autoRowWidth: true,
+                showFooter:true,
+                fitColumns:true,//宽度自适应
+                singleSelect:true,
+                rownumbers:true,
+                width:'auto',
+                method:'get',
+                checkOnSelect:false,
+                selectOnCheck: true,
+                columns: [[
+                    {field:'id',title:'编号',halign: 'center',width:'15%',editor:'text',hidden:true},
+                    {field:'typedetailid',title:'分类主数据id',halign: 'center',width:'15%',editor:'text',hidden:true},
+                    {field:'codeno',title:'主数据物料编码',halign: 'center',width:'20%',editor:'text'},
+                    {field:'codename',title:'主数据物料名称',halign: 'center',width:'20%',editor:'text'},
+                    {field:'inputman',title:'创建人',width:'12%',halign: 'center'},
+                    {field:'inputdate',title:'创建时间',width:'12%',halign: 'center'},
+                    {field:'islocked',title:'冻结',width:'20%',halign: 'center',align:'center',editor : {
+                        type : "checkbox",
+                        options:{
+                            on: "是",
+                            off: "否"
+                        }
+
+                    },
+                        formatter: function(value) {
+                            if (value == "是") {
+                                return "√";
+                            } else {
+                                return "";
+                            }
+                        },
+
+                    }
+
+
+                ]],
+
+
+            });
+
+        }
+    });
+
+
+
+
+
+    /**
+     * Name 分页过滤器
+     */
+    function pagerFilter(data){
+        if (typeof data.length == 'number' && typeof data.splice == 'function'){// is array
+            data = {
+                total: data.length,
+                rows: data
+            }
+        }
+        var dg = $(this);
+        var opts = dg.datagrid('options');
+        var pager = dg.datagrid('getPager');
+        pager.pagination({
+            onSelectPage:function(pageNum, pageSize){
+                opts.pageNumber = pageNum;
+                opts.pageSize = pageSize;
+                pager.pagination('refresh',{pageNumber:pageNum,pageSize:pageSize});
+                dg.datagrid('loadData',data);
+            }
+        });
+        if (!data.rows){
+            data.rows = (data.rows);
+        }
+        var start = (opts.pageNumber-1)*parseInt(opts.pageSize);
+        var end = start + parseInt(opts.pageSize);
+        data.rows = (data.rows.slice(start, end));
+        return data;
+    }
+
+
+    /**
+     * Name 载入数据
+     */
+    $('#attrselect-typegrid').datagrid({
+        loadFilter:pagerFilter,
+        rownumbers:true,
+        singleSelect:false,
+        pageSize:20,
+        pagination:true,
+        multiSort:true,
+
+    });
+
+    $('#attrreselect-typegrid').datagrid({
+        loadFilter:pagerFilter,
+        rownumbers:true,
+        singleSelect:false,
+        pageSize:20,
+        pagination:true,
+        multiSort:true,
+
+    });
+
+</script>
+<div style="padding: 3px;height: 500px;width: 500px">
+    <table title="物料编码查询" id="attrselect-typegrid"  class="easyui-datagrid"  data-options="onDblClickRow: doubleclick,editor:'text',singleSelect:true" style="height: 100%;width: 100%">
+
+    </table>
+</div>
+
+

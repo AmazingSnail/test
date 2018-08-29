@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.Tractor.dao.TBasedateMappre" >
+<select id="getZJ" resultType="com.dhchain.business.Tractor.vo.TBasedate" parameterType="com.dhchain.business.Tractor.vo.TBasedate">
+    select  distinct Wheelbase from t_Basedate where    zmach=#{zmach}
+</select>
+    <select id="getZJType" resultType="com.dhchain.business.Tractor.vo.TBasedate" parameterType="com.dhchain.business.Tractor.vo.TBasedate">
+    select  distinct Type from t_Basedate where    zmach=#{zmach}
+</select>
+    <select id="getBZ" resultType="com.dhchain.business.Tractor.vo.TBasedate" parameterType="com.dhchain.business.Tractor.vo.TBasedate">
+    select  *  from t_Basedate where    zmach=#{zmach}
+</select>
+    <select id="getSize" resultType="com.dhchain.business.Tractor.vo.TBasedate" parameterType="com.dhchain.business.Tractor.vo.TBasedate">
+    select  distinct Outsize  ,type from t_Basedate where    zmach=#{zmach}
+</select>
+    <select id="getForce" resultType="com.dhchain.business.Tractor.vo.TBasedate" parameterType="com.dhchain.business.Tractor.vo.TBasedate">
+    select  distinct DemarcatedForce from t_Basedate where    zmach=#{zmach}
+</select>
+    <select id="getUse" resultType="com.dhchain.business.Tractor.vo.TBasedate" parameterType="com.dhchain.business.Tractor.vo.TBasedate">
+    select  distinct MinUse from t_Basedate where    zmach=#{zmach}
+</select>
+    <select id="getStauts" resultType="com.dhchain.business.Tractor.vo.TBasestatus" parameterType="com.dhchain.business.Tractor.vo.TBasestatus">
+               select  * from t_Basestatus where Department = '基础数据'
+</select>
+    <select id="getUser" resultType="com.dhchain.business.Tractor.vo.Uuser" parameterType="com.dhchain.business.Tractor.vo.Uuser">
+               select  * from u_user where login_name = #{login_name}
+</select>
+
+</mapper>

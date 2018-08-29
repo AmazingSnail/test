@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.colddigitalworkshop.dao.ColdPlantLgortMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.colddigitalworkshop.vo.ColdPlantLgort" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="plant" property="plant" jdbcType="VARCHAR" />
+    <result column="lgort" property="lgort" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, plant, lgort
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ColdPlantLgort
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_ColdPlantLgort
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdPlantLgort" >
+    insert into t_ColdPlantLgort (id, plant, lgort
+      )
+    values (#{id,jdbcType=INTEGER}, #{plant,jdbcType=VARCHAR}, #{lgort,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdPlantLgort" >
+    insert into t_ColdPlantLgort
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="plant != null" >
+        plant,
+      </if>
+      <if test="lgort != null" >
+        lgort,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="plant != null" >
+        #{plant,jdbcType=VARCHAR},
+      </if>
+      <if test="lgort != null" >
+        #{lgort,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdPlantLgort" >
+    update t_ColdPlantLgort
+    <set >
+      <if test="plant != null" >
+        plant = #{plant,jdbcType=VARCHAR},
+      </if>
+      <if test="lgort != null" >
+        lgort = #{lgort,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdPlantLgort" >
+    update t_ColdPlantLgort
+    set plant = #{plant,jdbcType=VARCHAR},
+      lgort = #{lgort,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectPlantLgortAll" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdPlantLgort">
+    SELECT  * FROM t_ColdPlantLgort
+  </select>
+</mapper>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.TradeWMS.dao.TPackhalfstoreMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.TradeWMS.vo.TPackhalfstore" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="PackHalfID" property="packhalfid" jdbcType="INTEGER" />
+    <result column="Location" property="location" jdbcType="VARCHAR" />
+    <result column="SumNum" property="sumnum" jdbcType="DOUBLE" />
+    <result column="OnecNum" property="onecnum" jdbcType="DOUBLE" />
+    <result column="PackMan" property="packman" jdbcType="VARCHAR" />
+    <result column="PackDate" property="packdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+
+</mapper>

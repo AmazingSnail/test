@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-3.2.xsd" default-lazy-init="true">
+        
+    <context:annotation-config/>
+    <context:component-scan base-package="com.dhchain"/>
+    <context:property-placeholder location="classpath:application.properties"/>
+    <bean class="tk.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.dhchain.business.*"/>
+        <!-- 3.2.2版本新特性，markerInterface可以起到mappers配置的作用，详细情况需要看Marker接口类 -->
+        <property name="markerInterface" value="com.dhchain.business.base.dao.BaseDao"/>
+        <!-- 通用Mapper通过属性注入进行配置，默认不配置时会注册Mapper<T>接口
+        <property name="properties">
+            <value>
+                mappers=tk.mybatis.mapper.common.Mapper
+            </value>
+        </property>
+        -->
+    </bean>
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+
+	<!-- 引入spring mvc配置文件 -->
+    <import resource="spring/dhchain-mvc.xml" />
+    
+    <!-- 引入mybatis配置文件 -->
+    <import resource="spring/dhchain-data.xml" />
+
+    <!-- 引入spring-shiro配置文件 -->
+    <import resource="spring/spring-shiro.xml" />
+
+    <!-- 引入spring-ehcache配置文件 -->
+    <import resource="spring/spring-ehcache.xml" />
+
+    <!-- 引入activiti -->
+    <import resource="spring/spring-activiti.xml" />
+</beans>

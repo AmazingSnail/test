@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.exp.dao.ViewMapper">
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.dhchain.business.exp.vo.View">
+        SELECT
+
+        *
+
+        FROM
+        t_view
+        where id = #{id}
+    </select>
+
+    <select id="selectAttrDefines" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT
+
+        attrdefineid
+
+        FROM
+        t_view_attrdefine
+        where viewid = #{viewid}
+    </select>
+
+    <delete id="deleteViewAttr" parameterType="java.lang.Integer" >
+        DELETE
+        FROM
+        t_view_attrdefine
+        where viewid = #{viewid}
+    </delete>
+
+    <insert id="distribute" parameterType="com.dhchain.business.attr.vo.ViewAttr" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        t_view_attrdefine(viewid, attrdefineid)
+        values(#{viewid}, #{attrdefineid})
+    </insert>
+
+    <select id="isdistribute" parameterType="com.dhchain.business.attr.vo.ViewAttr" resultType="com.dhchain.business.attr.vo.ViewAttr">
+        SELECT
+
+        *
+
+        FROM
+        t_view_attrdefine
+        where attrdefineid = #{attrdefineid}
+    </select>
+    <select id="selectViewAttr" parameterType="com.dhchain.business.attr.vo.ViewAttr" resultType="com.dhchain.business.attr.vo.ViewAttr">
+        SELECT
+
+        *
+
+        FROM
+        t_view_attrdefine
+        where viewid = #{viewid} and attrdefineid = #{attrdefineid}
+    </select>
+    <update id="savedefault" parameterType="com.dhchain.business.attr.vo.ViewAttr" >
+        UPDATE   t_view_attrdefine
+        SET
+        attrdefault = #{attrdefault}
+
+        WHERE id = #{id};
+    </update>
+    <select id="select" parameterType="com.dhchain.business.exp.vo.View" resultType="com.dhchain.business.exp.vo.View">
+        SELECT
+
+        *
+
+        FROM
+        t_view
+        where isdelete = 0
+        <if test="viewcode!=null and viewcode!=''">and viewcode LIKE '%'+#{viewcode}+'%'</if>
+        <if test="viewname!=null and viewname!=''">and viewname like '%'+ #{viewname} +'%'</if>
+        <if test="typeid!=null and typeid!=''">and typeid = #{typeid}</if>
+    </select>
+
+    <insert id="insert" parameterType="com.dhchain.business.exp.vo.View" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        t_view(viewname, viewcode,islocked,inputman,inputdate,isdelete,typeid)
+        values(#{viewname}, #{viewcode},#{islocked},#{inputman},#{inputdate},#{isdelete},#{typeid})
+    </insert>
+
+    <update id="update" parameterType="com.dhchain.business.exp.vo.View" >
+        UPDATE t_view
+        SET
+        viewname = #{viewname},
+        viewcode = #{viewcode},
+        islocked = #{islocked},
+        modifyman = #{modifyman},
+        modifydate = #{modifydate}
+        WHERE id = #{id};
+    </update>
+
+    <update id="delete" parameterType="com.dhchain.business.exp.vo.View" >
+        UPDATE t_view
+        SET
+        isdelete = 1
+        WHERE id in
+        <foreach item="item" index="index" collection="array"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+</mapper>

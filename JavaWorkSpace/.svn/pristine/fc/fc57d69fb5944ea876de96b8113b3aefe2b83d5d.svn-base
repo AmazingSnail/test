@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.partpunchingworkshop.dao.PersonnelMaintenanceMapper" >
+     <select id="getEquip" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+                 select distinct EquipID,EquipName from  m_BaseEquip where EquipID LIKE '%'+ #{Plant}+'%'
+     </select>
+    <select id="getEquipD" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+                 select * from  m_BaseEquip where  plant = #{plant} and  DepartMent = #{DepartMent}
+     </select>
+    <select id="getEquip1" resultType="com.dhchain.business.partpunchingworkshop.vo.PTFinish" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTFinish">
+         select distinct EquipID from m_PTFinish where  plant = #{plant}
+    </select>
+    <select id="getEquipF" resultType="com.dhchain.business.partpunchingworkshop.vo.EQPFault" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPFault">
+         select distinct EquipID from m_EQPFault where EquipID LIKE  'C3%'
+    </select>
+    <select id="getDepartment" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+          SELECT distinct StatusName ,* FROM m_BaseStatus where DepartMent='管理'
+    </select>
+    <select id="query" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseUser" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseUser"
+            >
+    select * from m_BaseUser WHERE  UserTypes = #{UserTypes} and DepartMent = #{DepartMent}
+    </select>
+    <insert id="insertprocess" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseUser"
+    >
+        insert into m_BaseUser
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="UserName != null" >
+                UserName,
+            </if>
+            <if test="Team != null" >
+                Team,
+            </if>
+            <if test="Monitor != null" >
+                Monitor,
+            </if>
+            <if test="EquipID != null" >
+                EquipID,
+            </if>
+            <if test="Workprocedure != null" >
+                Workprocedure,
+            </if>
+            <if test="UserTypes != null" >
+                UserTypes,
+            </if>
+            <if test="InputMan != null" >
+                InputMan,
+            </if>
+            <if test="InputTime != null" >
+                InputTime,
+            </if>
+            <if test="Plant != null" >
+                Plant,
+            </if>
+            <if test="DepartMent != null" >
+                DepartMent,
+            </if>
+            <if test="UserID != null" >
+                UserID,
+            </if>
+            <if test="WorkTypes != null" >
+                WorkTypes,
+            </if>
+            <if test="WorkMan != null" >
+                WorkMan,
+            </if>
+            <if test="WeChatID != null" >
+                WeChatID,
+            </if>
+            <if test="isSet != null" >
+                isSet,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="UserName != null" >
+                #{UserName,jdbcType=VARCHAR},
+            </if>
+            <if test="Team != null" >
+                #{Team,jdbcType=VARCHAR},
+            </if>
+            <if test="Monitor != null" >
+                #{Monitor,jdbcType=VARCHAR},
+            </if>
+            <if test="EquipID != null" >
+                #{EquipID,jdbcType=VARCHAR},
+            </if>
+            <if test="Workprocedure != null" >
+                #{Workprocedure,jdbcType=VARCHAR},
+            </if>
+            <if test="UserTypes != null" >
+                #{UserTypes,jdbcType=VARCHAR},
+            </if>
+            <if test="InputMan != null" >
+                #{InputMan,jdbcType=TIMESTAMP},
+            </if>
+            <if test="InputTime != null" >
+                #{InputTime,jdbcType=VARCHAR},
+            </if>
+            <if test="Plant != null" >
+                #{Plant,jdbcType=VARCHAR},
+            </if>
+            <if test="DepartMent != null" >
+                #{DepartMent,jdbcType=VARCHAR},
+            </if>
+            <if test="UserID != null" >
+                #{UserID,jdbcType=VARCHAR},
+            </if>
+            <if test="WorkTypes != null" >
+            #{WorkTypes,jdbcType=VARCHAR},
+           </if>
+            <if test="WorkMan != null" >
+            #{WorkMan,jdbcType=VARCHAR},
+           </if>
+            <if test="WeChatID != null" >
+            #{WeChatID,jdbcType=VARCHAR},
+           </if>
+            <if test="isSet != null" >
+            #{isSet,jdbcType=VARCHAR},
+           </if>
+
+        </trim>
+
+    </insert>
+<delete id="delete" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseUser">
+    delete m_BaseUser where ID = #{ID}
+</delete>
+<update id="updateUser" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseUser">
+    UPDATE  m_BaseUser SET
+    UserName = #{UserName},
+    UserID = #{UserID},
+    Team = #{Team},
+    Monitor = #{Monitor},
+    EquipID = #{EquipID},
+    isSet = #{isSet},
+    Workprocedure = #{Workprocedure},
+    UserTypes =#{UserTypes},
+    ModifyMan = #{ModifyMan},
+    ModifyTime = #{ModifyTime}
+    ,DepartMent = #{DepartMent}
+    <if test="WorkTypes != null" >
+        ,WorkTypes = #{WorkTypes,jdbcType=VARCHAR}
+    </if>
+    <if test="WorkMan != null" >
+        ,WorkMan = #{WorkMan,jdbcType=VARCHAR}
+    </if>
+    <if test="WeChatID != null" >
+        ,WeChatID = #{WeChatID,jdbcType=VARCHAR}
+    </if>
+    where ID = #{ID}
+</update>
+    <select id="queryplant" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        SELECT  * from m_BaseStatus where DepartMent='事业部'
+    </select>
+    <select id="getUserName" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseUser" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseUser">
+        select distinct UserName from  m_BaseUser where UserTypes='检验人员' and plant = #{plant}
+    </select>
+    <select id="getPlanID" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTProdTake" resultType="com.dhchain.business.partpunchingworkshop.vo.PTProdTake">
+       select * from m_PTProdTake where plant = #{plant} and EquipID = #{EquipID} and Status = 'SC02'
+    </select>
+    <select id="getAll" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPCheck" resultType="com.dhchain.business.partpunchingworkshop.vo.EQPCheck">
+  EXEC EQPCheck @EquipID=#{EquipID},@CheckDate = #{CheckDate}
+    </select>
+
+    <select id="getStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        SELECT  * from m_BaseStatus where StatusID=#{StatusID}
+    </select>
+    <select id="getlist" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+        SELECT  * from m_BaseEquip where EquipID = #{EquipID}
+    </select>
+    <select id="getNum" parameterType="com.dhchain.business.partpunchingworkshop.vo.Num" resultType="com.dhchain.business.partpunchingworkshop.vo.Num">
+        select * from m_Num where ENum = #{ENum}
+    </select>
+    <select id="getMan" resultType="com.dhchain.business.partpunchingworkshop.vo.EQPCheck" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPCheck">
+        select * from m_EQPCheck where EquipID = #{EquipID} and CheckDate = #{CheckDate}
+    </select>
+    <select id="getCheck" parameterType="com.dhchain.business.partpunchingworkshop.vo.CHKResult" resultType="com.dhchain.business.partpunchingworkshop.vo.CHKResult">
+        select * from m_CHKResult where EquipID=#{EquipID} and PlanID=#{PlanID} and ProvingTime= #{ProvingTime} and SendTime=#{SendTime}
+    </select>
+    <select id="getCheck1" parameterType="com.dhchain.business.partpunchingworkshop.vo.CHKResult" resultType="com.dhchain.business.partpunchingworkshop.vo.CHKResult">
+        select * from m_CHKResult where EquipID=#{EquipID}  and ProvingTime= #{ProvingTime} and SendTime=#{SendTime}
+    </select>
+    <select id="getInfo" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity">
+        select * from t_materialCoding where Fno = #{Fno}
+    </select>
+    <select id="getBaseData" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseChkStd" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseChkStd">
+        select * from m_BaseChkStd where PartDrawing = #{PartDrawing}
+    </select>
+    <select id="getDetail" resultType="com.dhchain.business.partpunchingworkshop.vo.CHKDetail" parameterType="com.dhchain.business.partpunchingworkshop.vo.CHKDetail">
+        SELECT * FROM  m_CHKDetail where CheakID = #{CheakID}
+    </select>
+    <select id="getChechID" parameterType="com.dhchain.business.partpunchingworkshop.vo.CHKResult" resultType="com.dhchain.business.partpunchingworkshop.vo.CHKResult">
+      select * from m_CHKResult where   datediff(month,SendTime,getdate())=0 order by CheakID desc
+    </select>
+    <insert id="insertResult" parameterType="com.dhchain.business.partpunchingworkshop.vo.CHKResult">
+        insert into m_CHKResult
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="EquipID != null" >
+                EquipID,
+            </if>
+            <if test="PlanID != null" >
+                PlanID,
+            </if>
+            <if test="CheakID != null" >
+                CheakID,
+            </if>
+            <if test="CheakTypes != null" >
+                CheakTypes,
+            </if>
+            <if test="RandomMan != null" >
+                RandomMan,
+            </if>
+            <if test="RandomTime != null" >
+                RandomTime,
+            </if>
+            <if test="RandomNum != null" >
+                RandomNum,
+            </if>
+            <if test="CheakMan != null" >
+                CheakMan,
+            </if>
+            <if test="CheakTime != null" >
+                CheakTime,
+            </if>
+            <if test="NQualNum != null" >
+                NQualNum,
+            </if>
+            <if test="ProvingTime != null" >
+                ProvingTime,
+            </if>
+            <if test="SendTime != null" >
+                SendTime,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="EquipID != null" >
+                #{EquipID,jdbcType=VARCHAR},
+            </if>
+            <if test="PlanID != null" >
+                #{PlanID,jdbcType=VARCHAR},
+            </if>
+            <if test="CheakID != null" >
+                #{CheakID,jdbcType=VARCHAR},
+            </if>
+            <if test="CheakTypes != null" >
+                #{CheakTypes,jdbcType=VARCHAR},
+            </if>
+            <if test="RandomMan != null" >
+                #{RandomMan,jdbcType=VARCHAR},
+            </if>
+            <if test="RandomTime != null" >
+                #{RandomTime,jdbcType=VARCHAR},
+            </if>
+            <if test="RandomNum != null" >
+                #{RandomNum,jdbcType=FLOAT},
+            </if>
+            <if test="CheakMan != null" >
+                #{CheakMan,jdbcType=VARCHAR},
+            </if>
+            <if test="CheakTime != null" >
+                #{CheakTime,jdbcType=VARCHAR},
+            </if>
+            <if test="NQualNum != null" >
+                #{NQualNum,jdbcType=VARCHAR},
+            </if>
+            <if test="ProvingTime != null" >
+                #{ProvingTime,jdbcType=VARCHAR},
+            </if>
+            <if test="SendTime != null" >
+                #{SendTime,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <insert id="insertDetail" parameterType="com.dhchain.business.partpunchingworkshop.vo.CHKDetail">
+        insert into m_CHKDetail
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="CheakID != null" >
+                CheakID,
+            </if>
+            <if test="HoleHD != null" >
+                HoleHD,
+            </if>
+            <if test="PartDrawing != null" >
+                PartDrawing,
+            </if>
+            <if test="Aperture != null" >
+                Aperture,
+            </if>
+            <if test="HoleSite != null" >
+                HoleSite,
+            </if>
+            <if test="Thickness != null" >
+                Thickness,
+            </if>
+            <if test="Facade != null" >
+                Facade,
+            </if>
+            <if test="Height != null" >
+                Height,
+            </if>
+            <if test="Leuchtfeld != null" >
+                Leuchtfeld,
+            </if>
+            <if test="IsQualified != null" >
+                IsQualified,
+            </if>
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="CheakID != null" >
+                #{CheakID,jdbcType=VARCHAR},
+            </if>
+            <if test="HoleHD != null" >
+                #{HoleHD,jdbcType=VARCHAR},
+            </if>
+            <if test="PartDrawing != null" >
+                #{PartDrawing,jdbcType=VARCHAR},
+            </if>
+            <if test="Aperture != null" >
+                #{Aperture,jdbcType=VARCHAR},
+            </if>
+            <if test="HoleSite != null" >
+                #{HoleSite,jdbcType=VARCHAR},
+            </if>
+            <if test="Thickness != null" >
+                #{Thickness,jdbcType=VARCHAR},
+            </if>
+            <if test="Facade != null" >
+                #{Facade,jdbcType=VARCHAR},
+            </if>
+            <if test="Height != null" >
+                #{Height,jdbcType=VARCHAR},
+            </if>
+            <if test="Leuchtfeld != null" >
+                #{Leuchtfeld,jdbcType=VARCHAR},
+            </if>
+            <if test="IsQualified != null" >
+                #{IsQualified,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+</mapper>

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.user.dao.ResourceMapper">
+
+    <!-- 通用查询结果列-->
+    <sql id="Base_Column_List">
+        id, name, url, description, icon, pid, seq, status, open_mode as openMode, opened, resource_type AS resourceType, create_time AS createTime
+    </sql>
+    <select id="selectList" parameterType="com.dhchain.business.user.vo.Resource" resultType="com.dhchain.business.user.vo.Resource">
+        SELECT
+        *
+        FROM
+        u_resource
+        order by seq
+    </select>
+
+    <select id="selectListByType" parameterType="java.lang.Integer" resultType="com.dhchain.business.user.vo.Resource">
+        SELECT
+        *
+        FROM
+        u_resource
+        WHERE resource_type = #{type}
+        order by seq
+    </select>
+
+    <insert id="insert" parameterType="com.dhchain.business.user.vo.Resource" useGeneratedKeys="true" keyProperty="id">
+        insert into u_resource(name, url,open_mode,description,icon,pid,seq,status,opened,resource_type,create_time)
+        values(#{name}, #{url},#{openMode}, #{description},#{icon}, #{pid},#{seq},#{status},#{opened},#{resourceType},#{createTime})
+    </insert>
+
+    <delete  id="deleteById" parameterType="java.lang.Long">
+        delete from
+        u_resource
+        where id=#{id}
+    </delete >
+
+    <select id="selectById" parameterType="java.lang.Long" resultType="com.dhchain.business.user.vo.Resource">
+        SELECT
+
+       *
+
+        FROM
+        u_resource
+        where  id=#{id}
+
+    </select>
+
+    <update id="update" parameterType="com.dhchain.business.user.vo.Resource" >
+        UPDATE u_resource
+        SET name = #{name},
+        url = #{url},
+        open_mode = #{openMode},
+        description = #{description},
+        icon = #{icon},
+        seq = #{seq},
+        status = #{status},
+        opened = #{opened},
+        resource_type = #{resourceType},
+        pid = #{pid}
+
+        WHERE id = #{id};
+    </update>
+</mapper>

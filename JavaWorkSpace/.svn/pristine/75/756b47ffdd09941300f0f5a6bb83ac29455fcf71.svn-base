@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.partpunchingworkshop.dao.QualityAssuranceMapper" >
+    <select id="search" parameterType="com.dhchain.business.partpunchingworkshop.vo.CHKResult" resultType="com.dhchain.business.partpunchingworkshop.vo.CHKResult">
+        SELECT * FROM View_CHKResult WHERE
+        1=1
+        and  CheakTime BETWEEN #{RandomTime} AND  #{RandomTime1}
+        <if test="EquipID != null and EquipID!=''" >
+            and  EquipID =#{EquipID}
+        </if>
+        <if test="CheakID != null and CheakID!=''" >
+            and  CheakID LIKE '%'+ #{CheakID}+'%'
+        </if>
+        <if test="Plant != null and Plant!=''">
+            and Plant = #{Plant}
+        </if>
+        <if test="Department != null and Department!=''">
+            and Department = #{Department}
+        </if>
+        <if test="CheakTypes != null and CheakTypes!=''">
+            and CheakTypes = #{CheakTypes}
+        </if>
+
+        <if test="PlanID != null and PlanID!=''" >
+            and  PlanID LIKE '%'+ #{PlanID}+'%'
+        </if>
+    </select>
+    <select id="getbycheckID" parameterType="com.dhchain.business.partpunchingworkshop.vo.CHKDetail" resultType="com.dhchain.business.partpunchingworkshop.vo.CHKDetail">
+        SELECT * FROM m_CHKDetail WHERE
+        1=1
+        and   CheakID = #{CheakID}
+    </select>
+    <select id="getEquipID" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+        select distinct EquipID from  m_BaseEquip where DepartMent = #{DepartMent} and Plant = #{Plant}
+
+    </select>
+    <select id="getAll" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTPlan" resultType="com.dhchain.business.partpunchingworkshop.vo.PTPlan">
+        select * from m_PTPlan where Plant=#{Plant} and Uyear = #{Uyear} and Umouth = #{Umouth}
+    </select>
+    <select id="getAll1" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTFinish" resultType="com.dhchain.business.partpunchingworkshop.vo.PTFinish">
+        select * from m_PTFinish where Plant=#{Plant} and Uyear = #{Uyear} and Umouth = #{Umouth}
+    </select>
+    <select id="getUser" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseUser" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseUser">
+        select * from m_BaseUser where  UserTypes = '生产人员'
+    </select>
+    <select id="getStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.EQPStatus" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPStatus">
+        select * from View_EQS where Plant=#{Plant}
+    </select>
+    <select id="getFault" parameterType="com.dhchain.business.partpunchingworkshop.vo.EQPFault" resultType="com.dhchain.business.partpunchingworkshop.vo.EQPFault">
+        select * from View_EQPFault where datediff(month,CallTime,getdate())=0 and Plant=#{Plant}
+    </select>
+    <select id="getMatial" resultType="com.dhchain.business.partpunchingworkshop.vo.PTPlan" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTPlan">
+        select  ISNULL(s.Weight, 0) AS Weight from (SELECT RIGHT('00'+CAST(DAY([ProductTime]) AS VARCHAR(4)),2) AS [ProductTime],
+    SUM([Weight]) AS Weight FROM m_PTMaterial
+    WHERE  CONVERT(VARCHAR(7),[ProductTime],120)=CONVERT(VARCHAR(7),GETDATE(),120)
+    GROUP BY MONTH([ProductTime]),DAY([ProductTime])) s right join m_Num c on s.ProductTime = c.Num
+    </select>
+    <select id="getFinish" resultType="com.dhchain.business.partpunchingworkshop.vo.PTFinish" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTFinish">
+       select  ISNULL(s.WeightNum, 0) AS WeightNum,c.Num from (SELECT RIGHT('00'+CAST(DAY([ProductTime]) AS VARCHAR(4)),2) AS [ProductTime],
+    SUM([WeightNum]) AS WeightNum FROM m_PTFinish
+    WHERE  CONVERT(VARCHAR(7),[ProductTime],120)=CONVERT(VARCHAR(7),GETDATE(),120)
+    GROUP BY MONTH([ProductTime]),DAY([ProductTime])) s right join m_Num c on s.ProductTime = c.Num
+    </select>
+
+</mapper>

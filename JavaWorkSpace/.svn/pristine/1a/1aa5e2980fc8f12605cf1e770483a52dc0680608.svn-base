@@ -1,0 +1,119 @@
+package com.dhchain.business.partpunchingworkshop.service.Impl;
+
+import com.dhchain.business.partpunchingworkshop.dao.PersonnelMaintenanceMapper;
+import com.dhchain.business.partpunchingworkshop.service.PersonnelMaintenanceService;
+import com.dhchain.business.partpunchingworkshop.vo.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service("PersonnelMaintenanceService")
+public class PersonnelMaintenanceServiceImpl implements PersonnelMaintenanceService {
+    @Autowired
+    private PersonnelMaintenanceMapper personnelMaintenanceMapper;
+    @Override
+    public List<BaseEquip> getEquip(BaseEquip record) {
+        return personnelMaintenanceMapper.getEquip(record);//查询设备;
+    }
+
+    @Override
+    public List<PTFinish> getEquip1(PTFinish record) {
+        return personnelMaintenanceMapper.getEquip1(record);
+    }
+
+    @Override
+    public List<EQPCheck> getAll(EQPCheck record) {
+        return personnelMaintenanceMapper.getAll(record);
+    }
+
+    @Override
+    public List<EQPCheck> getMan(EQPCheck record) {
+        return personnelMaintenanceMapper.getMan(record);
+    }
+
+    @Override
+    public List<Num> getNum(Num record) {
+        return personnelMaintenanceMapper.getNum(record);
+    }
+
+    @Override
+    public List<BaseStatus> queryplant() {
+        return personnelMaintenanceMapper.queryplant();
+    }
+    @Override
+    public List<BaseUser> getUserName( BaseUser record) {
+        return personnelMaintenanceMapper.getUserName(record);
+    }
+    @Override
+    public List<PTProdTake> getPlanID( PTProdTake record) {
+        return personnelMaintenanceMapper.getPlanID(record);
+    }
+
+    @Override
+    public List<BaseStatus> getDepartment() {
+        return personnelMaintenanceMapper.getDepartment();
+    }
+ @Override
+    public List<BaseStatus> getStatus(BaseStatus record) {
+        return personnelMaintenanceMapper.getStatus(record);
+    }
+
+    @Override
+    public List<BaseEquip> getlist(BaseEquip record) {
+        return personnelMaintenanceMapper.getlist(record);
+    }
+
+    @Override
+    public List<BaseUser> query(BaseUser record) {
+        return personnelMaintenanceMapper.query(record);
+    }
+
+    @Override
+    public int insertprocess(BaseUser record) {
+        return personnelMaintenanceMapper.insertprocess(record);
+    }
+
+    @Override
+    public int updateUser(BaseUser record) {
+        return personnelMaintenanceMapper.updateUser(record);
+    }
+
+    @Override
+    public int delete(BaseUser record) {
+        return personnelMaintenanceMapper.delete(record);
+    }
+    @Override
+    public List<CHKResult> getCheck(CHKResult record) {
+        return personnelMaintenanceMapper.getCheck(record);
+    }
+    @Override
+    public List<CHKResult> getCheck1(CHKResult record) {
+        return personnelMaintenanceMapper.getCheck1(record);
+    }
+    @Override
+    public List<BaseCapacity> getInfo(BaseCapacity record) {
+        return personnelMaintenanceMapper.getInfo(record);
+    }
+    @Override
+    public List<BaseChkStd> getBaseData(BaseChkStd record) {
+        return personnelMaintenanceMapper.getBaseData(record);
+    }
+    @Override
+    public List<CHKDetail> getDetail(CHKDetail record) {
+        return personnelMaintenanceMapper.getDetail(record);
+    }
+    @Override
+    public List<CHKResult> getChechID(CHKResult record) {
+        return personnelMaintenanceMapper.getChechID(record);
+    }
+
+    @Override
+    public int insertResult(CHKResult record) {
+        return personnelMaintenanceMapper.insertResult(record);
+    }
+    @Override
+    public int insertDetail(CHKDetail record) {
+        return personnelMaintenanceMapper.insertDetail(record);
+    }
+}

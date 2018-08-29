@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.colddigitalworkshop.dao.MaterialtakeinMapper">
+    <select id="selectColdmaterlin" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        SELECT * FROM t_ColdMaterialIn WHERE  plant = #{plant}  and PoNo = #{pono}
+        <if test="inputdate!=null and inputdate!=''"> and  inputdate &gt;#{inputdate} </if>
+    </select>
+
+    <select id="selectColdmaterlinNeed" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        SELECT * FROM t_ColdMaterialIn WHERE id = #{id} and  isMove = 0
+    </select>
+
+    <select id="selectColdmaterlinSap" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        SELECT fno,lgort,pono,poitem,sum(number) as number,plant,Stocktype FROM t_ColdMaterialIn WHERE inputman = #{inputman} and plant = #{plant}  and PoNo = #{pono} GROUP BY fno,lgort,pono,poitem,Stocktype
+    </select>
+
+    <select id="getPlantIn" parameterType="com.dhchain.business.colddigitalworkshop.vo.Base" resultType="com.dhchain.business.colddigitalworkshop.vo.Base">
+        SELECT fno FROM
+        t_base
+        where FparentID=316 and Fname = #{plant}
+    </select>
+    
+    <select id="getLGORTIn" parameterType="com.dhchain.business.colddigitalworkshop.vo.Base" resultType="com.dhchain.business.colddigitalworkshop.vo.Base">
+        select fname,fremark,Ftemp1 from t_base where fparentid in( select id from t_base where fname='原材料采购收货' and fparentid in (
+        select id from t_base where fname= #{plant} and fparentid=6144))and fname=#{UserName}
+    </select>
+
+    <insert id="insertColdmsg" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        INSERT  INTO  t_ColdMaterialIn
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="serialno!=null ">  serialno,</if>
+            <if test="pono!=null "> PoNo,</if>
+            <if test="poitem!=null "> PoItem,</if>
+            <if test="fno!=null "> fno,</if>
+            <if test="fname!=null "> fname,</if>
+            <if test="number!=null "> Number,</if>
+            <if test="ponumber!=null "> PoNumber,</if>
+            <if test="takenumber!=null"> TakeNumber,</if>
+            <if test="leftnumber!=null "> LeftNumber,</if>
+            <if test="isok!=null "> isok,</if>
+            <if test="lgort!=null "> LGORT,</if>
+            <if test="unit!=null "> unit,</if>
+            <if test="inputman!=null "> inputman,</if>
+            inputdate,
+            <if test="ismove!=null "> isMove,</if>
+            <if test="plant!=null "> plant,</if>
+            <if test="uplimit!=null "> UpLimit,</if>
+            <if test="downlimit!=null "> DownLimit,</if>
+            <if test="isdone!=null "> IsDone,</if>
+            <if test="uyear!=null "> uyear,</if>
+            <if test="umonth!=null "> umonth,</if>
+            <if test="supportno!=null "> SupportNo,</if>
+            <if test="supportname!=null "> SupportName,</if>
+            <if test="ekorg!=null "> EKORG,</if>
+            <if test="ekorgname!=null "> EKORGName,</if>
+            <if test="ekgrp!=null "> EKGRP,</if>
+            <if test="ekgrpname!=null "> EKGRPName,</if>
+            <if test="pocreattime!=null "> PoCreatTime,</if>
+            <if test="bukrs!=null "> BUKRS,</if>
+            <if test="moveok!=null "> MoveOk,</if>
+            <if test="returnok!=null "> ReturnOk,</if>
+            <if test="stocktype!=null "> StockType,</if>
+            <if test="batchno!=null "> BatchNo,</if>
+            <if test="netpr!=null "> NETPR,</if>
+            <if test="peinh!=null "> PEINH,</if>
+            <if test="zsum!=null "> ZSUM,</if>
+            <if test="cuttingid!=null "> cuttingid,</if>
+            <if test="location!=null "> location,</if>
+            <if test="materialtype!=null "> materialtype,</if>
+            <if test="steelworks!=null "> steelworks,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="serialno!=null ">  #{serialno},</if>
+            <if test="pono!=null "> #{pono},</if>
+            <if test="poitem!=null "> #{poitem},</if>
+            <if test="fno!=null "> #{fno},</if>
+            <if test="fname!=null "> #{fname},</if>
+            <if test="number!=null "> #{number},</if>
+            <if test="ponumber!=null "> #{ponumber},</if>
+            <if test="takenumber!=null "> #{takenumber},</if>
+            <if test="leftnumber!=null "> #{leftnumber},</if>
+            <if test="isok!=null "> #{isok},</if>
+            <if test="lgort!=null "> #{lgort},</if>
+            <if test="unit!=null "> #{unit},</if>
+            <if test="inputman!=null "> #{inputman},</if>
+            convert(varchar(50),getdate(),120),
+            <if test="ismove!=null "> #{ismove},</if>
+            <if test="plant!=null "> #{plant},</if>
+            <if test="uplimit!=null "> #{uplimit},</if>
+            <if test="downlimit!=null "> #{downlimit},</if>
+            <if test="isdone!=null "> #{isdone},</if>
+            <if test="uyear!=null "> #{uyear},</if>
+            <if test="umonth!=null "> #{umonth},</if>
+            <if test="supportno!=null "> #{supportno},</if>
+            <if test="supportname!=null "> #{supportname},</if>
+            <if test="ekorg!=null "> #{ekorg},</if>
+            <if test="ekorgname!=null "> #{ekorgname},</if>
+            <if test="ekgrp!=null "> #{ekgrp},</if>
+            <if test="ekgrpname!=null "> #{ekgrpname},</if>
+            <if test="pocreattime!=null "> #{pocreattime},</if>
+            <if test="bukrs!=null "> #{bukrs},</if>
+            <if test="moveok!=null "> #{moveok},</if>
+            <if test="returnok!=null "> #{returnok},</if>
+            <if test="stocktype!=null "> #{stocktype},</if>
+            <if test="batchno!=null "> #{batchno},</if>
+            <if test="netpr!=null "> #{netpr},</if>
+            <if test="peinh!=null "> #{peinh},</if>
+            <if test="zsum!=null "> #{zsum},</if>
+            <if test="cuttingid!=null "> #{cuttingid},</if>
+            <if test="location!=null "> #{location},</if>
+            <if test="materialtype!=null "> #{materialtype},</if>
+            <if test="steelworks!=null "> #{steelworks},</if>
+        </trim>
+    </insert>
+
+    <select id="getSeId" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        SELECT top(1)
+        *,serialno_hide as serialnohide
+        FROM
+        t_ColdMaterialIn
+        WHERE
+        1 = 1
+        AND uyear=#{uyear}
+        AND umonth=#{umonth}
+        order by serialno desc
+    </select>
+
+    <delete id="deletecoldmsg" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        delete FROM  t_ColdMaterialIn WHERE id = #{id}
+    </delete>
+
+    <update id="updatecoldmsg" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        UPDATE  t_ColdMaterialIn
+        <set>
+            <if test="ismove!=null "> isMove = #{ismove},</if>
+            <if test="moveman!=null "> moveman = #{moveman},</if>
+            Movedate = convert(varchar(50),getdate(),120),
+            <if test="moveok!=null "> moveok = #{moveok},</if>
+            <if test="materialdoc!=null "> materialdoc = #{materialdoc},</if>
+            <if test="materialdocyear!=null "> materialdocyear = #{materialdocyear},</if>
+            <if test="materialdocitem!=null "> materialdocitem = #{materialdocitem},</if>
+        </set>
+        WHERE
+            id = #{id}
+    </update>
+
+    <update id="updatecoldmsgFXZ" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        UPDATE  t_ColdMaterialIn
+        SET
+            <if test="istrans!=null "> istrans = #{istrans},</if>
+            <if test="transman!=null "> moveman = #{transman},</if>
+             TransDate = convert(varchar(50),getdate(),120),
+            <if test="stocktype!=null "> stocktype = #{stocktype},</if>
+        WHERE
+        id = #{id}
+    </update>
+
+    <select id="selectcoldMsgById" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        SELECT * FROM t_ColdMaterialIn WHERE id = #{id}
+    </select>
+
+    <select id="selectcoldMsgByBatchno" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        SELECT top(1) * FROM t_ColdMaterialIn WHERE batchno = #{batchno}
+    </select>
+
+    <update id="updatecoldmsgBack" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        UPDATE  t_ColdMaterialIn
+        <set>
+            <if test="ismove!=null "> ismove = #{ismove},</if>
+            <if test="moveman!=null "> moveman = #{moveman},</if>
+             TransDate = convert(varchar(50),getdate(),120),
+            <if test="returnok!=null "> returnok = #{returnok},</if>
+            <if test="istrans!=null "> istrans = #{istrans},</if>
+        </set>
+        WHERE
+        id = #{id}
+    </update>
+    
+    <insert id="insertPoAgainstRecord" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        insert into t_PoAgainstRecord (serialno,pono,poitem,fno,fname,
+        number,ponumber,takenumber,leftnumber,returnnumber,isok,lgort,unit,inputman ,inputdate,ismove,moveman,movedate,
+        plant,uplimit,downlimit,isdone,uyear,umonth,supportno,supportname ,ekorg,ekgrp,pocreattime,bukrs,
+        moveok,returnok,stocktype,materialdoc,materialdocyear,materialdocitem,batchno)
+        values (
+        #{serialno},
+        #{pono},
+        #{poitem},
+        #{fno},
+        #{fname},
+        #{number},
+        #{ponumber},
+        #{takenumber},
+        #{leftnumber},
+        #{number},
+        #{isok},
+        #{lgort},
+        #{unit},
+        #{inputman},
+       convert(varchar(50),getdate(),120),
+        #{ismove},
+        #{moveman},
+        #{movedate},
+        #{plant},
+        #{uplimit},
+        #{downlimit},
+        #{isdone},
+        #{uyear},
+        #{umonth},
+        #{supportno},
+        #{supportname},
+        #{ekorg},
+        #{ekgrp},
+        #{pocreattime},
+        #{bukrs},
+        #{moveok},
+        #{returnok},
+        #{stocktype},
+        #{materialdoc},
+        #{materialdocyear},
+        #{materialdocitem},
+        #{batchno}
+        )
+    </insert>
+
+    <select id="selectColdmaterlinBydate" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        SELECT * FROM t_ColdMaterialIn WHERE 1=1
+        <if test="plant!=null and plant !=''"> and plant = #{plant}</if>
+        <if test="fno!=null and fno!=''"> and fno like '%'+#{fno}+'%'</if>
+        <if test="fname!=null and fname!=''"> and fname like '%'+#{fname}+'%'</if>
+        <if test="begindate!=null and begindate!=''"> and inputdate &gt; #{begindate}</if>
+        <if test="enddate!=null and enddate!=''"> and inputdate &lt;#{enddate}+' 23:59:59'</if>
+        <if test="location!=null and location=='999'"> and location ='999'</if>
+        <if test="location!=null and location=='88-8'"> and location !='999'and location !=''</if>
+    </select>
+
+    <select id="selectColdmaterlinLeaveNumber" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn" resultType="java.lang.Double">
+        select isnull(sum(number),0) as number FROM t_ColdMaterialIn where pono = #{pono} and poitem = #{poitem} and ismove = 0
+    </select>
+
+    <select id="selectcoldmaoliaolocation" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        SELECT * FROM t_ColdMaterialIn WHERE fno = #{fno} and IsUsed = 0 and location !='';
+    </select>
+
+    <select id="selectcoldCutByReelnum" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        SELECT * FROM t_ColdMaterialIn  WHERE BatchNo = #{batchno} and IsCut = 1
+    </select>
+
+    <select id="selectColdmaterlinInNumber" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn" resultType="java.lang.Double">
+        select isnull(sum(number),0) as number FROM t_ColdMaterialIn where Batchno = #{batchno}
+    </select>
+
+    <update id="updateCutting" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        delete t_ColdMaterialIn  where CuttingId = #{cuttingid}
+    </update>
+
+    <update id="updateUsed" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        update t_ColdMaterialIn set IsUsed = 1 WHERE BatchNo = #{batchno}
+    </update>
+
+    <update id="updateUsedforDailyplanBack" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        update t_ColdMaterialIn set IsUsed = #{IsUsed} WHERE BatchNo = #{batchno}
+    </update>
+    <update id="updateColdTakenFail" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        update  t_ColdMaterialIn set MoveOk=1
+        WHERE id= #{id}
+    </update>
+
+    <update id="updateColdTakenBack" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        update  t_ColdMaterialIn set IsMove=0,MoveOk=0,moveback=1,MoveBackman=#{moveman},MoveBackDate=convert(varchar(50),getdate(),25)
+        WHERE id= #{id}
+    </update>
+
+    <update id="updateColdTakenInSap" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdMaterialIn">
+        update  t_ColdMaterialIn set IsMove=1,MoveOk=0,moveback=0,Moveman=#{moveman},Movedate=convert(varchar(50),getdate(),25)
+        WHERE id= #{id}
+    </update>
+
+    <insert id="insertColdSapMess" parameterType="com.dhchain.business.colddigitalworkshop.vo.HaginstRecord">
+        insert into t_HAgainstRecord (fno,serialno,uyear,umonth,againstKind,againstNumber,
+        againstMan,againstDate,plant,TakeMan,TakeDate,isMove,moveman,movedate,fname )
+        values (#{fno},#{serialno},#{uyear},#{umonth},#{againstkind},#{againstnumber},#{againstman},convert(varchar(50),getdate(),25),#{plant},#{takeman},#{takedate},#{isMove},#{moveman},convert(varchar(50),getdate(),25),#{fname})
+    </insert>
+
+    <insert id="insertColdSapMessBack" parameterType="com.dhchain.business.colddigitalworkshop.vo.HaginstRecord">
+        insert into t_HAgainstRecord (fno,serialno,uyear,umonth,againstKind,againstNumber,
+        againstMan,againstDate,plant,TakeMan,TakeDate,MoveBack,MoveBackman,MoveBackDate,fname )
+        values (#{fno},#{serialno},#{uyear},#{umonth},#{againstkind},#{againstnumber},#{againstman},convert(varchar(50),getdate(),25),#{plant},#{takeman},#{takedate},#{isMove},#{moveman},convert(varchar(50),getdate(),25),#{fname})
+    </insert>
+</mapper>

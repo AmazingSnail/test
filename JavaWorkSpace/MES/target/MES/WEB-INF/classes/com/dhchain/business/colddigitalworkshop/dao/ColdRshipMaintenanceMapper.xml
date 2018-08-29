@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.colddigitalworkshop.dao.ColdRshipMaintenanceMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.colddigitalworkshop.vo.ColdRshipMaintenance" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <id column="reelnum" property="reelnum" jdbcType="VARCHAR" />
+    <result column="Freelnum" property="freelnum" jdbcType="VARCHAR" />
+    <result column="vbeln" property="vbeln" jdbcType="VARCHAR" />
+    <result column="weight" property="weight" jdbcType="DOUBLE" />
+    <result column="specification" property="specification" jdbcType="VARCHAR" />
+    <result column="note" property="note" jdbcType="VARCHAR" />
+    <result column="year" property="year" jdbcType="VARCHAR" />
+    <result column="month" property="month" jdbcType="VARCHAR" />
+    <result column="inputman" property="inputman" jdbcType="VARCHAR" />
+    <result column="inputdate" property="inputdate" jdbcType="VARCHAR" />
+    <result column="rspecification" property="rspecification" jdbcType="VARCHAR" />
+    <result column="rweight" property="rweight" jdbcType="VARCHAR" />
+    <result column="materialtype" property="materialtype" jdbcType="VARCHAR" />
+    <result column="steelworks" property="steelworks" jdbcType="VARCHAR" />
+    <result column="qualitybrand" property="qualitybrand" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, reelnum, Freelnum, vbeln, weight, specification, note,year,month,inputman,inputdate,rspecification,rweight,materialtype,steelworks,qualitybrand
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdRshipMaintenanceKey" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_ColdRshipMaintenance
+    where id = #{id,jdbcType=INTEGER}
+      and reelnum = #{reelnum,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdRshipMaintenanceKey" >
+    delete from t_ColdRshipMaintenance
+    where id = #{id,jdbcType=INTEGER}
+      and reelnum = #{reelnum,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdRshipMaintenance" >
+    insert into t_ColdRshipMaintenance (id, reelnum, Freelnum, 
+      vbeln, weight, specification, 
+      note,year,month,inputman,inputdate,rspecification,rweight,materialtype,steelworks,qualitybrand)
+    values (#{id,jdbcType=INTEGER}, #{reelnum,jdbcType=VARCHAR}, #{freelnum,jdbcType=VARCHAR}, 
+      #{vbeln,jdbcType=VARCHAR}, #{weight,jdbcType=DOUBLE}, #{specification,jdbcType=VARCHAR}, 
+      #{note,jdbcType=VARCHAR}, #{year,jdbcType=VARCHAR},#{month,jdbcType=VARCHAR},#{inputman,jdbcType=VARCHAR},#{inputdate},#{rspecification},#{rweight},#{materialtype},#{steelworks},#{qualitybrand})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdRshipMaintenance" >
+    insert into t_ColdRshipMaintenance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="reelnum != null" >
+        reelnum,
+      </if>
+      <if test="freelnum != null" >
+        Freelnum,
+      </if>
+      <if test="vbeln != null" >
+        vbeln,
+      </if>
+      <if test="weight != null" >
+        weight,
+      </if>
+      <if test="specification != null" >
+        specification,
+      </if>
+      <if test="note != null" >
+        note,
+      </if>
+      <if test="year != null" >
+        year,
+      </if>
+      <if test="month != null" >
+        month,
+      </if>
+      <if test="inputman != null" >
+        inputman,
+      </if>
+      <if test="inputdate != null" >
+        inputdate,
+      </if>
+      <if test="rspecification != null" >
+        rspecification,
+      </if>
+      <if test="rweight != null" >
+        rweight,
+      </if>
+      <if test="materialtype != null" >
+        materialtype,
+      </if>
+      <if test="steelworks != null" >
+        steelworks,
+      </if>
+      <if test="qualitybrand != null" >
+        qualitybrand,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="reelnum != null" >
+        #{reelnum,jdbcType=VARCHAR},
+      </if>
+      <if test="freelnum != null" >
+        #{freelnum,jdbcType=VARCHAR},
+      </if>
+      <if test="vbeln != null" >
+        #{vbeln,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="specification != null" >
+        #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="inputman != null" >
+        #{inputman,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdate != null" >
+        #{inputdate},
+      </if>
+      <if test="rspecification != null" >
+        #{rspecification},
+      </if>
+      <if test="rweight != null" >
+        #{rweight},
+      </if>
+      <if test="materialtype != null" >
+        #{materialtype},
+      </if>
+      <if test="steelworks != null" >
+        #{steelworks},
+      </if>
+      <if test="qualitybrand != null" >
+        #{qualitybrand},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdRshipMaintenance" >
+    update t_ColdRshipMaintenance
+    <set >
+      <if test="freelnum != null" >
+        Freelnum = #{freelnum,jdbcType=VARCHAR},
+      </if>
+      <if test="vbeln != null" >
+        vbeln = #{vbeln,jdbcType=VARCHAR},
+      </if>
+      <if test="weight != null" >
+        weight = #{weight,jdbcType=DOUBLE},
+      </if>
+      <if test="specification != null" >
+        specification = #{specification,jdbcType=VARCHAR},
+      </if>
+      <if test="note != null" >
+        note = #{note,jdbcType=VARCHAR},
+      </if>
+      <if test="year != null" >
+        year = #{year,jdbcType=VARCHAR},
+      </if>
+      <if test="month != null" >
+        month = #{month,jdbcType=VARCHAR},
+      </if>
+      <if test="inputman != null" >
+        inputman = #{inputman,jdbcType=VARCHAR},
+      </if>
+      <if test="inputdate != null" >
+        inputdate = #{inputdate},
+      </if>
+      <if test="rspecification != null" >
+        rspecification = #{rspecification},
+      </if>
+      <if test="rweight != null" >
+        rweight = #{rweight},
+      </if>
+      <if test="materialtype != null" >
+        materialtype = #{materialtype},
+      </if>
+      <if test="steelworks != null" >
+        steelworks = #{steelworks},
+      </if>
+      <if test="qualitybrand != null" >
+        qualitybrand = #{qualitybrand},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+      and reelnum = #{reelnum,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdRshipMaintenance" >
+    update t_ColdRshipMaintenance
+    set Freelnum = #{freelnum,jdbcType=VARCHAR},
+      vbeln = #{vbeln,jdbcType=VARCHAR},
+      weight = #{weight,jdbcType=DOUBLE},
+      specification = #{specification,jdbcType=VARCHAR},
+      note = #{note,jdbcType=VARCHAR},
+      year = #{year,jdbcType=VARCHAR},
+      month = #{month,jdbcType=VARCHAR},
+      inputman = #{inputman,jdbcType=VARCHAR},
+      inputdate = #{inputdate},
+      rspecification = #{rspecification},
+      rweight = #{rweight},
+      materialtype = #{materialtype},
+      steelworks = #{steelworks},
+      qualitybrand = #{qualitybrand}
+    where id = #{id,jdbcType=INTEGER}
+      and reelnum = #{reelnum,jdbcType=VARCHAR}
+  </update>
+  <select id="selectALL" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdRshipMaintenance" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdRshipMaintenance">
+    select * from t_ColdRshipMaintenance where 1=1
+    <if test="reelnum != null and reelnum!=''" >
+      and  reelnum like '%'+#{reelnum}+'%'
+    </if>
+    <if test="freelnum != null and freelnum!=''" >
+      and  freelnum like '%'+#{freelnum}+'%'
+    </if>
+    <if test="year != null and year!=''" >
+      and  year  = #{year}
+    </if>
+    <if test="month != null and month!=''" >
+      and  month = #{month}
+    </if>
+  </select>
+  <select id="selectColdRshipMaintenanceByReelnum" parameterType="com.dhchain.business.colddigitalworkshop.vo.ColdRshipMaintenance" resultType="com.dhchain.business.colddigitalworkshop.vo.ColdRshipMaintenance">
+    select * from t_ColdRshipMaintenance where 1=1 and reelnum = #{reelnum}
+  </select>
+</mapper>

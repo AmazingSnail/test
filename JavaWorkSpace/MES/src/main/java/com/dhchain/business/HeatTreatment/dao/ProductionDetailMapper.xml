@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.HeatTreatment.dao.ProductionDetailMapper" >
+      <select id="getEquid" parameterType="com.dhchain.business.HeatTreatment.vo.MPtheatfinish" resultType="com.dhchain.business.HeatTreatment.vo.MPtheatfinish">
+          select distinct EquipID from m_PTHeatFinish where Plant =  #{plant}
+      </select>
+    <select id="getType" parameterType="com.dhchain.business.HeatTreatment.vo.MCraftfault" resultType="com.dhchain.business.HeatTreatment.vo.MCraftfault">
+          select distinct FaultTypes from m_CraftFault where plant =  #{plant}
+      </select>
+
+</mapper>

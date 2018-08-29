@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.code.dao.CodeTypeMapper">
+    <insert id="insert" parameterType="com.dhchain.business.code.vo.CodeType" useGeneratedKeys="true" keyProperty="id">
+        insert into t_codetype(ftypeno,ftypename, typeno,typename,typenoele,kindno,kindnum,attrno,attrname,codebegin,codeend,inputman,inputdate,codelength,codemanageid,attrid,isdelete)
+        values(#{ftypeno},#{ftypename}, #{typeno},#{typename},#{typenoele},#{kindno},#{kindnum},#{attrno},#{attrname}, #{codebegin},#{codeend},#{inputman},#{inputdate},#{codelength},#{codemanageid},#{attrid},#{isdelete})
+    </insert>
+
+    <update id="update" parameterType="com.dhchain.business.code.vo.CodeType" >
+        UPDATE t_codetype
+        SET attrid = #{attrid},
+        attrno = #{attrno},
+        attrname = #{attrname},
+        modifyman = #{modifyman},
+        modifydate = #{modifydate},
+        typenoele = #{typenoele},
+        kindno = #{kindno},
+        kindnum = #{kindnum},
+        codebegin = #{codebegin},
+        codeend = #{codeend}
+
+
+        WHERE id = #{id};
+    </update>
+
+    <select id="selectByCodeManageId" parameterType="com.dhchain.business.code.vo.CodeType" resultType="com.dhchain.business.code.vo.CodeType">
+        SELECT
+
+        *
+
+        FROM
+        t_codetype
+        where isdelete = 0
+        and codemanageid = #{codemanageid}
+
+    </select>
+
+
+
+    <select id="selectById" parameterType="com.dhchain.business.code.vo.CodeType" resultType="com.dhchain.business.code.vo.CodeType">
+        SELECT
+
+        *
+
+        FROM
+        t_codetype
+        where isdelete = 0
+        and id = #{id}
+
+    </select>
+
+
+    <select id="selectByTypeno" parameterType="java.lang.String" resultType="com.dhchain.business.code.vo.CodeType">
+        SELECT
+
+        *
+
+        FROM
+        t_codetype
+        where  typeno = #{typeno}
+
+    </select>
+
+    <select id="selectSerialnumber" parameterType="java.lang.String" resultType="com.dhchain.business.code.vo.CodeType">
+        SELECT
+
+        *
+
+        FROM
+        t_codetype
+        where  typeno = #{typeno} and typenoele = '流水码' and isdelete=0
+
+    </select>
+
+    <update id="delete" parameterType="com.dhchain.business.code.vo.CodeType" >
+        UPDATE  t_codetype
+        SET
+        isdelete = 1
+        WHERE id in
+        <foreach item="item" index="index" collection="array"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+
+</mapper>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.partpunchingworkshop.mapper.BaseDataMapper" >
+    <select id="getJudge" resultType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding" parameterType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding">
+        select* from t_ETLState where serialname = '内销库存查询'
+    </select>
+    <select id="selectSame1" resultType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding" parameterType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding">
+
+
+
+
+
+        (SELECT     A.MATNR, A.MAKTX, A.ZBJNRX, A.BASME, A.MBWBEST, C.Fno, C.F1, C.F2, C.F3, C.F4, C.F5, C.F6, C.F7, C.F8, C.F9, C.F10, C.F11, C.F12
+        FROM         (
+        SELECT     MATNR, MAKTX, ZBJNRX, BASME, SUM(CONVERT(float, MBWBEST)) AS MBWBEST
+        FROM          dbo.z_Inventory
+        GROUP BY MATNR, MAKTX, ZBJNRX, BASME  ) AS A INNER JOIN
+        OPENDATASOURCE ('SQLOLEDB', 'Data Source=172.16.0.43;User ID=sa;Password=iso14002' ).NG_MDM.dbo.t_materialCoding AS C ON C.Fno = A.MATNR
+        where MAKTX  not like '(停用)%' AND MATNR NOT LIKE 'B%'
+        <if test="maktx !=null and maktx !=''">and maktx like '%'+#{maktx}+'%'</if>
+        <if test="matnr !=null and matnr !=''">and matnr = #{matnr} </if>
+        <if test="zbjnrx !=null and zbjnrx !=''">and zbjnrx like '%'+#{zbjnrx}+'%' </if>
+        <if test="f2 !=null and f2 !=''">and f2 like '%'+#{f2}+'%' </if>
+        <if test="f3 !=null and f3 !=''">and f3 like '%'+#{f3}+'%' </if>
+        <if test="f4 !=null and f4 !=''">and f4 like '%'+#{f4}+'%' </if>
+        <if test="f5 !=null and f5 !=''">and f5 like '%'+#{f5}+'%' </if>
+        <if test="f9 !=null and f9 !=''">and f9 like '%'+#{f9}+'%' </if>
+        <if test="f10 !=null and f10 !=''">and f10 like '%'+#{f10}+'%' </if>
+        <if test="f11 !=null and f11 !=''">and f11 like '%'+#{f11}+'%' </if>
+        union all
+        SELECT     A.MATNR, A.MAKTX, A.ZBJNRX, A.BASME, A.MBWBEST, C.Fno, C.F1, C.F2, C.F3, C.F4, C.F5, C.F6, C.F7, C.F8, C.F9, C.F10, C.F11, C.F12
+        FROM         (
+        SELECT     MATNR, MAKTX, ZBJNRX, BASME, SUM(CONVERT(float, MBWBEST)) AS MBWBEST
+        FROM          dbo.z_Inventory
+        GROUP BY MATNR, MAKTX, ZBJNRX, BASME  ) AS A INNER JOIN
+        OPENDATASOURCE ('SQLOLEDB', 'Data Source=172.16.0.43;User ID=sa;Password=iso14002' ).NG_MDM.dbo.t_materialCoding AS C ON C.Fno = A.MATNR
+        where MAKTX   like '(停用)%' AND MATNR LIKE 'B%'
+        <if test="maktx !=null and maktx !=''">and maktx like '%'+#{maktx}+'%'</if>
+        <if test="matnr !=null and matnr !=''">and matnr = #{matnr} </if>
+        <if test="zbjnrx !=null and zbjnrx !=''">and zbjnrx like '%'+#{zbjnrx}+'%' </if>
+        <if test="f2 !=null and f2 !=''">and f2 like '%'+#{f2}+'%' </if>
+        <if test="f3 !=null and f3 !=''">and f3 like '%'+#{f3}+'%' </if>
+        <if test="f4 !=null and f4 !=''">and f4 like '%'+#{f4}+'%' </if>
+        <if test="f5 !=null and f5 !=''">and f5 like '%'+#{f5}+'%' </if>
+        <if test="f9 !=null and f9 !=''">and f9 like '%'+#{f9}+'%' </if>
+        <if test="f10 !=null and f10 !=''">and f10 like '%'+#{f10}+'%' </if>
+        <if test="f11 !=null and f11 !=''">and f11 like '%'+#{f11}+'%' </if>)
+        order by f3 ASC
+    </select>
+    <select id="getF2" parameterType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding" resultType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding">
+        select distinct f2 from  View_MaterialCoding
+    </select>
+    <select id="getF4" parameterType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding" resultType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding">
+        select distinct f4 from  View_MaterialCoding
+    </select>
+    <select id="getF5" parameterType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding" resultType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding">
+        select distinct f5 from  View_MaterialCoding
+    </select>
+    <select id="getF6" parameterType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding" resultType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding">
+        select distinct f6 from  View_MaterialCoding
+    </select>
+    <select id="getF9" parameterType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding" resultType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding">
+        select distinct f9 from  View_MaterialCoding
+    </select>
+    <select id="getF10" parameterType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding" resultType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding">
+        select distinct f10 from  View_MaterialCoding
+    </select>
+    <select id="getF11" parameterType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding" resultType="com.dhchain.business.partpunchingworkshop.vo.MaterialCoding">
+        select distinct f11 from  View_MaterialCoding
+    </select>
+</mapper>

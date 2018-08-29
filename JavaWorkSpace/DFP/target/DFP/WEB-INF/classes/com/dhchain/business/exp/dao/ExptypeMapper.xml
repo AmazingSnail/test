@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.exp.dao.ExptypeMapper">
+
+
+    <select id="selectByTypeid" parameterType="com.dhchain.business.exp.vo.Exptype" resultType="com.dhchain.business.exp.vo.Exptype">
+        SELECT
+
+        *
+
+        FROM
+        t_exptype
+        where isdelete = 0 and typeid = #{typeid}
+
+    </select>
+
+    <select id="select" parameterType="com.dhchain.business.exp.vo.Exptype" resultType="com.dhchain.business.exp.vo.Exptype">
+        SELECT
+
+        *
+
+        FROM
+        t_exptype
+        where isdelete = 0
+        <if test="exptypeno!=null and exptypeno!=''">and exptypeno = #{exptypeno}</if>
+        <if test="exptypename!=null and exptypename!=''">and exptypename = #{exptypename}</if>
+        <if test="typeid!=null and typeid!=''">and typeid = #{typeid}</if>
+        <if test="typedetailid!=null and typedetailid!=''">and typedetailid = #{typedetailid}</if>
+
+    </select>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.dhchain.business.exp.vo.Exptype">
+        SELECT
+
+        *
+
+        FROM
+        t_exptype
+        where  isdelete = 0 and id = #{id}
+    </select>
+
+    <select id="selectByTypedetailid" parameterType="java.lang.Integer" resultType="com.dhchain.business.exp.vo.Exptype">
+        SELECT
+
+        *
+
+        FROM
+        t_exptype
+        where  isdelete = 0 and  typedetailid = #{typedetailid}
+    </select>
+
+    <select id="selectViews" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT
+
+        viewid
+
+        FROM
+        t_exptype_view
+        where exptypeid = #{exptypeid}
+    </select>
+
+    <select id="idcontainView" parameterType="com.dhchain.business.exp.vo.ExptypeView" resultType="com.dhchain.business.exp.vo.ExptypeView">
+        SELECT
+
+        *
+
+        FROM
+        t_exptype_view
+        where exptypeid = #{exptypeid} ORDER by sequence
+    </select>
+    <select id="selectExptypeView" parameterType="com.dhchain.business.exp.vo.ExptypeView" resultType="com.dhchain.business.exp.vo.ExptypeView">
+        SELECT
+
+        *
+
+        FROM
+        t_exptype_view
+        where exptypeid = #{exptypeid} and viewid = #{viewid}
+    </select>
+    <select id="isdistribute" parameterType="com.dhchain.business.exp.vo.ExptypeView" resultType="com.dhchain.business.exp.vo.ExptypeView">
+        SELECT
+
+        *
+
+        FROM
+        t_exptype_view
+        where viewid = #{viewid}
+    </select>
+
+
+    <insert id="insert" parameterType="com.dhchain.business.exp.vo.Exptype" useGeneratedKeys="true" keyProperty="id">
+        insert into t_exptype(typeid,exptypeno, exptypename,islocked,inputman,inputdate,typedetailid,isdelete) values(#{typeid},#{exptypeno}, #{exptypename},#{islocked},#{inputman},#{inputdate},#{typedetailid},#{isdelete})
+    </insert>
+
+    <update id="update" parameterType="com.dhchain.business.exp.vo.Exptype" >
+        UPDATE t_exptype
+        SET
+        exptypeno = #{exptypeno},
+        exptypename = #{exptypename},
+        typedetailid = #{typedetailid},
+        islocked = #{islocked},
+        modifyman = #{modifyman},
+        modifydate = #{modifydate}
+        WHERE id = #{id};
+    </update>
+    <update id="savesequence" parameterType="com.dhchain.business.exp.vo.ExptypeView" >
+        UPDATE  t_exptype_view
+        SET
+        sequence = #{sequence}
+
+        WHERE id = #{id};
+    </update>
+    <select id="selectNewId"  resultType="java.lang.Integer">
+        select ident_current('t_exptype_view')
+
+    </select>
+    <update id="delete" parameterType="com.dhchain.business.exp.vo.Exptype" >
+        UPDATE t_exptype
+        SET
+        isdelete = 1
+        WHERE id in
+        <foreach item="item" index="index" collection="array"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+
+
+    <delete id="deleteExptypeView" parameterType="java.lang.Integer" >
+        DELETE
+        FROM
+        t_exptype_view
+        where exptypeid = #{exptypeid}
+    </delete>
+
+    <insert id="distribute" parameterType="com.dhchain.business.exp.vo.ExptypeView" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        t_exptype_view(viewid, exptypeid)
+        values(#{viewid}, #{exptypeid})
+    </insert>
+
+    <select id="selectParms"   parameterType="java.lang.Integer" resultType="com.dhchain.business.attr.vo.AttrDefine">
+        select * from t_attrdefine where id in (select attrdefineid from t_exptype_parm where exptypeid = #{exptypeid})
+    </select>
+
+    <delete id="deleteParms" parameterType="java.lang.Integer" >
+        DELETE
+        FROM
+        t_exptype_parm
+        where exptypeid = #{exptypeid}
+    </delete>
+
+    <insert id="distributeparm" parameterType="com.dhchain.business.exp.vo.ExptypeParm" useGeneratedKeys="true" keyProperty="id">
+        insert into
+        t_exptype_parm(exptypeid, attrdefineid)
+        values(#{exptypeid}, #{attrdefineid})
+    </insert>
+</mapper>

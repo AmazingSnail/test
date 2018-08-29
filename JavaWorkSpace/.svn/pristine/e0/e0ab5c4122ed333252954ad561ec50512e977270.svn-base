@@ -1,0 +1,20 @@
+#================Base Config======================
+logger.level=debug,info,consoleAppender,dailylogfile
+
+#================MySQL Config=====================
+sql.MDM.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+sql.MDM.url=jdbc:sqlserver://172.18.0.19:1433;Database=DFP
+sql.MDM.user=sa
+sql.MDM.password=dhep!123
+
+sql.EPPRD.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+sql.EPPRD.url=jdbc:sqlserver://172.18.0.19:1433;Database=DFP
+sql.EPPRD.user=sa
+sql.EPPRD.password=dhep!123
+
+sql.DHBI.driverClassName=com.microsoft.sqlserver.jdbc.SQLServerDriver
+sql.DHBI.url=jdbc:sqlserver://172.18.0.19:1433;Database=DFP
+sql.DHBI.user=sa
+sql.DHBI.password=iso14002
+
+

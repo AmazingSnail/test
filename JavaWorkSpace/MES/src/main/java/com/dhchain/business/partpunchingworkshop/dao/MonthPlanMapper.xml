@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.partpunchingworkshop.dao.MonthPlanMapper" >
+    <select id="getSyb" parameterType="com.dhchain.business.partpunchingworkshop.vo.Syb" resultType="com.dhchain.business.partpunchingworkshop.vo.Syb">
+        SELECT
+        Fno,
+        Fname,
+        Fremark
+        FROM
+        t_base
+        WHERE
+        fparentid = '76'
+
+    </select>
+    <select id="getUsername" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseUser" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseUser">
+       select * from  m_BaseUser where UserTypes='维修人员'
+
+    </select>
+    <select id="FindFname" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseStatus">
+        SELECT * from m_BaseStatus where DepartMent = '物料类型'
+    </select>
+    <select id="getUsername1" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTMaterial" resultType="com.dhchain.business.partpunchingworkshop.vo.PTMaterial">
+           select distinct productMan  from m_PTMaterial
+
+    </select>
+    <select id="selectByAllKey" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTPlan" resultType="com.dhchain.business.partpunchingworkshop.vo.PTPlan">
+        SELECT * FROM View_PTPlan WHERE
+        1=1
+        <if test="fno != null and fno!=''" >
+            and  fno like '%'+#{fno}+'%'
+        </if>
+        <if test="fname != null and fname!=''" >
+            and  fname LIKE '%'+ #{fname}+'%'
+        </if>
+        <if test="plant != null and plant!=''">
+            and plant = #{plant}
+        </if>
+        <if test="WorkProcedure != null and WorkProcedure!=''" >
+            and WorkProcedure LIKE '%'+ #{WorkProcedure}+'%'
+
+        </if>
+        <if test="PartDrawing != null and PartDrawing!=''" >
+            and  PartDrawing LIKE '%'+ #{PartDrawing}+'%'
+
+        </if>
+        <if test="PartName != null and PartName!=''" >
+            and ( PartName LIKE '%'+ #{PartName}+'%')
+
+        </if>
+        <if test="Uyear != null and Uyear!=0" >
+            and Uyear = #{Uyear}
+        </if>
+        <if test="Umouth != null and Umouth!=0" >
+            and Umouth = #{Umouth}
+        </if>
+        <if test="IsSend != null and IsSend!=0" >
+            and IsSend = #{IsSend}
+        </if>
+    </select>
+    <select id="getAll" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTPlan" resultType="com.dhchain.business.partpunchingworkshop.vo.PTPlan">
+        SELECT * FROM View_PTPlan WHERE
+        1=1
+        and IsSend = 0
+        <if test="plant != null and plant!=''">
+            and plant = #{plant}
+        </if>
+        <if test="Uyear != null and Uyear!=0" >
+            and Uyear = #{Uyear}
+        </if>
+        <if test="Umouth != null and Umouth!=0" >
+            and Umouth = #{Umouth}
+        </if>
+    </select>
+    <select id="selectptOrderPlan" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan" resultType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan">
+        SELECT * FROM m_PTOrderPlan WHERE
+        1=1
+        <if test="fno != null and fno!=''" >
+            and  fno like '%'+#{fno}+'%'
+        </if>
+        <if test="fname != null and fname!=''" >
+            and  fname LIKE '%'+ #{fname}+'%'
+        </if>
+        <if test="plant != null and plant!=''">
+            and plant = #{plant}
+        </if>
+        <if test="Uyear != null and Uyear!=0" >
+            and Uyear = #{Uyear}
+        </if>
+        <if test="Umouth != null and Umouth!=0" >
+            and Umouth = #{Umouth}
+        </if>
+        <if test="isFinish != null and isFinish!=''" >
+            and isFinish = #{isFinish}
+        </if>
+        <if test="WorkCentre != null and WorkCentre!=0" >
+            and  WorkCentre LIKE '%'+ #{WorkCentre}+'%'
+        </if>
+        <if test="OrderLine != null and OrderLine!='0'.toString()">
+            and  OrderLine LIKE '%'+ #{OrderLine}+'%'
+        </if>
+
+    </select>
+    <select id="selectByfno" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan" resultType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan">
+        select * from m_PTOrderPlan WHERE
+        1=1
+       and fno=#{fno}
+       and uyear=#{uyear}
+       and umouth = #{umouth}
+      ORDER BY OrderTime ASC
+    </select>
+    <select id="selectByid" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan" resultType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan">
+        select * from m_PTOrderPlan WHERE
+        1=1
+         and ID=#{ID}
+        ORDER BY OrderTime ASC
+    </select>
+    <select id="selectByFno" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTPlan" resultType="com.dhchain.business.partpunchingworkshop.vo.PTPlan">
+        select * from m_PTPlan WHERE
+        1=1
+        and fno=#{fno}
+        and uyear=#{uyear}
+       and umouth = #{umouth}
+       and Plant = #{Plant}
+        ORDER BY OrderTime ASC
+    </select>
+    <select id="selectByFno1" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan" resultType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan">
+        select * from m_PTOrderPlan WHERE
+        1=1
+        and fno=#{fno}
+        ORDER BY OrderTime ASC
+    </select>
+    <update id="updateFinsh" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan" >
+        update m_PTOrderPlan
+        set IsFinish = 1
+        where  ID= #{ID ,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPOrdertime" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan" >
+        update m_PTOrderPlan
+        set  OrderLine = #{OrderLine},Fno=#{Fno},Fname=#{Fname},WorkCentre=#{WorkCentre},PartDrawing = #{PartDrawing},
+        PlanNum = #{PlanNum},OrderTime=#{OrderTime},Workprocedure=#{Workprocedure},
+        Plant = #{Plant},DepartMent=#{DepartMent},Uyear=#{Uyear},Umouth=#{Umouth}
+        where  OrderLine= #{OrderLine ,jdbcType=VARCHAR}
+    </update>
+    <update id="updateByfno" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTPlan" >
+        update m_PTPlan
+        set  WorkProcedure = #{WorkProcedure},PartDrawing=#{PartDrawing},PartName=#{PartName},Fno=#{Fno},Fname = #{Fname},
+        WorkCentre = #{WorkCentre},LastRemainNum=#{LastRemainNum},PlanNum=#{PlanNum}
+        ,OrderTime=#{OrderTime},InputMan=#{InputMan},InputDate=#{InputDate},
+        Plant = #{Plant},DepartMent=#{DepartMent},Uyear=#{Uyear},Umouth=#{Umouth}
+        where  Fno= #{Fno ,jdbcType=VARCHAR}
+    </update>
+    <select id="selectByOrdertime" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan" resultType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan">
+        select * from m_PTOrderPlan WHERE
+        1=1
+        and OrderLine = #{OrderLine}
+        and Fno = #{Fno}
+        and Plant = #{Plant}
+        and Uyear = #{Uyear}
+        and Umouth = #{Umouth}
+        ORDER BY OrderTime ASC
+    </select>
+    <insert id="insertorderplan" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan"  keyProperty="id" useGeneratedKeys="true">
+
+        INSERT INTO m_PTOrderPlan
+        (OrderLine,Fno,Fname,WorkCentre,PartDrawing,PlanNum,OrderTime,Workprocedure,Plant,DepartMent,Uyear,Umouth,InputMan,InputTime)
+        VALUES(#{OrderLine},#{Fno},#{Fname},#{WorkCentre},#{PartDrawing},#{PlanNum},#{OrderTime},#{Workprocedure},#{Plant},#{DepartMent},#{Uyear},#{Umouth},#{InputMan},#{InputTime})
+    </insert>
+    <insert id="insertplan" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTPlan"  keyProperty="id" useGeneratedKeys="true">
+
+        INSERT INTO m_PTPlan
+        (WorkProcedure,PartDrawing,PartName,Fno,Fname,WorkCentre,PatchPlan,LastRemainNum,PlanNum,OrderTime,InputMan,InputDate,DepartMent,Plant,Uyear,Umouth)
+        VALUES(#{WorkProcedure},#{PartDrawing},#{PartName},#{Fno},#{Fname},#{WorkCentre},
+        #{PatchPlan},#{LastRemainNum},#{PlanNum},#{OrderTime},#{InputMan},#{InputDate},
+        #{DepartMent},#{Plant},#{Uyear},#{Umouth}
+        )
+    </insert>
+    <update id="updateALLfinish" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan">
+
+ UPDATE   m_PTOrderPlan set IsFinish = 0 from m_PTOrderPlan
+        where Fno = #{Fno}
+       and Uyear = #{Uyear}
+        and Umouth = #{Umouth}
+        and Plant =#{Plant}
+    </update>
+    <delete id="deleteid" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTOrderPlan">
+       DELETE m_PTOrderPlan where ID = #{ID}
+    </delete>
+    <delete id="deleteid1" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTPlan">
+        DELETE m_PTPlan where ID = #{ID}
+    </delete>
+    <select id="getFtemp2" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity">
+        select * from t_materialCoding where Fno = #{Fno}
+    </select>
+    <select id="getCapacity" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity">
+        select * from m_BaseCapacity where Fno = #{Fno}
+    </select>
+    <select id="getCraftFile" parameterType="com.dhchain.business.partpunchingworkshop.vo.CraftFile" resultType="com.dhchain.business.partpunchingworkshop.vo.CraftFile">
+        select * from m_CraftFile where PartDrawing = #{PartDrawing}
+    </select>
+    <select id="getBaseChkStd" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseChkStd" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseChkStd">
+        select * from m_BaseChkStd where PartDrawing = #{PartDrawing}
+    </select>
+    <update id="updatePlan" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTPlan">
+        UPDATE  m_PTPlan SET
+        Fno = #{Fno}
+        <if test="Capacity != null" >
+            ,Capacity = #{Capacity,jdbcType=VARCHAR}
+        </if>
+        <if test="CraftFile != null" >
+            ,CraftFile = #{CraftFile,jdbcType=VARCHAR}
+        </if>
+        <if test="ChkStd != null" >
+           , ChkStd = #{ChkStd,jdbcType=VARCHAR}
+        </if>
+        <if test="IsSend != null" >
+           , IsSend = #{IsSend,jdbcType=VARCHAR}
+        </if>
+        <if test="OrderPlan != null" >
+           , OrderPlan = #{OrderPlan,jdbcType=VARCHAR}
+        </if>
+        where ID = #{ID}
+    </update>
+</mapper>

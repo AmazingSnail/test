@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.dhchain.business.partpunchingworkshop.dao.MissionIssuedMapper" >
+    <select id="getTodaydate" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTProdTake" resultType="com.dhchain.business.partpunchingworkshop.vo.PTProdTake">
+         SELECT ID,PlanID,PartName,PartDrawing,ProductNum,MouldID,EquipID,ProductMan,convert(char(10),OrderTime,21) as OrderTime,Capacity,Fno,Fname,InputMan,InputDate,DepartMent,Plant
+         ,Status,WorkCentre
+        FROM
+       m_PTProdTake
+        WHERE
+        datediff(day,InputDate,getdate())=0
+
+    </select>
+    <select id="getEquipID" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseEquip">
+        SELECT
+        *
+        FROM
+        m_BaseEquip
+        WHERE
+        plant = #{plant}
+        and departMent = #{departMent}
+
+    </select>
+    <select id="GetMouldID" parameterType="com.dhchain.business.partpunchingworkshop.vo.MoldStore" resultType="com.dhchain.business.partpunchingworkshop.vo.MoldStore">
+        SELECT
+        *
+        FROM
+        m_MoldStore
+        WHERE
+        plant = #{plant}
+        and departMent = #{departMent}
+        and partDrawing = #{partDrawing}
+
+    </select>
+    <select id="GetproductMan" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseUser" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseUser">
+        SELECT
+        *
+        FROM
+        m_BaseUser
+        WHERE equipID = #{equipID}
+
+    </select>
+    <select id="GetCapacity" parameterType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity" resultType="com.dhchain.business.partpunchingworkshop.vo.BaseCapacity">
+        SELECT
+        *
+        FROM
+        m_BaseCapacity
+        WHERE fno = #{fno}
+
+    </select>
+    <insert id="insertTake" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTProdTake" >
+        insert into m_PTProdTake
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="PlanID != null" >
+                PlanID,
+            </if>
+            <if test="PartDrawing != null" >
+                PartDrawing,
+            </if>
+            <if test=" PartName != null" >
+                PartName,
+            </if>
+            <if test="ProductNum != null" >
+                ProductNum,
+            </if>
+            <if test="EquipID != null" >
+                EquipID,
+            </if>
+            <if test="MouldID != null" >
+                MouldID,
+            </if>
+            <if test="ProductMan != null" >
+                ProductMan,
+            </if>
+            <if test="OrderTime != null" >
+                OrderTime,
+            </if>
+            <if test="Capacity != null" >
+                Capacity,
+            </if>
+            <if test="Fno != null" >
+                Fno,
+            </if>
+            <if test="Fname != null" >
+                Fname,
+            </if>
+            <if test="InputMan != null" >
+                InputMan,
+            </if>
+            <if test="InputDate != null" >
+                InputDate,
+            </if>
+            <if test="DepartMent != null" >
+                DepartMent,
+            </if>
+            <if test="Plant != null" >
+                Plant,
+            </if>
+            <if test="Uyear != null" >
+                Uyear,
+            </if>
+            <if test="Umouth != null" >
+                Umouth,
+            </if>
+            <if test="FinishNum != null" >
+                FinishNum,
+            </if>
+            <if test="RealFinishNum != null" >
+                RealFinishNum,
+            </if>
+            <if test="LocaFinish != null" >
+                LocaFinish,
+            </if>
+            <if test="isFinish != null" >
+                isFinish,
+            </if>
+            <if test="QualRatio != null" >
+                QualRatio,
+            </if>
+            <if test="CompRatio != null" >
+                CompRatio,
+            </if>
+            <if test="Status != null" >
+                Status,
+            </if>
+            <if test="WorkCentre != null" >
+                WorkCentre,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="PlanID != null" >
+                #{PlanID,jdbcType=VARCHAR},
+            </if>
+            <if test="PartDrawing != null" >
+                #{PartDrawing,jdbcType=VARCHAR},
+            </if>
+            <if test="PartName != null" >
+                #{PartName,jdbcType=VARCHAR},
+            </if>
+            <if test="ProductNum != null" >
+                #{ProductNum,jdbcType=VARCHAR},
+            </if>
+            <if test="EquipID != null" >
+                #{EquipID,jdbcType=VARCHAR},
+            </if>
+            <if test="MouldID != null" >
+                #{MouldID,jdbcType=VARCHAR},
+            </if>
+            <if test="ProductMan != null" >
+                #{ProductMan,jdbcType=VARCHAR},
+            </if>
+            <if test="OrderTime != null" >
+                #{OrderTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="Capacity != null" >
+                #{Capacity,jdbcType=VARCHAR},
+            </if>
+            <if test="Fno != null" >
+                #{Fno,jdbcType=VARCHAR},
+            </if>
+            <if test="Fname != null" >
+                #{Fname,jdbcType=VARCHAR},
+            </if>
+            <if test="InputMan != null" >
+                #{InputMan,jdbcType=VARCHAR},
+            </if>
+            <if test="InputDate != null" >
+                #{InputDate,jdbcType=VARCHAR},
+            </if>
+            <if test="DepartMent != null" >
+                #{DepartMent,jdbcType=VARCHAR},
+            </if>
+            <if test="Plant != null" >
+                #{Plant,jdbcType=VARCHAR},
+            </if>
+            <if test="Uyear != null" >
+                #{Uyear,jdbcType=VARCHAR},
+            </if>
+            <if test="Umouth != null" >
+                #{Umouth,jdbcType=VARCHAR},
+            </if>
+            <if test="FinishNum != null" >
+                #{FinishNum,jdbcType=DOUBLE},
+            </if>
+            <if test="RealFinishNum != null" >
+                #{RealFinishNum,jdbcType=DOUBLE},
+            </if>
+            <if test="LocaFinish != null" >
+                #{LocaFinish,jdbcType=BIT},
+            </if>
+            <if test="IsFinish != null" >
+                #{IsFinish,jdbcType=BIT},
+            </if>
+            <if test="QualRatio != null" >
+                #{QualRatio,jdbcType=VARCHAR},
+            </if>
+            <if test="CompRatio != null" >
+                #{CompRatio,jdbcType=VARCHAR},
+            </if>
+            <if test="Status != null" >
+                #{Status,jdbcType=BIT},
+            </if>
+            <if test="WorkCentre != null" >
+                #{WorkCentre,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <select id="getSerialno" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTProdTake" resultType="com.dhchain.business.partpunchingworkshop.vo.PTProdTake">
+        SELECT
+        *
+        FROM
+        m_PTProdTake
+        WHERE
+        uyear = #{uyear} and Umouth = #{Umouth}  order by PlanID desc
+    </select>
+    <select id="getByid" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTPlan" resultType="com.dhchain.business.partpunchingworkshop.vo.PTPlan">
+        SELECT * FROM m_PtPlan WHERE
+        1=1
+        and ID = #{ID}
+    </select>
+    <select id="getByfno" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTPlan" resultType="com.dhchain.business.partpunchingworkshop.vo.PTPlan">
+        SELECT * FROM m_PtPlan WHERE
+        1=1
+        and Fno = #{Fno}
+    </select>
+    <update id="updateByid" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTPlan" >
+        UPDATE m_PtPlan
+         set RemainNum = #{RemainNum}
+        WHERE
+        1=1
+        and ID = #{ID}
+    </update>
+    <update id="updateByfno" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTPlan" >
+        UPDATE m_PtPlan
+        set RemainNum = #{RemainNum}
+        WHERE
+        1=1
+        and Fno = #{Fno}
+    </update>
+    <delete id="deleteTake" parameterType="com.dhchain.business.partpunchingworkshop.vo.PTProdTake" >
+        DELETE m_PTProdTake
+        WHERE
+        1=1
+        and ID = #{ID}
+    </delete>
+
+</mapper>

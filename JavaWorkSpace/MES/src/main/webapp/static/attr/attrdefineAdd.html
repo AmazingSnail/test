@@ -1,0 +1,717 @@
+
+<script type="text/javascript">
+    var user = localStorage.getItem("User");
+    var databaseid ;
+    var attrid;
+    var typeid = parent.typeid;
+    //alert(typeid);
+    var attrdefineno = parent.attrdefineno;
+    var attrdefinename = parent.attrdefinename;
+    var attrno;
+    var factoryid;
+//    jQuery.ajax({
+//        type: "POST",   //post提交方式默认是get
+//        url:'/base/selectsxgl.action',
+//        dataType: "json",
+//        error: function (request) {      // 设置表单提交出错
+//            alert('查询错误');
+//
+//        },
+//        success: function (data) {
+//            $('#expattrkindid').combobox('loadData', data);
+//
+//
+//        }
+//    });
+    function attrdefineDetailAddCancel() {
+        parent.$.modalDialog.handler.dialog('close');
+    }
+    function attrdefineDetailAddFun() {
+        $.messager.confirm('询问', '确定新增属性?', function(b) {
+           if(b){
+               $.ajax({
+                   type: "post",
+                   url: "/attrdefine/add.action",
+                   data: {
+                       attrdefineno:$('#attrdefine_attrdefineno').val(),
+                       attrdefinename:$('#attrdefine_attrdefinename').val(),
+                       databaseid: databaseid,
+                       attrid:attrid,
+                       factoryid:factoryid,
+                       databasetype:$('#attrdefine_databasetype').combobox('getValue'),
+                       datatype:$('#attrdefine_datatype').combobox('getValue'),
+                       datelength:$('#attrdefine_datelength').val(),
+                       precision:$('#attrdefine_precision').val(),
+                       widgettype:$('#attrdefine_widgettype').combobox('getValue'),
+                       codelength:$('#attrdefine_codelength').val(),
+                       remark: $('#attrdefine_remark').val(),
+                       iscode: $('#attrdefine_iscode').combobox('getValue'),
+                       islocked: $('#attrdefine_islocked').combobox('getValue'),
+                       isrequired: $('#attrdefine_isrequired').combobox('getValue'),
+                       inputman:user,
+                       typeid:typeid,
+
+
+                   },
+                   dataType: "json",//后台处理后返回的数据格式
+                   success: function (data) {//ajax请求成功后触发的方法
+                       console.log(parent.$.modalDialog.openner_treeGrid);
+                       if(data.num>0){
+                           alert("新增成功");
+                           parent.$.modalDialog.handler.dialog('close');
+                           parent.QueryAttrDefine()
+                       }else{
+                           alert("新增失败");
+                       }
+
+                   }
+               });
+           }
+        })
+
+    }
+
+    function doubleclick(index){
+        var row1  = $('#attrselect-typegrid').datagrid("getSelected");
+
+            $('#attrdefine_attrid').textbox('setValue', row1.attrname);
+            attrid =  row1.id;
+            $('#attr-select').dialog('close');
+
+    }
+
+    function doubleclick2(index){
+        var row1  = $('#attrreselect-typegrid').datagrid("getSelected");
+        console.log(row1);
+
+            $('#attrdefine_database').textbox('setValue', row1.basename);
+            databaseid =  row1.id;
+            $('#database-select').dialog('close');
+
+    }
+
+    function doubleclick3(index){
+        var row1  = $('#factoryselect-typegrid').datagrid("getSelected");
+        console.log(row1);
+
+            $('#attrdefine_factoryid').textbox('setValue', row1.attrname);
+            factoryid =  row1.id;
+            $('#factory-select').dialog('close');
+
+    }
+
+
+    function QueryAttr() {
+        jQuery.ajax({
+            type:"POST",   //post提交方式默认是get
+            url:"/attr/selectNameAndNo.action",
+            dataType:"json",
+
+            data:{
+                attrno:$("#select_attrno").val(),
+                attrname:$("#select_attrname").val()
+
+            },
+//                data:$("#login").val(),   //序列化
+            error:function(request) {
+                $.messager.progress('close');
+                $("#showMsg").html(request);  //登录错误提示信息
+
+            },
+            success:function(results) {
+
+                $.messager.progress('close');
+                var IsCheckFlag = true;
+                $('#attrselect-typegrid').treegrid({
+
+                    data:results,
+                    fit: false, //自动适屏功能
+                    idField : 'id',
+                    treeField : 'attrname',
+                    parentField : 'fid',
+                    fitColumns : false,
+                    border : false,
+                    singleSelect:true,
+                    columns : [ [
+                        {field:'id',title:'编号',halign: 'center',width:'8%',editor:'text',hidden:true},
+                        {field:'attrname',title:'属性名称',halign: 'center',width:'15%',editor:'text'},
+                        {field:'attrno',title:'属性编码',halign: 'center',width:'15%',editor:'text'},
+                        {field:'remark',title:'备注',halign: 'center',width:'15%',editor:'text'},
+                        {field:'iscode',title:'参与编码',halign: 'center',width:'8%',editor : {
+                            type : "checkbox",
+                            options:{
+                                on: "是",
+                                off: "否"
+                            }
+
+                        },formatter: function(value) {
+                            if (value == "是") {
+                                return "√";
+                            } else {
+                                return "";
+                            }
+                        }},
+                        {field:'isrelate',title:'层级关系',halign: 'center',width:'8%',editor : {
+                            type : "checkbox",
+                            options:{
+                                on: "是",
+                                off: "否"
+                            }
+
+                        },formatter: function(value) {
+                            if (value == "是") {
+                                return "√";
+                            } else {
+                                return "";
+                            }
+                        }},
+                        {field:'inputman',title:'创建人',width:'8%',halign: 'center',hidden:true},
+                        {field:'inputdate',title:'创建时间',width:'8%',halign: 'center',hidden:true},
+                        {field:'modifyman',title:'修改人',width:'8%',halign: 'center',hidden:true},
+                        {field:'modifydate',title:'修改时间',width:'8%',halign: 'center',hidden:true},
+                        {field:'islocked',title:'冻结',width:'8%',halign: 'center',align:'center',editor : {
+                            type : "checkbox",
+                            options:{
+                                on: "是",
+                                off: "否"
+                            }
+
+                        },
+                            formatter: function(value) {
+                                if (value == "是") {
+                                    return "√";
+                                } else {
+                                    return "";
+                                }
+                            }
+
+                        },
+                        {
+                            field : 'fid',
+                            title : '上级ID',
+                            width : 150,
+                            hidden : true
+                        },
+                    ] ]
+
+
+                });
+
+            }
+        });
+    }
+
+
+    function QueryFactory() {
+        jQuery.ajax({
+            type:"POST",   //post提交方式默认是get
+            url:"/factory/Query.action",
+            dataType:"json",
+
+            data:{
+                attrno:$("#select_factoryno").val(),
+                attrname:$("#select_factoryname").val()
+
+            },
+//                data:$("#login").val(),   //序列化
+            error:function(request) {
+                $.messager.progress('close');
+                $("#showMsg").html(request);  //登录错误提示信息
+
+            },
+            success:function(results) {
+
+                $.messager.progress('close');
+                var IsCheckFlag = true;
+                $('#factoryselect-typegrid').treegrid({
+
+                    data:results,
+                    fit: false, //自动适屏功能
+                    idField : 'id',
+                    treeField : 'attrname',
+                    parentField : 'fid',
+                    fitColumns : false,
+                    border : false,
+                    singleSelect:true,
+                    columns : [ [
+                        {field:'id',title:'编号',halign: 'center',width:'8%',editor:'text',hidden:true},
+                        {field:'attrname',title:'工厂名称',halign: 'center',width:'15%',editor:'text'},
+                        {field:'attrno',title:'工厂编码',halign: 'center',width:'15%',editor:'text'},
+                        {field:'remark',title:'备注',halign: 'center',width:'15%',editor:'text'},
+                        {field:'iscode',title:'参与编码',halign: 'center',width:'8%',editor : {
+                            type : "checkbox",
+                            options:{
+                                on: "是",
+                                off: "否"
+                            }
+
+                        },formatter: function(value) {
+                            if (value == "是") {
+                                return "√";
+                            } else {
+                                return "";
+                            }
+                        }},
+                        {field:'isrelate',title:'层级关系',halign: 'center',width:'8%',editor : {
+                            type : "checkbox",
+                            options:{
+                                on: "是",
+                                off: "否"
+                            }
+
+                        },formatter: function(value) {
+                            if (value == "是") {
+                                return "√";
+                            } else {
+                                return "";
+                            }
+                        }},
+                        {field:'inputman',title:'创建人',width:'8%',halign: 'center',hidden:true},
+                        {field:'inputdate',title:'创建时间',width:'8%',halign: 'center',hidden:true},
+                        {field:'modifyman',title:'修改人',width:'8%',halign: 'center',hidden:true},
+                        {field:'modifydate',title:'修改时间',width:'8%',halign: 'center',hidden:true},
+                        {field:'islocked',title:'冻结',width:'8%',halign: 'center',align:'center',editor : {
+                            type : "checkbox",
+                            options:{
+                                on: "是",
+                                off: "否"
+                            }
+
+                        },
+                            formatter: function(value) {
+                                if (value == "是") {
+                                    return "√";
+                                } else {
+                                    return "";
+                                }
+                            }
+
+                        },
+                        {
+                            field : 'fid',
+                            title : '上级ID',
+                            width : 150,
+                            hidden : true
+                        },
+                    ] ]
+
+
+                });
+
+            }
+        });
+    }
+
+
+
+    function QueryDatabase() {
+        jQuery.ajax({
+            type:"POST",   //post提交方式默认是get
+            url:"/base/Query.action",
+            dataType:"json",
+
+            data:{
+                baseno:$("#select_databaseno").val(),
+                basename:$("#select_databasename").val()
+
+            },
+//                data:$("#login").val(),   //序列化
+            error:function(request) {
+                $.messager.progress('close');
+                $("#showMsg").html(request);  //登录错误提示信息
+
+            },
+            success:function(results) {
+
+                $.messager.progress('close');
+                var IsCheckFlag = true;
+                $('#attrreselect-typegrid').treegrid({
+
+                    data:results,
+                    fit: false, //自动适屏功能
+                    idField : 'id',
+                    treeField : 'basename',
+                    parentField : 'fid',
+                    singleSelect:true,
+                    fitColumns : false,
+                    border : false,
+                    columns : [ [
+                        {field:'basename',title:'属性名称',halign: 'center',width:'8%',editor:'text'},
+                        {field:'baseno',title:'属性编码',halign: 'center',width:'8%',editor:'text'},
+                        {field:'remark',title:'备注',halign: 'center',width:'8%',editor:'text'},
+                        {field:'iscode',title:'参与编码',halign: 'center',width:'8%',editor : {
+                            type : "checkbox",
+                            options:{
+                                on: "是",
+                                off: "否"
+                            }
+
+                        },formatter: function(value) {
+                            if (value == "是") {
+                                return "√";
+                            } else {
+                                return "";
+                            }
+                        }},
+                        {field:'inputman',title:'创建人',width:'8%',halign: 'center'},
+                        {field:'inputdate',title:'创建时间',width:'8%',halign: 'center'},
+                        {field:'modifyman',title:'修改人',width:'8%',halign: 'center'},
+                        {field:'modifydate',title:'修改时间',width:'8%',halign: 'center'},
+                        {field:'islocked',title:'冻结',width:'2%',halign: 'center',align:'center',editor : {
+                            type : "checkbox",
+                            options:{
+                                on: "是",
+                                off: "否"
+                            }
+
+                        },
+                            formatter: function(value) {
+                                if (value == "是") {
+                                    return "√";
+                                } else {
+                                    return "";
+                                }
+                            }
+
+                        },
+                        {
+                            field : 'fid',
+                            title : '上级ID',
+                            width : 150,
+                            hidden : true
+                        } ] ],
+                    onLoadSuccess: function () {$('#attrreselect-typegrid').treegrid('collapseAll')},
+
+                });
+
+
+            }
+        });
+    }
+
+
+
+    /**
+     * Name 分页过滤器
+     */
+    function pagerFilter(data){
+        if (typeof data.length == 'number' && typeof data.splice == 'function'){// is array
+            data = {
+                total: data.length,
+                rows: data
+            }
+        }
+        var dg = $(this);
+        var opts = dg.treegrid('options');
+        var pager = dg.treegrid('getPager');
+        pager.pagination({
+            onSelectPage:function(pageNum, pageSize){
+                opts.pageNumber = pageNum;
+                opts.pageSize = pageSize;
+                pager.pagination('refresh',{pageNumber:pageNum,pageSize:pageSize});
+                dg.treegrid('loadData',data);
+            }
+        });
+        if (!data.rows){
+            data.rows = (data.rows);
+        }
+        var start = (opts.pageNumber-1)*parseInt(opts.pageSize);
+        var end = start + parseInt(opts.pageSize);
+        data.rows = (data.rows.slice(start, end));
+        return data;
+    }
+
+
+    /**
+     * Name 载入数据
+     */
+    $('#attrselect-typegrid').treegrid({
+        loadFilter:pagerFilter,
+        rownumbers:true,
+        singleSelect:false,
+        pageSize:20,
+        pagination:true,
+        multiSort:true,
+        showFooter:true,
+    });
+
+    $('#attrreselect-typegrid').treegrid({
+        loadFilter:pagerFilter,
+        rownumbers:true,
+        singleSelect:false,
+        pageSize:20,
+        pagination:true,
+        multiSort:true,
+        showFooter:true,
+    });
+
+    $('#factoryselect-typegrid').treegrid({
+        loadFilter:pagerFilter,
+        rownumbers:true,
+        singleSelect:false,
+        pageSize:20,
+        pagination:true,
+        multiSort:true,
+        showFooter:true,
+    });
+    function SubmitattrdefineDetail(){
+        this.close();
+    }
+
+
+    $(document).ready(function () {
+
+        $("#attrdefine_databasetype").combobox({
+
+            onChange: function (n,o) {
+                if(n=="0"){
+                    $('#attrdefine_database').searchbox({disabled:true});
+                    $('#attrdefine_database').val("");
+                    $('#attrdefine_attrid').searchbox({disabled:true});
+                    $('#attrdefine_attrid').val("");
+                    $('#attrdefine_factoryid').searchbox({disabled:true});
+                    $('#attrdefine_factoryid').val("");
+                }else if(n == "1"){
+                    $('#attrdefine_database').searchbox({disabled:false});
+                    $('#attrdefine_attrid').searchbox({disabled:true});
+                    $('#attrdefine_attrid').val("");
+                    $('#attrdefine_factoryid').searchbox({disabled:true});
+                    $('#attrdefine_factoryid').val("");
+
+                }else if(n == "2"){
+                    $('#attrdefine_database').searchbox({disabled:true});
+                    $('#attrdefine_database').val("");
+                    $('#attrdefine_attrid').searchbox({disabled:false});
+                    $('#attrdefine_factoryid').searchbox({disabled:true});
+                    $('#attrdefine_factoryid').val("");
+
+                }else if(n == "3"){
+                    $('#attrdefine_database').searchbox({disabled:true});
+                    $('#attrdefine_database').val("");
+                    $('#attrdefine_attrid').searchbox({disabled:true});
+                    $('#attrdefine_attrid').val("");
+                    $('#attrdefine_factoryid').searchbox({disabled:false});
+                }
+
+
+            }
+
+        });
+
+        $("#attrdefine_widgettype").combobox({
+
+            onChange: function (n,o) {
+                if(n=="1"){
+                    $("#attrdefine_databasetype").combobox({disabled:true});
+                    $("#attrdefine_precision").numberspinner({disabled:true});
+                    $("#attrdefine_precision").val("");
+                    $('#attrdefine_database').val("");
+                    $('#attrdefine_attrid').val("");
+                    $('#attrdefine_factoryid').val("");
+                }else if(n=="2"){
+                    $("#attrdefine_databasetype").combobox({disabled:true});
+                    $("#attrdefine_precision").numberspinner({disabled:false});
+                    $('#attrdefine_database').val("");
+                    $('#attrdefine_attrid').val("");
+                    $('#attrdefine_factoryid').val("");
+                } else if(n=="5"){
+                    $("#attrdefine_databasetype").combobox({disabled:false});
+                    $("#attrdefine_precision").numberspinner({disabled:true});
+                    $("#attrdefine_precision").val("");
+                }else if(n=="7"){
+                    $("#attrdefine_databasetype").combobox({disabled:true});
+                    $("#attrdefine_precision").numberspinner({disabled:true});
+                    $('#attrdefine_database').val("");
+                    $('#attrdefine_attrid').val("");
+                    $('#attrdefine_factoryid').val("");
+                    $("#attrdefine_precision").val("");
+                }
+
+
+
+
+            }
+
+        });
+
+
+    });
+
+</script>
+<div style="padding: 3px;">
+    <form id="attrdefineDetailAddForm" method="post">
+        <table class="grid">
+            <tr>
+                <td>属性编码</td>
+                <td ><input name="attrdefine_attrdefineno"  id = "attrdefine_attrdefineno"  class="easyui-textbox" data-options="required:false" type="text" ></input></td>
+                <td>属性名称</td>
+                <td ><input name="attrdefine_attrdefinename"  id = "attrdefine_attrdefinename"  class="easyui-textbox" data-options="required:false" type="text" ></input></td>
+            </tr>
+            <tr>
+
+                <td>控件类型</td>
+                <td>
+                    <select name="attrdefine_widgettype"  id = "attrdefine_widgettype" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                        <option value="1">文本输入框</option>
+                        <option value="2">数字输入框</option>
+                        <option value="5">下拉选择框</option>
+                        <option value="7">复选框</option>
+
+                    </select>
+                </td>
+                <td>数据类型</td>
+                <td>
+                    <select name="attrdefine_datatype"  id = "attrdefine_datatype" class="easyui-combobox"   data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                        <option value="1">字符串</option>
+                        <option value="2">整形</option>
+                        <option value="3">浮点型</option>
+                        <option value="4">日期</option>
+                        <option value="5">日期时间</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>数据长度</td>
+                <td><input name="attrdefine_datelength"  id = "attrdefine_datelength"   class="easyui-numberspinner" style="width: 140px; height: 29px;"  ></td>
+                <td>数据精度</td>
+                <td><input name="attrdefine_precision"  id = "attrdefine_precision"  disabled="disabled"  class="easyui-numberspinner" style="width: 140px; height: 29px;" ></td>
+            </tr>
+            <tr>
+                <td>编码长度</td>
+                <td><input name="attrdefine_codelength"  id = "attrdefine_codelength"  class="easyui-numberspinner" style="width: 140px; height: 29px;" ></td>
+                <td>编码描述</td>
+                <td ><input name="attrdefine_remark"  id = "attrdefine_remark"  class="easyui-textbox" data-options="required:false" type="text" ></input></td>
+            </tr>
+            <tr>
+                <td>数据源类型</td>
+                <td>
+                    <select name="attrdefine_databasetype"  id = "attrdefine_databasetype" class="easyui-combobox"  disabled="disabled" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                        <option value="0">请选择数据源</option>
+                        <option value="1">基础数据源</option>
+                        <option value="2">行业数据源</option>
+                        <option value="3">工厂数据源</option>
+                    </select>
+                </td>
+                <td style="white-space: nowrap; width: 80px;">
+                    <label>基础数据源</label>
+                </td>
+                <td>
+
+                    <input id="attrdefine_database"    class="easyui-searchbox" data-options="prompt:'输入数据源名称',searcher:databaseSearch"  disabled="disabled" style="width:100px"></input>
+                    <script>
+                        function databaseSearch(value){
+                            $('#database-select').dialog('open');
+                            QueryDatabase();
+                        }
+                    </script>
+                    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="$('#attrdefine_database').textbox('setValue','');" >清空</a>
+                </td>
+            </tr>
+            <tr>
+                <td style="white-space: nowrap; width: 80px;">
+                    <label>行业数据源</label>
+                </td>
+                <td>
+
+                    <input id="attrdefine_attrid"    class="easyui-searchbox" data-options="prompt:'输入物料属性名称',searcher:attrSearch"   disabled="disabled"  style="width:100px"></input>
+                    <script>
+                        function attrSearch(value){
+                            $('#attr-select').dialog('open');
+                            QueryAttr();
+                        }
+                    </script>
+                    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="$('#attrdefine_attrid').textbox('setValue','');" >清空</a>
+                </td>
+
+                <td style="white-space: nowrap; width: 80px;">
+                    <label>工厂数据源</label>
+                </td>
+                <td>
+
+                    <input id="attrdefine_factoryid"    class="easyui-searchbox" data-options="prompt:'输入工厂数据源',searcher:factorySearch"  disabled="disabled"   style="width:100px"></input>
+                    <script>
+                        function factorySearch(value){
+                            $('#factory-select').dialog('open');
+                            QueryFactory();
+                        }
+                    </script>
+                    <a class="easyui-linkbutton" href="javascript:void(0)" onclick="$('#attrdefine_attrid').textbox('setValue','');" >清空</a>
+                </td>
+
+
+
+            </tr>
+
+            <tr>
+                <td>参与编码</td>
+                <td>
+                    <select name="attrdefine_iscode"  id = "attrdefine_iscode" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+                <td>冻结</td>
+                <td>
+                    <select name="attrdefine_islocked"  id = "attrdefine_islocked" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td>必填</td>
+                <td>
+                    <select name="attrdefine_isrequired"  id = "attrdefine_isrequired" class="easyui-combobox" data-options="width:140,height:29,editable:false,panelHeight:'auto'">
+                        <option value="0">否</option>
+                        <option value="1">是</option>
+                    </select>
+                </td>
+            </tr>
+
+
+
+
+        </table>
+    </form>
+</div>
+<div id="attr-select" class="easyui-dialog" title="属性查询" data-options="iconCls:'icon-save',closed:true," style="width:1000px;height:600px;padding:10px">
+    <table>
+        <tr align="center">
+            <td align="center"><label>属性编码：</label><input id="select_attrno" name="select_attrno" class="wu-text" style="width:100px"></td>
+            <td align="center"><label>属性名称：</label><input id="select_attrname" name="select_attrname" class="wu-text" style="width:100px"></td>
+            <td align="center"><a href="javascript:void(0)"  class="easyui-linkbutton"  onclick="QueryAttr()" data-options="iconCls:'icon-search'" style="width:80px">查询</a></td>
+        </tr>
+    </table>
+
+    <table title="属性查询" id="attrselect-typegrid"  class="easyui-treegrid"  data-options="onDblClickRow: doubleclick,editor:'text',singleSelect:true" style="height: 84%;width: 99%">
+
+    </table>
+</div>
+
+<div id="database-select" class="easyui-dialog" title="数据源查询" data-options="iconCls:'icon-save',closed:true," style="width:1000px;height:600px;padding:10px">
+    <table>
+        <tr align="center">
+            <td align="center"><label>数据源编码：</label><input id="select_databaseno" name="select_databaseno" class="wu-text" style="width:100px"></td>
+            <td align="center"><label>数据源名称：</label><input id="select_databasename" name="select_databasename" class="wu-text" style="width:100px"></td>
+            <td align="center"><a href="javascript:void(0)"  class="easyui-linkbutton"  onclick="QueryDatabase()" data-options="iconCls:'icon-search'" style="width:80px">查询</a></td>
+        </tr>
+    </table>
+
+    <table title="数据源查询" id="attrreselect-typegrid"  class="easyui-treegrid"  data-options="onClickRow: doubleclick2,editor:'text',singleSelect:true" style="height: 84%;width: 99%">
+
+    </table>
+</div>
+
+<div id="factory-select" class="easyui-dialog" title="工厂查询" data-options="iconCls:'icon-save',closed:true," style="width:1000px;height:600px;padding:10px">
+    <table>
+        <tr align="center">
+            <td align="center"><label>数据源编码：</label><input id="select_factoryno" name="select_factoryno" class="wu-text" style="width:100px"></td>
+            <td align="center"><label>数据源名称：</label><input id="select_factoryname" name="select_factoryname" class="wu-text" style="width:100px"></td>
+            <td align="center"><a href="javascript:void(0)"  class="easyui-linkbutton"  onclick="QueryFactory()" data-options="iconCls:'icon-search'" style="width:80px">查询</a></td>
+        </tr>
+    </table>
+
+    <table title="工厂查询" id="factoryselect-typegrid"  class="easyui-treegrid"  data-options="onClickRow: doubleclick3,editor:'text',singleSelect:true" style="height: 84%;width: 99%">
+
+    </table>
+</div>

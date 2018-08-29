@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.base.dao.BaseMapper">
+
+    <select id="selectSXGL" parameterType="java.lang.String" resultType="com.dhchain.business.base.vo.Base">
+        SELECT
+
+        *
+
+        FROM
+        t_base
+        where isdelete = 0
+        <if test="basename!=null and basename!=''">and basename = #{basename}</if>
+    </select>
+
+    <select id="select" parameterType="com.dhchain.business.base.vo.Base" resultType="com.dhchain.business.base.vo.Base">
+        SELECT
+
+        *
+
+        FROM
+        t_base
+        where isdelete = 0
+        <if test="baseno!=null and baseno!=''">and baseno = #{baseno}</if>
+        <if test="basename!=null and basename!=''">and basename = #{basename}</if>
+    </select>
+
+    <select id="selectDatabse" parameterType="com.dhchain.business.base.vo.Base" resultType="com.dhchain.business.base.vo.Base">
+        SELECT
+
+        *
+
+        FROM
+        t_base
+        where isdelete = 0
+        <if test="baseno!=null and baseno!=''">and baseno = #{baseno}</if>
+        <if test="basename!=null and basename!=''">and basename = #{basename}</if>
+    </select>
+
+    <select id="selectAll" parameterType="com.dhchain.business.base.vo.Base" resultType="com.dhchain.business.base.vo.Base">
+        SELECT
+
+        *
+
+        FROM
+        t_base
+        where isdelete = 0
+    </select>
+
+
+
+    <insert id="insert" parameterType="com.dhchain.business.base.vo.Base" useGeneratedKeys="true" keyProperty="id">
+        insert into t_base(baseno, basename,remark,iscode,isrelate,fid,inputman,inputdate,islocked,isdelete,rebaseids,rebaseitems)
+        values(#{baseno}, #{basename},#{remark}, #{iscode},#{isrelate}, #{fid},#{inputman},#{inputdate},#{islocked},#{isdelete},#{rebaseids},#{rebaseitems})
+    </insert>
+
+    <update  id="deleteById" parameterType="com.dhchain.business.base.vo.Base">
+        update
+        t_base
+        set isdelete = 1
+        where id=#{id}
+    </update >
+
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.dhchain.business.base.vo.Base">
+        SELECT
+
+        *
+
+        FROM
+        t_base
+        where  id=#{id}
+
+    </select>
+
+    <select id="selectByNoAndFid" parameterType="com.dhchain.business.base.vo.Base" resultType="com.dhchain.business.base.vo.Base">
+        SELECT
+
+        *
+
+        FROM
+        t_base
+        where  baseno=#{baseno} and fid = #{fid} and isdelete = 0
+
+    </select>
+
+    <select id="selectByNameAndFid" parameterType="com.dhchain.business.base.vo.Base" resultType="com.dhchain.business.base.vo.Base">
+        SELECT
+
+        *
+
+        FROM
+        t_base
+        where  basename=#{basename} and fid = #{fid} and isdelete = 0
+
+    </select>
+
+
+    <select id="selectByFlag" parameterType="java.lang.String" resultType="com.dhchain.business.base.vo.Base">
+        SELECT
+
+        *
+
+        FROM
+        t_base
+          where isdelete = 0 and flag  like '%'+#{flag}+'%'
+
+    </select>
+
+
+    <select id="selectChildById" parameterType="java.lang.Integer" resultType="com.dhchain.business.base.vo.Base">
+        SELECT
+
+        *
+
+        FROM
+        t_base
+        where  fid = #{fid} and isdelete = 0
+
+    </select>
+
+    <update id="update" parameterType="com.dhchain.business.base.vo.Base" >
+        UPDATE t_base
+        SET
+        baseno = #{baseno},
+        basename = #{basename},
+        remark = #{remark},
+        iscode = #{iscode},
+        isrelate = #{isrelate},
+        fid = #{fid},
+        islocked = #{islocked},
+        modifyman = #{modifyman},
+        modifydate = #{modifydate},
+        rebaseids = #{rebaseids},
+        rebaseitems = #{rebaseitems},
+        flag = #{flag}
+
+
+        WHERE id = #{id};
+    </update>
+
+    <select id="selectNewId"  resultType="java.lang.Integer">
+       select ident_current('t_base')
+
+    </select>
+
+    <select id="selectRebasesById" resultType="java.lang.String" parameterType="java.lang.Integer">
+        SELECT
+        rebaseids
+        FROM
+        t_base
+        where isdelete = 0 and
+        id = #{id}
+    </select>
+</mapper>

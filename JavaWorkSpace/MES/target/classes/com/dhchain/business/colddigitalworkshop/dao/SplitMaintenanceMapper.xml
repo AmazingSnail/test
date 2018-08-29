@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.colddigitalworkshop.dao.SplitMaintenanceMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.colddigitalworkshop.vo.Smaintenance" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="Fno" property="fno" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="matec" property="matec" jdbcType="VARCHAR" />
+    <result column="Fnoname" property="fnoname" jdbcType="VARCHAR" />
+    <result column="fparentid" property="fparentid" jdbcType="VARCHAR" />
+    <result column="width" property="width" jdbcType="FLOAT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, Fno, name, matec, Fnoname, fparentid,width
+  </sql>
+  <select id="selectByAll" parameterType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance" resultType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance">
+    SELECT * FROM t_Smaintenance where fno in(
+    SELECT
+    fno
+    from t_Smaintenance
+    where 1=1
+    <if test="fno != null and fno!=''">
+      and Fno = #{fno}
+    </if>
+    <if test="name != null and name!=''">
+      and name = #{name}
+    </if>
+    ) or fparentid in
+    (
+    SELECT
+    fno
+    from t_Smaintenance
+    where 1=1
+    <if test="fno != null and fno!=''">
+      and Fno = #{fno}
+    </if>
+    <if test="name != null and name!=''">
+      and name = #{name}
+    </if>
+    )
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_Smaintenance
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_Smaintenance
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByFparentIdAndId" parameterType="java.lang.Integer">
+    delete from t_Smaintenance
+    where id = #{id,jdbcType=INTEGER} OR fparentid in ( select fno from t_Smaintenance where id = #{id})
+  </delete>
+  <insert id="insert" parameterType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance" >
+    insert into t_Smaintenance (id, Fno, name, 
+      matec, Fnoname, fparentid,width
+      )
+    values (#{id,jdbcType=INTEGER}, #{fno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{matec,jdbcType=VARCHAR}, #{fnoname,jdbcType=VARCHAR}, #{fparentid,jdbcType=VARCHAR},#{width,jdbcType=FLOAT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance" >
+    insert into t_Smaintenance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="fno != null" >
+        Fno,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="matec != null" >
+        matec,
+      </if>
+      <if test="fnoname != null" >
+        Fnoname,
+      </if>
+      <if test="fparentid != null" >
+        fparentid,
+      </if>
+      <if test="width != null" >
+        width,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="fno != null" >
+        #{fno,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="matec != null" >
+        #{matec,jdbcType=VARCHAR},
+      </if>
+      <if test="fnoname != null" >
+        #{fnoname,jdbcType=VARCHAR},
+      </if>
+      <if test="fparentid != null" >
+        #{fparentid,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null" >
+        #{width,jdbcType=FLOAT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance" >
+    update t_Smaintenance
+    <set >
+      <if test="fno != null" >
+        Fno = #{fno,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="matec != null" >
+        matec = #{matec,jdbcType=VARCHAR},
+      </if>
+      <if test="fnoname != null" >
+        Fnoname = #{fnoname,jdbcType=VARCHAR},
+      </if>
+      <if test="fparentid != null" >
+        fparentid = #{fparentid,jdbcType=VARCHAR},
+      </if>
+      <if test="width != null" >
+        width = #{width,jdbcType=FLOAT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance" >
+    update t_Smaintenance
+    set Fno = #{fno,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      matec = #{matec,jdbcType=VARCHAR},
+      Fnoname = #{fnoname,jdbcType=VARCHAR},
+      fparentid = #{fparentid,jdbcType=INTEGER},
+      width = #{width,jdbcType=FLOAT},
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectsplitByfparentid" parameterType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance" resultType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance">
+    SELECT * FROM (SELECT id, Fno, name,
+      matec, Fnoname, isnull(fparentid,'') AS fparentid,width FROM
+    t_Smaintenance ) AS a
+    WHERE
+    a.fno = #{fno}
+    and a.fparentid = #{fparentid}
+  </select>
+  <select id="selectSplitMaoLiaoFno" parameterType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance" resultType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance">
+    SELECT * FROM
+    t_Smaintenance
+    where 1=1
+    and isnull(fparentid,'') = ''
+  </select>
+  <select id="selectParentIsHave" parameterType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance" resultType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance">
+    SELECT  * FROM t_Smaintenance
+    WHERE 1=1
+    and isnull(fparentid,'') = ''
+    and Fno = #{fno}
+  </select>
+  <select id="selectChildIsHave" parameterType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance" resultType="com.dhchain.business.colddigitalworkshop.vo.Smaintenance">
+    SELECT  * FROM t_Smaintenance
+    WHERE 1=1
+    and isnull(fparentid,'') != ''
+    and Fno = #{fno}
+    and fparentid = #{fparentid}
+  </select>
+</mapper>

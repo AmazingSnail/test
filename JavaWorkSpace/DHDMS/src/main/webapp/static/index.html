@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+
+
+
+    <script type="text/javascript" src="../../static/js/jquery-1.8.0.min.js"></script>
+
+
+
+    <title>登录</title>
+    <style>
+        body
+        {
+            background: #00FF00 url(../../static/img/background3.jpg) no-repeat fixed top ;
+            background-size:cover;
+        }
+    </style>
+</head>
+<body >
+<div id="loginWin" class="easyui-window" title="登录" style="width:300px;height:250px;padding:5px;"
+     minimizable="false" maximizable="false" resizable="false" collapsible="false">
+    <div class="easyui-layout" fit="true">
+        <div region="center" border="false" style="padding:5px;background:#fff;border:1px solid #ccc;">
+            <form id="loginForm" method="post">
+                <div style="padding:5px 0; text-align: center;">
+                    <label for="department">部&nbsp&nbsp&nbsp门:</label>
+
+                    <select id="department" style="width:150px;">
+
+
+                    </select>
+                </div>
+                <div style="padding:5px 0; text-align: center;">
+                    <label  for="login">用户名:</label>
+                    <select  id="login"  style="width:150px;">
+
+                    </select>
+                </div>
+                <div style="padding:5px 0;text-align: center;">
+                    <label for="password">密&nbsp&nbsp&nbsp码:</label>
+                    <input id="password" class="easyui-textbox" data-options="iconCls:'icon-key'" type="password" name="password" style="width:150px;"></input>
+
+                </div>
+                <div style="padding:5px 0;text-align: center;color: red;" id="showMsg"></div>
+            </form>
+        </div>
+        <div region="south" border="false" style="text-align:right;padding:5px 0;">
+            <a class="easyui-linkbutton" iconCls="icon-ok" href="javascript:void(0)" onclick="login()">登录</a>
+            <a class="easyui-linkbutton" iconCls="icon-cancel" href="javascript:void(0)" onclick="cleardata()">重置</a>
+        </div>
+    </div>
+</div>
+</body>
+<script type="text/javascript">
+    jQuery.ajax({
+        type:"POST",   //post提交方式默认是get
+        url:"/selectDepartment.action",
+        dataType:"json",
+
+//                data:$("#login").val(),   //序列化
+        error:function(request) {      // 设置表单提交出错
+            $("#showMsg").html(request);  //登录错误提示信息
+
+        },
+        success:function(data) {
+
+
+
+            $("#department").append("<option value=''>请选择部门</option>");
+            for(var i = 0 ; i<data.rows.length;i++){
+
+                $("#department").append("<option value="+data.rows[i].department+">"+data.rows[i].department+"</option>"); //为Select追加一个Option(下拉项)
+            }
+        }
+    });
+
+    document.onkeydown = function(e){
+        var event = e || window.event;
+        var code = event.keyCode || event.which || event.charCode;
+        if (code == 13) {
+            login();
+        }
+    }
+    $(function(){
+
+//        $('#login').textbox().next('span').find('input').focus();
+        $('#loginWin').window({
+            onBeforeClose:function(){
+                window.close();
+            }
+        });
+    });
+
+    $('#department').change(function(){
+
+        var department = $(this).val();
+        //ajax异步提交
+        jQuery.ajax({
+            type:"POST",   //post提交方式默认是get
+            url:"/select.action",
+            dataType:"json",
+            data:{
+                department: department,
+
+            },
+//                data:$("#login").val(),   //序列化
+            error:function(request) {      // 设置表单提交出错
+                $("#showMsg").html(request);  //登录错误提示信息
+
+            },
+            success:function(data) {
+
+                $("#login").empty();
+
+                for(var i = 0 ; i<data.rows.length;i++){
+
+                    $("#login").append("<option value="+data.rows[i].name+">"+data.rows[i].name+"</option>"); //为Select追加一个Option(下拉项)
+                }
+            }
+        });
+
+    });
+
+    function cleardata(){
+        $('#loginForm').form('clear');
+//        $('#login').textbox().next('span').find('input').focus();
+    }
+    function login(){
+        if($('#department').val()==""){
+            $("#showMsg").html("请选择部门");
+
+        }else if($('#login').val()==""){
+            $("#showMsg").html("请输入用户名");
+//            $('#login').textbox().next('span').find('input').focus();
+        }else if( $('#password').val()=="")
+        {
+            $("#showMsg").html("请输入密码");
+            $('#password').textbox().next('span').find('input').focus();
+        }
+        else{
+            //ajax异步提交
+            jQuery.ajax({
+                type:"POST",   //post提交方式默认是get
+                url:"/query.action",
+                dataType:"json",
+                data:{
+                    Username: $("#login").val(),
+                    password:$("#password").val()
+                },
+//                data:$("#login").val(),   //序列化
+                error:function(request) {      // 设置表单提交出错
+                    $("#showMsg").html(request);  //登录错误提示信息
+                    alert(1);
+                },
+                success:function(results) {
+                    if(results.Password == $("#password").val()){
+                        localStorage.setItem("Department",results.Department);
+                        localStorage.setItem("MDM",results.MDM);
+                        localStorage.setItem("User",results.User);
+                        window.location.href="../../static/main.html";
+                    }else {
+                        if(results.Password != $("#password").val()){
+                            if(results.User==""||results.User == null){
+                                $.messager.show({
+                                    title:'提示',
+                                    msg:'用户名不存在！',
+                                    showType:'fade',
+                                    style:{
+                                        right:'',
+                                        bottom:''
+                                    }
+                                });
+                            }else{
+                                $.messager.show({
+                                    title:'提示',
+                                    msg:'密码错误！',
+                                    showType:'fade',
+                                    style:{
+                                        right:'',
+                                        bottom:''
+                                    }
+                                });
+                            }
+
+                        }else{
+                            $.messager.show({
+                                title:'提示',
+                                msg:'用户名不存在！',
+                                showType:'fade',
+                                style:{
+                                    right:'',
+                                    bottom:''
+                                }
+                            });
+                        }
+
+                    }
+                }
+            });
+        }
+    }
+</script>
+</html>

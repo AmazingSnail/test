@@ -1,0 +1,655 @@
+package com.dhchain.business.partpunchingworkshop.controller;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONArray;
+import com.dhchain.business.partpunchingworkshop.service.PersonnelMaintenanceService;
+import com.dhchain.business.partpunchingworkshop.vo.*;
+import com.dhchain.config.annotation.Type;
+import com.dhchain.config.datasource.DataSourceHolder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.json.Json;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+@Controller
+@RequestMapping(value = "/PersonnelMaintenance")
+public class PersonnelMaintenanceController {
+    @Autowired
+    private PersonnelMaintenanceService personnelMaintenanceService;
+    @ResponseBody
+    @RequestMapping(value="/query",method={RequestMethod.GET,RequestMethod.POST})
+    public Map Query (HttpServletRequest request) throws UnsupportedEncodingException {
+             request.setCharacterEncoding("utf-8");
+             String UserTypes = request.getParameter("UserTypes");
+             String department = request.getParameter("department");
+             BaseUser baseUser =  new BaseUser();
+             baseUser.setUserTypes(UserTypes);
+             baseUser.setDepartMent(department);
+             List<BaseUser> list = personnelMaintenanceService.query(baseUser);
+             Map json  =  new HashMap();
+             if(list.size()>0){
+                 json.put("rows",list);
+                 json.put("total",list.size());
+             }
+        return  json;
+
+    }
+    @ResponseBody
+    @RequestMapping(value="/serach",method={RequestMethod.GET,RequestMethod.POST})
+    public JSON Serach (HttpServletRequest request) throws UnsupportedEncodingException {
+        Map re  = new HashMap();
+        Map re1  = new HashMap();
+        Map re2  = new HashMap();
+        JSONArray jslst = new JSONArray();
+        re.put("id",1);
+        re.put("text","生产人员");
+        re.put("state","open");
+        re.put("closed",0);
+        jslst.add(re);
+        re1.put("id",1);
+        re1.put("text","检验人员");
+        re1.put("state","open");
+        re1.put("closed",1);
+        jslst.add(re1);
+        re2.put("id",2);
+        re2.put("text","维修人员");
+        re2.put("state","open");
+        re2.put("closed",1);
+        jslst.add(re2);
+        return jslst;
+
+    }
+    @ResponseBody
+    @RequestMapping(value = "/selectDevice",method = {RequestMethod.POST,RequestMethod.GET})
+    public JSON SelectDevice (HttpServletRequest request) throws UnsupportedEncodingException{
+        request.setCharacterEncoding("utf-8");
+        String plant = request.getParameter("plant");
+        BaseEquip baseEquip =  new BaseEquip();
+        baseEquip.setPlant(plant);
+        List<BaseEquip> list =  personnelMaintenanceService.getEquip(baseEquip);
+        JSONArray jslst = new JSONArray();
+
+        if(list.size()>0){
+            for(int i = 0 ; i<list.size();i++){
+                BaseEquip baseEquip1;
+                Map re =  new HashMap();
+                baseEquip1 = list.get(i);
+                String EquipID = baseEquip1.getEquipID();
+                String EquipName = baseEquip1.getEquipName();
+                String EquipID1 = EquipID+"-"+EquipName;
+                re.put("EquipID",EquipID1);
+                jslst.add(re);
+            }
+
+        }
+
+        return jslst;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/selectDevice1",method = {RequestMethod.POST,RequestMethod.GET})//获取设备信息
+    public JSON SelectDevice1 (HttpServletRequest request) throws UnsupportedEncodingException{
+        request.setCharacterEncoding("utf-8");
+        String plant = request.getParameter("plant");
+        BaseEquip baseEquip =  new BaseEquip();
+        baseEquip.setPlant(plant);
+        List<BaseEquip> list =  personnelMaintenanceService.getEquip(baseEquip);
+        JSONArray jslst = new JSONArray();
+
+        if(list.size()>0){
+            for(int i = 0 ; i<list.size();i++){
+                BaseEquip baseEquip1;
+                Map re =  new HashMap();
+                baseEquip1 = list.get(i);
+                String EquipID = baseEquip1.getEquipID();
+                String EquipID1 = EquipID ;
+                re.put("EquipID",EquipID1);
+                jslst.add(re);
+            }
+
+        }
+
+        return jslst;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/Info",method={RequestMethod.GET,RequestMethod.POST})
+    public Map Info(HttpServletRequest request) throws UnsupportedEncodingException{
+        request.setCharacterEncoding("utf-8");
+        String umouth = request.getParameter("umouth");
+        String EquipID = request.getParameter("EquipID");
+        String uyear = request.getParameter("uyear");
+        String eqid = EquipID.substring(0,2);
+        BaseStatus baseStatus = new BaseStatus();
+        BaseEquip baseEquip =  new BaseEquip();
+        baseEquip.setEquipID(EquipID);
+        List<BaseEquip> list2 = personnelMaintenanceService.getlist(baseEquip);//获取设备信息
+        baseStatus.setStatusID(eqid);
+        List<BaseStatus> list1 = personnelMaintenanceService.getStatus(baseStatus);//获取部门
+        BaseStatus baseStatus1;
+        baseStatus1 = list1.get(0);
+        String department = baseStatus1.getStatusName();
+        BaseEquip baseEquip1;
+        baseEquip1 = list2.get(0);
+        String EquipName = baseEquip1.getEquipName();
+        String EquipType = baseEquip1.getEquipType();
+        String EquipMan = baseEquip1.getEquipMan();
+        int month1 = Integer.parseInt(umouth);
+        String month;
+        month =   String.format("%02d",month1);
+        String time = uyear + "-"+ month;
+        EQPCheck eqpCheck =  new EQPCheck();
+        eqpCheck.setEquipID(EquipID);
+        eqpCheck.setCheckDate(time);
+       List<EQPCheck> list =  personnelMaintenanceService.getAll(eqpCheck);
+
+        Map json = new HashMap();
+        if(list.size()>0) {
+             json.put("rows",list);
+             json.put("total",list.size());
+             json.put("department",department);
+             json.put("EquipName",EquipName);
+             json.put("EquipID",EquipID);
+             json.put("EquipType",EquipType);
+             json.put("EquipMan",EquipMan);
+        }
+        return json;
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/select",method={RequestMethod.GET,RequestMethod.POST})
+    public Map Select(HttpServletRequest request) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("utf-8");
+        String count = request.getParameter("count");
+        String uyear = request.getParameter("uyear");
+        String umouth = request.getParameter("umouth");
+        String EquipID = request.getParameter("EquipID");
+        int month1 = Integer.parseInt(umouth);
+        String month;
+        month =   String.format("%02d",month1);
+        Num num = new Num();
+        num.setENum(count);
+        Num num1;
+        List<Num> list = personnelMaintenanceService.getNum(num);
+        num1 = list.get(0);
+        String day =num1.getNum();
+        String time = uyear+"-"+month+"-"+day;
+        EQPCheck eqpCheck = new EQPCheck();
+        eqpCheck.setEquipID(EquipID);
+        eqpCheck.setCheckDate(time);
+        List<EQPCheck> list1 = personnelMaintenanceService.getMan(eqpCheck);//获取设备的检测时间和检测人
+        Map json  =  new HashMap();
+        String Man ="";
+        String date="";
+        if(list1.size()>0){
+            EQPCheck eqpCheck1;
+            eqpCheck1 = list1.get(0);
+            Man = eqpCheck1.getSendMan();
+             date = eqpCheck1.getSendTime();
+
+        }
+        json.put("Man",Man);
+        json.put("date",date);
+        return json;
+    }
+
+    @ResponseBody
+    @RequestMapping(value="/query1",method={RequestMethod.GET,RequestMethod.POST})
+    public JSON query1(HttpServletRequest request) throws UnsupportedEncodingException {
+        BaseStatus baseStatus = new BaseStatus();
+
+        List<BaseStatus> jslist = personnelMaintenanceService.queryplant();
+        Map json = new HashMap();
+        String plant = request.getParameter("plant");
+        JSONArray jslst = new JSONArray();
+        if (jslist.size() > 0) {
+            for (int i = 0; i < jslist.size(); i++) {
+
+                Map re = new HashMap();
+                baseStatus =  jslist.get(i);
+                String Fname = baseStatus.getStatusID();
+                String Fremark = baseStatus.getStatusName();
+                re.put("Fname", Fname);
+                re.put("Fremark", Fremark);
+                if(plant.equals(Fremark)){
+                    re.put("selected",true);
+                }
+                jslst.add(re);
+            }
+
+
+        }
+        return jslst;
+    }
+    @ResponseBody
+    @RequestMapping(value="/queryName",method={RequestMethod.GET,RequestMethod.POST})
+    public JSON QueryName(HttpServletRequest request) throws UnsupportedEncodingException {
+        String plant = request.getParameter("plant");
+        BaseUser baseUser = new BaseUser();
+        baseUser.setPlant(plant);
+        List<BaseUser> jslist = personnelMaintenanceService.getUserName(baseUser);
+        Map json = new HashMap();
+        JSONArray jslst = new JSONArray();
+        if (jslist.size() > 0) {
+            for (int i = 0; i < jslist.size(); i++) {
+                BaseUser baseUser1;
+                Map re = new HashMap();
+                baseUser1 =  jslist.get(i);
+                String username = baseUser1.getUserName();
+                re.put("username", username);
+                jslst.add(re);
+            }
+
+
+        }
+        return jslst;
+    }
+    @ResponseBody
+    @RequestMapping(value="/selectPlan",method={RequestMethod.GET,RequestMethod.POST})
+    public JSON SelectPlan(HttpServletRequest request) throws UnsupportedEncodingException {
+        String EquipID = request.getParameter("EquipID");
+        String plant = request.getParameter("plant");
+        PTProdTake ptProdTake = new PTProdTake();
+        ptProdTake.setPlant(plant);
+        ptProdTake.setEquipID(EquipID);
+        List<PTProdTake> jslist = personnelMaintenanceService.getPlanID(ptProdTake);
+        Map json = new HashMap();
+        JSONArray jslst = new JSONArray();
+        if (jslist.size() > 0) {
+            for (int i = 0; i < jslist.size(); i++) {
+                Map re = new HashMap();
+                PTProdTake ptProdTake1;
+                ptProdTake1 = jslist.get(i);
+                String Planid = ptProdTake1.getPlanID();
+                String SBBH = ptProdTake1.getEquipID();
+                String  fno = ptProdTake1.getFno();
+                String fname = ptProdTake1.getFname();
+                String DYBJ = ptProdTake1.getWorkCentre();
+                re.put("Planid", Planid);
+                re.put("SBBH", SBBH);
+                re.put("fno", fno);
+                re.put("fname", fname);
+                re.put("DYBJ", DYBJ);
+                re.put("num",jslist.size());
+                jslst.add(re);
+            }
+        }else {
+            Map re = new HashMap();
+            re.put("num",jslist.size());
+            jslst.add(re);
+        }
+
+        return jslst;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/Department",method = {RequestMethod.POST,RequestMethod.GET})
+    public JSON Department (HttpServletRequest request) throws UnsupportedEncodingException{
+        request.setCharacterEncoding("utf-8");
+        BaseStatus baseStatus =  new BaseStatus();
+        List<BaseStatus> list =  personnelMaintenanceService.getDepartment();
+        JSONArray jslst = new JSONArray();
+
+        if(list.size()>0){
+            for(int i = 0 ; i<list.size();i++){
+                BaseStatus baseStatus1;
+                Map re =  new HashMap();
+                baseStatus1 = list.get(i);
+                String DepartMent = baseStatus1.getStatusName();
+                re.put("DepartMent",DepartMent);
+                jslst.add(re);
+            }
+
+        }
+
+        return jslst;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/Insert",method = {RequestMethod.POST,RequestMethod.GET})
+        public Map  Insert(HttpServletRequest request) throws UnsupportedEncodingException{
+                      request.setCharacterEncoding("utf-8");
+                      String UserName = request.getParameter("UserName");
+                      String name = request.getParameter("name");
+                      String id =  request.getParameter("id");
+                      String time = request.getParameter("time");
+                      String userid = request.getParameter("userid");
+                      String monitor = request.getParameter("monitor");
+                      String put = request.getParameter("put");
+                      String team = request.getParameter("team");
+                      String takekind = request.getParameter("takekind");
+                      String takekind1 = request.getParameter("takekind1");
+                      String plant = request.getParameter("plant");
+                      String WorkMan = request.getParameter("WorkMan");
+                      String WeChatID = request.getParameter("WeChatID");
+                      String isSet = request.getParameter("isSet");
+                      String EquipID1 = request.getParameter("EquipID");
+                      String [] s = EquipID1.split("-");
+                      String EquipID = s[0];
+                      String i = request.getParameter("i");
+
+                      Map json = new HashMap();
+                        BaseUser baseUser =  new BaseUser();
+                        if(i.equals("生产人员")){
+                            baseUser.setWorkMan(WorkMan);
+                        }
+                        if(i.equals("维修人员")){
+                            baseUser.setWeChatID(WeChatID);
+                        }
+                        baseUser.setUserName(UserName);
+                        baseUser.setMonitor(monitor);
+                        baseUser.setIsSet(isSet);
+                        baseUser.setDepartMent(put);
+                        baseUser.setUserID(userid);
+                        baseUser.setWorkTypes(takekind1);
+                        if(!"".equals(team)){
+                            baseUser.setTeam(team);
+                        }else {
+                            baseUser.setTeam("");
+                        }
+                        baseUser.setUserTypes(i);
+                        if(!"".equals(EquipID)){
+                            baseUser.setEquipID(EquipID);
+                        }else {
+                            baseUser.setEquipID("");
+                        }
+
+                        baseUser.setPlant(plant);
+                        baseUser.setWorkprocedure(takekind);
+                          int n=0;
+                      if("".equals(id)){
+                          baseUser.setInputMan(name);
+                          baseUser.setInputTime(time);
+                           n =  personnelMaintenanceService.insertprocess(baseUser);
+                          if(n>0){
+                              json.put("num",n);
+                          }
+                      }else {
+                          baseUser.setModifyMan(name);
+                          baseUser.setModifyTime(time);
+                          baseUser.setID(Integer.parseInt(id));
+                          n = personnelMaintenanceService.updateUser(baseUser);
+                          if(n>0){
+                              json.put("num",n);
+                          }
+                      }
+
+                  return json;
+        }
+    @ResponseBody
+    @RequestMapping(value = "/DeleteData",method = {RequestMethod.POST,RequestMethod.GET})
+    public  Map Delete(HttpServletRequest request) throws  UnsupportedEncodingException{
+        request.setCharacterEncoding("utf-8");
+        String id =  request.getParameter("id");
+        BaseUser baseUser =  new BaseUser();
+        baseUser.setID(Integer.parseInt(id));
+        int n = personnelMaintenanceService.delete(baseUser);
+        Map json =  new HashMap();
+        if(n>0){
+            json.put("num",n);
+        }
+        return json;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/check",method = {RequestMethod.POST,RequestMethod.GET})
+    public  Map Check(HttpServletRequest request) throws  UnsupportedEncodingException{
+        request.setCharacterEncoding("utf-8");
+        Map json =  new HashMap();
+        String plant =  request.getParameter("plant");
+        String irEquipID =  request.getParameter("irEquipID");
+        String planid =  request.getParameter("planid");
+        String i =  request.getParameter("i");
+        String time =  request.getParameter("time");
+        String fno =  request.getParameter("fno");
+        BaseCapacity baseCapacity = new BaseCapacity();
+        baseCapacity.setFno(fno);
+        DataSourceHolder.setDataSourceName(Type.SQL_EPPRD.getName());
+        List<BaseCapacity> list1 = personnelMaintenanceService.getInfo(baseCapacity);
+        DataSourceHolder.setDataSourceName(Type.SQL_MDM.getName());
+        if(list1.size()>0){
+            BaseCapacity baseCapacity1 ;
+            baseCapacity1 = list1.get(0);
+            String partDrawing = baseCapacity1.getFtemp2();//图号；
+            BaseChkStd baseChkStd = new BaseChkStd();
+            baseChkStd.setPartDrawing(partDrawing);
+            List<BaseChkStd> list = personnelMaintenanceService.getBaseData(baseChkStd);
+            BaseChkStd baseChkStd1;
+            baseChkStd1 = list.get(0);
+            String partDrawing1 =  baseChkStd1.getPartDrawing();
+            String partName = baseChkStd1.getPartName();
+            String holeHD = baseChkStd1.getHoleHD();
+            String aperture = baseChkStd1.getAperture();
+            String holeSite = baseChkStd1.getHoleSite();
+            String thickness = baseChkStd1.getThickness();
+            String facade = baseChkStd1.getFacade();
+            String height = baseChkStd1.getHeight();
+            String leuchtfeld = baseChkStd1.getLeuchtfeld();
+            json.put("partDrawing",partDrawing1);
+            json.put("holeHD",holeHD);
+            json.put("partName",partName);
+            json.put("aperture",aperture);
+            json.put("holeSite",holeSite);
+            json.put("thickness",thickness);
+            json.put("facade",facade);
+            json.put("height",height);
+            json.put("leuchtfeld",leuchtfeld);
+
+        }
+        CHKResult chkResult = new CHKResult();
+        chkResult.setEquipID(irEquipID);
+        chkResult.setPlanID(planid);
+        chkResult.setProvingTime(i);
+        chkResult.setSendTime(time);
+        List<CHKResult> list = personnelMaintenanceService.getCheck(chkResult);
+        if(list.size()>0){
+            CHKResult chkResult1;
+            chkResult1 = list.get(0);
+            String GZID = chkResult1.getCheakID();//故障id;
+            CHKDetail chkDetail = new CHKDetail();
+            chkDetail.setCheakID(GZID);
+            List<CHKDetail> list2 = personnelMaintenanceService.getDetail(chkDetail);
+            if(list.size()>0){
+                json.put("rows",list2);
+                json.put("num",list2.size());
+            }
+        }else {
+            json.put("num",-1);
+        }
+
+
+        return json;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/Send",method = {RequestMethod.POST,RequestMethod.GET})
+    public  Map Send(HttpServletRequest request) throws  UnsupportedEncodingException {
+        request.setCharacterEncoding("utf-8");
+        Map json = new HashMap();
+        String name =  request.getParameter("name");
+        String time =  request.getParameter("time");
+        String sendtime =  request.getParameter("sendtime");
+        String i =  request.getParameter("i");
+        String planid =  request.getParameter("planid");
+        String irEquipID =  request.getParameter("irEquipID");
+        String holeHD1 =  request.getParameter("holeHD1");
+        String holeHD2 =  request.getParameter("holeHD2");
+        String holeHD3 =  request.getParameter("holeHD3");
+        String holeHD4 =  request.getParameter("holeHD4");
+        String holeHD5 =  request.getParameter("holeHD5");
+        String thickness1 =  request.getParameter("thickness1");
+        String thickness2 =  request.getParameter("thickness2");
+        String thickness3 =  request.getParameter("thickness3");
+        String thickness4 =  request.getParameter("thickness4");
+        String thickness5 =  request.getParameter("thickness5");
+        String AxleNum =  request.getParameter("AxleNum");
+        String AxleNum1 =  request.getParameter("AxleNum1");
+        String AxleNum2 =  request.getParameter("AxleNum2");
+        String AxleNum3 =  request.getParameter("AxleNum3");
+        String AxleNum4 =  request.getParameter("AxleNum4");
+        String AxleNum5 =  request.getParameter("AxleNum5");
+        String AxleNum6 =  request.getParameter("AxleNum6");
+        String AxleNum7 =  request.getParameter("AxleNum7");
+        String AxleNum8 =  request.getParameter("AxleNum8");
+        String AxleNum9 =  request.getParameter("AxleNum9");
+        String AxleNum10 =  request.getParameter("AxleNum10");
+        String AxleNum11 =  request.getParameter("AxleNum11");
+        String AxleNum12 =  request.getParameter("AxleNum12");
+        String AxleNum13 =  request.getParameter("AxleNum13");
+        String AxleNum14 =  request.getParameter("AxleNum14");
+        String AxleNum15 =  request.getParameter("AxleNum15");
+        String AxleNum16 =  request.getParameter("AxleNum16");
+        String AxleNum17 =  request.getParameter("AxleNum17");
+        String AxleNum18 =  request.getParameter("AxleNum18");
+        String AxleNum19 =  request.getParameter("AxleNum19");
+        String AxleNum20 =  request.getParameter("AxleNum20");
+        String AxleNum21 =  request.getParameter("AxleNum21");
+        String AxleNum22 =  request.getParameter("AxleNum22");
+        String AxleNum23 =  request.getParameter("AxleNum23");
+        String AxleNum24 =  request.getParameter("AxleNum24");
+        String AxleNum25 =  request.getParameter("AxleNum25");
+        String AxleNum26 =  request.getParameter("AxleNum26");
+        String AxleNum27 =  request.getParameter("AxleNum27");
+        String AxleNum28 =  request.getParameter("AxleNum28");
+        String AxleNum29 =  request.getParameter("AxleNum29");
+        String partDrawing =  request.getParameter("partDrawing");
+        float BHG = 0;
+        if(AxleNum25.equals("不合格")){
+            BHG = BHG+1;
+        }
+        if(AxleNum26.equals("不合格")){
+            BHG = BHG+1;
+        }
+        if(AxleNum27.equals("不合格")){
+            BHG = BHG+1;
+        }
+        if(AxleNum28.equals("不合格")){
+            BHG = BHG+1;
+        }
+        if(AxleNum29.equals("不合格")){
+            BHG = BHG+1;
+        }
+        CHKResult chkResult1 =  new CHKResult();
+        chkResult1.setSendTime(sendtime);
+        List<CHKResult> list = personnelMaintenanceService.getChechID(chkResult1);//获取最大的故障id
+        String CheckID="";
+        if(list.size()>0){
+            CHKResult chkResult ;
+            chkResult = list.get(0);
+            String C = chkResult.getCheakID();
+            String CheckID1 = C.substring(5);
+            int CheckID2 = Integer.parseInt(CheckID1)+1 ;
+            String [] a = sendtime.split("-");
+            CheckID = "J"+ a[0].substring(2,4)+a[1]+String.format("%04d", CheckID2);
+        }else {
+             String [] a = sendtime.split("-");
+            CheckID = "J"+ a[0].substring(2,4)+a[1]+"0001";
+        }
+        CHKResult chkResult = new CHKResult();
+        chkResult.setEquipID(irEquipID);
+        chkResult.setPlanID(planid);
+        chkResult.setCheakID(CheckID);
+        chkResult.setCheakTypes("送检");
+        chkResult.setRandomMan(name);
+        chkResult.setRandomTime(time);
+        chkResult.setRandomNum("5");
+        chkResult.setCheakMan(name);
+        chkResult.setCheakTime(time);
+         chkResult.setNQualNum(BHG);
+         chkResult.setProvingTime(i);
+         chkResult.setSendTime(sendtime);
+         int n = personnelMaintenanceService.insertResult(chkResult);//插入记录
+        if(n>0){
+            CHKDetail chkDetail = new CHKDetail();
+            chkDetail.setCheakID(CheckID);
+            chkDetail.setHoleHD(holeHD1);
+            chkDetail.setPartDrawing(partDrawing);
+            chkDetail.setAperture(AxleNum);
+            chkDetail.setHoleSite(AxleNum1);
+            chkDetail.setThickness(thickness1);
+            chkDetail.setFacade(AxleNum2);
+            chkDetail.setHeight(AxleNum3);
+            chkDetail.setLeuchtfeld(AxleNum4);
+            chkDetail.setIsQualified(AxleNum25);
+            int n1 = personnelMaintenanceService.insertDetail(chkDetail);//插入明细记录
+            CHKDetail chkDetail1 = new CHKDetail();
+            chkDetail1.setCheakID(CheckID);
+            chkDetail1.setHoleHD(holeHD2);
+            chkDetail1.setPartDrawing(partDrawing);
+            chkDetail1.setAperture(AxleNum5);
+            chkDetail1.setHoleSite(AxleNum6);
+            chkDetail1.setThickness(thickness2);
+            chkDetail1.setFacade(AxleNum7);
+            chkDetail1.setHeight(AxleNum8);
+            chkDetail1.setLeuchtfeld(AxleNum9);
+            chkDetail1.setIsQualified(AxleNum26);
+            int n2 = personnelMaintenanceService.insertDetail(chkDetail1);//插入明细记录
+            CHKDetail chkDetail2 = new CHKDetail();
+            chkDetail2.setCheakID(CheckID);
+            chkDetail2.setHoleHD(holeHD3);
+            chkDetail2.setPartDrawing(partDrawing);
+            chkDetail2.setAperture(AxleNum10);
+            chkDetail2.setHoleSite(AxleNum11);
+            chkDetail2.setThickness(thickness3);
+            chkDetail2.setFacade(AxleNum12);
+            chkDetail2.setHeight(AxleNum13);
+            chkDetail2.setLeuchtfeld(AxleNum14);
+            chkDetail2.setIsQualified(AxleNum27);
+            int n3 = personnelMaintenanceService.insertDetail(chkDetail2);//插入明细记录
+            CHKDetail chkDetail3 = new CHKDetail();
+            chkDetail3.setCheakID(CheckID);
+            chkDetail3.setHoleHD(holeHD4);
+            chkDetail3.setPartDrawing(partDrawing);
+            chkDetail3.setAperture(AxleNum15);
+            chkDetail3.setHoleSite(AxleNum16);
+            chkDetail3.setThickness(thickness4);
+            chkDetail3.setFacade(AxleNum17);
+            chkDetail3.setHeight(AxleNum18);
+            chkDetail3.setLeuchtfeld(AxleNum19);
+            chkDetail3.setIsQualified(AxleNum28);
+            int n4 = personnelMaintenanceService.insertDetail(chkDetail3);//插入明细记录
+            CHKDetail chkDetail4 = new CHKDetail();
+            chkDetail4.setCheakID(CheckID);
+            chkDetail4.setHoleHD(holeHD5);
+            chkDetail4.setPartDrawing(partDrawing);
+            chkDetail4.setAperture(AxleNum20);
+            chkDetail4.setHoleSite(AxleNum21);
+            chkDetail4.setThickness(thickness5);
+            chkDetail4.setFacade(AxleNum22);
+            chkDetail4.setHeight(AxleNum23);
+            chkDetail4.setLeuchtfeld(AxleNum24);
+            chkDetail4.setIsQualified(AxleNum29);
+            int n5 = personnelMaintenanceService.insertDetail(chkDetail4);//插入明细记录
+            json.put("num",n1+n2+n3+n4+n5);
+        }
+        return json;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/Juge",method = {RequestMethod.POST,RequestMethod.GET})
+    public  Map Juge(HttpServletRequest request) throws  UnsupportedEncodingException {
+        String s = request.getParameter("s");
+        String EquipID = request.getParameter("EquipID");
+        String time = request.getParameter("time");
+        CHKResult chkResult =  new CHKResult();
+        chkResult.setSendTime(time);
+        chkResult.setEquipID(EquipID);
+        chkResult.setProvingTime(s);
+        List<CHKResult> list =  personnelMaintenanceService.getCheck1(chkResult);
+        Map json = new HashMap();
+        if(list.size()>0){
+            json.put("num",list.size());
+            json.put("s",s);
+        }else {
+            json.put("num",-1);
+        }
+        return  json;
+    }
+}
+
+

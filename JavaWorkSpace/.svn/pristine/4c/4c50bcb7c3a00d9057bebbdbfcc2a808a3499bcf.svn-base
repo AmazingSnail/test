@@ -1,0 +1,43 @@
+# Server settings  
+server:  
+    port: 8081
+#    address: 172.16.0.59
+
+#日志配置
+logging:
+    level:
+        root: "warn"
+        com.dhchain.system: "debug"
+    path: "D:\\log"
+# SPRING PROFILES  
+spring:
+
+    # HTTP ENCODING  
+    http:  
+        encoding.charset: UTF-8  
+        encoding.enable: true  
+        encoding.force: true  
+    mvc:
+        view.prefix: /WEB-INF/jsp/
+        view.suffix: .jsp
+
+    # DATASOURCE  
+    datasource:
+        type: com.alibaba.druid.pool.DruidDataSource
+        base:
+            type: com.alibaba.druid.pool.DruidDataSource
+            driverClass: com.microsoft.sqlserver.jdbc.SQLServerDriver
+            url:  jdbc:sqlserver://172.16.0.40:1433;Database=DHBI
+            username: sa
+            password: serVer#2013@
+        mdm:
+            type: com.alibaba.druid.pool.DruidDataSource
+            driverClass: com.microsoft.sqlserver.jdbc.SQLServerDriver
+            url:  jdbc:sqlserver://172.16.0.43:1433;Database=NG_MDM
+            username: sa
+            password: iso14002
+#    jpa:
+#        database: sql_server
+#        hibernate:
+#            ddl-auto: update
+#            show-sql: true

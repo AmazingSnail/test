@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dhchain.business.TradeWMS.dao.TPackgoodallotMapper" >
+  <resultMap id="BaseResultMap" type="com.dhchain.business.TradeWMS.vo.TPackgoodallot" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="PackGoodID" property="packgoodid" jdbcType="INTEGER" />
+    <result column="OldLocation" property="oldlocation" jdbcType="VARCHAR" />
+    <result column="NewLocation" property="newlocation" jdbcType="VARCHAR" />
+    <result column="TransMan" property="transman" jdbcType="VARCHAR" />
+    <result column="TransDate" property="transdate" jdbcType="TIMESTAMP" />
+  </resultMap>
+</mapper>

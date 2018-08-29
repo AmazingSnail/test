@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="com.dhchain.business.DeliveryOrder.mapper.Zsd022TimeMapper" >
+<select id="selectSame4" resultType="com.dhchain.business.DeliveryOrder.vo.Zsd022Time" parameterType="com.dhchain.business.DeliveryOrder.vo.Zsd022Time">
+    SELECT     FHXTBH,FIELD30
+    FROM       ZSD022
+    WHERE    fhxtbh like '%'+#{fhxtbh}+'%'
+</select>
+</mapper>

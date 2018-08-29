@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dhchain.business.attr.dao.AttrDefineMapper">
+    <select id="select" parameterType="com.dhchain.business.attr.vo.AttrDefine" resultType="com.dhchain.business.attr.vo.AttrDefine">
+        SELECT
+
+        *
+
+        FROM
+        t_attrdefine
+
+        where isdelete = 0
+        <if test="typeid!=null and typeid!=''">and typeid = #{typeid}</if>
+        <if test="attrdefineno!=null and attrdefineno!=''">and attrdefineno like'%'+ #{attrdefineno}+'%'</if>
+        <if test="attrdefinename!=null and attrdefinename!=''">and attrdefinename like '%'+ #{attrdefinename}+'%'</if>
+        <if test="datatype!=null and datatype!=''">and datatype = #{datatype}</if>
+        <if test="widgettype!=null and widgettype!=''">and widgettype = #{widgettype}</if>
+        <if test="iscode!=null and iscode!=''">and iscode = #{iscode}</if>
+        <if test="islocked!=null and islocked!=''">and islocked = #{islocked}</if>
+        order by attrdefineno
+    </select>
+
+    <select id="selectById" parameterType="java.lang.Integer" resultType="com.dhchain.business.attr.vo.AttrDefine">
+        SELECT
+
+        *
+
+        FROM
+        t_attrdefine
+        where id = #{id}
+    </select>
+
+    <select id="selectByNo" parameterType="java.lang.String" resultType="com.dhchain.business.attr.vo.AttrDefine">
+        SELECT
+
+        *
+
+        FROM
+        t_attrdefine
+        where attrDefineno = #{attrDefineno} and isdelete = 0
+    </select>
+
+    <select id="selectByBaseid" parameterType="java.lang.Integer" resultType="com.dhchain.business.attr.vo.AttrDefine">
+        SELECT
+
+        *
+
+        FROM
+        t_attrdefine
+        where databaseid = #{databaseid} and isdelete = 0
+    </select>
+
+    <insert id="insert" parameterType="com.dhchain.business.attr.vo.AttrDefine" useGeneratedKeys="true" keyProperty="id">
+        insert into t_attrdefine(attrdefineno, attrdefinename,databaseid,attrid,datatype,datelength,precision,
+         widgettype,iscode,codelength,islocked,remark,inputman, inputdate,typeid,isdelete,isrequired,factoryid,databasetype)
+        values(#{attrdefineno}, #{attrdefinename},#{databaseid},#{attrid},#{datatype},#{datelength},#{precision},
+         #{widgettype},#{iscode},#{codelength},#{islocked},#{remark},
+        #{inputman}, #{inputdate},#{typeid},#{isdelete},#{isrequired},#{factoryid},#{databasetype})
+    </insert>
+
+    <update id="update" parameterType="com.dhchain.business.attr.vo.AttrDefine" >
+        UPDATE t_attrdefine
+        SET
+        attrdefineno = #{attrdefineno},
+        attrdefinename = #{attrdefinename},
+        databaseid = #{databaseid},
+        attrid = #{attrid},
+        factoryid = #{factoryid},
+        datatype = #{datatype},
+        datelength = #{datelength},
+        databasetype = #{databasetype},
+        precision = #{precision},
+        widgettype = #{widgettype},
+        iscode = #{iscode},
+        codelength = #{codelength},
+        islocked = #{islocked},
+        remark = #{remark},
+        modifyman = #{modifyman},
+        modifydate = #{modifydate},
+        typeid = #{typeid},
+        isrequired = #{isrequired}
+        WHERE id = #{id};
+    </update>
+
+
+    <update id="delete" parameterType="com.dhchain.business.attr.vo.AttrDefine" >
+        UPDATE t_attrdefine
+        SET
+        isdelete = 1
+        WHERE id in
+        <foreach item="item" index="index" collection="array"
+                 open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+</mapper>
